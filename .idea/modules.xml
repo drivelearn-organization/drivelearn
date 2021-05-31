@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../groupproject2/drivelearn-backend.iml" filepath="$PROJECT_DIR$/../groupproject2/drivelearn-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drivelearn-web/drivelearn-web.iml" filepath="$PROJECT_DIR$/drivelearn-web/drivelearn-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drivelearnmobile/drivelearnmobile.iml" filepath="$PROJECT_DIR$/drivelearnmobile/drivelearnmobile.iml" />
+    </modules>
+  </component>
+</project>
