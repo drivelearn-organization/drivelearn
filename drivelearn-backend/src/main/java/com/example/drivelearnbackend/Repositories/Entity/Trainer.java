@@ -13,4 +13,36 @@ public class Trainer {
     private int trainLiceId;
     private double rating;
 
+    public Trainer() {
+    }
+
+    public Trainer(int trainerId, int trainLiceId, double rating) {
+        this.trainerId = trainerId;
+        this.trainLiceId = trainLiceId;
+        this.rating = rating;
+    }
+
+    public int getTrainerId() {
+        return trainerId;
+    }
+
+    public void setTrainerId(int trainerId) {
+        this.trainerId = trainerId;
+    }
+
+    public int getTrainLiceId() {
+        return trainLiceId;
+    }
+
+    public void setTrainLiceId(int trainLiceId) {
+        this.trainLiceId = trainLiceId;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 }
