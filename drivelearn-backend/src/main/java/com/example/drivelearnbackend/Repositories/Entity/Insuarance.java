@@ -14,10 +14,59 @@ public class Insuarance {
     private Date payedDate;
     private Date expireDate;
 
-//    @ManyToOne
-//    @JsonBackReference
-//    @JoinColumn(name = "vehicleId",referencedColumnName = "vechicleId")
-//    private Vehicle vehicle;
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "vehicleId",referencedColumnName = "vechicleId")
+    private Vehicle vehicle;
 
+    public Insuarance() {
+    }
 
+    public Insuarance(int insuaranceId, double amount, Date payedDate, Date expireDate, Vehicle vehicle) {
+        this.insuaranceId = insuaranceId;
+        this.amount = amount;
+        this.payedDate = payedDate;
+        this.expireDate = expireDate;
+        this.vehicle = vehicle;
+    }
+
+    public int getInsuaranceId() {
+        return insuaranceId;
+    }
+
+    public void setInsuaranceId(int insuaranceId) {
+        this.insuaranceId = insuaranceId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public Date getPayedDate() {
+        return payedDate;
+    }
+
+    public void setPayedDate(Date payedDate) {
+        this.payedDate = payedDate;
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
 }
