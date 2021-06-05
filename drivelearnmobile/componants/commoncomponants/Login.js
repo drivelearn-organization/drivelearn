@@ -7,95 +7,109 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView,
 } from 'react-native';
 import {Formik} from 'formik';
 const Login = ({navigation}) => {
   return (
-    <ImageBackground
-      style={styles.backgroundImage}
-      source={require('../../asets/background/dillon-shook-mY3_bvR74fI-unsplash.png')}>
-      <View style={styles.views}>
-        <View style={styles.headerView}>
-          <View>
-            <TouchableOpacity style={styles.touchable}>
-              <Text style={styles.signUp}>SignUp</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity style={styles.touchable}>
-              <Text style={styles.switchText} onPress={() => navigation.navigate('StudentFirst')}>Switch To Student</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.inputView}>
-          <ImageBackground
-            style={styles.logoStyle}
-            source={require('../../asets/logo/Logo_Box.png')}
-          />
-        </View>
-        <View style={styles.tpoicView}>
-          <View>
-            <Text style={styles.firsttext}>Student</Text>
-          </View>
-          <View>
-            <Text style={styles.secondtext}>Login</Text>
-          </View>
-        </View>
-
-        <Formik
-          initialValues={{username: '', password: ''}}
-          onSubmit={values => {}}>
-          {props => (
-            <View style={styles.getInView}>
-              <TextInput
-                placeholder={'Username'}
-                style={styles.inputone}
-                placeholderTextColor={'white'}
-                value={props.values.username}
-                onChangeText={props.handleChange('username')}
-                // placeholderStyle={{color:'red'}}
-              />
-              <TextInput
-                placeholder={'password'}
-                style={styles.imputTwo}
-                placeholderTextColor={'white'}
-                value={props.values.password}
-                onChangeText={props.values.password}
-              />
-              <View style={styles.fogPassView}>
-                <TouchableOpacity>
-                  <Text style={styles.fogText}>Forgot password?</Text>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}>
+      <ScrollView style={{flex: 1}}>
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={require('../../asets/background/dillon-shook-mY3_bvR74fI-unsplash.png')}>
+          <View style={styles.views}>
+            <View style={styles.headerView}>
+              <View>
+                <TouchableOpacity style={styles.touchable}>
+                  <Text style={styles.signUp}>SignUp</Text>
                 </TouchableOpacity>
               </View>
-
-              <View style={styles.touchableView}>
-                <TouchableOpacity
-                  style={styles.buttonSubmit}
-                  onPress={props.handleSubmit}>
-                  <Text>Login</Text>
+              <View>
+                <TouchableOpacity style={styles.touchable}>
+                  <Text
+                    style={styles.switchText}
+                    onPress={() => navigation.navigate('StudentFirst')}>
+                    Switch To Student
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
-          )}
-        </Formik>
+            <View style={styles.inputView}>
+              <ImageBackground
+                style={styles.logoStyle}
+                source={require('../../asets/logo/Logo_Box.png')}
+              />
+            </View>
+            <View style={styles.tpoicView}>
+              <View>
+                <Text style={styles.firsttext}>Student</Text>
+              </View>
+              <View>
+                <Text style={styles.secondtext}>Login</Text>
+              </View>
+            </View>
 
-        <View style={styles.alreadyView}>
-          <TouchableOpacity style={styles.alreadyPressableView}>
-            <Text style={styles.alreadyViewText}>
-              or if you haven't account,
-            </Text>
-            <Text style={styles.alreadyViewText}>sign un</Text>
-          </TouchableOpacity>
-        </View>
-        
-      </View>
-    </ImageBackground>
+            <Formik
+              initialValues={{username: '', password: ''}}
+              onSubmit={values => {}}>
+              {props => (
+                <View style={styles.getInView}>
+                  <TextInput
+                    placeholder={'Username'}
+                    style={styles.inputone}
+                    placeholderTextColor={'white'}
+                    value={props.values.username}
+                    onChangeText={props.handleChange('username')}
+                    // placeholderStyle={{color:'red'}}
+                  />
+                  <TextInput
+                    placeholder={'password'}
+                    style={styles.imputTwo}
+                    placeholderTextColor={'white'}
+                    value={props.values.password}
+                    onChangeText={props.handleChange('password')}
+                  />
+                  <View style={styles.fogPassView}>
+                    <TouchableOpacity>
+                      <Text style={styles.fogText}>Forgot password?</Text>
+                    </TouchableOpacity>
+                  </View>
+
+                  <View style={styles.touchableView}>
+                    <TouchableOpacity
+                      style={styles.buttonSubmit}
+                      onPress={props.handleSubmit}>
+                      <Text>Login</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+            </Formik>
+
+            <View style={styles.alreadyView}>
+              <TouchableOpacity style={styles.alreadyPressableView}>
+                <Text style={styles.alreadyViewText}>
+                  or if you haven't account,
+                </Text>
+                <Text style={styles.alreadyViewText}>sign un</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ImageBackground>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     flex: 1,
+    // height:'100%',
     tintColor: '#000000',
   },
   text: {},
@@ -188,12 +202,17 @@ const styles = StyleSheet.create({
   fogText: {color: 'white'},
   alreadyView: {
     alignItems: 'center',
+    height: 248,
   },
   alreadyViewText: {
     color: 'white',
   },
   alreadyPressableView: {
     alignItems: 'center',
+  },
+  filler2: {
+    width: '100',
+    height: 100,
   },
 });
 
