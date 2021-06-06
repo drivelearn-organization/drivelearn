@@ -3,21 +3,23 @@ import * as yup from 'yup';
 import {
   Button,
   ImageBackground,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import {Formik} from 'formik';
+
 const reviewSchema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required(),
 });
-const Login = ({navigation}) => {
+
+const TrainerLogin = ({navigation}) => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -38,8 +40,8 @@ const Login = ({navigation}) => {
                 <TouchableOpacity style={styles.touchable}>
                   <Text
                     style={styles.switchText}
-                    onPress={() => navigation.navigate('StudentFirst')}>
-                    Switch To Trainer
+                    onPress={() => navigation.navigate('Login')}>
+                    Switch To Student
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -52,7 +54,7 @@ const Login = ({navigation}) => {
             </View>
             <View style={styles.tpoicView}>
               <View>
-                <Text style={styles.firsttext}>Student</Text>
+                <Text style={styles.firsttext}>Trainer</Text>
               </View>
               <View>
                 <Text style={styles.secondtext}>Login</Text>
@@ -62,9 +64,7 @@ const Login = ({navigation}) => {
             <Formik
               initialValues={{username: '', password: ''}}
               validationSchema={reviewSchema}
-              onSubmit={values => {
-                navigation.navigate('StudentFirst');
-              }}>
+              onSubmit={values => {}}>
               {props => (
                 <View style={styles.getInView}>
                   <TextInput
@@ -73,7 +73,6 @@ const Login = ({navigation}) => {
                     placeholderTextColor={'white'}
                     value={props.values.username}
                     onChangeText={props.handleChange('username')}
-                    // onBlur={props.handleChange('username')}
                     // placeholderStyle={{color:'red'}}
                   />
                   <Text style={styles.warn}>
@@ -83,10 +82,9 @@ const Login = ({navigation}) => {
                     placeholder={'password'}
                     style={styles.imputTwo}
                     placeholderTextColor={'white'}
-                    secureTextEntry={true}
                     value={props.values.password}
+                    secureTextEntry={true}
                     onChangeText={props.handleChange('password')}
-                    // onBlur={props.handleChange('password')}
                   />
                   <Text style={styles.warn}>
                     {props.touched.password && props.errors.password}
@@ -122,6 +120,7 @@ const Login = ({navigation}) => {
     </TouchableWithoutFeedback>
   );
 };
+
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
@@ -237,4 +236,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default TrainerLogin;
