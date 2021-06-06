@@ -79,8 +79,9 @@ const Login = ({navigation}) => {
                   <Text style={styles.warn}>
                     {props.touched.username && props.errors.username}
                   </Text>
+
                   <TextInput
-                    placeholder={'password'}
+                    placeholder={'Password'}
                     style={styles.imputTwo}
                     placeholderTextColor={'white'}
                     secureTextEntry={true}
@@ -92,7 +93,8 @@ const Login = ({navigation}) => {
                     {props.touched.password && props.errors.password}
                   </Text>
                   <View style={styles.fogPassView}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('StudentForget')}>
                       <Text style={styles.fogText}>Forgot password?</Text>
                     </TouchableOpacity>
                   </View>
@@ -101,7 +103,7 @@ const Login = ({navigation}) => {
                     <TouchableOpacity
                       style={styles.buttonSubmit}
                       onPress={props.handleSubmit}>
-                      <Text>Login</Text>
+                      <Text>Change</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -180,20 +182,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'white',
     width: 200,
-    paddingBottom: 4,
+    paddingBottom: 2,
   },
   imputTwo: {
     color: 'white',
     borderBottomWidth: 1,
     borderBottomColor: 'white',
     width: 200,
-    paddingTop: 20,
+    paddingTop: 8,
     paddingBottom: 4,
   },
   getInView: {
     width: '100%',
     alignItems: 'center',
-    height: 270,
+    height: 240,
     paddingTop: 30,
   },
   touchableView: {
@@ -213,14 +215,14 @@ const styles = StyleSheet.create({
   },
   fogPassView: {
     width: 200,
-    paddingTop: 8,
+    paddingTop: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
   fogText: {color: 'white'},
   alreadyView: {
     alignItems: 'center',
-    height: 207,
+    height: 239,
   },
   alreadyViewText: {
     color: 'white',

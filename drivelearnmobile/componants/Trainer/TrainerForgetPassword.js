@@ -1,7 +1,5 @@
 import React from 'react';
-import * as yup from 'yup';
 import {
-  Button,
   ImageBackground,
   Keyboard,
   ScrollView,
@@ -13,13 +11,20 @@ import {
   View,
 } from 'react-native';
 import {Formik} from 'formik';
-
+import * as yup from 'yup';
 const reviewSchema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().required(),
+  newpassword: yup.string().required().min(6),
+  otp: yup.string().required(),
+  confpassword: yup
+    .string()
+    .required()
+    .matches()
+    .oneOf([yup.ref('newpassword')], 'password is not matching'),
 });
-
-const TrainerLogin = ({navigation}) => {
+const reviewSchema1 = yup.object().shape({
+  username: yup.string().required(),
+});
+const TrainerForgetPassword = ({navigation}) => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -36,15 +41,15 @@ const TrainerLogin = ({navigation}) => {
                   <Text style={styles.signUp}>SignUp</Text>
                 </TouchableOpacity>
               </View>
-              <View>
-                <TouchableOpacity style={styles.touchable}>
-                  <Text
-                    style={styles.switchText}
-                    onPress={() => navigation.navigate('Login')}>
-                    Switch To Student
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              {/*<View>*/}
+              {/*  <TouchableOpacity style={styles.touchable}>*/}
+              {/*    <Text*/}
+              {/*      style={styles.switchText}*/}
+              {/*      onPress={() => navigation.navigate('StudentFirst')}>*/}
+              {/*      Switch To Trainer*/}
+              {/*    </Text>*/}
+              {/*  </TouchableOpacity>*/}
+              {/*</View>*/}
             </View>
             <View style={styles.inputView}>
               <ImageBackground
@@ -54,44 +59,103 @@ const TrainerLogin = ({navigation}) => {
             </View>
             <View style={styles.tpoicView}>
               <View>
-                <Text style={styles.firsttext}>Trainer</Text>
+                <Text style={styles.firsttext}>Forgot</Text>
               </View>
               <View>
-                <Text style={styles.secondtext}>Login</Text>
+                <Text style={styles.secondtext}>password</Text>
               </View>
             </View>
-
             <Formik
-              initialValues={{username: '', password: ''}}
-              validationSchema={reviewSchema}
-              onSubmit={values => {}}>
+              initialValues={{username: ''}}
+              validationSchema={reviewSchema1}
+              onSubmit={() => {
+                // eslint-disable-next-line no-undef
+                actions.resetForm();
+              }}>
               {props => (
-                <View style={styles.getInView}>
+                <View style={styles.firstInputView}>
                   <TextInput
                     placeholder={'Username'}
                     style={styles.inputone}
                     placeholderTextColor={'white'}
                     value={props.values.username}
                     onChangeText={props.handleChange('username')}
+                    onBlur={props.handleChange('username')}
                     // placeholderStyle={{color:'red'}}
                   />
+
                   <Text style={styles.warn}>
                     {props.touched.username && props.errors.username}
                   </Text>
+
+                  <View style={styles.touchableView}>
+                    <TouchableOpacity
+                      style={styles.buttonSubmit}
+                      onPress={props.handleSubmit}>
+                      <Text>Send OTP</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+            </Formik>
+
+            <Formik
+              initialValues={{
+                newpassword: '',
+                otp: '',
+                confpassword: '',
+              }}
+              validationSchema={reviewSchema}
+              onSubmit={values => {
+                // eslint-disable-next-line no-undef
+                // actions.resetForm();
+                navigation.navigate('Login');
+              }}>
+              {props => (
+                <View style={styles.getInView}>
                   <TextInput
-                    placeholder={'password'}
-                    style={styles.imputTwo}
+                    placeholder={'OTP send to mail'}
+                    style={styles.inputone}
                     placeholderTextColor={'white'}
-                    value={props.values.password}
-                    secureTextEntry={true}
-                    onChangeText={props.handleChange('password')}
+                    value={props.values.otp}
+                    onChangeText={props.handleChange('otp')}
+                    // onBlur={props.handleChange('otp')}
+                    // placeholderStyle={{color:'red'}}
                   />
                   <Text style={styles.warn}>
-                    {props.touched.password && props.errors.password}
+                    {props.touched.otp && props.errors.otp}
+                  </Text>
+
+                  <TextInput
+                    placeholder={'new password'}
+                    style={styles.inputone}
+                    placeholderTextColor={'white'}
+                    value={props.values.newpassword}
+                    secureTextEntry={true}
+                    onChangeText={props.handleChange('newpassword')}
+                    // onBlur={props.handleChange('username')}
+                    // placeholderStyle={{color:'red'}}
+                  />
+                  <Text style={styles.warn}>
+                    {props.touched.newpassword && props.errors.newpassword}
+                  </Text>
+
+                  <TextInput
+                    placeholder={'confirm password'}
+                    style={styles.imputTwo}
+                    placeholderTextColor={'white'}
+                    secureTextEntry={true}
+                    value={props.values.confpassword}
+                    onChangeText={props.handleChange('confpassword')}
+                    // onBlur={props.handleChange('password')}
+                  />
+                  <Text style={styles.warn}>
+                    {props.touched.confpassword && props.errors.confpassword}
                   </Text>
                   <View style={styles.fogPassView}>
-                    <TouchableOpacity onPress={()=>navigation.navigate('TrainerForget')}>
-                      <Text style={styles.fogText}>Forgot password?</Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('StudentFirst')}>
+                      <Text style={styles.fogText}>Go to login?</Text>
                     </TouchableOpacity>
                   </View>
 
@@ -99,7 +163,7 @@ const TrainerLogin = ({navigation}) => {
                     <TouchableOpacity
                       style={styles.buttonSubmit}
                       onPress={props.handleSubmit}>
-                      <Text>Login</Text>
+                      <Text>Change</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -111,7 +175,7 @@ const TrainerLogin = ({navigation}) => {
                 <Text style={styles.alreadyViewText}>
                   or if you haven't account,
                 </Text>
-                <Text style={styles.alreadyViewText}>sign un</Text>
+                <Text style={styles.alreadyViewText}>sign Up</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -120,7 +184,6 @@ const TrainerLogin = ({navigation}) => {
     </TouchableWithoutFeedback>
   );
 };
-
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
@@ -186,14 +249,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'white',
     width: 200,
-    paddingTop: 20,
-    paddingBottom: 4,
+    paddingTop: 10,
+    paddingBottom: 2,
   },
   getInView: {
     width: '100%',
     alignItems: 'center',
-    height: 270,
-    paddingTop: 30,
+    height: 280,
+    paddingTop: 10,
   },
   touchableView: {
     height: 90,
@@ -212,14 +275,14 @@ const styles = StyleSheet.create({
   },
   fogPassView: {
     width: 200,
-    paddingTop: 8,
+    paddingTop: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
   fogText: {color: 'white'},
   alreadyView: {
     alignItems: 'center',
-    height: 207,
+    height: 118,
   },
   alreadyViewText: {
     color: 'white',
@@ -231,9 +294,11 @@ const styles = StyleSheet.create({
     width: '100',
     height: 100,
   },
+  firstInputView: {
+    alignItems: 'center',
+  },
   warn: {
     color: 'red',
   },
 });
-
-export default TrainerLogin;
+export default TrainerForgetPassword;
