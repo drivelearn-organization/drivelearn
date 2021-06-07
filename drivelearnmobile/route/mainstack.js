@@ -6,6 +6,7 @@ import Login from '../componants/commoncomponants/Login';
 import TrainerLogin from '../componants/Trainer/TrainerLogin';
 import ForgotPassword from '../componants/commoncomponants/ForgotPassword';
 import TrainerForgetPassword from '../componants/Trainer/TrainerForgetPassword';
+import Register from "../componants/commoncomponants/Register";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function Mainstack() {
         <Stack.Screen name="StudentFirst" component={TrainerLogin} options={{headerShown:false}}/>
         <Stack.Screen name="StudentForget" component={ForgotPassword} options={{headerShown:false}}/>
         <Stack.Screen name="TrainerForget" component={TrainerForgetPassword} options={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

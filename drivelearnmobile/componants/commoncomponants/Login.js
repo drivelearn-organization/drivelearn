@@ -30,7 +30,7 @@ const Login = ({navigation}) => {
           <View style={styles.views}>
             <View style={styles.headerView}>
               <View>
-                <TouchableOpacity style={styles.touchable}>
+                <TouchableOpacity style={styles.touchable} onPress={()=>navigation.navigate('Register')}>
                   <Text style={styles.signUp}>SignUp</Text>
                 </TouchableOpacity>
               </View>
@@ -111,7 +111,7 @@ const Login = ({navigation}) => {
             </Formik>
 
             <View style={styles.alreadyView}>
-              <TouchableOpacity style={styles.alreadyPressableView}>
+              <TouchableOpacity style={styles.alreadyPressableView} onPress={()=>navigation.navigate('Register')}>
                 <Text style={styles.alreadyViewText}>
                   or if you haven't account,
                 </Text>
