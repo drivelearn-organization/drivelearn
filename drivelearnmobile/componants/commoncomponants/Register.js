@@ -1,4 +1,5 @@
 import React from 'react';
+import {RadioButton} from 'react-native-paper';
 import {
   Text,
   TouchableWithoutFeedback,
@@ -9,13 +10,20 @@ import {
 } from 'react-native';
 
 const Register = ({navigation}) => {
+  const [checked, setChecked] = React.useState('first');
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ScrollView>
         <ImageBackground
           source={require('../../asets/background/registerwallpaper.png')}
-          style={styles.bacStyleSheetkgroundImage}
-        />
+          style={styles.bacStyleSheetkgroundImage}>
+          <RadioButton
+            value="first"
+            status={checked === 'first' ? 'checked' : 'unchecked'}
+            onPress={() => setChecked('first')}
+          />
+        </ImageBackground>
       </ScrollView>
     </TouchableWithoutFeedback>
   );
