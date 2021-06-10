@@ -15,6 +15,24 @@ import {
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
+import * as yup from "yup";
+
+const reviewSchema = yup.object().shape({
+  password: yup.string().required().min(6),
+  conPassword: yup
+      .string()
+      .required()
+      .matches()
+      .oneOf([yup.ref('password')], 'password is not matching'),
+  fullname: yup.string().required(),
+  username: yup.string().required(),
+  nid: yup.string().required(),
+  contact: yup.string().required(),
+  DOB: yup.string().required(),
+  address: yup.string().required(),
+
+});
+
 const Register = ({navigation}) => {
 
 const [position,setPosition]=useState('are you a teacher?');
@@ -33,7 +51,7 @@ const [position,setPosition]=useState('are you a teacher?');
           {/*  onPress={() => setChecked('first')}*/}
           {/*/>*/}
           <View style={styles.headerView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
               <Text style={styles.headerText}>Sign In</Text>
             </TouchableOpacity>
           </View>
@@ -60,7 +78,9 @@ const [position,setPosition]=useState('are you a teacher?');
               conPassword: '',
               password: '',
             }}
-            onSubmit={() => {}}>
+            onSubmit={() => {}}
+          validationSchema={reviewSchema}
+          >
             {props => (
               <View style={styles.inputView}>
                 {/*username*/}
@@ -159,7 +179,8 @@ const [position,setPosition]=useState('are you a teacher?');
                     selectedValue={selectedLanguage}
                     onValueChange={(itemValue, itemIndex) =>
                       setSelectedLanguage(itemValue)
-                    }>
+                    }
+                  >
                     <Picker.Item
                       label="Select a branch"
                       value="java"
@@ -222,6 +243,40 @@ const [position,setPosition]=useState('are you a teacher?');
                     return prevPosition==='are you a teacher?' ? 'are you not a teacher?': 'are you a teacher?';
                   })}><Text style={styles.textStyle}>{position}</Text></TouchableOpacity>
                 </View>
+
+                {position==='are you not a teacher?'?
+                    <>
+
+                    <TextInput
+                        placeholder={'Licence number'}
+                        // multiline={true}
+                        style={styles.inputone}
+                        placeholderTextColor={'white'}
+                        // value={props.values.password}
+                        // secureTextEntry={true}
+                        // onChangeText={props.handleChange('password')}
+                        // onBlur={props.handleChange('username')}
+                        // placeholderStyle={{color:'red'}}
+                    />
+                      <Text style={styles.warn}>
+
+                      </Text>
+                    <TextInput
+                        placeholder={'Emergency contact'}
+                        // multiline={true}
+                        style={styles.inputone}
+                        placeholderTextColor={'white'}
+                        // value={props.values.password}
+                        // secureTextEntry={true}
+                        // onChangeText={props.handleChange('password')}
+                        // onBlur={props.handleChange('username')}
+                        // placeholderStyle={{color:'red'}}
+                    />
+                      <Text style={styles.warn}>
+
+                      </Text>
+                    </>
+                    :null}
                 <View style={styles.touchableView}>
                   <TouchableOpacity
                     style={styles.buttonSubmit}
