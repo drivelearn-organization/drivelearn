@@ -16,13 +16,8 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
 const Register = ({navigation}) => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-  ]);
 
+const [position,setPosition]=useState('are you a teacher?');
   const [checked, setChecked] = React.useState('first');
   const [selectedLanguage, setSelectedLanguage] = useState();
 
@@ -210,22 +205,23 @@ const Register = ({navigation}) => {
                   {props.touched.conPassword && props.errors.conPassword}
                 </Text>
 
+
+
+                {/*<RadioButton*/}
+                {/*  value="first"*/}
+                {/*  status={checked === 'first' ? 'checked' : 'unchecked'}*/}
+                {/*  onPress={() =>*/}
+                {/*    setChecked(prevChecked => {*/}
+                {/*      return prevChecked === 'first' ? 'notFirst' : 'first';*/}
+                {/*    })*/}
+                {/*  }*/}
+                {/*/>*/}
+
                 <View>
-                  <TouchableOpacity>
-                    <Text>are you a trainer</Text>
-                  </TouchableOpacity>
+                  <TouchableOpacity onPress={()=>setPosition((prevPosition)=>{
+                    return prevPosition==='are you a teacher?' ? 'are you not a teacher?': 'are you a teacher?';
+                  })}><Text style={styles.textStyle}>{position}</Text></TouchableOpacity>
                 </View>
-
-                <RadioButton
-                  value="first"
-                  status={checked === 'first' ? 'checked' : 'unchecked'}
-                  onPress={() =>
-                    setChecked(prevChecked => {
-                      return prevChecked === 'first' ? 'notFirst' : 'first';
-                    })
-                  }
-                />
-
                 <View style={styles.touchableView}>
                   <TouchableOpacity
                     style={styles.buttonSubmit}
@@ -307,5 +303,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#23A34C',
     borderRadius: 10,
   },
+  textStyle:{
+    color:'white',
+  }
 });
 export default Register;
