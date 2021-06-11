@@ -13,6 +13,7 @@ import java.util.List;
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int stuId;
     private Date registereddate;
     private String idnum;
