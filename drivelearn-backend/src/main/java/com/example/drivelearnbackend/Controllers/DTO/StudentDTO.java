@@ -9,7 +9,7 @@ public class StudentDTO {
     private String contact;
     private String branch;
     private String username;
-    private String password;
+            private String password;
 //    private Date DOB;
 
     public StudentDTO(String name, String address, String NID, String contact, String branch, String username, String password) {
