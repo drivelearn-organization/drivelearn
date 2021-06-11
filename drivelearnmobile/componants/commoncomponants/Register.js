@@ -54,12 +54,11 @@ const Register = ({navigation}) => {
     } else {
       basenow = basenow + 'student/addstudent';
     }
-    const DOB = new Date(
-      parseInt(values.year),
-      parseInt(values.month),
-      parseInt(values.day),
-    );
 
+    console.log(values.nid);
+    console.log(values.day);
+    console.log(values.year);
+    console.log(values.month);
     fetch('http://192.168.56.1:8080/student/addstudent', {
       method: 'POST',
       headers: {
@@ -69,14 +68,14 @@ const Register = ({navigation}) => {
       body: JSON.stringify({
         name: values.fullname,
         address: values.address,
-        NID: values.NID,
+        nid: values.nid,
         contact: values.contact,
         branch: selectedLanguage,
         username: values.username,
         password: values.password,
-        // Bday: values.day,
-        // Bmonth: values.month,
-        // Byear: values.year
+        day: values.day,
+        month: values.month,
+        year: values.year
       }),
     })
         // .then((response) =>{
@@ -210,8 +209,9 @@ const Register = ({navigation}) => {
                     value={props.values.day}
                     onChangeText={props.handleChange('day')}
                     maxLength={2}
+                    value={props.values.day}
                     keyboardType={'numeric'}
-                    style={styles.day}
+                    style={styles.days}
                     placeholder={'dd'}
                     placeholderTextColor={'white'} />
                   <TextInput
@@ -219,7 +219,8 @@ const Register = ({navigation}) => {
                     onChangeText={props.handleChange('month')}
                     maxLength={2}
                     keyboardType={'numeric'}
-                    style={styles.month}
+                    value={props.values.month}
+                    style={styles.months}
                     placeholder={'mm'}
                     placeholderTextColor={'white'} />
                   <TextInput
@@ -227,7 +228,8 @@ const Register = ({navigation}) => {
                     onChangeText={props.handleChange('year')}
                     maxLength={4}
                     keyboardType={'numeric'}
-                    style={styles.year}
+                    value={props.values.year}
+                    style={styles.years}
                     placeholder={'yyyy'}
                     placeholderTextColor={'white'} />
                 </View>
@@ -265,9 +267,9 @@ const Register = ({navigation}) => {
                       value="java"
                       enabled={false}
                     />
-                    <Picker.Item label="Baduraliya" value="Baduraliya" />
-                    <Picker.Item label="Mathugama" value="Mathugama" />
-                    <Picker.Item label="Kaluthara" value="Kaluthara" />
+                    <Picker.Item label="Panadura" value="Panadura" />
+                    <Picker.Item label="Mathugama" value="mathugama" />
+                    <Picker.Item label="Kaluthara" value="kaluthatara" />
                     <Picker.Item label="Aluthgama" value="Aluthgama" />
                   </Picker>
                 </View>
@@ -445,7 +447,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  day: {
+  days: {
     // height:32,
     color: 'white',
     borderBottomColor: 'white',
@@ -456,12 +458,12 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     color: 'white',
   },
-  month: {
+  months: {
     color: 'white',
     borderBottomColor: 'white',
     borderBottomWidth: 1,
   },
-  year: {
+  years: {
     color: 'white',
     borderBottomColor: 'white',
     borderBottomWidth: 1,

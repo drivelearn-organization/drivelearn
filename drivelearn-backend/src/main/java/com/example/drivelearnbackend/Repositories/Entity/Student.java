@@ -55,8 +55,8 @@ public class Student {
     public Student() {
     }
 
-    public Student(int stuId, Date registereddate, String idnum, String address, Date dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
-        this.stuId = stuId;
+    public Student( Date registereddate, String idnum, String address, Date dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
+
         this.registereddate = registereddate;
         this.idnum = idnum;
         this.address = address;
