@@ -48,7 +48,7 @@ const reviewSchema = yup.object().shape({
 
 const Register = ({navigation}) => {
   const register = values => {
-    var basenow = 'localhost:8080/';
+    var basenow = 'http://localhost:8080/';
     if (position === 'are you not a teacher?') {
       basenow = basenow + 'trainer/';
     } else {
@@ -60,7 +60,7 @@ const Register = ({navigation}) => {
       parseInt(values.day),
     );
 
-    fetch(basenow, {
+    fetch('http://192.168.56.1:8080/student/addstudent', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -74,12 +74,18 @@ const Register = ({navigation}) => {
         branch: selectedLanguage,
         username: values.username,
         password: values.password,
+        // Bday: values.day,
+        // Bmonth: values.month,
+        // Byear: values.year
       }),
     })
-        .then((response) => response.json())
-        .then((json) => {
-
-        })
+        // .then((response) =>{
+        //   console.log(JSON.stringify(response, null, 4))
+        //   response.json()
+        // } )
+        // .then((json) => {
+        //   console.log(json);
+        // })
         .catch((error) => {
           console.error(error);
         });
