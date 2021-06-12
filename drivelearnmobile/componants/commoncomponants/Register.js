@@ -18,28 +18,52 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
 import * as yup from 'yup';
-
+var pos;
 var va;
 const isAvail = value => {
-  fetch('http://192.168.56.1:8080/student/isAvail', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username: value,
-    }),
-  })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json);
-      va = json;
-      return json;
+
+  if(pos==='are you not a teacher?'){
+    fetch('http://192.168.56.1:8080/employee/empisavail', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: value,
+      }),
     })
-    .catch(error => {
-      console.error(error);
-    });
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+          va = json;
+          return json;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+  }else{
+    fetch('http://192.168.56.1:8080/student/isAvail', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: value,
+      }),
+    })
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+          va = json;
+          return json;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+  }
+
 };
 
 const reviewSchema = yup.object().shape({
@@ -115,10 +139,12 @@ const Register = ({navigation}) => {
         console.error(error);
       });
   };
+
+
   const [position, setPosition] = useState('are you a teacher?');
   const [checked, setChecked] = React.useState('first');
   const [selectedLanguage, setSelectedLanguage] = useState();
-
+  pos=position;
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ScrollView>
@@ -153,7 +179,6 @@ const Register = ({navigation}) => {
               username: '',
               nid: '',
               contact: '',
-
               address: '',
               conPassword: '',
               password: '',
@@ -218,8 +243,8 @@ const Register = ({navigation}) => {
                   style={styles.inputone}
                   placeholderTextColor={'white'}
                   value={props.values.contact}
-                  // onChangeText={props.handleChange('contact')}
-                  onBlur={props.handleChange('contact')}
+                  onChangeText={props.handleChange('contact')}
+                  // onBlur={props.handleChange('contact')}
                   // placeholderStyle={{color:'red'}}
                 />
                 <Text style={styles.warn}>
