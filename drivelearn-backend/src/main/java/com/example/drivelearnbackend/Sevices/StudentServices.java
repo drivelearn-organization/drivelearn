@@ -45,6 +45,16 @@ public class StudentServices {
         return null;
     }
 
+
+    public boolean isAvailableUsernane(String username){
+        Student student=repository.findByUsername(username);
+        if(student==null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public void addStudent(){
         repository.save(new Student());
     }

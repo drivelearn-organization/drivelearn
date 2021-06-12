@@ -19,6 +19,29 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
 import * as yup from 'yup';
 
+var va;
+const isAvail = value => {
+  fetch('http://192.168.56.1:8080/student/isAvail', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: value,
+    }),
+  })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      va = json;
+      return json;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+
 const reviewSchema = yup.object().shape({
   password: yup.string().required().min(6).max(8),
   conPassword: yup
@@ -27,7 +50,14 @@ const reviewSchema = yup.object().shape({
     .matches()
     .oneOf([yup.ref('password')], 'password is not matching'),
   fullname: yup.string().required(),
-  username: yup.string().required(),
+  username: yup
+    .string()
+    .required()
+    .test('isAvail', 'username is not available', value => {
+      isAvail(value);
+      console.log('va is' + va);
+      return va;
+    }),
   nid: yup.string().required(),
   contact: yup.string().required(),
   address: yup.string().required(),
@@ -76,20 +106,19 @@ const Register = ({navigation}) => {
         password: values.password,
         day: values.day,
         month: values.month,
-        year: values.year
+        year: values.year,
       }),
     })
-        // .then((response) =>{
-        //   console.log(JSON.stringify(response, null, 4))
-        //   response.json()
-        // } )
-        // .then((json) => {
-        //   console.log(json);
-        // })
-        .catch((error) => {
-          console.error(error);
-        });
-
+      // .then((response) =>{
+      //   console.log(JSON.stringify(response, null, 4))
+      //   response.json()
+      // } )
+      // .then((json) => {
+      //   console.log(json);
+      // })
+      .catch(error => {
+        console.error(error);
+      });
   };
   const [position, setPosition] = useState('are you a teacher?');
   const [checked, setChecked] = React.useState('first');
@@ -214,7 +243,8 @@ const Register = ({navigation}) => {
                     keyboardType={'numeric'}
                     style={styles.days}
                     placeholder={'dd'}
-                    placeholderTextColor={'white'} />
+                    placeholderTextColor={'white'}
+                  />
                   <TextInput
                     value={props.values.month}
                     onChangeText={props.handleChange('month')}
@@ -223,7 +253,8 @@ const Register = ({navigation}) => {
                     value={props.values.month}
                     style={styles.months}
                     placeholder={'mm'}
-                    placeholderTextColor={'white'} />
+                    placeholderTextColor={'white'}
+                  />
                   <TextInput
                     value={props.values.year}
                     onChangeText={props.handleChange('year')}
@@ -232,11 +263,14 @@ const Register = ({navigation}) => {
                     value={props.values.year}
                     style={styles.years}
                     placeholder={'yyyy'}
-                    placeholderTextColor={'white'} />
+                    placeholderTextColor={'white'}
+                  />
                 </View>
 
                 <Text style={styles.warn}>
-                  {(props.touched.day && props.errors.day) || (props.touched.month && props.errors.month) || (props.touched.year && props.errors.year)}
+                  {(props.touched.day && props.errors.day) ||
+                    (props.touched.month && props.errors.month) ||
+                    (props.touched.year && props.errors.year)}
                 </Text>
 
                 {/*address*/}
@@ -331,8 +365,8 @@ const Register = ({navigation}) => {
                   </TouchableOpacity>
                 </View>
 
-                {position === 'are you not a teacher?' ?
-                    (<>
+                {position === 'are you not a teacher?' ? (
+                  <>
                     <TextInput
                       placeholder={'Licence number'}
                       // multiline={true}
@@ -344,7 +378,7 @@ const Register = ({navigation}) => {
                       // onBlur={props.handleChange('username')}
                       // placeholderStyle={{color:'red'}}
                     />
-                    <Text style={styles.warn}></Text>
+                    <Text style={styles.warn} />
                     <TextInput
                       placeholder={'Emergency contact'}
                       // multiline={true}
@@ -356,7 +390,7 @@ const Register = ({navigation}) => {
                       // onBlur={props.handleChange('username')}
                       // placeholderStyle={{color:'red'}}
                     />
-                    <Text style={styles.warn}></Text>
+                    <Text style={styles.warn} />
                   </>
                 ) : null}
                 <View style={styles.touchableView}>
@@ -453,7 +487,6 @@ const styles = StyleSheet.create({
     color: 'white',
     borderBottomColor: 'white',
     borderBottomWidth: 1,
-
   },
   textStyle1: {
     paddingTop: 14,
