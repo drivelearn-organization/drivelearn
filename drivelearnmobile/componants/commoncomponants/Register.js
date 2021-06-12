@@ -59,6 +59,7 @@ const Register = ({navigation}) => {
     console.log(values.day);
     console.log(values.year);
     console.log(values.month);
+    console.log(parseInt(values.year));
     fetch('http://192.168.56.1:8080/student/addstudent', {
       method: 'POST',
       headers: {

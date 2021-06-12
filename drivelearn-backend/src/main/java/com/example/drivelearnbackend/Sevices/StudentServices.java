@@ -7,10 +7,12 @@ import com.example.drivelearnbackend.Repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 
 @Service
 public class StudentServices {
@@ -31,10 +33,14 @@ public class StudentServices {
         List<Payment> paymentList=new ArrayList<>();
         List<VechileType> vechileTypes=new ArrayList<>();
 //        Calendar DOB = Calendar.getInstance();
-        Date DOB=new Date(Integer.parseInt(dto.getYear()),Integer.parseInt(dto.getMonth())-1,Integer.parseInt(dto.getDay()));
+        System.out.println("year is"+Integer.parseInt(dto.getYear()));
+        LocalDate date=LocalDate.of(Integer.parseInt(dto.getYear()),Integer.parseInt(dto.getMonth()),Integer.parseInt(dto.getDay()));
+
+        Date DOB=new Date(Integer.parseInt(dto.getYear())+1-1,Integer.parseInt(dto.getMonth())-1,Integer.parseInt(dto.getDay()));
 
 
-        repository.save(new Student(new Date(), dto.getNid(), dto.getAddress(),DOB, dto.getUsername(), dto.getPassword(), dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
+
+        repository.save(new Student(LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), dto.getPassword(), dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
         return null;
     }

@@ -1,4 +1,1 @@
-// import React from "react";
-// const Base='localhost:8080/';
-//  export Base;
-//
+export const Base = 'http://192.168.56.1:8080/';

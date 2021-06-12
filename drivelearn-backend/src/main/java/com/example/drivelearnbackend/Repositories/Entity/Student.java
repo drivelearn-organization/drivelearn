@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,10 +15,10 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int stuId;
-    private Date registereddate;
+    private LocalDate registereddate;
     private String idnum;
     private String address;
-    private Date Dob;
+    private LocalDate Dob;
     private String username;
     private String password;
     private String contact;
@@ -56,7 +56,7 @@ public class Student {
     public Student() {
     }
 
-    public Student( Date registereddate, String idnum, String address, Date dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
+    public Student(LocalDate registereddate, String idnum, String address, LocalDate dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
 
         this.registereddate = registereddate;
         this.idnum = idnum;
@@ -81,11 +81,11 @@ public class Student {
         this.stuId = stuId;
     }
 
-    public Date getRegistereddate() {
+    public LocalDate getRegistereddate() {
         return registereddate;
     }
 
-    public void setRegistereddate(Date registereddate) {
+    public void setRegistereddate(LocalDate registereddate) {
         this.registereddate = registereddate;
     }
 
@@ -105,11 +105,11 @@ public class Student {
         this.address = address;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return Dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         Dob = dob;
     }
 
