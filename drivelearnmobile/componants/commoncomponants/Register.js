@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {Formik} from 'formik';
+// import Base from '../../urls/base'
 import {RadioButton} from 'react-native-paper';
 import RNPickerSelect from 'react-native-picker-select';
+import {DatePicker} from 'react-native-woodpicker';
 import {
   Text,
   TouchableWithoutFeedback,
@@ -15,9 +17,81 @@ import {
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
-const Register = ({navigation}) => {
+import * as yup from 'yup';
 
-const [position,setPosition]=useState('are you a teacher?');
+const reviewSchema = yup.object().shape({
+  password: yup.string().required().min(6).max(8),
+  conPassword: yup
+    .string()
+    .required()
+    .matches()
+    .oneOf([yup.ref('password')], 'password is not matching'),
+  fullname: yup.string().required(),
+  username: yup.string().required(),
+  nid: yup.string().required(),
+  contact: yup.string().required(),
+  address: yup.string().required(),
+  day: yup
+    .string()
+    .required()
+    .test('day validate', 'Invalid date', value => {
+      return parseInt(value) > 0 && parseInt(value) < 32;
+    }),
+  month: yup
+    .string()
+    .required()
+    .test('day validate', 'Invalid date', value => {
+      return parseInt(value) > 0 && parseInt(value) < 13;
+    }),
+  year: yup.string().required(),
+});
+
+const Register = ({navigation}) => {
+  const register = values => {
+    var basenow = 'http://localhost:8080/';
+    if (position === 'are you not a teacher?') {
+      basenow = basenow + 'trainer/';
+    } else {
+      basenow = basenow + 'student/addstudent';
+    }
+
+    console.log(values.nid);
+    console.log(values.day);
+    console.log(values.year);
+    console.log(values.month);
+    console.log(parseInt(values.year));
+    fetch('http://192.168.56.1:8080/student/addstudent', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: values.fullname,
+        address: values.address,
+        nid: values.nid,
+        contact: values.contact,
+        branch: selectedLanguage,
+        username: values.username,
+        password: values.password,
+        day: values.day,
+        month: values.month,
+        year: values.year
+      }),
+    })
+        // .then((response) =>{
+        //   console.log(JSON.stringify(response, null, 4))
+        //   response.json()
+        // } )
+        // .then((json) => {
+        //   console.log(json);
+        // })
+        .catch((error) => {
+          console.error(error);
+        });
+
+  };
+  const [position, setPosition] = useState('are you a teacher?');
   const [checked, setChecked] = React.useState('first');
   const [selectedLanguage, setSelectedLanguage] = useState();
 
@@ -33,7 +107,7 @@ const [position,setPosition]=useState('are you a teacher?');
           {/*  onPress={() => setChecked('first')}*/}
           {/*/>*/}
           <View style={styles.headerView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={styles.headerText}>Sign In</Text>
             </TouchableOpacity>
           </View>
@@ -55,12 +129,18 @@ const [position,setPosition]=useState('are you a teacher?');
               username: '',
               nid: '',
               contact: '',
-              DOB: '',
+
               address: '',
               conPassword: '',
               password: '',
+              day: '',
+              month: '',
+              year: '',
             }}
-            onSubmit={() => {}}>
+            onSubmit={values => {
+              register(values);
+            }}
+            validationSchema={reviewSchema}>
             {props => (
               <View style={styles.inputView}>
                 {/*username*/}
@@ -123,17 +203,40 @@ const [position,setPosition]=useState('are you a teacher?');
                 </Text>
 
                 {/*DOB*/}
-                <TextInput
-                  placeholder={'Date of Birth'}
-                  style={styles.inputone}
-                  placeholderTextColor={'white'}
-                  value={props.values.DOB}
-                  onChangeText={props.handleChange('DOB')}
-                  // onBlur={props.handleChange('username')}
-                  // placeholderStyle={{color:'red'}}
-                />
+
+                <View style={styles.bdView}>
+                  <Text style={styles.textStyle1}>Date of birth</Text>
+                  <TextInput
+                    value={props.values.day}
+                    onChangeText={props.handleChange('day')}
+                    maxLength={2}
+                    value={props.values.day}
+                    keyboardType={'numeric'}
+                    style={styles.days}
+                    placeholder={'dd'}
+                    placeholderTextColor={'white'} />
+                  <TextInput
+                    value={props.values.month}
+                    onChangeText={props.handleChange('month')}
+                    maxLength={2}
+                    keyboardType={'numeric'}
+                    value={props.values.month}
+                    style={styles.months}
+                    placeholder={'mm'}
+                    placeholderTextColor={'white'} />
+                  <TextInput
+                    value={props.values.year}
+                    onChangeText={props.handleChange('year')}
+                    maxLength={4}
+                    keyboardType={'numeric'}
+                    value={props.values.year}
+                    style={styles.years}
+                    placeholder={'yyyy'}
+                    placeholderTextColor={'white'} />
+                </View>
+
                 <Text style={styles.warn}>
-                  {props.touched.DOB && props.errors.DOB}
+                  {(props.touched.day && props.errors.day) || (props.touched.month && props.errors.month) || (props.touched.year && props.errors.year)}
                 </Text>
 
                 {/*address*/}
@@ -165,9 +268,9 @@ const [position,setPosition]=useState('are you a teacher?');
                       value="java"
                       enabled={false}
                     />
-                    <Picker.Item label="Baduraliya" value="Baduraliya" />
-                    <Picker.Item label="Mathugama" value="Mathugama" />
-                    <Picker.Item label="Kaluthara" value="Kaluthara" />
+                    <Picker.Item label="Panadura" value="Panadura" />
+                    <Picker.Item label="Mathugama" value="mathugama" />
+                    <Picker.Item label="Kaluthara" value="kaluthatara" />
                     <Picker.Item label="Aluthgama" value="Aluthgama" />
                   </Picker>
                 </View>
@@ -205,8 +308,6 @@ const [position,setPosition]=useState('are you a teacher?');
                   {props.touched.conPassword && props.errors.conPassword}
                 </Text>
 
-
-
                 {/*<RadioButton*/}
                 {/*  value="first"*/}
                 {/*  status={checked === 'first' ? 'checked' : 'unchecked'}*/}
@@ -218,10 +319,46 @@ const [position,setPosition]=useState('are you a teacher?');
                 {/*/>*/}
 
                 <View>
-                  <TouchableOpacity onPress={()=>setPosition((prevPosition)=>{
-                    return prevPosition==='are you a teacher?' ? 'are you not a teacher?': 'are you a teacher?';
-                  })}><Text style={styles.textStyle}>{position}</Text></TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      setPosition(prevPosition => {
+                        return prevPosition === 'are you a teacher?'
+                          ? 'are you not a teacher?'
+                          : 'are you a teacher?';
+                      })
+                    }>
+                    <Text style={styles.textStyle}>{position}</Text>
+                  </TouchableOpacity>
                 </View>
+
+                {position === 'are you not a teacher?' ?
+                    (<>
+                    <TextInput
+                      placeholder={'Licence number'}
+                      // multiline={true}
+                      style={styles.inputone}
+                      placeholderTextColor={'white'}
+                      // value={props.values.password}
+                      // secureTextEntry={true}
+                      // onChangeText={props.handleChange('password')}
+                      // onBlur={props.handleChange('username')}
+                      // placeholderStyle={{color:'red'}}
+                    />
+                    <Text style={styles.warn}></Text>
+                    <TextInput
+                      placeholder={'Emergency contact'}
+                      // multiline={true}
+                      style={styles.inputone}
+                      placeholderTextColor={'white'}
+                      // value={props.values.password}
+                      // secureTextEntry={true}
+                      // onChangeText={props.handleChange('password')}
+                      // onBlur={props.handleChange('username')}
+                      // placeholderStyle={{color:'red'}}
+                    />
+                    <Text style={styles.warn}></Text>
+                  </>
+                ) : null}
                 <View style={styles.touchableView}>
                   <TouchableOpacity
                     style={styles.buttonSubmit}
@@ -303,8 +440,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#23A34C',
     borderRadius: 10,
   },
-  textStyle:{
-    color:'white',
-  }
+  textStyle: {
+    color: 'white',
+  },
+  bdView: {
+    width: 250,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  days: {
+    // height:32,
+    color: 'white',
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+
+  },
+  textStyle1: {
+    paddingTop: 14,
+    color: 'white',
+  },
+  months: {
+    color: 'white',
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+  },
+  years: {
+    color: 'white',
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+  },
 });
 export default Register;

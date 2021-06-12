@@ -2,9 +2,7 @@ package com.example.drivelearnbackend.Repositories.Entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,7 @@ import java.util.List;
 public class Branch {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int branchid;
     private String branchName;
 
@@ -30,8 +29,12 @@ public class Branch {
     public Branch() {
     }
 
-    public Branch(int branchid, String branchName, List<Employee> employeeList, List<Vehicle> vehicleList, List<Student> studentList) {
-        this.branchid = branchid;
+
+    public Branch(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public Branch(String branchName, List<Employee> employeeList, List<Vehicle> vehicleList, List<Student> studentList) {
         this.branchName = branchName;
         this.employeeList = employeeList;
         this.vehicleList = vehicleList;
