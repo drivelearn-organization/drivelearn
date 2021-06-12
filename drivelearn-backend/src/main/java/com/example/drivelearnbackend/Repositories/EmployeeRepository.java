@@ -1,7 +1,11 @@
 package com.example.drivelearnbackend.Repositories;
 
+import antlr.collections.List;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.LinkedList;
+
 public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
+   LinkedList<Employee> findByUsername(String username);
 }

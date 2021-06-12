@@ -85,11 +85,6 @@ const Register = ({navigation}) => {
       basenow = basenow + 'student/addstudent';
     }
 
-    console.log(values.nid);
-    console.log(values.day);
-    console.log(values.year);
-    console.log(values.month);
-    console.log(parseInt(values.year));
     fetch('http://192.168.56.1:8080/student/addstudent', {
       method: 'POST',
       headers: {
@@ -180,7 +175,7 @@ const Register = ({navigation}) => {
                   placeholderTextColor={'white'}
                   value={props.values.fullname}
                   onChangeText={props.handleChange('fullname')}
-                  // onBlur={props.handleChange('username')}
+                  // onBlur={props.handleChange('fullname')}
                   // placeholderStyle={{color:'red'}}
                 />
 
@@ -209,7 +204,7 @@ const Register = ({navigation}) => {
                   placeholderTextColor={'white'}
                   value={props.values.nid}
                   onChangeText={props.handleChange('nid')}
-                  // onBlur={props.handleChange('username')}
+                  // onBlur={props.handleChange('nid')}
                   // placeholderStyle={{color:'red'}}
                 />
                 <Text style={styles.warn}>
@@ -223,8 +218,8 @@ const Register = ({navigation}) => {
                   style={styles.inputone}
                   placeholderTextColor={'white'}
                   value={props.values.contact}
-                  onChangeText={props.handleChange('contact')}
-                  // onBlur={props.handleChange('username')}
+                  // onChangeText={props.handleChange('contact')}
+                  onBlur={props.handleChange('contact')}
                   // placeholderStyle={{color:'red'}}
                 />
                 <Text style={styles.warn}>
@@ -282,7 +277,7 @@ const Register = ({navigation}) => {
                   placeholderTextColor={'white'}
                   value={props.values.address}
                   onChangeText={props.handleChange('address')}
-                  // onBlur={props.handleChange('username')}
+                  // onBlur={props.handleChange('address')}
                   // placeholderStyle={{color:'red'}}
                 />
                 <Text style={styles.warn}>
@@ -319,7 +314,7 @@ const Register = ({navigation}) => {
                   value={props.values.password}
                   secureTextEntry={true}
                   onChangeText={props.handleChange('password')}
-                  // onBlur={props.handleChange('username')}
+                  // onBlur={props.handleChange('password')}
                   // placeholderStyle={{color:'red'}}
                 />
                 <Text style={styles.warn}>
@@ -335,7 +330,7 @@ const Register = ({navigation}) => {
                   value={props.values.conPassword}
                   secureTextEntry={true}
                   onChangeText={props.handleChange('conPassword')}
-                  // onBlur={props.handleChange('username')}
+                  // onBlur={props.handleChange('conPassword')}
                   // placeholderStyle={{color:'red'}}
                 />
                 <Text style={styles.warn}>
