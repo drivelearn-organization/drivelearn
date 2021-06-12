@@ -104,40 +104,65 @@ const Register = ({navigation}) => {
   const register = values => {
     var basenow = 'http://localhost:8080/';
     if (position === 'are you not a teacher?') {
-      basenow = basenow + 'trainer/';
+      console.log("in the trainer");
+      fetch('http://192.168.56.1:8080/employee/addtrainer', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          moNumber: values.contact,
+          fullName: values.fullname,
+          nid: values.nid,
+          branch: selectedLanguage,
+          username: values.username,
+          password: values.password,
+        }),
+      })
+          // .then((response) =>{
+          //   console.log(JSON.stringify(response, null, 4))
+          //   response.json()
+          // } )
+          // .then((json) => {
+          //   console.log(json);
+          // })
+          .catch(error => {
+            console.error(error);
+          });
     } else {
-      basenow = basenow + 'student/addstudent';
+      fetch('http://192.168.56.1:8080/student/addstudent', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: values.fullname,
+          address: values.address,
+          nid: values.nid,
+          contact: values.contact,
+          branch: selectedLanguage,
+          username: values.username,
+          password: values.password,
+          day: values.day,
+          month: values.month,
+          year: values.year,
+        }),
+      })
+          // .then((response) =>{
+          //   console.log(JSON.stringify(response, null, 4))
+          //   response.json()
+          // } )
+          // .then((json) => {
+          //   console.log(json);
+          // })
+          .catch(error => {
+            console.error(error);
+          });
     }
 
-    fetch('http://192.168.56.1:8080/student/addstudent', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: values.fullname,
-        address: values.address,
-        nid: values.nid,
-        contact: values.contact,
-        branch: selectedLanguage,
-        username: values.username,
-        password: values.password,
-        day: values.day,
-        month: values.month,
-        year: values.year,
-      }),
-    })
-      // .then((response) =>{
-      //   console.log(JSON.stringify(response, null, 4))
-      //   response.json()
-      // } )
-      // .then((json) => {
-      //   console.log(json);
-      // })
-      .catch(error => {
-        console.error(error);
-      });
+
   };
 
 
