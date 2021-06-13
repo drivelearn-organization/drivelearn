@@ -29,6 +29,10 @@ public class StudentController {
 
 
     }
+    @PostMapping(value = "/isAvail")
+    public boolean isAvailableUsernane(@RequestBody StudentDTO studentDTO){
+        return studentServices.isAvailableUsernane(studentDTO.getUsername());
+    }
 
     @GetMapping()
     public void testCustomer(){

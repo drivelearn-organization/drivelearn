@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,12 @@ public class Employee {
     private String moNumber;
     private String emNumber;
     private int role;
-    private String firstName;
-    private String lastName;
-    private String NID;
+    private String fullName;
+    private String nid;
     private int isActive;
     private String username;
     private String password;
+    private LocalDate registeredDate;
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "admin_id",referencedColumnName = "adminId")
@@ -44,25 +45,24 @@ public class Employee {
     @JsonManagedReference
     List<Session> assinersSessionList=new ArrayList<>();
 
-    public Employee(int empid, String moNumber, String emNumber, int role, String firstName, String lastName, String NID, int isActive, String username, String password, Admin admin, Branch branch, List<Installment> installmentList, List<Session> trainersSessionList, List<Session> assinersSessionList) {
-        this.empid = empid;
+    public Employee() {
+    }
+
+    public Employee( String moNumber, String emNumber, int role, String fullName, String nid, int isActive, String username, String password, LocalDate registeredDate, Admin admin, Branch branch, List<Installment> installmentList, List<Session> trainersSessionList, List<Session> assinersSessionList) {
         this.moNumber = moNumber;
         this.emNumber = emNumber;
         this.role = role;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.NID = NID;
+        this.fullName = fullName;
+        this.nid = nid;
         this.isActive = isActive;
         this.username = username;
         this.password = password;
+        this.registeredDate = registeredDate;
         this.admin = admin;
         this.branch = branch;
         this.installmentList = installmentList;
         this.trainersSessionList = trainersSessionList;
         this.assinersSessionList = assinersSessionList;
-    }
-
-    public Employee() {
     }
 
     public int getEmpid() {
@@ -97,28 +97,20 @@ public class Employee {
         this.role = role;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getNid() {
+        return nid;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getNID() {
-        return NID;
-    }
-
-    public void setNID(String NID) {
-        this.NID = NID;
+    public void setNid(String nid) {
+        this.nid = nid;
     }
 
     public int getIsActive() {
@@ -143,6 +135,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDate getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(LocalDate registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
     public Admin getAdmin() {
