@@ -7,9 +7,11 @@ import com.example.drivelearnbackend.Repositories.Entity.Branch;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
 import com.example.drivelearnbackend.Repositories.Entity.Installment;
 import com.example.drivelearnbackend.Repositories.Entity.Session;
+import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +25,18 @@ public class EmployeeService {
     private BranchRepository branchRepository;
 
     public void addTrainer(EmployeeDTO dto){
+
+        String pass="";
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         Branch branch =branchRepository.findBranchByBranchName(dto.getBranch());
         List<Installment> installmentList=new ArrayList<>();
         List<Session> trainersSessionList=new ArrayList<>();
         List<Session> assinersSessionList=new ArrayList<>();
-        repository.save(new Employee(dto.getMoNumber(),"0",2, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), dto.getPassword(), LocalDate.now(),null,branch,installmentList,trainersSessionList,assinersSessionList));
+        repository.save(new Employee(dto.getMoNumber(),"0",2, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, LocalDate.now(),null,branch,installmentList,trainersSessionList,assinersSessionList));
     }
 
     public boolean isEmplAvailable(String usernane){

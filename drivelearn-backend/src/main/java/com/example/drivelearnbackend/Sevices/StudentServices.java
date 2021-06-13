@@ -4,9 +4,11 @@ import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.BranchRepository;
 import com.example.drivelearnbackend.Repositories.Entity.*;
 import com.example.drivelearnbackend.Repositories.StudentRepository;
+import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +26,12 @@ public class StudentServices {
 
     public Student addStudent(StudentDTO dto){
         System.out.println("before the branch search");
-
+        String pass="";
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         List<Feedback> feedbacks=new ArrayList<>();
         Branch branch=branchRepository.findBranchByBranchName(dto.getBranch());
@@ -36,11 +43,11 @@ public class StudentServices {
         System.out.println("year is"+Integer.parseInt(dto.getYear()));
         LocalDate date=LocalDate.of(Integer.parseInt(dto.getYear()),Integer.parseInt(dto.getMonth()),Integer.parseInt(dto.getDay()));
 
-        Date DOB=new Date(Integer.parseInt(dto.getYear())+1-1,Integer.parseInt(dto.getMonth())-1,Integer.parseInt(dto.getDay()));
+//        Date DOB=new Date(Integer.parseInt(dto.getYear())+1-1,Integer.parseInt(dto.getMonth())-1,Integer.parseInt(dto.getDay()));
 
 
 
-        repository.save(new Student(LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), dto.getPassword(), dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
+        repository.save(new Student(LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
         return null;
     }

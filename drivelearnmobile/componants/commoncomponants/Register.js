@@ -16,6 +16,7 @@ import {
   TextInput,
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Base} from '../../urls/base'
 import {Picker} from '@react-native-picker/picker';
 import * as yup from 'yup';
 var pos;
@@ -23,7 +24,9 @@ var va;
 const isAvail = value => {
 
   if(pos==='are you not a teacher?'){
-    fetch('http://192.168.56.1:8080/employee/empisavail', {
+    console.log("here is the base url: "+Base);
+    let url = Base+'employee/empisavail'
+    fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -43,7 +46,8 @@ const isAvail = value => {
           console.error(error);
         });
   }else{
-    fetch('http://192.168.56.1:8080/student/isAvail', {
+    let url = Base+'student/isAvail'
+    fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -102,10 +106,12 @@ const reviewSchema = yup.object().shape({
 
 const Register = ({navigation}) => {
   const register = values => {
-    var basenow = 'http://localhost:8080/';
+
+
     if (position === 'are you not a teacher?') {
       console.log("in the trainer");
-      fetch('http://192.168.56.1:8080/employee/addtrainer', {
+      let url = Base+'employee/addtrainer';
+      fetch(url, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -131,7 +137,8 @@ const Register = ({navigation}) => {
             console.error(error);
           });
     } else {
-      fetch('http://192.168.56.1:8080/student/addstudent', {
+      let url = Base+'student/addstudent';
+      fetch(url, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

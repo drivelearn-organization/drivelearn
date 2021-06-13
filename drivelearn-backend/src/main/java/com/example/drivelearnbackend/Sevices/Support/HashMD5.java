@@ -6,9 +6,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashMD5 {
     public String giveHash(String pass) throws NoSuchAlgorithmException {
-        String testString="someText";
         MessageDigest md = MessageDigest.getInstance("MD5");
-        byte[] messageDigest = md.digest(testString.getBytes());
+        byte[] messageDigest = md.digest(pass.getBytes());
         BigInteger number = new BigInteger(1, messageDigest);
         return number.toString();
     }
