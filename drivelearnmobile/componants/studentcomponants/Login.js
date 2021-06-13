@@ -13,11 +13,38 @@ import {
   ScrollView,
 } from 'react-native';
 import {Formik} from 'formik';
+import {Base} from "../../urls/base";
+
 const reviewSchema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required(),
 });
 const Login = ({navigation}) => {
+
+
+  const loginBtn=(values)=>{
+    let url=Base+'student/isavalacc'
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password
+      })
+    }).then((response) => response.json())
+        .then((json) => {
+          console.log( "Login is "+json);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+  }
+
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -63,7 +90,7 @@ const Login = ({navigation}) => {
               initialValues={{username: '', password: ''}}
               validationSchema={reviewSchema}
               onSubmit={values => {
-                navigation.navigate('StudentFirst');
+                loginBtn(values);
               }}>
               {props => (
                 <View style={styles.getInView}>
