@@ -62,6 +62,21 @@ public class StudentServices {
         }
     }
 
+    public boolean isAvailAccounut(StudentDTO dto){
+        String pass="";
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        List list= repository.findByUsernameAndPassword(dto.getUsername(), pass);
+        if(list.isEmpty()){
+            return false;
+        }else {
+        return true;
+        }
+    }
+
     public void addStudent(){
         repository.save(new Student());
     }

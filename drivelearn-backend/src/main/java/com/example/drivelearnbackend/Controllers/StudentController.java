@@ -39,4 +39,12 @@ public class StudentController {
         studentServices.test();
 //        System.out.println("we are passed the test");
     }
+
+
+
+    @PostMapping(value = "/isavalacc")
+    public boolean isAvailableAccount(@RequestBody StudentDTO dto){
+        return studentServices.isAvailAccounut(dto);
+    }
+
 }

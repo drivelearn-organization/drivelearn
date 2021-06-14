@@ -37,6 +37,7 @@ const Login = ({navigation}) => {
     }).then((response) => response.json())
         .then((json) => {
           console.log( "Login is "+json);
+          navigation.navigate('FrontPageStudent',{username:values.username})
         })
         .catch((error) => {
           console.error(error);
