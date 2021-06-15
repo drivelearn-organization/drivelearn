@@ -39,8 +39,13 @@ public class StudentController {
         studentServices.test();
 //        System.out.println("we are passed the test");
     }
-
-
+    @PostMapping(value = "/getStudent")
+    public StudentDTO findStudent(@RequestBody StudentDTO dto){
+        Student student= studentServices.findStudent(dto);
+//        return new StudentDTO(student.getName(),);
+//        start from here
+        return null;
+    }
 
     @PostMapping(value = "/isavalacc")
     public boolean isAvailableAccount(@RequestBody StudentDTO dto){

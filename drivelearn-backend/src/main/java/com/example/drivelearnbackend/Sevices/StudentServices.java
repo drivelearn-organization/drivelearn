@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -47,15 +44,15 @@ public class StudentServices {
 
 
 
-        repository.save(new Student(LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
+        repository.save(new Student(dto.getName(),LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
         return null;
     }
 
 
     public boolean isAvailableUsernane(String username){
-        Student student=repository.findByUsername(username);
-        if(student==null){
+        List list=repository.findByUsername(username);
+        if(list.isEmpty()){
             return true;
         }else {
             return false;
@@ -75,6 +72,15 @@ public class StudentServices {
         }else {
         return true;
         }
+    }
+
+    public Student findStudent(StudentDTO dto){
+        LinkedList<Student> list =repository.findByUsername(dto.getUsername());
+        Student studentRet=null;
+        for (Student student : list) {
+            studentRet=student;
+        }
+        return studentRet;
     }
 
     public void addStudent(){
