@@ -39,6 +39,23 @@ public class EmployeeService {
         repository.save(new Employee(dto.getMoNumber(),"0",2, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, LocalDate.now(),null,branch,installmentList,trainersSessionList,assinersSessionList));
     }
 
+    public boolean isAccouuntAvailable(EmployeeDTO dto){
+
+        String pass="";
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        List list=repository.findByUsernameAndPassword(dto.getUsername(), pass);
+        if(list.isEmpty()){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
     public boolean isEmplAvailable(String usernane){
         List list=repository.findByUsername(usernane);
         if(list.isEmpty()){
