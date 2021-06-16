@@ -54,12 +54,12 @@ const Frontpage = ({route,navigation}) => {
                         <View style={styles.navbar}>
 
                             {/*home navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent')}>
                                 <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
@@ -88,7 +88,27 @@ const Frontpage = ({route,navigation}) => {
                         <TouchableWithoutFeedback onPress={()=>setNavModal(false)}>
                             <View style={styles.modalMainView}>
                                 <View style={styles.modalBox}>
-                                    <Text>this is modal</Text>
+
+                                    {/*home navigation*/}
+                                    <Text style={styles.modalHeader}>{data.name}</Text>
+                                    <TouchableOpacity>
+                                        <Text style={styles.modelIndex}>Home</Text>
+                                    </TouchableOpacity>
+
+                                    {/*DriveLeaarn Material*/}
+                                    <TouchableOpacity>
+                                        <Text style={styles.modelIndex}>DriveLearn Material</Text>
+                                    </TouchableOpacity>
+
+                                    {/*Start a Course*/}
+                                    <TouchableOpacity>
+                                        <Text style={styles.modelIndex}>Start a Course</Text>
+                                    </TouchableOpacity>
+
+                                    {/*profile settings*/}
+                                    <TouchableOpacity>
+                                        <Text style={styles.modelIndex}>Profile Settings</Text>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </TouchableWithoutFeedback>
@@ -97,6 +117,7 @@ const Frontpage = ({route,navigation}) => {
 
                     <View style={styles.nameBox}>
                         <View style={styles.nameView}><Text style={styles.textStyles}>{data.name}</Text></View>
+
                     </View>
                 </ImageBackground>
             </ScrollView>
@@ -136,6 +157,7 @@ const styles =StyleSheet.create({
     },
     modalMainView:{
         flex:1,
+        backgroundColor:'#ffffff20',
         flexDirection:'row',
         justifyContent:'flex-end'
     },
@@ -146,12 +168,14 @@ const styles =StyleSheet.create({
         justifyContent:'flex-end'
     },
     modalBox:{
-        width:230,
+        width:250,
         height:230,
-        backgroundColor: '#ffffff60',
+        backgroundColor: '#000000',
         marginTop:60,
         marginEnd:10,
-        borderRadius: 10
+        borderRadius: 10,
+        // borderColor:'white',
+        // borderWidth:1
     },
     nameBox:{
         width:'100%',
@@ -169,6 +193,22 @@ const styles =StyleSheet.create({
         flexDirection:'row',
         justifyContent:'flex-end',
         fontWeight:'bold',
+    },
+    modalHeader:{
+        color: 'white',
+        fontSize: 15,
+        paddingLeft:15,
+        paddingTop:10,
+        fontWeight: 'bold',
+        paddingBottom:30,
+
+    },
+    modelIndex:{
+        color:'white',
+        fontSize: 15,
+        paddingLeft:15,
+        // paddingTop:10,
+        paddingBottom:15,
     }
 
 })
