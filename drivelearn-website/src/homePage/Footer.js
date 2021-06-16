@@ -10,10 +10,10 @@ function Footer() {
           <div class='footer-logo'>
             <Link  className='social-logo'>
             <img src='images/LogoWhite.png' alt="Logo" width="50" height="50"/>
-            &nbsp;&nbsp; <big>DiveLEARN</big>
+            &nbsp;&nbsp; <big>DriveLEARN</big>
             </Link>
           </div>
-          <small class='website-rights'>© 2020, All rights reserved by DriveLEARN</small>
+          <small class='website-rights'>© 2021, All rights reserved by DriveLEARN</small>
           <div class='social-icons'>
             <Link
               class='social-icon-link facebook'
