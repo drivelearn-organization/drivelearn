@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     ImageBackground,
     ScrollView,
@@ -8,14 +8,39 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback, Modal
 } from "react-native";
+import {Base} from "../../urls/base";
 
 const Frontpage = ({route,navigation}) => {
 
     const { username } = route.params;
 
-    const getDTO=()=>{
+    // getting student
+    let url1=Base+'student/getStudent';
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    }
+    useEffect(()=>{
+        fetch(url1, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setData(json)
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
+
+    },[]);
+
+
     const [navModal,setNavModal]=useState(false);
     return (
         <TouchableWithoutFeedback >
@@ -70,7 +95,9 @@ const Frontpage = ({route,navigation}) => {
                     </Modal>
 
 
-
+                    <View style={styles.nameBox}>
+                        <View style={styles.nameView}><Text style={styles.textStyles}>{data.name}</Text></View>
+                    </View>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
@@ -125,6 +152,23 @@ const styles =StyleSheet.create({
         marginTop:60,
         marginEnd:10,
         borderRadius: 10
+    },
+    nameBox:{
+        width:'100%',
+        height:100,
+        backgroundColor:'#ffffff10',
+        borderRadius:10
+    },
+    textStyles:{
+        color:'white',
+        fontSize:25,
+        padding:4,
+        alignItems:'baseline'
+    },
+    nameView:{
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        fontWeight:'bold',
     }
 
 })

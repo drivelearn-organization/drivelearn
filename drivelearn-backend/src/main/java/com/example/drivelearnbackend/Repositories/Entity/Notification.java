@@ -16,7 +16,7 @@ public class Notification {
     private String message;
     private Date date;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "receivedMessageList")
     @JsonIgnore
     List<User> receiver=new ArrayList<>();
 
