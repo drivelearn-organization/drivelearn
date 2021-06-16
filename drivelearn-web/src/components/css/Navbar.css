@@ -7,10 +7,12 @@
     left:-100%;
     padding: 0 30px;
     transition: all 1s;
+    z-index: 1;
 }
 
 .sidenav.active{
     left:0;
+    z-index: 1;
 }
 
 ul{

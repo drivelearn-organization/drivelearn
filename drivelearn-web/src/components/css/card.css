@@ -1,0 +1,123 @@
+.card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    background:none;
+    /* height: 80px; */
+   
+}
+
+.card_container{
+
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    
+
+}
+
+.card_container .full-card{
+    position: relative;
+    width: 400px;
+    height: 200px;
+    /* background: rgb(9, 41, 99); */
+    background: rgba(25, 14, 168, 0.5);
+    margin: 30px 10px;
+    padding: 20px 15px;
+    display: flex;
+    /* flex-direction: column; */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    z-index: 0;
+    border-radius: 4px;
+    margin: 30px;
+    justify-content: end;
+    
+}
+
+.card_container .full-card .imgBx{
+    display: flex;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(236, 235, 238);
+    border-radius: 4px;
+    top: -55px;
+    left: 10px;
+   
+    box-shadow: o 5px 20px rgba(0,0,0,0.2);
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.card_container .full-card .card-content{
+    display: flex;
+    flex-direction: column;
+  
+   
+
+}
+
+.card_container .full-card .card-content .first-moreInfo{
+
+    position: relative;
+    left: 35px;
+    justify-content: end;
+    float: right;
+    
+    color: #fff;
+    font-size: 20px;
+    padding: 0;
+}
+
+.card_container .full-card .card-content .first-moreInfo .number{
+
+    font-size: 30px;
+     margin: 0;
+}
+
+
+.card_container .full-card .card-content .moreInfo{
+
+    position: relative;
+    top: 25px;
+    left: -110px;
+    color:#fff;
+    margin-top: 6px;
+
+    /* border-top: double;
+    width: 350px; */
+}
+/* .card_container .full-card .card-content p{
+    margin-top: 5px;
+}
+*/
+
+.fas.fa-angle-double-right{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.fas.fa-user-tie{
+
+   font-size: 70px;
+   color: rgb(0, 0, 0);
+
+}
+
+.fas.fa-users{
+    font-size: 70px;
+    color: rgb(0, 0, 0);
+ 
+}
+
+.fas.fa-coins{
+    font-size: 70px;
+    color: rgb(0, 0, 0);
+}
