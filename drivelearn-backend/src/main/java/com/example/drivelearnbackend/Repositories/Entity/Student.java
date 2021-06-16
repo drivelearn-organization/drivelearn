@@ -15,6 +15,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int stuId;
+    private String name;
     private LocalDate registereddate;
     private String idnum;
     private String address;
@@ -56,6 +57,23 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name, LocalDate registereddate, String idnum, String address, LocalDate dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
+        this.name = name;
+        this.registereddate = registereddate;
+        this.idnum = idnum;
+        this.address = address;
+        Dob = dob;
+        this.username = username;
+        this.password = password;
+        this.contact = contact;
+        this.feedbacks = feedbacks;
+        this.branch = branch;
+        this.stuSessionList = stuSessionList;
+        this.courceList = courceList;
+        this.paymentList = paymentList;
+        this.vechileTypes = vechileTypes;
+    }
+
     public Student(LocalDate registereddate, String idnum, String address, LocalDate dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
 
         this.registereddate = registereddate;
@@ -71,6 +89,14 @@ public class Student {
         this.courceList = courceList;
         this.paymentList = paymentList;
         this.vechileTypes = vechileTypes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getStuId() {
