@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,9 +13,12 @@ import java.util.List;
 public class Notification {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int notificationId;
+    private String header;
     private String message;
-    private Date date;
+    private LocalDate date;
+    private int status;
 
     @ManyToMany(mappedBy = "receivedMessageList")
     @JsonIgnore
@@ -28,8 +32,17 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(int notificationId, String message, Date date, List<User> receiver, User sender) {
-        this.notificationId = notificationId;
+    public Notification(String header, String message, LocalDate date, int status, List<User> receiver, User sender) {
+        this.header = header;
+        this.message = message;
+        this.date = date;
+        this.status = status;
+        this.receiver = receiver;
+        Sender = sender;
+    }
+
+    public Notification(String header, String message, LocalDate date, List<User> receiver, User sender) {
+        this.header = header;
         this.message = message;
         this.date = date;
         this.receiver = receiver;
@@ -44,6 +57,22 @@ public class Notification {
         this.notificationId = notificationId;
     }
 
+    public String getHeader() {
+        return header;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -52,11 +81,11 @@ public class Notification {
         this.message = message;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
