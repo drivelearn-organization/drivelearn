@@ -5,15 +5,13 @@ import '../css/Barchart.css';
 const Barchart = () => {
     return (
         <div className="barchart">
-        <div className="">
-
-        </div>
+        
             <Bar 
             data = {{
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.','Aug','Sep.','Oct.','Nov.','	Dec.'],
                 datasets: [
                     {
-                        lable:"# of votes",
+                        label: '2021',
                         data:[12, 19, 3,5,7,9], 
                         backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -33,12 +31,20 @@ const Barchart = () => {
                         'rgba(255, 159, 64, 1)'
                         ],
                         borderWidth: 1
+                    },
+                    {
+                        label: '2020',
+                        data:[14, 1, 8,2,17,6,6], 
+                        backgroundColor: 'rgba(255, 99, 132, 1)',
+                        borderColor: 'black',
+                        borderWidth: 1
+
                     }
 
                 ],
             }}
-                height = {400}
-                width ={600}
+                height = {250}
+                width ={550}
                 options= {{
                     maintainAspectRatio:false,
                     scales: {

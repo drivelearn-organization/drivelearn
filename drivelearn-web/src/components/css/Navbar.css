@@ -1,19 +1,29 @@
 .sidenav{
     margin: 0;
-    width: 300px;
+    width: 250px;
     background: #011627;
-    position: absolute;
-    height: 90%;
+    position: fixed;
+    top:60px;
+    /* position: absolute; */
+    height: 92vh;
     left:-100%;
     padding: 0 30px;
     transition: all 1s;
     z-index: 1;
+    overflow: auto;
+    
 }
 
 .sidenav.active{
+ 
     left:0;
     z-index: 1;
+    /* height: 100vh; */
 }
+
+
+
+
 
 ul{
     padding: 0;
