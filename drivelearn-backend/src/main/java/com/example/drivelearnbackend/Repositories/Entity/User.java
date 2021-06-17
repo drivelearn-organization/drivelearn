@@ -10,9 +10,11 @@ import java.util.List;
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
     private int externalId;
     private int userType;
+    private String username;
 
     @ManyToMany
     @JsonIgnore
@@ -31,8 +33,15 @@ public class User {
     public User() {
     }
 
-    public User(int userId, int externalId, int userType, List<Notification> receivedMessageList, List<Notification> sentMessage) {
-        this.userId = userId;
+    public User( int externalId, int userType, String username, List<Notification> receivedMessageList, List<Notification> sentMessage) {
+        this.externalId = externalId;
+        this.userType = userType;
+        this.username = username;
+        this.receivedMessageList = receivedMessageList;
+        this.sentMessage = sentMessage;
+    }
+
+    public User( int externalId, int userType, List<Notification> receivedMessageList, List<Notification> sentMessage) {
         this.externalId = externalId;
         this.userType = userType;
         this.receivedMessageList = receivedMessageList;

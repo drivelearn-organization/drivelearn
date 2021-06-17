@@ -4,6 +4,7 @@ import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.BranchRepository;
 import com.example.drivelearnbackend.Repositories.Entity.*;
 import com.example.drivelearnbackend.Repositories.StudentRepository;
+import com.example.drivelearnbackend.Repositories.UserRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ import java.util.*;
 public class StudentServices {
     @Autowired
     BranchRepository branchRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private StudentRepository repository;
@@ -44,8 +48,12 @@ public class StudentServices {
 
 
 
-        repository.save(new Student(dto.getName(),LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
+        Student student=repository.save(new Student(dto.getName(),LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
+        List<Notification> receivedMessageList=new ArrayList<>();
+        List<Notification> sentMessage=new ArrayList<>();
+
+        userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), receivedMessageList,sentMessage));
         return null;
     }
 
