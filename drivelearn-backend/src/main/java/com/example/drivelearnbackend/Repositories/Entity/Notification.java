@@ -2,8 +2,10 @@ package com.example.drivelearnbackend.Repositories.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,13 +14,18 @@ import java.util.List;
 public class Notification {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int notificationId;
+    private String header;
     private String message;
-    private Date date;
+    private LocalDate date;
+    private int status;
 
-    @ManyToMany(mappedBy = "receivedMessageList")
-    @JsonIgnore
-    List<User> receiver=new ArrayList<>();
+    @OneToMany(mappedBy = "notification")
+    @JsonManagedReference
+    private List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
+
+
 
     @ManyToOne
     @JsonBackReference
@@ -28,11 +35,20 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(int notificationId, String message, Date date, List<User> receiver, User sender) {
-        this.notificationId = notificationId;
+    public Notification(String header, String message, LocalDate date, int status, List<UserReceiveNotification> usersReceivedotificaction, User sender) {
+        this.header = header;
         this.message = message;
         this.date = date;
-        this.receiver = receiver;
+        this.status = status;
+        this.usersReceivedotificaction = usersReceivedotificaction;
+        Sender = sender;
+    }
+
+    public Notification(String header, String message, LocalDate date, List<UserReceiveNotification> usersReceivedotificaction, User sender) {
+        this.header = header;
+        this.message = message;
+        this.date = date;
+        this.usersReceivedotificaction = usersReceivedotificaction;
         Sender = sender;
     }
 
@@ -44,6 +60,22 @@ public class Notification {
         this.notificationId = notificationId;
     }
 
+    public String getHeader() {
+        return header;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -52,20 +84,20 @@ public class Notification {
         this.message = message;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public List<User> getReceiver() {
-        return receiver;
+    public List<UserReceiveNotification> getUsersReceivedotificaction() {
+        return usersReceivedotificaction;
     }
 
-    public void setReceiver(List<User> receiver) {
-        this.receiver = receiver;
+    public void setUsersReceivedotificaction(List<UserReceiveNotification> usersReceivedotificaction) {
+        this.usersReceivedotificaction = usersReceivedotificaction;
     }
 
     public User getSender() {
