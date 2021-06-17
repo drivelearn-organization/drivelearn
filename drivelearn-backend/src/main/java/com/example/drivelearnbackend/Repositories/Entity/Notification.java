@@ -2,6 +2,7 @@ package com.example.drivelearnbackend.Repositories.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,9 +21,11 @@ public class Notification {
     private LocalDate date;
     private int status;
 
-    @ManyToMany(mappedBy = "receivedMessageList")
-    @JsonIgnore
-    List<User> receiver=new ArrayList<>();
+    @OneToMany(mappedBy = "notification")
+    @JsonManagedReference
+    private List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
+
+
 
     @ManyToOne
     @JsonBackReference
@@ -32,20 +35,20 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(String header, String message, LocalDate date, int status, List<User> receiver, User sender) {
+    public Notification(String header, String message, LocalDate date, int status, List<UserReceiveNotification> usersReceivedotificaction, User sender) {
         this.header = header;
         this.message = message;
         this.date = date;
         this.status = status;
-        this.receiver = receiver;
+        this.usersReceivedotificaction = usersReceivedotificaction;
         Sender = sender;
     }
 
-    public Notification(String header, String message, LocalDate date, List<User> receiver, User sender) {
+    public Notification(String header, String message, LocalDate date, List<UserReceiveNotification> usersReceivedotificaction, User sender) {
         this.header = header;
         this.message = message;
         this.date = date;
-        this.receiver = receiver;
+        this.usersReceivedotificaction = usersReceivedotificaction;
         Sender = sender;
     }
 
@@ -89,12 +92,12 @@ public class Notification {
         this.date = date;
     }
 
-    public List<User> getReceiver() {
-        return receiver;
+    public List<UserReceiveNotification> getUsersReceivedotificaction() {
+        return usersReceivedotificaction;
     }
 
-    public void setReceiver(List<User> receiver) {
-        this.receiver = receiver;
+    public void setUsersReceivedotificaction(List<UserReceiveNotification> usersReceivedotificaction) {
+        this.usersReceivedotificaction = usersReceivedotificaction;
     }
 
     public User getSender() {

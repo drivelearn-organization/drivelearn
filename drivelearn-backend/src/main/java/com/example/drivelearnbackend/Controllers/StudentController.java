@@ -15,19 +15,6 @@ public class StudentController {
     @PostMapping(value = "/addstudent")
     public void addStudent(@RequestBody StudentDTO studentDTO){
         studentServices.addStudent(studentDTO);
-
-        System.out.println(studentDTO.getName());
-        System.out.println(studentDTO.getUsername());
-        System.out.println(studentDTO.getNid());
-        System.out.println(studentDTO.getAddress());
-        System.out.println(studentDTO.getPassword());
-        System.out.println(studentDTO.getContact());
-        System.out.println(studentDTO.getDay());
-        System.out.println(studentDTO.getMonth());
-        System.out.println(studentDTO.getYear());
-        System.out.println(studentDTO.getBranch());
-
-
     }
     @PostMapping(value = "/isAvail")
     public boolean isAvailableUsernane(@RequestBody StudentDTO studentDTO){

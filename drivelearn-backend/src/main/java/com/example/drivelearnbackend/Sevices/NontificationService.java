@@ -3,6 +3,7 @@ package com.example.drivelearnbackend.Sevices;
 import com.example.drivelearnbackend.Controllers.DTO.NotificationDTO;
 import com.example.drivelearnbackend.Repositories.Entity.Notification;
 import com.example.drivelearnbackend.Repositories.Entity.User;
+import com.example.drivelearnbackend.Repositories.Entity.UserReceiveNotification;
 import com.example.drivelearnbackend.Repositories.NotificationRepository;
 import com.example.drivelearnbackend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class NontificationService {
                 user = user1;
             }
         }
-        List<User> receiver=new ArrayList<>();
+        List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
 
-        return repository.save(new Notification(dto.getHeader(), dto.getMessage(), LocalDate.now(),1,receiver,user));
+        return repository.save(new Notification(dto.getHeader(), dto.getMessage(), LocalDate.now(),1,usersReceivedotificaction,user));
     }
 }

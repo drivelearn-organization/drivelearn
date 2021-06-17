@@ -16,14 +16,10 @@ public class User {
     private int userType;
     private String username;
 
-    @ManyToMany
-    @JsonIgnore
-    @JoinTable(
-            name = "receive_message_user_assoc",
-            joinColumns = @JoinColumn(name = "userId",referencedColumnName = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "notificationId",referencedColumnName = "notificationId")
-    )
-    private List<Notification> receivedMessageList=new ArrayList<>();
+    @OneToMany(mappedBy = "reciever")
+    @JsonManagedReference
+    private List<UserReceiveNotification> userReceiveNotifications=new ArrayList<>();
+
 
 
     @OneToMany(mappedBy = "Sender")
@@ -33,18 +29,18 @@ public class User {
     public User() {
     }
 
-    public User( int externalId, int userType, String username, List<Notification> receivedMessageList, List<Notification> sentMessage) {
+    public User( int externalId, int userType, String username, List<UserReceiveNotification> userReceiveNotifications, List<Notification> sentMessage) {
         this.externalId = externalId;
         this.userType = userType;
         this.username = username;
-        this.receivedMessageList = receivedMessageList;
+        this.userReceiveNotifications = userReceiveNotifications;
         this.sentMessage = sentMessage;
     }
 
-    public User( int externalId, int userType, List<Notification> receivedMessageList, List<Notification> sentMessage) {
+    public User( int externalId, int userType, List<UserReceiveNotification> userReceiveNotifications, List<Notification> sentMessage) {
         this.externalId = externalId;
         this.userType = userType;
-        this.receivedMessageList = receivedMessageList;
+        this.userReceiveNotifications = userReceiveNotifications;
         this.sentMessage = sentMessage;
     }
 
@@ -72,12 +68,20 @@ public class User {
         this.userType = userType;
     }
 
-    public List<Notification> getReceivedMessageList() {
-        return receivedMessageList;
+    public String getUsername() {
+        return username;
     }
 
-    public void setReceivedMessageList(List<Notification> receivedMessageList) {
-        this.receivedMessageList = receivedMessageList;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<UserReceiveNotification> getUserReceiveNotifications() {
+        return userReceiveNotifications;
+    }
+
+    public void setUserReceiveNotifications(List<UserReceiveNotification> userReceiveNotifications) {
+        this.userReceiveNotifications = userReceiveNotifications;
     }
 
     public List<Notification> getSentMessage() {

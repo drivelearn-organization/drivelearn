@@ -50,10 +50,12 @@ public class StudentServices {
 
         Student student=repository.save(new Student(dto.getName(),LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
-        List<Notification> receivedMessageList=new ArrayList<>();
+
+        List<UserReceiveNotification> userReceiveNotifications=new ArrayList<>();
         List<Notification> sentMessage=new ArrayList<>();
 
-        userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), receivedMessageList,sentMessage));
+
+        userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), userReceiveNotifications,sentMessage));
         return null;
     }
 

@@ -40,10 +40,10 @@ public class EmployeeService {
         List<Session> assinersSessionList=new ArrayList<>();
         Employee employee=repository.save(new Employee(dto.getMoNumber(),"0",2, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, LocalDate.now(),null,branch,installmentList,trainersSessionList,assinersSessionList));
 
-        List<Notification> receivedMessageList=new ArrayList<>();
+        List<UserReceiveNotification> userReceiveNotifications=new ArrayList<>();
         List<Notification> sentMessage=new ArrayList<>();
 
-        userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), receivedMessageList,sentMessage));
+        userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), userReceiveNotifications,sentMessage));
     }
 
     public boolean isAccouuntAvailable(EmployeeDTO dto){
