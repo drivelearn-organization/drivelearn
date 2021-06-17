@@ -11,6 +11,9 @@ public class NotificationDTO {
     private String message;
     private LocalDate date;
     private int status;
+    private int receiverUserId;
+    private String receiverUsername;
+    private int receiverType;
 
     public NotificationDTO() {
     }
@@ -34,6 +37,30 @@ public class NotificationDTO {
         this.header = header;
         this.message = message;
         this.status = status;
+    }
+
+    public int getReceiverUserId() {
+        return receiverUserId;
+    }
+
+    public void setReceiverUserId(int receiverUserId) {
+        this.receiverUserId = receiverUserId;
+    }
+
+    public String getReceiverUsername() {
+        return receiverUsername;
+    }
+
+    public void setReceiverUsername(String receiverUsername) {
+        this.receiverUsername = receiverUsername;
+    }
+
+    public int getReceiverType() {
+        return receiverType;
+    }
+
+    public void setReceiverType(int receiverType) {
+        this.receiverType = receiverType;
     }
 
     public int getNotificationId() {
