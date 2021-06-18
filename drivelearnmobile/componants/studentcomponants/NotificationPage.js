@@ -10,6 +10,7 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
+import NotificationView from "../common/NotificationView";
 
 const NotificationPage = ({route,navigation}) => {
     const { username } = route.params;
@@ -118,7 +119,10 @@ const NotificationPage = ({route,navigation}) => {
                     </Modal>
 
 
-                    
+                    {/*notification content*/}
+
+                <NotificationView></NotificationView>
+
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
