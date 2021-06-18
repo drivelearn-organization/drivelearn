@@ -59,7 +59,7 @@ const Frontpage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent')}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
