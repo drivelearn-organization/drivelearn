@@ -122,6 +122,9 @@ const NotificationPage = ({route,navigation}) => {
                     {/*notification content*/}
 
                 <NotificationView></NotificationView>
+                <NotificationView></NotificationView>
+                <NotificationView></NotificationView>
+                <NotificationView></NotificationView>
 
                 </ImageBackground>
             </ScrollView>
