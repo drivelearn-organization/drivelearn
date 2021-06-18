@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -40,8 +41,8 @@ public class EmployeeService {
         List<Session> assinersSessionList=new ArrayList<>();
         Employee employee=repository.save(new Employee(dto.getMoNumber(),"0",2, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, LocalDate.now(),null,branch,installmentList,trainersSessionList,assinersSessionList));
 
-        List<UserReceiveNotification> userReceiveNotifications=new ArrayList<>();
-        List<Notification> sentMessage=new ArrayList<>();
+        LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
+        LinkedList<Notification> sentMessage=new LinkedList<>();
 
         userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), userReceiveNotifications,sentMessage));
     }
