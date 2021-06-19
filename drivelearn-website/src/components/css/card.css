@@ -1,0 +1,124 @@
+.card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    background:none;
+    margin-top: 90px;
+    /* height: 80px; */
+   
+}
+
+.card_container{
+
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5px;
+    
+
+}
+
+.card_container .full-card{
+    position: relative;
+    width: 330px;
+    height: 170px;
+    /* background: rgb(9, 41, 99); */
+    background: rgba(34, 7, 95, 0.5);
+    margin: 10px 30px;
+    padding: 20px 15px;
+    display: flex;
+    /* flex-direction: column; */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.9);
+    z-index: 0;
+    border-radius: 4px;
+    margin-top: 10px;
+    justify-content: end;
+    
+}
+
+.card_container .full-card .imgBx{
+    display: flex;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(248, 248, 248);
+    border-radius: 4px;
+    top: -55px;
+    left: 10px;
+   
+    box-shadow: o 5px 20px rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.card_container .full-card .card-content{
+    display: flex;
+    flex-direction: column;
+  
+   
+
+}
+
+.card_container .full-card .card-content .first-moreInfo{
+
+    position: relative;
+    left: 20px;
+    justify-content: end;
+    float: right;
+    
+    color: #fff;
+    font-size: 18px;
+    padding: 0;
+}
+
+.card_container .full-card .card-content .first-moreInfo .number{
+
+    font-size: 20px;
+     margin: 0;
+}
+
+
+.card_container .full-card .card-content .moreInfo{
+
+    position: relative;
+    top: 25px;
+    left: -110px;
+    color:#fff;
+    margin-top: 15px;
+
+    /* border-top: double;
+    width: 350px; */
+}
+/* .card_container .full-card .card-content p{
+    margin-top: 5px;
+}
+*/
+
+.fas.fa-angle-double-right{
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+.fas.fa-user-tie{
+
+   font-size: 70px;
+   color: rgb(0, 0, 0);
+
+}
+
+.fas.fa-users{
+    font-size: 70px;
+    color: rgb(0, 0, 0);
+ 
+}
+
+.fas.fa-coins{
+    font-size: 70px;
+    color: rgb(0, 0, 0);
+}
