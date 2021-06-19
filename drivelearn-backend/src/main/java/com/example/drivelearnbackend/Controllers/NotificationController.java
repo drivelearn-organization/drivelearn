@@ -47,4 +47,8 @@ public class NotificationController {
     public LinkedList<NotificationDTO> sendAllNotification(@RequestBody NotificationDTO dto){
         return nontificationService.sendAllNotification(dto);
     }
+    @PostMapping(value = "/changestate")
+    public void changeState(@RequestBody NotificationDTO dto){
+        nontificationService.changeState(dto);
+    }
 }

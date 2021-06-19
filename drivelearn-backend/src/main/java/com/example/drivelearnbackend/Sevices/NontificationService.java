@@ -81,25 +81,42 @@ public class NontificationService {
         }
         List<UserReceiveNotification> userReceiveNotifications= user.getUserReceiveNotifications();
 
-        Comparator<UserReceiveNotification> com =new Comparator<UserReceiveNotification>() {
-            @Override
-            public int compare(UserReceiveNotification userReceiveNotification, UserReceiveNotification t1) {
-                if(userReceiveNotification.getDate().isAfter(t1.getDate())){
-                    return 1;
-                }else{
-                    return 0;
+        if(userReceiveNotifications.isEmpty()){
+            return null;
+
+        }else{
+            Comparator<UserReceiveNotification> com =new Comparator<UserReceiveNotification>() {
+                @Override
+                public int compare(UserReceiveNotification userReceiveNotification, UserReceiveNotification t1) {
+                    if(userReceiveNotification.getDate().isAfter(t1.getDate())){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
                 }
-            }
-        };
+            };
 
 //        Collections.sort(userReceiveNotifications,com);
-        Collections.reverse(userReceiveNotifications);
+            Collections.reverse(userReceiveNotifications);
 
-        List<NotificationDTO> notificationDTOS=new LinkedList<>();
 
-        for (UserReceiveNotification notification : userReceiveNotifications) {
-            notificationDTOS.add(new NotificationDTO(notification.getAccocId(),notification.getNotification().getHeader(),notification.getNotification().getMessage(),notification.getDate().toLocalDate(),notification.getStatus()));
+
+
+            List<NotificationDTO> notificationDTOS=new LinkedList<>();
+
+            for (UserReceiveNotification notification : userReceiveNotifications) {
+                notificationDTOS.add(new NotificationDTO(notification.getAccocId(),notification.getNotification().getHeader(),notification.getNotification().getMessage(),notification.getDate().toLocalDate(),notification.getStatus()));
+            }
+            return (LinkedList<NotificationDTO>) notificationDTOS;
         }
-        return (LinkedList<NotificationDTO>) notificationDTOS;
+
+
+    }
+
+
+    public void changeState(NotificationDTO dto){
+        UserReceiveNotification notification=userReceiveNotificationRepository.findById(dto.getNotificationId()).get();
+        notification.setStatus(2);
+        userReceiveNotificationRepository.save(notification);
     }
 }

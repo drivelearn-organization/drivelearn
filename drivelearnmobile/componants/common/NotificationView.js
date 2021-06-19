@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Modal, TouchableWithoutFeedback, ImageBackground} from "react-native";
+import {Base} from "../../urls/base";
 
 const NotificationView = (props) => {
-    const {status,headerd,message}=props;
+    const {status,headerd,message,id}=props;
     const[state,setState]=useState(2);
     const [header,setHeader]=useState('this is test header from branch Mathugam');
     const [msg,setMsg]=useState('this is the message from you from the Mathugama branch. You have entered several courses under us.');
@@ -13,10 +14,30 @@ const NotificationView = (props) => {
         setState(status);
         setHeader(headerd);
         setMsg(message);
-    },[])
+    },[]);
+
+
+    const makeStateChange=()=>{
+        let url=Base+'notification/changestate';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                notificationId: id
+            })
+        });
+    }
+
     return (
         <View style={styles.outerView}>
-            <TouchableOpacity style={state===1 ? styles.mainViewRead: styles.mainViewUnRead} onPress={()=>setModalAcc(true)}>
+            <TouchableOpacity style={state===1 ? styles.mainViewRead: styles.mainViewUnRead} onPress={()=>{
+                setModalAcc(true);
+                setState(2);
+                makeStateChange();
+            }}>
                 <Text style={styles.headerText}>{header}</Text>
             </TouchableOpacity>
                 <Modal visible={modalAcc} style={styles.modalBox} transparent={true}>
