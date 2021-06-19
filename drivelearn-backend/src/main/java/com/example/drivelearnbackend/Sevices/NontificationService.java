@@ -119,4 +119,37 @@ public class NontificationService {
         notification.setStatus(2);
         userReceiveNotificationRepository.save(notification);
     }
+
+
+    public int countOfUnReadMessages(NotificationDTO dto){
+
+        User user = null;
+        int count=0;
+        LinkedList<User> userList;
+        if(dto.getReceiverUserId()==0){
+            userList=userRepository.findByUsernameAndAndUserType(dto.getReceiverUsername(), dto.getReceiverType());
+            for (User user1 : userList) {
+                user = user1;
+            }
+        }else{
+            userList=userRepository.findByExternalIdAndUserType(dto.getReceiverUserId(),dto.getReceiverType());
+            for (User user1 : userList) {
+                user = user1;
+            }
+            System.out.println(user.getUsername());
+        }
+            List<UserReceiveNotification> userReceiveNotifications= user.getUserReceiveNotifications();
+        if(userReceiveNotifications.isEmpty()){
+            return 0;
+        }else{
+
+            for (UserReceiveNotification notification : userReceiveNotifications) {
+                if(notification.getStatus()==1){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+    }
 }

@@ -47,8 +47,17 @@ public class NotificationController {
     public LinkedList<NotificationDTO> sendAllNotification(@RequestBody NotificationDTO dto){
         return nontificationService.sendAllNotification(dto);
     }
+
+//    this function is for update whether the read or not some notification
     @PostMapping(value = "/changestate")
     public void changeState(@RequestBody NotificationDTO dto){
         nontificationService.changeState(dto);
+    }
+
+//    this is used to specify the numner of unread messages
+//   receiverUserType,receiverUsername or receiverUserId should be specified in the frontend to call this
+    @PostMapping(value = "/unreads")
+    public int countOfUnReadMessages(@RequestBody NotificationDTO dto){
+        return nontificationService.countOfUnReadMessages(dto);
     }
 }
