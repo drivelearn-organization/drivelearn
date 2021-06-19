@@ -1,16 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Modal, TouchableWithoutFeedback, ImageBackground} from "react-native";
 
 const NotificationView = (props) => {
-    const[state,setState]=useState(1);
+    const {status,headerd,message}=props;
+    const[state,setState]=useState(2);
     const [header,setHeader]=useState('this is test header from branch Mathugam');
     const [msg,setMsg]=useState('this is the message from you from the Mathugama branch. You have entered several courses under us.');
 
     const [modalAcc,setModalAcc]=useState(false);
 
+    useEffect(()=>{
+        setState(status);
+        setHeader(headerd);
+        setMsg(message);
+    },[])
     return (
         <View style={styles.outerView}>
-            <TouchableOpacity style={styles.mainViewRead} onPress={()=>setModalAcc(true)}>
+            <TouchableOpacity style={state===1 ? styles.mainViewRead: styles.mainViewUnRead} onPress={()=>setModalAcc(true)}>
                 <Text style={styles.headerText}>{header}</Text>
             </TouchableOpacity>
                 <Modal visible={modalAcc} style={styles.modalBox} transparent={true}>

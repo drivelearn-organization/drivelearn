@@ -15,12 +15,19 @@ import NotificationView from "../common/NotificationView";
 const NotificationPage = ({route,navigation}) => {
     const { username } = route.params;
 
-    // getting student
-    let url1=Base+'student/getStudent';
+    const[notifications,setNotifications]=useState([]);
+
+
+
+
+    // this is for getting user dto
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-
     useEffect(()=>{
+
+
+        // student loadinig
+        let url1=Base+'student/getStudent';
         fetch(url1, {
             method: 'POST',
             headers: {
@@ -39,10 +46,70 @@ const NotificationPage = ({route,navigation}) => {
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
 
+
+
+        // initial notification loading
+        let notifUrl=Base+'notification/sendallnotification';
+        fetch(notifUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                receiverUserId: 0,
+                receiverUsername: username,
+                receiverType:3
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setNotifications(json);
+                console.log('lets test');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+
+        // interval loading of notification
+        const interval=setInterval(()=>{
+            fetch(notifUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    receiverUserId: 0,
+                    receiverUsername: username,
+                    receiverType:3
+                })
+            }).then((response) => response.json())
+                .then((json) => {
+                    setNotifications(json);
+                    console.log('lets test');
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+        },10000);
+
+
+        return()=>{
+            clearInterval(interval);
+        }
+
+
     },[]);
 
-
+    // this is for main nav bar controll
     const [navModal,setNavModal]=useState(false);
+
+
+
+
 
 
 
@@ -118,13 +185,9 @@ const NotificationPage = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
-
+                    {notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  ></NotificationView>)}
                     {/*notification content*/}
 
-                <NotificationView></NotificationView>
-                <NotificationView></NotificationView>
-                <NotificationView></NotificationView>
-                <NotificationView></NotificationView>
 
                 </ImageBackground>
             </ScrollView>
