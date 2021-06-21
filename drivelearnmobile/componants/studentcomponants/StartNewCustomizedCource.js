@@ -11,7 +11,8 @@ import {
 } from "react-native";
 import {Base} from "../../urls/base";
 
-const StartNewCourceFrontPage = ({route,navigation}) => {
+const StartNewCustomizedCource = ({route,navigation}) => {
+
     const { username } = route.params;
 
     // getting student
@@ -48,6 +49,8 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
     const [navModal,setNavModal]=useState(false);
 
 
+
+
     return (
         <TouchableWithoutFeedback >
             <ScrollView>
@@ -65,7 +68,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*customize the course*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StartNewCustomizedCource',{username:username})}>
+                            <TouchableOpacity >
                                 <ImageBackground source={require('../../asets/icons/equalizer.png')} style={styles.iconStyle}>
 
                                 </ImageBackground>
@@ -120,65 +123,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
 
 
 
-                    {/*light vehicle*/}
-
-                    <View style={styles.lightVehicle}>
-                        <View style={styles.headerViewInCard}>
-                            <Text style={styles.lightHeader}>සැහැල්ලු වාහන</Text>
-                        </View>
-
-                        <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 12, ත්‍රී රෝද රථ පැය 12, යතුරු පැදි පැය 5 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
-                            <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
-                            </View>
-                        </View>
-
-                        <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 5, ත්‍රී රෝද රථ පැය 5, යතුරු පැදි පැය 5 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 18000.00</Text>
-                            <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
-                            </View>
-                        </View>
-
-                        <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබට අවශ්‍ය නම් සැහැල්ලු වාහන බලපත්‍රයට අදාල විභාගය, එයට අදාල අධ්‍යාපන කටයුතු සහ ප්‍රයෝගික පරීක්ශණය සදහා අදාල කාරනා සදහාම වූ පැකේජයක්ද අප සතුව පවතී. අය කිරීම රු 11000.00</Text>
-                            <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-
-                    {/*heavy vehicle*/}
-
-                    <View style={styles.lightVehicle}>
-                        <View style={styles.headerViewInCard}>
-                            <Text style={styles.lightHeader}>බර වාහන</Text>
-                        </View>
-
-                        <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 12 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
-                            <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
-                            </View>
-                        </View>
-
-                        <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 5 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 18000.00</Text>
-                            <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
-                            </View>
-                        </View>
-
-                        <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබට අවශ්‍ය නම් බර වාහන බලපත්‍රයට අදාල විභාගය, එයට අදාල අධ්‍යාපන කටයුතු සහ ප්‍රයෝගික පරීක්ශණය සදහා අදාල කාරනා සදහාම වූ පැකේජයක්ද අප සතුව පවතී. අය කිරීම රු 11000.00</Text>
-                            <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-
-
+                    
 
 
 
@@ -199,7 +144,6 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
         </TouchableWithoutFeedback>
     );
 };
-
 
 const styles =StyleSheet.create({
     imageBac:{
@@ -388,4 +332,4 @@ const styles =StyleSheet.create({
 
 
 })
-export default StartNewCourceFrontPage;
+export default StartNewCustomizedCource;
