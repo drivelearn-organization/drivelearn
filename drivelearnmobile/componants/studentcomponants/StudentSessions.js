@@ -10,6 +10,7 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
+import SessionCard from "../common/SessionCard";
 
 const StudentSessions = ({route,navigation}) => {
     const { username } = route.params;
@@ -206,7 +207,8 @@ const StudentSessions = ({route,navigation}) => {
                     {/*space for body*/}
 
 
-                    
+                    <SessionCard></SessionCard>
+                    <SessionCard></SessionCard>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
