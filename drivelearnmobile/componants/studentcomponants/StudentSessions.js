@@ -10,24 +10,25 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
-import NotificationView from "../common/NotificationView";
+import SessionCard from "../common/SessionCard";
 
-const NotificationPage = ({route,navigation}) => {
+const StudentSessions = ({route,navigation}) => {
     const { username } = route.params;
 
-    const[notifications,setNotifications]=useState([]);
 
 
+    // this is the count for notification count
+    const [notificCount,setNotificCount]=useState('0');
 
-
-    // this is for getting user dto
+    // getting student
+    let url1=Base+'student/getStudent';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+
     useEffect(()=>{
 
 
-        // student loadinig
-        let url1=Base+'student/getStudent';
+        // this is student loading
         fetch(url1, {
             method: 'POST',
             headers: {
@@ -48,72 +49,76 @@ const NotificationPage = ({route,navigation}) => {
 
 
 
-        // initial notification loading
-        let notifUrl=Base+'notification/sendallnotification';
-        fetch(notifUrl, {
+        // here the notification number calling at the be begining
+        let notificUrl=Base+'notification/unreads';
+        fetch(notificUrl, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                receiverUserId: 0,
+                receiverUserId:0,
                 receiverUsername: username,
                 receiverType:3
+
             })
-        }).then((response) => response.json())
+        })
+            .then((response) => response.json())
             .then((json) => {
-                setNotifications(json);
-                console.log('lets test');
+                //code here
+                if(json<10){
+                    setNotificCount(json.toString());
+                }else if (json>=10){
+                    setNotificCount('9+');
+                }
+                console.log(json);
             })
-            .catch((error) => {
-                console.error(error);
-            });
+            .catch((error) => console.error(error))
 
 
 
-        // interval loading of notification
-        const interval=setInterval(()=>{
-            fetch(notifUrl, {
+
+        //here is the notification updating
+        const setNotificUpdate=setInterval(()=>{
+            fetch(notificUrl, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    receiverUserId: 0,
+                    receiverUserId:0,
                     receiverUsername: username,
                     receiverType:3
+
                 })
-            }).then((response) => response.json())
+            })
+                .then((response) => response.json())
                 .then((json) => {
-                    setNotifications(json);
-                    console.log('lets test');
+                    //code here
+                    if(json<10){
+                        setNotificCount(json.toString());
+                    }else if (json>=10){
+                        setNotificCount('9+');
+                    }
+                    console.log(json);
                 })
-                .catch((error) => {
-                    console.error(error);
-                });
+                .catch((error) => console.error(error))
 
         },10000);
 
-
         return()=>{
-            clearInterval(interval);
+            clearInterval(setNotificUpdate);
         }
-
-
     },[]);
 
-    // this is for main nav bar controll
+
     const [navModal,setNavModal]=useState(false);
 
 
 
-
-
-
-
-    return(
+    return (
         <TouchableWithoutFeedback >
             <ScrollView>
                 <ImageBackground source={require('../../asets/background/StudentView.png')} style={styles.imageBac}>
@@ -131,7 +136,9 @@ const NotificationPage = ({route,navigation}) => {
 
                             {/*notification navigation*/}
                             <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}></ImageBackground>
+                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
+                                    {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
+                                </ImageBackground>
                             </TouchableOpacity>
 
                             {/*display navigation*/}
@@ -185,14 +192,26 @@ const NotificationPage = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
-                    {notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  id={notification.notificationId}></NotificationView>)}
-                    {/*notification content*/}
 
 
+
+
+
+
+
+
+
+
+
+
+                    {/*space for body*/}
+
+
+                    <SessionCard></SessionCard>
+                    <SessionCard></SessionCard>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
-
     );
 };
 
@@ -222,10 +241,12 @@ const styles =StyleSheet.create({
         paddingEnd:10
     },
     iconStyle:{
-        width:20,
-        height:20,
+        width:21,
+        height:21,
         padding:10,
-        margin: 5
+        margin: 5,
+        justifyContent:'center',
+        alignItems:'center'
     },
     modalMainView:{
         flex:1,
@@ -281,7 +302,53 @@ const styles =StyleSheet.create({
         paddingLeft:15,
         // paddingTop:10,
         paddingBottom:15,
+    },
+    notificWarn:{
+        color:'red',
+        fontSize:10,
+        fontWeight:'bold'
+    },
+    notificWarnView:{
+        width:12,
+        height:12,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#00ff49',
+        borderRadius:10
+
+    },
+    newCourceOuterView:{
+        width:'95%',
+        height:150,
+        backgroundColor:'#ffffff20',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        borderRadius:12,
+        marginTop: 20,
+        padding:15,
+    },
+    courceHeaderView:{
+        paddingTop:10,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+    },
+    headerStyle:{
+        color:'white',
+        fontSize:19,
+    },
+    descStyle:{
+        color:'white',
+        paddingTop: 12,
+    },
+    startButton:{
+        backgroundColor:'#32DE3B',
+        width:75,
+        height:35,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:7
     }
 
-})
-export default NotificationPage;
+
+});
+export default StudentSessions;
