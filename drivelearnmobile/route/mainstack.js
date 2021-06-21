@@ -10,6 +10,7 @@ import Register from "../componants/studentcomponants/Register";
 import LandingTrainer from "../componants/Trainer/LandingTrainer";
 import Frontpage from "../componants/studentcomponants/Frontpage";
 import NotificationPage from "../componants/studentcomponants/NotificationPage";
+import StudentSessions from "../componants/studentcomponants/StudentSessions";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ function Mainstack() {
         <Stack.Screen name="LandingTrainer" component={LandingTrainer} options={{headerShown:false}}/>
         <Stack.Screen name="FrontPageStudent" component={Frontpage} options={{headerShown:false}}/>
         <Stack.Screen name="NotificationPageStudent" component={NotificationPage} options={{headerShown:false}}/>
+        <Stack.Screen name="StudentSessions" component={StudentSessions} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

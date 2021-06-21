@@ -136,7 +136,7 @@ const Frontpage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*display navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
