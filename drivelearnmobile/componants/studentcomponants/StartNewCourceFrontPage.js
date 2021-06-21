@@ -1,16 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {
     ImageBackground,
+    Modal,
     ScrollView,
-    Text,
-    View,
     StyleSheet,
+    Text,
     TouchableOpacity,
-    TouchableWithoutFeedback, Modal
+    TouchableWithoutFeedback,
+    View
 } from "react-native";
 import {Base} from "../../urls/base";
 
-const Frontpage = ({route,navigation}) => {
+const StartNewCourceFrontPage = ({route,navigation}) => {
+
+
 
     const { username } = route.params;
 
@@ -112,6 +115,8 @@ const Frontpage = ({route,navigation}) => {
 
 
     const [navModal,setNavModal]=useState(false);
+
+
     return (
         <TouchableWithoutFeedback >
             <ScrollView>
@@ -123,27 +128,23 @@ const Frontpage = ({route,navigation}) => {
                         {/*nav div*/}
                         <View style={styles.navbar}>
 
-                            {/*home navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
+                            {/*available List*/}
+                            <TouchableOpacity >
+                                <ImageBackground source={require('../../asets/icons/handlist.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
-                            {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
-                                    {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
+                            {/*customize the course*/}
+                            <TouchableOpacity >
+                                <ImageBackground source={require('../../asets/icons/equalizer.png')} style={styles.iconStyle}>
+
                                 </ImageBackground>
                             </TouchableOpacity>
 
-                            {/*display navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
+                            {/*Selected Courses*/}
+                            <TouchableOpacity>
+                                <ImageBackground source={require('../../asets/icons/hand.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
-                            {/*location navigation*/}
-                            <TouchableOpacity>
-                                <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
 
                             {/*central navigation navigation*/}
                             <TouchableOpacity onPress={()=>setNavModal(true)}>
@@ -187,10 +188,6 @@ const Frontpage = ({route,navigation}) => {
                     </Modal>
 
 
-                    <View style={styles.nameBox}>
-                        <View style={styles.nameView}><Text style={styles.textStyles}>{data.name}</Text></View>
-
-                    </View>
 
 
 
@@ -210,22 +207,14 @@ const Frontpage = ({route,navigation}) => {
 
 
 
-                    <View style={styles.newCourceOuterView}>
-                        <View>
-                            <Text style={styles.headerStyle}>Start a Course</Text>
-                        </View>
 
-                        <View>
-                            <Text style={styles.descStyle}>There are several packages suitable for you. Click the start for more details.</Text>
-                        </View>
-
-                        <View style={styles.courceHeaderView}><TouchableOpacity style={styles.startButton}><Text>Start</Text></TouchableOpacity></View>
-                    </View>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
     );
 };
+
+
 const styles =StyleSheet.create({
     imageBac:{
         width:'100%',
@@ -362,4 +351,4 @@ const styles =StyleSheet.create({
 
 
 })
-export default Frontpage;
+export default StartNewCourceFrontPage;

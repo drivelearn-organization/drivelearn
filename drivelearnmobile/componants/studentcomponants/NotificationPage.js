@@ -172,7 +172,7 @@ const NotificationPage = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*Start a Course*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
                                         <Text style={styles.modelIndex}>Start a Course</Text>
                                     </TouchableOpacity>
 
