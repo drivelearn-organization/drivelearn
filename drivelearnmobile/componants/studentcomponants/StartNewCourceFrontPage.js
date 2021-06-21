@@ -48,69 +48,6 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
             .finally(() => setLoading(false));
 
 
-
-        // here the notification number calling at the be begining
-        let notificUrl=Base+'notification/unreads';
-        fetch(notificUrl, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                receiverUserId:0,
-                receiverUsername: username,
-                receiverType:3
-
-            })
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                //code here
-                if(json<10){
-                    setNotificCount(json.toString());
-                }else if (json>=10){
-                    setNotificCount('9+');
-                }
-                console.log(json);
-            })
-            .catch((error) => console.error(error))
-
-
-
-
-        //here is the notification updating
-        const setNotificUpdate=setInterval(()=>{
-            fetch(notificUrl, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    receiverUserId:0,
-                    receiverUsername: username,
-                    receiverType:3
-
-                })
-            })
-                .then((response) => response.json())
-                .then((json) => {
-                    //code here
-                    if(json<10){
-                        setNotificCount(json.toString());
-                    }else if (json>=10){
-                        setNotificCount('9+');
-                    }
-                    console.log(json);
-                })
-                .catch((error) => console.error(error))
-
-        },10000);
-
-        return()=>{
-            clearInterval(setNotificUpdate);
-        }
     },[]);
 
 
@@ -164,7 +101,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
 
                                     {/*home navigation*/}
                                     <Text style={styles.modalHeader}>{data.name}</Text>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
                                         <Text style={styles.modelIndex}>Home</Text>
                                     </TouchableOpacity>
 
