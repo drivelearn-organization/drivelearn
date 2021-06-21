@@ -219,7 +219,7 @@ const Frontpage = ({route,navigation}) => {
                             <Text style={styles.descStyle}>There are several packages suitable for you. Click the start for more details.</Text>
                         </View>
 
-                        <View style={styles.courceHeaderView}><TouchableOpacity style={styles.startButton}><Text>Start</Text></TouchableOpacity></View>
+                        <View style={styles.courceHeaderView}><TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})} style={styles.startButton}><Text>Start</Text></TouchableOpacity></View>
                     </View>
                 </ImageBackground>
             </ScrollView>
