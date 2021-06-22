@@ -10,6 +10,8 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
+import {Picker} from "@react-native-picker/picker";
+
 
 const StartNewCustomizedCource = ({route,navigation}) => {
 
@@ -19,6 +21,21 @@ const StartNewCustomizedCource = ({route,navigation}) => {
     let url1=Base+'student/getStudent';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [auto,setAuto]=useState(0);
+    const [nanual,setManual]=useState(0);
+    const [bike,setBike]=useState(0);
+    const [wheel,setWheel]=useState(0);
+    const [payment,setPayment]=useState(11000);
+
+    var val;
+
+
+    const [havy,setHeavy]=useState(0);
+    const [payment2,setPayment2]=useState(11000);
+    const wholePayment=()=>{
+
+        setPayment(11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000));
+    }
 
     useEffect(()=>{
 
@@ -123,19 +140,348 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
 
-                    
+                    <View style={styles.lightSelectorView}>
+                        <View><Text style={styles.mainHeaderOfLight}>සැහැල්ලු වාහන</Text></View>
+                        <View
+                            style={{
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+                        {/*for the car*/}
+
+
+                        <View style={styles.selectView}>
+                            <View>
+                                <Text style={styles.vehicleHeader}>A1</Text>
+                            </View>
+                            <View>
+                                <ImageBackground source={require('../../asets/icons/car.png')} style={styles.vehiClass}></ImageBackground>
+                                <Text style={styles.vehicleHeader}>car(auto)</Text>
+                                <Text style={styles.vehicleHeader}>car(manual)</Text>
+                            </View>
+                            <View>
+                                <View style={styles.vehiClass}></View>
+                                <View>
+                                    <View style={styles.pickerView}>
+                                        <Picker
+                                            selectedValue={auto}
+                                            onValueChange={(itemValue, itemIndex) =>{
+                                                setAuto(itemValue);
+                                                setTimeout(()=>{wholePayment();},1000);
+
+
+                                            }
+
+                                            }>
+                                            <Picker.Item
+                                                label="hours"
+                                                value={0}
+                                                enabled={false}
+
+                                            />
+                                            <Picker.Item label="1" value={1}/>
+                                            <Picker.Item label="2" value={2}/>
+                                            <Picker.Item label="3" value={3}/>
+                                            <Picker.Item label="4" value={4}/>
+                                        </Picker>
+                                    </View>
+
+                                </View>
+                                <View>
+
+                                    <View style={styles.pickerView}>
+                                        <Picker
+                                            selectedValue={nanual}
+                                            onValueChange={(itemValue, itemIndex) =>{
+                                                setManual(itemValue);
+                                                setTimeout(()=>{wholePayment();},1000);
+                                            }
+
+
+                                            }>
+                                            <Picker.Item
+                                                label="hours"
+                                                value={0}
+                                                enabled={false}
+
+                                            />
+                                            <Picker.Item label="1" value={1}/>
+                                            <Picker.Item label="2" value={2}/>
+                                            <Picker.Item label="3" value={3}/>
+                                            <Picker.Item label="4" value={4}/>
+                                        </Picker>
+                                    </View>
+                                </View>
+                            </View>
+                            <View>
+                                <View  style={styles.vehiClass}></View>
+                                <Text style={styles.vehicleHeader}>{auto}</Text>
+                                <Text style={styles.vehicleHeader}>{nanual}</Text></View>
+                        </View>
 
 
 
 
 
 
+                        <View
+                            style={{
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+
+                        {/*for the bykes*/}
+
+
+                        <View style={styles.selectView}>
+                            <View>
+                                <Text style={styles.vehicleHeader}>B</Text>
+                            </View>
+                            <View>
+                                <ImageBackground source={require('../../asets/icons/motorcycle.png')} style={styles.vehiClass}></ImageBackground>
+                                <Text style={styles.vehicleHeader}>Motorcycle</Text>
+
+                            </View>
+                            <View>
+                                <View style={styles.vehiClass}></View>
+                                <View>
+                                    <View style={styles.pickerView}>
+                                        <Picker
+                                            selectedValue={bike}
+                                            onValueChange={(itemValue, itemIndex) =>{
+                                                setBike(itemValue);
+                                                setTimeout(()=>{wholePayment();},1000);
+                                            }
+
+
+
+                                            }>
+                                            <Picker.Item
+                                                label="hours"
+                                                value={0}
+                                                enabled={false}
+
+                                            />
+                                            <Picker.Item label="1" value={1}/>
+                                            <Picker.Item label="2" value={2}/>
+                                            <Picker.Item label="3" value={3}/>
+                                            <Picker.Item label="4" value={4}/>
+                                        </Picker>
+                                    </View>
+
+                                </View>
+
+                            </View>
+                            <View>
+                                <View  style={styles.vehiClass}></View>
+                                <Text style={styles.vehicleHeader}>{bike}</Text>
+
+                            </View>
+                        </View>
+
+
+
+                        <View
+                            style={{
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+
+                        {/*for wheel*/}
+
+                        <View style={styles.selectView}>
+                            <View>
+                                <Text style={styles.vehicleHeader}>B</Text>
+                            </View>
+                            <View>
+                                <ImageBackground source={require('../../asets/icons/tuk-tuk.png')} style={styles.vehiClass}></ImageBackground>
+                                <Text style={styles.vehicleHeader}>Motorcycle</Text>
+
+                            </View>
+                            <View>
+                                <View style={styles.vehiClass}></View>
+                                <View>
+                                    <View style={styles.pickerView}>
+                                        <Picker
+                                            selectedValue={wheel}
+                                            onValueChange={(itemValue, itemIndex) =>{
+                                                setWheel(itemValue);
+                                                setTimeout(()=>{wholePayment();},1000);
+                                            }
+
+
+
+                                            }>
+                                            <Picker.Item
+                                                label="hours"
+                                                value={0}
+                                                enabled={false}
+
+                                            />
+                                            <Picker.Item label="1" value={1}/>
+                                            <Picker.Item label="2" value={2}/>
+                                            <Picker.Item label="3" value={3}/>
+                                            <Picker.Item label="4" value={4}/>
+                                        </Picker>
+                                    </View>
+
+                                </View>
+
+                            </View>
+                            <View>
+                                <View  style={styles.vehiClass}></View>
+                                <Text style={styles.vehicleHeader}>{wheel}</Text>
+
+                            </View>
+                        </View>
+
+
+
+                        <View
+                            style={{
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+                        <View style={styles.examView}>
+                            <Text style={styles.vehicleHeader}>Exam</Text>
+                            <Text style={styles.vehicleHeader}>mandatory</Text>
+                        </View>
+
+
+                        <View
+                            style={{
+                                padding:5,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+                        <View style={styles.examView}>
+                            <Text style={styles.vehicleHeader}>Payment/Rs</Text>
+                            <Text style={styles.vehicleHeader}>{payment}</Text>
+                        </View>
+
+
+                        <View style={styles.buttonView}>
+                            <TouchableOpacity style={styles.buttonViewPay}><Text>Proceed</Text></TouchableOpacity>
+                        </View>
+
+
+                    </View>
+
+
+{/*heavy vehicle*/}
+
+
+                    <View style={styles.lightSelectorView}>
+                        <View><Text style={styles.mainHeaderOfLight}>සැහැල්ලු වාහන</Text></View>
+                        <View
+                            style={{
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+
+                        {/*for the bykes*/}
+
+
+                        <View style={styles.selectView}>
+                            <View>
+                                <Text style={styles.vehicleHeader}>B</Text>
+                            </View>
+                            <View>
+                                <ImageBackground source={require('../../asets/icons/motorcycle.png')} style={styles.vehiClass}></ImageBackground>
+                                <Text style={styles.vehicleHeader}>Motorcycle</Text>
+
+                            </View>
+                            <View>
+                                <View style={styles.vehiClass}></View>
+                                <View>
+                                    <View style={styles.pickerView}>
+                                        <Picker
+                                            selectedValue={havy}
+                                            onValueChange={(itemValue, itemIndex) =>{
+                                                setHeavy(itemValue);
+                                                setTimeout(()=>{setPayment2(11000+itemValue*2000);},1000);
+                                            }
+
+
+
+                                            }>
+                                            <Picker.Item
+                                                label="hours"
+                                                value={0}
+                                                enabled={false}
+
+                                            />
+                                            <Picker.Item label="1" value={1}/>
+                                            <Picker.Item label="2" value={2}/>
+                                            <Picker.Item label="3" value={3}/>
+                                            <Picker.Item label="4" value={4}/>
+                                        </Picker>
+                                    </View>
+
+                                </View>
+
+                            </View>
+                            <View>
+                                <View  style={styles.vehiClass}></View>
+                                <Text style={styles.vehicleHeader}>{havy}</Text>
+
+                            </View>
+                        </View>
 
 
 
 
+                        <View
+                            style={{
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+                        <View style={styles.examView}>
+                            <Text style={styles.vehicleHeader}>Exam</Text>
+                            <Text style={styles.vehicleHeader}>mandatory</Text>
+                        </View>
 
 
+                        <View
+                            style={{
+                                padding:5,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+                        <View style={styles.examView}>
+                            <Text style={styles.vehicleHeader}>Payment/Rs</Text>
+                            <Text style={styles.vehicleHeader}>{payment2}</Text>
+                        </View>
+
+
+                        <View style={styles.buttonView}>
+                            <TouchableOpacity style={styles.buttonViewPay}><Text>Proceed</Text></TouchableOpacity>
+                        </View>
+
+
+                    </View>
 
 
 
@@ -328,7 +674,65 @@ const styles =StyleSheet.create({
         alignItems:'center',
         borderRadius:10,
         margin:15
+    },
+    lightSelectorView:{
+        margin:10,
+        width:'95%',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        minHeight:200,
+        backgroundColor:'#ffffff20',
+        borderRadius:10,
+        padding:15,
+    },
+    mainHeaderOfLight:{
+        color:'white',
+    },
+    selectView:{
+        marginBottom:5,
+        // paddingBottom:30,
+        width:'100%',
+        // height:100,
+        flexDirection:'row',
+        justifyContent:'space-between',
+
+    },
+    vehiClass:{
+        marginTop:10,
+        paddingTop:10,
+        width:30,
+        height:30,
+    },
+    vehicleHeader:{
+        color:'white',
+        paddingTop:10
+    },
+    pickerView: {
+        // padding:-2,
+        margin: 5,
+        width: 45,
+        backgroundColor: 'white',
+        height: 20,
+        justifyContent: 'center',
+    },
+    examView: {
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    buttonView:{
+        flexDirection:'row',
+        justifyContent:'flex-end'
+    },
+    buttonViewPay:{
+        backgroundColor:'#32DE3B',
+        width:100,
+        height:40,
+        margin:10,
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
     }
+
 
 
 })

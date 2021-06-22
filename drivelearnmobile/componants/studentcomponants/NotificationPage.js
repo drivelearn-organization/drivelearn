@@ -185,7 +185,7 @@ const NotificationPage = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
-                    {notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  id={notification.notificationId}></NotificationView>)}
+                    {notifications.length===0 ? null : notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  id={notification.notificationId}></NotificationView>)}
                     {/*notification content*/}
 
 
