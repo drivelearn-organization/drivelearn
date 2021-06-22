@@ -11,6 +11,8 @@ import LandingTrainer from "../componants/Trainer/LandingTrainer";
 import Frontpage from "../componants/studentcomponants/Frontpage";
 import NotificationPage from "../componants/studentcomponants/NotificationPage";
 import StudentSessions from "../componants/studentcomponants/StudentSessions";
+import StartNewCourceFrontPage from "../componants/studentcomponants/StartNewCourceFrontPage";
+import StartNewCustomizedCource from "../componants/studentcomponants/StartNewCustomizedCource";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +30,8 @@ function Mainstack() {
         <Stack.Screen name="FrontPageStudent" component={Frontpage} options={{headerShown:false}}/>
         <Stack.Screen name="NotificationPageStudent" component={NotificationPage} options={{headerShown:false}}/>
         <Stack.Screen name="StudentSessions" component={StudentSessions} options={{headerShown:false}}/>
+        <Stack.Screen name="StartNewCourceFrontPage" component={StartNewCourceFrontPage} options={{headerShown:false}}/>
+        <Stack.Screen name="StartNewCustomizedCource" component={StartNewCustomizedCource} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
