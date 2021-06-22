@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,6 +8,12 @@ import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
 import Home from './adminComponents/pages/Home';
 import AboutUs from './adminComponents/pages/AboutUs';
 import ContactUs from './adminComponents/pages/ContactUs';
+
+
+// import Home from './homePage/pages/Home';
+// import About from './homePage/pages/About';
+// import Contacts from './homePage/pages/Contacts';
+// import SignUp from './homePage/pages/SignUp';
 
 function App() {
   const [showNav, setShownav] = useState(false);

@@ -13,6 +13,7 @@ import {
   View,
 } from 'react-native';
 import {Formik} from 'formik';
+import {Base} from "../../urls/base";
 
 const reviewSchema = yup.object().shape({
   username: yup.string().required(),
@@ -20,6 +21,28 @@ const reviewSchema = yup.object().shape({
 });
 
 const TrainerLogin = ({navigation}) => {
+
+  const login=(values)=>{
+    let url=Base+'employee/isAccoAvail';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password
+      })
+    }).then((response) => response.json())
+        .then((json) => {
+          console.log('login is '+json);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+  }
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -64,7 +87,9 @@ const TrainerLogin = ({navigation}) => {
             <Formik
               initialValues={{username: '', password: ''}}
               validationSchema={reviewSchema}
-              onSubmit={values => {}}>
+              onSubmit={values => {
+                login(values);
+              }}>
               {props => (
                 <View style={styles.getInView}>
                   <TextInput

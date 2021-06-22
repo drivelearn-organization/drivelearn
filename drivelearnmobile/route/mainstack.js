@@ -2,11 +2,14 @@ import * as React from 'react';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Login from '../componants/commoncomponants/Login';
+import Login from '../componants/studentcomponants/Login';
 import TrainerLogin from '../componants/Trainer/TrainerLogin';
-import ForgotPassword from '../componants/commoncomponants/ForgotPassword';
+import ForgotPassword from '../componants/studentcomponants/ForgotPassword';
 import TrainerForgetPassword from '../componants/Trainer/TrainerForgetPassword';
-import Register from "../componants/commoncomponants/Register";
+import Register from "../componants/studentcomponants/Register";
+import LandingTrainer from "../componants/Trainer/LandingTrainer";
+import Frontpage from "../componants/studentcomponants/Frontpage";
+import NotificationPage from "../componants/studentcomponants/NotificationPage";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +23,9 @@ function Mainstack() {
         <Stack.Screen name="StudentForget" component={ForgotPassword} options={{headerShown:false}}/>
         <Stack.Screen name="TrainerForget" component={TrainerForgetPassword} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
+        <Stack.Screen name="LandingTrainer" component={LandingTrainer} options={{headerShown:false}}/>
+        <Stack.Screen name="FrontPageStudent" component={Frontpage} options={{headerShown:false}}/>
+        <Stack.Screen name="NotificationPageStudent" component={NotificationPage} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

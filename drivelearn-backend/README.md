@@ -1,5 +1,21 @@
 # drivelearn-backend
 
+## userType in user is
+#### 1-Branch manger
+#### 2-trainer
+#### 3-student
+
+## externalId in user is id of student branch manager or employee
+
+## isActive in Employee
+#### 1-pending for approval
+#### 2-working
+#### 3-rewoked
+
+## Role in employee
+#### 1-branch manager
+#### 2-trainer
+
 
 ## status in session and stu_session-
 #### 1-open 

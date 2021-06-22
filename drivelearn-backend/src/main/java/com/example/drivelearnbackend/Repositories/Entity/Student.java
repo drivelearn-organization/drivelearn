@@ -5,19 +5,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int stuId;
-    private Date registereddate;
+    private String name;
+    private LocalDate registereddate;
     private String idnum;
     private String address;
-    private Date Dob;
+    private LocalDate Dob;
     private String username;
     private String password;
     private String contact;
@@ -55,8 +57,8 @@ public class Student {
     public Student() {
     }
 
-    public Student(int stuId, Date registereddate, String idnum, String address, Date dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
-        this.stuId = stuId;
+    public Student(String name, LocalDate registereddate, String idnum, String address, LocalDate dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
+        this.name = name;
         this.registereddate = registereddate;
         this.idnum = idnum;
         this.address = address;
@@ -72,6 +74,31 @@ public class Student {
         this.vechileTypes = vechileTypes;
     }
 
+    public Student(LocalDate registereddate, String idnum, String address, LocalDate dob, String username, String password, String contact, List<Feedback> feedbacks, Branch branch, List<StuSession> stuSessionList, List<Cource> courceList, List<Payment> paymentList, List<VechileType> vechileTypes) {
+
+        this.registereddate = registereddate;
+        this.idnum = idnum;
+        this.address = address;
+        Dob = dob;
+        this.username = username;
+        this.password = password;
+        this.contact = contact;
+        this.feedbacks = feedbacks;
+        this.branch = branch;
+        this.stuSessionList = stuSessionList;
+        this.courceList = courceList;
+        this.paymentList = paymentList;
+        this.vechileTypes = vechileTypes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getStuId() {
         return stuId;
     }
@@ -80,11 +107,11 @@ public class Student {
         this.stuId = stuId;
     }
 
-    public Date getRegistereddate() {
+    public LocalDate getRegistereddate() {
         return registereddate;
     }
 
-    public void setRegistereddate(Date registereddate) {
+    public void setRegistereddate(LocalDate registereddate) {
         this.registereddate = registereddate;
     }
 
@@ -104,11 +131,11 @@ public class Student {
         this.address = address;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return Dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         Dob = dob;
     }
 
