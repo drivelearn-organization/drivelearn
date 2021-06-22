@@ -33,7 +33,12 @@ function App() {
     
     
     
-        <header ><i onClick={()=>setShownav(!showNav)} className="fas fa-bars" ></i></header> 
+        <header >
+        
+        <i onClick={()=>setShownav(!showNav)} className="fas fa-bars" ></i>
+        <img className="mylogo" src={'images/LogoBoxWhite.png'} width="60" height="60"/>
+        <p className="logout">huwdhuih</p>
+        </header> 
    
       
         {/* {showNav && <Navbar/>} */}
