@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import PayHere from '@payhere/payhere-mobilesdk-reactnative';
 import {
     ImageBackground,
     Modal,
@@ -7,7 +8,8 @@ import {
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    View
+    View,
+    Alert
 } from "react-native";
 import {Base} from "../../urls/base";
 
@@ -46,6 +48,157 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
 
 
     const [navModal,setNavModal]=useState(false);
+
+
+
+
+
+
+    // payment detail for light vehicle
+    const paymentObjectLN = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": "250.00",//25000.00
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+
+    const paymentObjectLI = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": "180.00",//25000.00
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+    const paymentObjectLE = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": "110.00",//25000.00
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+
+
+
+    // payment detail for heavy vehicle
+    const paymentObjectHN = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": "250.00",//25000.00
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+
+    const paymentObjectHI = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": "190.00",//25000.00
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+    const paymentObjectHE = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": "110.00",//25000.00
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
 
 
     return (
@@ -128,23 +281,65 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         </View>
 
                         <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 12, ත්‍රී රෝද රථ පැය 12, යතුරු පැදි පැය 5 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
+                            <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 7, ත්‍රී රෝද රථ පැය 6, යතුරු පැදි පැය 2 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                    PayHere.startPayment(
+                                        paymentObjectLN,
+                                        (paymentId) => {
+                                            console.log("Payment Completed", paymentId);
+                                        },
+                                        (errorData) => {
+                                            Alert.alert("PayHere Error", errorData);
+                                        },
+                                        () => {
+                                            console.log("Payment Dismissed");
+                                        }
+                                    );
+
+                                }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 5, ත්‍රී රෝද රථ පැය 5, යතුරු පැදි පැය 5 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 18000.00</Text>
+                            <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 3, ත්‍රී රෝද රථ පැය 2, යතුරු පැදි පැය 1 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 18000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                    PayHere.startPayment(
+                                        paymentObjectLI,
+                                        (paymentId) => {
+                                            console.log("Payment Completed", paymentId);
+                                        },
+                                        (errorData) => {
+                                            Alert.alert("PayHere Error", errorData);
+                                        },
+                                        () => {
+                                            console.log("Payment Dismissed");
+                                        }
+                                    );
+
+                                }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබට අවශ්‍ය නම් සැහැල්ලු වාහන බලපත්‍රයට අදාල විභාගය, එයට අදාල අධ්‍යාපන කටයුතු සහ ප්‍රයෝගික පරීක්ශණය සදහා අදාල කාරනා සදහාම වූ පැකේජයක්ද අප සතුව පවතී. අය කිරීම රු 11000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                    PayHere.startPayment(
+                                        paymentObjectLE,
+                                        (paymentId) => {
+                                            console.log("Payment Completed", paymentId);
+                                        },
+                                        (errorData) => {
+                                            Alert.alert("PayHere Error", errorData);
+                                        },
+                                        () => {
+                                            console.log("Payment Dismissed");
+                                        }
+                                    );
+
+                                }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
                     </View>
@@ -157,23 +352,65 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         </View>
 
                         <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 12 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
+                            <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 7 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                    PayHere.startPayment(
+                                        paymentObjectHN,
+                                        (paymentId) => {
+                                            console.log("Payment Completed", paymentId);
+                                        },
+                                        (errorData) => {
+                                            Alert.alert("PayHere Error", errorData);
+                                        },
+                                        () => {
+                                            console.log("Payment Dismissed");
+                                        }
+                                    );
+
+                                }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.bodyViewInCard}>
-                            <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 5 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 18000.00</Text>
+                            <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 4 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 19000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                    PayHere.startPayment(
+                                        paymentObjectHI,
+                                        (paymentId) => {
+                                            console.log("Payment Completed", paymentId);
+                                        },
+                                        (errorData) => {
+                                            Alert.alert("PayHere Error", errorData);
+                                        },
+                                        () => {
+                                            console.log("Payment Dismissed");
+                                        }
+                                    );
+
+                                }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබට අවශ්‍ය නම් බර වාහන බලපත්‍රයට අදාල විභාගය, එයට අදාල අධ්‍යාපන කටයුතු සහ ප්‍රයෝගික පරීක්ශණය සදහා අදාල කාරනා සදහාම වූ පැකේජයක්ද අප සතුව පවතී. අය කිරීම රු 11000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton}><Text>Start Course</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                    PayHere.startPayment(
+                                        paymentObjectHE,
+                                        (paymentId) => {
+                                            console.log("Payment Completed", paymentId);
+                                        },
+                                        (errorData) => {
+                                            Alert.alert("PayHere Error", errorData);
+                                        },
+                                        () => {
+                                            console.log("Payment Dismissed");
+                                        }
+                                    );
+
+                                }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
                     </View>

@@ -7,10 +7,12 @@ import {
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    View
+    View,
+    Alert
 } from "react-native";
 import {Base} from "../../urls/base";
 import {Picker} from "@react-native-picker/picker";
+import PayHere from '@payhere/payhere-mobilesdk-reactnative';
 
 
 const StartNewCustomizedCource = ({route,navigation}) => {
@@ -27,11 +29,63 @@ const StartNewCustomizedCource = ({route,navigation}) => {
     const [wheel,setWheel]=useState(0);
     const [payment,setPayment]=useState(11000);
 
+    const paymentObject1 = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": ""+(11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000))+"",
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+
+
+
+
     var val;
 
 
     const [havy,setHeavy]=useState(0);
     const [payment2,setPayment2]=useState(11000);
+
+
+    const paymentObject2 = {
+        "sandbox": true,                 // true if using Sandbox Merchant ID
+        "merchant_id": "1217670",        // Replace your Merchant ID
+        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "notify_url": "http://sample.com/notify",
+        "order_id": "ItemNo12345",
+        "items": "Hello from React Native!",
+        "amount": ""+payment2+"",
+        "currency": "LKR",
+        "first_name": "Saman",
+        "last_name": "Perera",
+        "email": "samanp@gmail.com",
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
     const wholePayment=()=>{
 
         setPayment(11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000));
@@ -300,11 +354,11 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
                         <View style={styles.selectView}>
                             <View>
-                                <Text style={styles.vehicleHeader}>B</Text>
+                                <Text style={styles.vehicleHeader}>G1</Text>
                             </View>
                             <View>
                                 <ImageBackground source={require('../../asets/icons/tuk-tuk.png')} style={styles.vehiClass}></ImageBackground>
-                                <Text style={styles.vehicleHeader}>Motorcycle</Text>
+                                <Text style={styles.vehicleHeader}>Three Wheeler</Text>
 
                             </View>
                             <View>
@@ -370,12 +424,25 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
                         <View style={styles.examView}>
                             <Text style={styles.vehicleHeader}>Payment/Rs</Text>
-                            <Text style={styles.vehicleHeader}>{payment}</Text>
+                            <Text style={styles.vehicleHeader}>{(11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000))}</Text>
                         </View>
 
 
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.buttonViewPay}><Text>Proceed</Text></TouchableOpacity>
+                            <TouchableOpacity style={styles.buttonViewPay}  onPress={()=>{
+                                PayHere.startPayment(
+                                    paymentObject1,
+                                    (paymentId) => {
+                                        console.log("Payment Completed", paymentId);
+                                    },
+                                    (errorData) => {
+                                        Alert.alert("PayHere Error", errorData);
+                                    },
+                                    () => {
+                                        console.log("Payment Dismissed");
+                                    }
+                                );
+                            }}><Text>Proceed</Text></TouchableOpacity>
                         </View>
 
 
@@ -386,7 +453,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
                     <View style={styles.lightSelectorView}>
-                        <View><Text style={styles.mainHeaderOfLight}>සැහැල්ලු වාහන</Text></View>
+                        <View><Text style={styles.mainHeaderOfLight}>බර වාහන</Text></View>
                         <View
                             style={{
                                 padding:2,
@@ -396,16 +463,16 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                         />
 
 
-                        {/*for the bykes*/}
+                        {/*for the heavy*/}
 
 
                         <View style={styles.selectView}>
                             <View>
-                                <Text style={styles.vehicleHeader}>B</Text>
+                                <Text style={styles.vehicleHeader}>H</Text>
                             </View>
                             <View>
-                                <ImageBackground source={require('../../asets/icons/motorcycle.png')} style={styles.vehiClass}></ImageBackground>
-                                <Text style={styles.vehicleHeader}>Motorcycle</Text>
+                                <ImageBackground source={require('../../asets/icons/bus.png')} style={styles.vehiClass}></ImageBackground>
+                                <Text style={styles.vehicleHeader}>Heavy Vehicles</Text>
 
                             </View>
                             <View>
@@ -477,7 +544,20 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.buttonViewPay}><Text>Proceed</Text></TouchableOpacity>
+                            <TouchableOpacity style={styles.buttonViewPay} onPress={()=>{
+                                PayHere.startPayment(
+                                    paymentObject2,
+                                    (paymentId) => {
+                                        console.log("Payment Completed", paymentId);
+                                    },
+                                    (errorData) => {
+                                        Alert.alert("PayHere Error", errorData);
+                                    },
+                                    () => {
+                                        console.log("Payment Dismissed");
+                                    }
+                                );
+                            }}><Text>Proceed</Text></TouchableOpacity>
                         </View>
 
 
