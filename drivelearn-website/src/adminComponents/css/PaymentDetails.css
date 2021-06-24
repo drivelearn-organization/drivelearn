@@ -5,8 +5,9 @@
     align-items: center;
     background:none;
     flex-wrap: wrap;
-    margin-top: 90px;
-    border-style: solid
+    margin-top: 100px;
+    /* border-style: solid; */
+    box-shadow: 0 5px 24px rgba(0,0,0,0.4);
     
 }
 
@@ -19,7 +20,7 @@
     /* background: rgb(9, 41, 99); */
     background: rgba(34, 7, 95, 0.5);
     margin: 20px 30px;
-    box-shadow: 0 5px 24px rgba(0,0,0,0.4);
+  
     
    
 }
