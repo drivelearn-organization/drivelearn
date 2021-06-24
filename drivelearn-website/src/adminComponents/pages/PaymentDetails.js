@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 function PaymentDetails() {
     return (
         <div className ="emp-card-container">
-        <form class="searchbar-admin" method="POST">
+        <form className="searchbar-admin" method="POST">
         <input type="text" class="searchbar-admin_search" placeholder="Search user by name or id"></input>
-        <button><i class="fas fa-search"></i></button>
+        <div className="search-icon"><i class="fas fa-search"></i></div>
         </form>
         
         <div className ="fullCard">
