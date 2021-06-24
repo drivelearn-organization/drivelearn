@@ -21,6 +21,13 @@ function PaymentDetails() {
                 <option value="user">User</option>
             </select>
         </div>
+        <div className ="filter">
+            <label className="margin-r-s">User Role: </label>
+            <select className="form__input">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+        </div>
         <div className ="filter"></div>
         </div>
         
