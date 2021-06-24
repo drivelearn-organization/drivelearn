@@ -45,6 +45,7 @@
     width: 400px;
     height: 40px;
     border-radius: 30px;
+    margin-top: 30px;
     
   
    
@@ -68,5 +69,15 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+}
+
+.btn-square-blue{
+    position: relative;
+    right:300px;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    background-color:rgba(28, 31, 212, 0.5);
 }
 

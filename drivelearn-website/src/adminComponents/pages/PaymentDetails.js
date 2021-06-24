@@ -9,6 +9,10 @@ function PaymentDetails() {
         <input type="text" class="searchbar-admin_search" placeholder="Search user by name or id"></input>
         <div className="search-icon"><i class="fas fa-search"></i></div>
         </form>
+        <a href="" className="btn btn-square-blue">
+        <div className="btn-square-blue_text">Add User <i class="fas fa-plus-circle"></i></div>
+        
+        </a>
         
         <div className ="fullCard">
              <p>Hasani Nimeshika</p> 
