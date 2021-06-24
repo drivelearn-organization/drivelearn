@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int paymentId;
     private double amount;
     private LocalDate date;
@@ -33,6 +33,13 @@ public class Payment {
         this.date = date;
         this.student = student;
         this.cource = cource;
+    }
+
+    public Payment(double amount, LocalDate date, Student student) {
+
+        this.amount = amount;
+        this.date = date;
+        this.student = student;
     }
 
     public int getPaymentId() {
