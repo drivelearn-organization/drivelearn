@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Cource {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int courseId;
     private Date examDate1;
     private Date examDate2;
