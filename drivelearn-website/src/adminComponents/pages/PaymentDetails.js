@@ -15,7 +15,7 @@ function PaymentDetails() {
         </a>
         <div className ="filter_container">
         <div className ="filter">
-            <label className="margin-r-s"></label>
+            <label className="margin-r-s">User Role: </label>
             <select className="form__input">
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
