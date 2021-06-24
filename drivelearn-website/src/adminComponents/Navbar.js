@@ -15,6 +15,9 @@ function Navbar({show}) {
                <li>
                     <Link to="/ContactUs">Contact us</Link>
                </li>
+               <li>
+                    <Link to="/PaymentDetails">Payment Details</Link>
+               </li>
            </ul> 
         </div>
     )

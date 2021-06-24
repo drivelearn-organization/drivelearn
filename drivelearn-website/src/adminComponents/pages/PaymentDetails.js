@@ -5,9 +5,17 @@ function PaymentDetails() {
     return (
         <div className ="emp-card-container">
         <div className ="fullCard">
-              <p>ghghghj</p>
+             <p>Hasani Nimeshika</p> 
         </div>
-            
+        <div className ="fullCard">
+             <p>Hasani Nimeshika</p> 
+        </div>
+        <div className ="fullCard">
+             <p>Hasani Nimeshika</p> 
+        </div>
+        <div className ="fullCard">
+             <p>Hasani Nimeshika</p> 
+        </div>
         </div>
     )
 }

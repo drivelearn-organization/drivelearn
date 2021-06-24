@@ -28,7 +28,7 @@
     height: 170px;
     /* background: rgb(9, 41, 99); */
     background: rgba(34, 7, 95, 0.5);
-    margin: 10px 30px;
+    margin: 20px 30px;
     padding: 20px 15px;
     display: flex;
     /* flex-direction: column; */
@@ -50,7 +50,7 @@
     top: -55px;
     left: 10px;
    
-    box-shadow: o 5px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
     

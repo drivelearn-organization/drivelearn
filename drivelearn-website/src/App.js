@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
 import Home from './adminComponents/pages/Home';
 import AboutUs from './adminComponents/pages/AboutUs';
 import ContactUs from './adminComponents/pages/ContactUs';
+import PaymentDetails from './adminComponents/pages/PaymentDetails';
 
 
 // import Home from './homePage/pages/Home';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/" exact={true} component={Home}/>
           <Route path="/AboutUs" exact={true} component={AboutUs}/>
           <Route path="/ContactUs" exact={true} component={ContactUs}/>
+          <Route path="/PaymentDetails" exact={true} component={PaymentDetails}/>
         </div>
       
     </Router>
