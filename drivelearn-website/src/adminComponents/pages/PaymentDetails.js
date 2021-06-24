@@ -6,14 +6,10 @@ function PaymentDetails() {
     return (
         <div className ="emp-card-container">
         <form class="searchbar-admin" method="POST">
-        <input type="text" class="searchbar-admin_search" placeholder="Search user by name or id">
-
-        </input>
-
+        <input type="text" class="searchbar-admin_search" placeholder="Search user by name or id"></input>
+        <button><i class="fas fa-search"></i></button>
         </form>
-        <div className ="searchBox">
-             <p>search</p> 
-        </div>
+        
         <div className ="fullCard">
              <p>Hasani Nimeshika</p> 
         </div>

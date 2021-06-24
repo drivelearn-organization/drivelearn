@@ -32,7 +32,7 @@
    
 }
 
-.emp-card-container .searchbar-admin{
+.emp-card-container .searchbar-admin_search{
 
     display: flex;
     justify-content: center;
@@ -41,5 +41,14 @@
     width: 500px;
     height: 40px;
     border-radius: 30px;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.searchbar-admin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
