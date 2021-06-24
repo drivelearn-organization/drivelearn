@@ -1,19 +1,16 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
-import com.example.drivelearnbackend.Repositories.BranchRepository;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
-import com.example.drivelearnbackend.Repositories.StudentRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
 
 @Service
@@ -22,7 +19,16 @@ public class StudentServices {
     BranchRepository branchRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private StudentRepository repository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
+
+    @Autowired
+    private UserReceiveNotificationRepository userReceiveNotificationRepository;
 
     public Student addStudent(StudentDTO dto){
         System.out.println("before the branch search");
@@ -47,15 +53,26 @@ public class StudentServices {
 
 
 
-        repository.save(new Student(LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
+        Student student=repository.save(new Student(dto.getName(),LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
+
+        LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
+        LinkedList<Notification> sentMessage=new LinkedList<>();
+
+
+        User user=userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), userReceiveNotifications,sentMessage));
+
+//        below part must be adjusted after database implemented
+        Notification notification=notificationRepository.findById(85).get();
+        userReceiveNotificationRepository.save(new UserReceiveNotification(1,LocalDateTime.now(),user,notification));
+//        user.setUserReceiveNotifications(new LinkedList<UserReceiveNotification>().add(new UserReceiveNotification(1, LocalDateTime.now(),user,notificationRepository.findById(50).get())));
         return null;
     }
 
 
     public boolean isAvailableUsernane(String username){
-        Student student=repository.findByUsername(username);
-        if(student==null){
+        List list=repository.findByUsername(username);
+        if(list.isEmpty()){
             return true;
         }else {
             return false;
@@ -75,6 +92,15 @@ public class StudentServices {
         }else {
         return true;
         }
+    }
+
+    public Student findStudent(StudentDTO dto){
+        LinkedList<Student> list =repository.findByUsername(dto.getUsername());
+        Student studentRet=null;
+        for (Student student : list) {
+            studentRet=student;
+        }
+        return studentRet;
     }
 
     public void addStudent(){
