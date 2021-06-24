@@ -49,6 +49,8 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
 
     const [navModal,setNavModal]=useState(false);
 
+    const [coursePayment,setCoursePayment]=useState(0);
+
 
 
 
@@ -109,7 +111,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
         "notify_url": "http://sample.com/notify",
         "order_id": "ItemNo12345",
         "items": "Hello from React Native!",
-        "amount": "110.00",//25000.00
+        "amount": "11000.00",//25000.00
         "currency": "LKR",
         "first_name": "Saman",
         "last_name": "Perera",
@@ -136,7 +138,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
         "notify_url": "http://sample.com/notify",
         "order_id": "ItemNo12345",
         "items": "Hello from React Native!",
-        "amount": "250.00",//25000.00
+        "amount": "25000.00",//25000.00
         "currency": "LKR",
         "first_name": "Saman",
         "last_name": "Perera",
@@ -199,6 +201,51 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
         "custom_2": ""
     };
 
+
+
+    const [paymentId,setPaymentId]=useState(0);
+
+    const setCource=(wheel,bike,carAuto,carMan,heavy,exam,traPos)=>{
+        let urlCourse=Base+'course/addcource'
+        fetch(urlCourse, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                transportState: traPos,
+                exam:exam,
+                bike:bike,
+                carManual:carMan,
+                carAuto:carAuto,
+                wheeler:wheel,
+                heavy:heavy
+            })
+        });
+    }
+
+    const addPayment=()=>{
+        let urlPay=Base+'payment/addpayment';
+        fetch(urlPay, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username:username,
+                amount:coursePayment
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setPaymentId(json.paymentId);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
 
     return (
@@ -288,6 +335,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectLN,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
+                                            setCoursePayment(25000);
+                                            addPayment();
+                                            setCource(6,2,0,7,0,0,2);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -296,6 +346,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             console.log("Payment Dismissed");
                                         }
                                     );
+
 
                                 }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
@@ -309,6 +360,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectLI,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
+                                            setCoursePayment(18000);
+                                            addPayment();
+                                            setCource(2,1,0,3,0,0,2);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -330,6 +384,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectLE,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
+                                            setCoursePayment(11000);
+                                            addPayment();
+                                            setCource(0,0,0,0,0,0,1);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -338,7 +395,6 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             console.log("Payment Dismissed");
                                         }
                                     );
-
                                 }}><Text>Start Course</Text></TouchableOpacity>
                             </View>
                         </View>
@@ -359,6 +415,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectHN,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
+                                            setCoursePayment(25000);
+                                            addPayment();
+                                            setCource(0,0,0,0,7,0,3);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -380,6 +439,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectHI,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
+                                            setCoursePayment(19000);
+                                            addPayment();
+                                            setCource(0,0,0,0,4,0,3);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -401,6 +463,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectHE,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
+                                            setCoursePayment(11000);
+                                            addPayment();
+                                            setCource(0,0,0,0,0,0,1);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);

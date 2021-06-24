@@ -54,6 +54,67 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
 
+    const setCource=(wheeler,bikes,carAuto,carMan,heavyV,exam)=>{
+
+        let traPos=1;
+
+        if(wheeler===0 && bikes===0 && carAuto===0 && carMan===0 && heavyV===0 ){
+            traPos=1;
+        }else if(wheeler===0 && bikes===0 && carAuto===0 && carMan===0){
+            traPos=3;
+        }else if(wheeler===0 && bikes===0 && carAuto===0  && heavyV===0){
+            traPos=5;
+        }else if(wheeler===0 && carAuto===0 && carMan===0 && heavyV===0 ){
+            traPos=7;
+        }else if(bikes===0 && carAuto===0 && carMan===0 && heavyV===0 ){
+            traPos=6;
+        }else if(bikes===0 && wheeler===0 && carMan===0 && heavyV===0 ){
+            traPos=4;
+        }else{
+            traPos=2;
+        }
+        let urlCourse=Base+'course/addcource'
+        fetch(urlCourse, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                transportState: traPos,
+                exam:exam,
+                bike:bikes,
+                carManual:carMan,
+                carAuto:carAuto,
+                wheeler:wheeler,
+                heavy:heavyV
+            })
+        });
+    }
+
+    const [paymentId,setPaymentId]=useState(0);
+    const addPayment=(val)=>{
+        let urlPay=Base+'payment/addpayment';
+        fetch(urlPay, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username:username,
+                amount:val
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setPaymentId(json.paymentId);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
 
 
     var val;
@@ -434,6 +495,9 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                                     paymentObject1,
                                     (paymentId) => {
                                         console.log("Payment Completed", paymentId);
+                                        // payment
+                                        addPayment((11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000)));
+                                        setCource(wheel,bike,auto,nanual,0,0);
                                     },
                                     (errorData) => {
                                         Alert.alert("PayHere Error", errorData);
@@ -549,6 +613,8 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                                     paymentObject2,
                                     (paymentId) => {
                                         console.log("Payment Completed", paymentId);
+                                        addPayment(payment2);
+                                        setCource(0,0,0,0,havy,0);
                                     },
                                     (errorData) => {
                                         Alert.alert("PayHere Error", errorData);

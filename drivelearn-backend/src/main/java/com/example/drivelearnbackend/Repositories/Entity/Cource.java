@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,11 +16,11 @@ public class Cource {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int courseId;
-    private Date examDate1;
-    private Date examDate2;
-    private Date examDate3;
-    private Date trailDate;
-    private Date startDate;
+    private LocalDateTime examDate1;
+    private LocalDateTime examDate2;
+    private LocalDateTime examDate3;
+    private LocalDateTime trailDate;
+    private LocalDateTime startDate;
     private int barcodeNumber;
     private int status;
 
@@ -27,14 +29,13 @@ public class Cource {
     @JoinColumn(name = "studebt_id",referencedColumnName = "stuId")
     private Student student;
 
-    @ManyToMany
-    @JsonIgnore
-    @JoinTable(
-            name = "cource_vehicle_type_assoc",
-            joinColumns = @JoinColumn(name = "courseId",referencedColumnName = "courseId"),
-            inverseJoinColumns = @JoinColumn(name = "type_id",referencedColumnName = "typeId")
-    )
-    private List<VechileType> vechileTypes=new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "cource")
+    @JsonManagedReference
+    private List<CourceTypeAssoc> listCourceTypeAssoc;
+
+
 
     @OneToMany(mappedBy = "cource")
     @JsonManagedReference
@@ -43,18 +44,13 @@ public class Cource {
     public Cource() {
     }
 
-    public Cource(int courseId, Date examDate1, Date examDate2, Date examDate3, Date trailDate, Date startDate, int barcodeNumber, int status, Student student, List<VechileType> vechileTypes, List<StuSession> sessionList) {
-        this.courseId = courseId;
-        this.examDate1 = examDate1;
-        this.examDate2 = examDate2;
-        this.examDate3 = examDate3;
-        this.trailDate = trailDate;
-        this.startDate = startDate;
-        this.barcodeNumber = barcodeNumber;
-        this.status = status;
+    public Cource(Student student) {
         this.student = student;
-        this.vechileTypes = vechileTypes;
-        this.sessionList = sessionList;
+    }
+
+    public Cource(LocalDateTime startDate, Student student) {
+        this.startDate = startDate;
+        this.student = student;
     }
 
     public int getCourseId() {
@@ -65,43 +61,43 @@ public class Cource {
         this.courseId = courseId;
     }
 
-    public Date getExamDate1() {
+    public LocalDateTime getExamDate1() {
         return examDate1;
     }
 
-    public void setExamDate1(Date examDate1) {
+    public void setExamDate1(LocalDateTime examDate1) {
         this.examDate1 = examDate1;
     }
 
-    public Date getExamDate2() {
+    public LocalDateTime getExamDate2() {
         return examDate2;
     }
 
-    public void setExamDate2(Date examDate2) {
+    public void setExamDate2(LocalDateTime examDate2) {
         this.examDate2 = examDate2;
     }
 
-    public Date getExamDate3() {
+    public LocalDateTime getExamDate3() {
         return examDate3;
     }
 
-    public void setExamDate3(Date examDate3) {
+    public void setExamDate3(LocalDateTime examDate3) {
         this.examDate3 = examDate3;
     }
 
-    public Date getTrailDate() {
+    public LocalDateTime getTrailDate() {
         return trailDate;
     }
 
-    public void setTrailDate(Date trailDate) {
+    public void setTrailDate(LocalDateTime trailDate) {
         this.trailDate = trailDate;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
@@ -129,12 +125,12 @@ public class Cource {
         this.student = student;
     }
 
-    public List<VechileType> getVechileTypes() {
-        return vechileTypes;
+    public List<CourceTypeAssoc> getListCourceTypeAssoc() {
+        return listCourceTypeAssoc;
     }
 
-    public void setVechileTypes(List<VechileType> vechileTypes) {
-        this.vechileTypes = vechileTypes;
+    public void setListCourceTypeAssoc(List<CourceTypeAssoc> listCourceTypeAssoc) {
+        this.listCourceTypeAssoc = listCourceTypeAssoc;
     }
 
     public List<StuSession> getSessionList() {

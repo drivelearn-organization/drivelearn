@@ -1,5 +1,15 @@
 # drivelearn-backend
 
+## transportState in CourceDTO
+#### exam only-1 
+#### light only-2
+#### heavy only-3
+#### car(auto) only-4
+#### car(manual) only-5
+#### wheel only-6
+#### bike only-7
+
+
 ## userType in user is
 #### 1-Branch manger
 #### 2-trainer
