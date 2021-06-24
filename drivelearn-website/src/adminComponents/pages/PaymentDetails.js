@@ -1,10 +1,16 @@
 import React from 'react';
 import '../css/PaymentDetails.css';
+import ReactDOM from 'react-dom';
 
 function PaymentDetails() {
     return (
         <div className ="emp-card-container">
-        
+        <form class="searchbar-admin" method="POST">
+        <input type="text" class="searchbar-admin_search" placeholder="Search user by name or id">
+
+        </input>
+
+        </form>
         <div className ="searchBox">
              <p>search</p> 
         </div>
