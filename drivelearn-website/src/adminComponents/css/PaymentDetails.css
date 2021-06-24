@@ -32,23 +32,43 @@
    
 }
 
-.emp-card-container .searchbar-admin_search{
+.searchbar-admin{
 
     display: flex;
     justify-content: center;
     align-items: center;
+   
+    outline: none;
+    border: none;
     background: rgba(209, 203, 223, 0.5);
-    width: 500px;
+    width: 400px;
     height: 40px;
     border-radius: 30px;
-    border: none;
-    text-align: center;
+    
+  
+   
+}
+
+.searchbar-admin_search{
     outline: none;
+    border: none;
+    background: rgba(209, 203, 223, 0.5);
+    /* width: 500px; */
+    height: 40px;
+    border-radius: 30px;
+    width: 100%;
 }
 
 .searchbar-admin{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+button{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
