@@ -14,6 +14,20 @@ function PaymentDetails() {
                 <label className="Select__data-lable">To: </label>
                 <input type="date" className="date__selecting--box" ></input>
               </div>
+              <div className="date__container">
+                <label className="Select__data-lable">Branch: </label>
+                    <select className="branch__selecting--box">
+                    <option value="admin">All</option>
+                    <option value="user">Matara</option>
+                </select>
+                
+              </div>
+              
+            </div>
+
+            <div className="total__amount">
+                <div>Total amount: 1000000</div>
+                
             </div>
             <div className ="view-payment-datails">
                 <div>Stu id</div>

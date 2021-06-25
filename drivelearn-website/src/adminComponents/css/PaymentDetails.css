@@ -28,11 +28,13 @@
 
 .date__container{
     margin: 0 30px;
+    
 }
 
 .Select__data-lable{
     margin-right: 10px;
-    font-size:24px;
+    font-size:20px;
+    color: #3c7aad;
 }
 
 .view-payment-datails{
@@ -62,4 +64,10 @@
 .payed__branch{
     position: relative;
     left: 15px;
+}
+
+.total__amount{
+   margin: 20px;
+   font-size: 26px;
+   color: rgb(196, 54, 85);
 }
