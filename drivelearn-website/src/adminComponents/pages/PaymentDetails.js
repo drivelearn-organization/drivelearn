@@ -28,11 +28,17 @@ function PaymentDetails() {
                 <option value="user">Deactivated</option>
             </select>
         </div>
-        <div className ="filter"></div>
+        
         </div>
         
         <div className ="fullCard">
-             <p>Hasani Nimeshika</p> 
+            <div className="manage-users-id">#1</div>  
+            <div className="manage-users-name">Hasani</div>
+            <div>Active</div>
+            <div>Instructor</div>
+            <a href="" className="btn-box-active">View</a>
+            <a href="" className="btn-box-delete">Deactivated</a>
+         
         </div>
         <div className ="fullCard">
              <p>Hasani Nimeshika</p> 

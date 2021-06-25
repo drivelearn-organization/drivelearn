@@ -23,14 +23,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 800px;
+    width: 70%;
     height: 80px;
     /* background: rgb(9, 41, 99); */
     background: rgb(244, 242, 242);;
     margin: 20px 30px;
-  
-    
    
+    padding-left: 20PX;
+    
+     
+   
+}
+
+.fullCard >*{
+    flex:1;
+    
 }
 
 .searchbar-admin{
@@ -113,4 +120,17 @@
     /* border-radius: 3px; */
     box-shadow: 1px 1px 2px rgb(0 0 0 / 20%);
     border-radius: 5px;
+}
+
+
+.manage-users-id{
+  
+}
+
+.manage-users-name{
+   
+}
+
+.btn-box-active{
+    
 }
