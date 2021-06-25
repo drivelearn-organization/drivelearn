@@ -15,6 +15,13 @@ function PaymentDetails() {
                 <input type="date" className="date__selecting--box" ></input>
               </div>
             </div>
+            <div className ="view-payment-datails">
+                <div>Stu id</div>
+                <div>Name</div>
+                <div>Branch</div>
+                <div>Ammount</div>
+               
+            </div>
         </div>
        
     )

@@ -34,3 +34,18 @@
     margin-right: 10px;
     font-size:24px;
 }
+
+.view-payment-datails{
+    display: flex;
+   
+    color: rgb(31, 58, 147);
+    font-weight: 600;
+    padding: 2rem;
+    width: 70%;
+  
+}
+
+.view-payment-datails >*{
+    flex:1;
+    text-align: center;
+}
