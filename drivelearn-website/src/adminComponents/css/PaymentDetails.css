@@ -132,5 +132,9 @@
 }
 
 .btn-box-active{
-    
+    padding: 1.2rem 0;
+    border-radius: 5px;
+/*  
+    background-color: var(--color-btn-box-background-white); */
+ 
 }
