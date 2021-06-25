@@ -4,10 +4,18 @@ import ReactDOM from 'react-dom';
 
 function PaymentDetails() {
     return (
-        <div>
-         <p>HI</p>
+        <div className ="emp-card-container">
+           <div className="date__picker">
+              <div className="date__container">
+                <label className=""></label>
+                <input type="date" className="date__selecting--box" ></input>
+              </div>
+              <div className="date__container">
+                <label className=""></label>
+                <input type="date" className="date__selecting--box" ></input>
+              </div>
+            </div>
         </div>
-      
        
     )
 }
