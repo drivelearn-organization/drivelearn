@@ -41,7 +41,13 @@ function PaymentDetails() {
          
         </div>
         <div className ="fullCard">
-             <p>Hasani Nimeshika</p> 
+            <div className="manage-users-id">#1</div>  
+            <div className="manage-users-name">Hasani</div>
+            <div>Active</div>
+            <div>Instructor</div>
+            <a href="" className="btn btn-box-active margin-r-s">View</a>
+            <a href="" className="btn btn-box-delete margin-r-s">Deactivated</a>
+         
         </div>
         
         </div>
