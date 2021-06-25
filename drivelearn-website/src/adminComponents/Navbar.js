@@ -10,16 +10,16 @@ function Navbar({show}) {
                     <Link to="/">Home</Link>
                </li>
                <li>
-                    <Link to="/AbutUs">PROFILE</Link>
+                    <Link to="/AbutUs">About us</Link>
                </li>
                <li>
-                    <Link to="/ContactUs">CONTACT US</Link>
+                    <Link to="/ContactUs">Contact us</Link>
                </li>
                <li>
-                    <Link to="/PaymentDetails">PAYMENT DETAILS</Link>
+                    <Link to="/PaymentDetails">Payment Details</Link>
                </li>
                <li>
-                    <Link to="/ManageEmployees">MANAGE EMPLOYEE</Link>
+                    <Link to="/ManageEmployees">Manage Employees</Link>
                </li>
               
            </ul> 
