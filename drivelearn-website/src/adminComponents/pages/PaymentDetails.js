@@ -36,8 +36,8 @@ function PaymentDetails() {
             <div className="manage-users-name">Hasani</div>
             <div>Active</div>
             <div>Instructor</div>
-            <a href="" className="btn btn-box-active">View</a>
-            <a href="" className="btn btn-box-delete">Deactivated</a>
+            <a href="" className="btn btn-box-active margin-r-s">View</a>
+            <a href="" className="btn btn-box-delete margin-r-s">Deactivated</a>
          
         </div>
         <div className ="fullCard">
