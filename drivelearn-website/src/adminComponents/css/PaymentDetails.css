@@ -105,6 +105,7 @@
 
 .form__input{
     padding: 1rem;
+    /* padding-right: 5px; */
     outline: none;
     background-color: rgb(242, 242, 242);
     border: none;

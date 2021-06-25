@@ -22,10 +22,10 @@ function PaymentDetails() {
             </select>
         </div>
         <div className ="filter">
-            <label className="margin-r-s">User Role: </label>
+            <label className="margin-r-s">Active status: </label>
             <select className="form__input">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="admin">Active</option>
+                <option value="user">Deactivated</option>
             </select>
         </div>
         <div className ="filter"></div>
