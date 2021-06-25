@@ -7,11 +7,11 @@ function PaymentDetails() {
         <div className ="emp-card-container">
            <div className="date__picker">
               <div className="date__container">
-                <label className=""></label>
+                <label className="Select__data-lable">From: </label>
                 <input type="date" className="date__selecting--box" ></input>
               </div>
               <div className="date__container">
-                <label className=""></label>
+                <label className="Select__data-lable">To: </label>
                 <input type="date" className="date__selecting--box" ></input>
               </div>
             </div>

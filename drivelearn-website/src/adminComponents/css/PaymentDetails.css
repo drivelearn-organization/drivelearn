@@ -25,3 +25,12 @@
     padding: 1.5rem 2rem;
     border: 1px solid rgba(5, 5, 5, 0.3);  
 }
+
+.date__container{
+    margin: 0 30px;
+}
+
+.Select__data-lable{
+    margin-right: 10px;
+    font-size:24px;
+}
