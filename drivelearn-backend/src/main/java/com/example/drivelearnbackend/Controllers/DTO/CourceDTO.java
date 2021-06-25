@@ -1,5 +1,7 @@
 package com.example.drivelearnbackend.Controllers.DTO;
 
+import java.time.LocalDateTime;
+
 public class CourceDTO {
     private int courseId;
     private String username;
@@ -25,7 +27,30 @@ public class CourceDTO {
     private int examFullCount;
     private int carManualFullCount;
 
+    private LocalDateTime examDate1;
+    private LocalDateTime examDate2;
+    private LocalDateTime examDate3;
+    private LocalDateTime trailDate;
+    private int barcodeNumber;
+
+
     public CourceDTO() {
+    }
+
+    public CourceDTO(String username, int transportState, int carAuto, int wheeler, int bike, int heavy, int exam, int carManual, LocalDateTime examDate1, LocalDateTime examDate2, LocalDateTime examDate3, LocalDateTime trailDate, int barcodeNumber) {
+        this.username = username;
+        this.transportState = transportState;
+        this.carAuto = carAuto;
+        this.wheeler = wheeler;
+        this.bike = bike;
+        this.heavy = heavy;
+        this.exam = exam;
+        this.carManual = carManual;
+        this.examDate1 = examDate1;
+        this.examDate2 = examDate2;
+        this.examDate3 = examDate3;
+        this.trailDate = trailDate;
+        this.barcodeNumber = barcodeNumber;
     }
 
     public CourceDTO(int courseId, int transportState, int carAuto, int wheeler, int bike, int heavy, int exam, int carManual) {
@@ -37,6 +62,46 @@ public class CourceDTO {
         this.heavy = heavy;
         this.exam = exam;
         this.carManual = carManual;
+    }
+
+    public LocalDateTime getExamDate1() {
+        return examDate1;
+    }
+
+    public void setExamDate1(LocalDateTime examDate1) {
+        this.examDate1 = examDate1;
+    }
+
+    public LocalDateTime getExamDate2() {
+        return examDate2;
+    }
+
+    public void setExamDate2(LocalDateTime examDate2) {
+        this.examDate2 = examDate2;
+    }
+
+    public LocalDateTime getExamDate3() {
+        return examDate3;
+    }
+
+    public void setExamDate3(LocalDateTime examDate3) {
+        this.examDate3 = examDate3;
+    }
+
+    public LocalDateTime getTrailDate() {
+        return trailDate;
+    }
+
+    public void setTrailDate(LocalDateTime trailDate) {
+        this.trailDate = trailDate;
+    }
+
+    public int getBarcodeNumber() {
+        return barcodeNumber;
+    }
+
+    public void setBarcodeNumber(int barcodeNumber) {
+        this.barcodeNumber = barcodeNumber;
     }
 
     public int getCourseId() {

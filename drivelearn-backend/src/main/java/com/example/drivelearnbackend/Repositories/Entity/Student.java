@@ -37,7 +37,7 @@ public class Student {
     @JsonManagedReference
     private List<StuSession> stuSessionList=new ArrayList<>();
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Cource> courceList=new ArrayList<>();
 
