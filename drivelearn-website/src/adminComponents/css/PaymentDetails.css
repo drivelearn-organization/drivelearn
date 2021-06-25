@@ -36,11 +36,14 @@
 }
 
 .view-payment-datails{
-    display: flex;
    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: rgb(31, 58, 147);
     font-weight: 600;
     padding: 2rem;
+    padding-bottom: 10px;
     width: 70%;
   
 }
@@ -48,4 +51,15 @@
 .view-payment-datails >*{
     flex:1;
     text-align: center;
+}
+
+.payed__amount{
+    position: relative;
+    left: 20px;
+ /* padding-left: 30px; */
+}
+
+.payed__branch{
+    position: relative;
+    left: 15px;
 }

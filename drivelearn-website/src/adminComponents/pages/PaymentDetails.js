@@ -18,10 +18,19 @@ function PaymentDetails() {
             <div className ="view-payment-datails">
                 <div>Stu id</div>
                 <div>Name</div>
-                <div>Branch</div>
-                <div>Ammount</div>
+                <div className="payed__branch">Branch</div>
+                <div className="payed__amount">Ammount</div>
                
             </div>
+
+            <div className ="fullCard">
+            <div>#1</div>  
+            <div>Hasani</div>
+            <div>Matara</div>
+            <div>Rs.50 000</div>
+            
+         
+        </div>
         </div>
        
     )
