@@ -10,6 +10,7 @@ import AboutUs from './adminComponents/pages/AboutUs';
 import ContactUs from './adminComponents/pages/ContactUs';
 import PaymentDetails from './adminComponents/pages/PaymentDetails';
 import ManageEmployees from './adminComponents/pages/ManageEmployees';
+import RequestEmplyee from './adminComponents/pages/RequestEmplyee';
 
 
 // import Home from './homePage/pages/Home';
@@ -52,6 +53,7 @@ function App() {
           <Route path="/ContactUs" exact={true} component={ContactUs}/>
           <Route path="/PaymentDetails" exact={true} component={PaymentDetails}/>
           <Route path="/ManageEmployees" exact={true} component={ManageEmployees}/>
+          <Route path="/ManageRequest" exact={true} component={RequestEmplyee}/>
         </div>
       
     </Router>

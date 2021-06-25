@@ -21,6 +21,9 @@ function Navbar({show}) {
                <li>
                     <Link to="/ManageEmployees">Manage Employees</Link>
                </li>
+               <li>
+                    <Link to="/ManageRequest">Manage Request</Link>
+               </li>
               
            </ul> 
         </div>

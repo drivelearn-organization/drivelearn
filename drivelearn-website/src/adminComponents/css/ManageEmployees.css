@@ -156,7 +156,7 @@
     cursor: pointer;
     outline: none;
     /* outline-color: rgb(0, 0, 0); */
-    
+    height: 25px;
     transition: all 0.2s;
 }
 
