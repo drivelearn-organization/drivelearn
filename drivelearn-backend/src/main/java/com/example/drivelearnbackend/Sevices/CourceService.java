@@ -249,11 +249,23 @@ public class CourceService {
             }
         }
 
-
-
-
-            return courceDTO;
-
-
+        return courceDTO;
     }
+    public boolean isEnroll(CourceDTO dto){
+        LinkedList<Student> list=studentRepository.findByUsername(dto.getUsername());
+        Student student=null;
+        for (Student student1 : list) {
+            student = student1;
+        }
+
+        List<Cource> cources=student.getCourceList();
+        Cource cource=null;
+        for (Cource cource1 : cources) {
+            if(cource1.getStatus()==0){
+                cource=cource1;
+            }
+        }
+        return cource!=null ?true:false;
+    }
+
 }
