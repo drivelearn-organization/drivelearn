@@ -19,4 +19,9 @@ public class CourseController {
     public void addCource(@RequestBody CourceDTO dto){
         courceService.addCource(dto);
     }
+
+    @PostMapping(value = "/showcource")
+    public CourceDTO sendCource(@RequestBody CourceDTO dto){
+        return courceService.sendCourses(dto);
+    }
 }

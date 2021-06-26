@@ -31,7 +31,7 @@ public class Cource {
 
 
 
-    @OneToMany(mappedBy = "cource")
+    @OneToMany(mappedBy = "cource",fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<CourceTypeAssoc> listCourceTypeAssoc;
 
