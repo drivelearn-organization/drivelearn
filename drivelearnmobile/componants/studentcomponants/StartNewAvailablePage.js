@@ -21,6 +21,10 @@ const StartNewAvailablePage = ({route,navigation}) => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [course, setCourse] = useState([]);
+    const [date1, setDate1]=useState([]);
+    const [date2, setDate2]=useState([]);
+    const [date3, setDate3]=useState([]);
+    const [dateT, setDateT]=useState([]);
 
     useEffect(()=>{
 
@@ -68,7 +72,19 @@ const StartNewAvailablePage = ({route,navigation}) => {
                     console.log("done");
                     console.log("done");
                     console.log(json.examDate1.split("T"));
+                    setDate1(json.examDate1.split("T"));
                 }
+                if(json.examDate2!==null){
+                    setDate2(json.examDate2.split("T"));
+                }
+                if(json.examDate3!==null){
+                    setDate3(json.examDate3.split("T"));
+                }
+                if(json.trailDate!==null){
+                    setDateT(json.trailDate.split("T"));
+                }
+
+                setCourse(json);
                 console.log(json);
             })
             .catch((error) => console.error(error))
@@ -151,6 +167,76 @@ const StartNewAvailablePage = ({route,navigation}) => {
                     </Modal>
 
                     <View style={styles.displayMainView}>
+                        <View style={styles.headViewAvail}><Text style={styles.headerTopic}>Course Details</Text></View>
+                        {date1.length===2?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Date1</Text>
+                            <Text style={styles.dataViewText}>{date1[0]}</Text>
+                            <Text style={styles.dataViewText}>{date1[1]}</Text>
+                        </View>:null}
+
+                        {date2.length===2?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Date2</Text>
+                            <Text style={styles.dataViewText}>{date2[0]}</Text>
+                            <Text style={styles.dataViewText}>{date2[1]}</Text>
+                        </View>:null}
+
+                        {date3.length===2?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Date3</Text>
+                            <Text style={styles.dataViewText}>{date3[0]}</Text>
+                            <Text style={styles.dataViewText}>{date3[1]}</Text>
+                        </View>:null}
+
+                        {dateT.length===2?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Date Trail</Text>
+                            <Text style={styles.dataViewText}>{dateT[0]}</Text>
+                            <Text style={styles.dataViewText}>{dateT[1]}</Text>
+                        </View>:null}
+
+                        <View
+                            style={{
+                                marginTop:10,
+                                padding:2,
+                                borderBottomColor: 'white',
+                                borderBottomWidth: 1,
+                            }}
+                        />
+
+                        {course.bike!==0?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Bike</Text>
+                            <Text style={styles.dataViewText}>{course.bike}/hours</Text>
+
+                        </View>:null}
+{/*change*/}
+                        {course.carAuto!==0?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Auto Cars</Text>
+                            <Text style={styles.dataViewText}>{course.carAuto}/hours</Text>
+
+                        </View>:null}
+
+                        {course.carManual!==0?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Manual cars</Text>
+                            <Text style={styles.dataViewText}>{course.carManual}/hours</Text>
+
+                        </View>:null}
+
+                        {course.heavy!==0?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Heavy vehicle</Text>
+                            <Text style={styles.dataViewText}>{course.heavy}/hours</Text>
+
+                        </View>:null}
+
+                        {course.wheeler!==0?<View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Three Wheeler</Text>
+                            <Text style={styles.dataViewText}>{course.wheeler}/hours</Text>
+
+                        </View>:null}
+
+                        <View style={styles.dateView}>
+                            <Text style={styles.dataViewText}>Exam</Text>
+                            <Text style={styles.dataViewText}>mandatory</Text>
+
+                        </View>
+
 
                     </View>
 
@@ -354,7 +440,34 @@ const styles =StyleSheet.create({
         backgroundColor:'#ffffff20',
         marginRight:'2.5%',
         marginLeft:'2.5%',
-        borderRadius:10
+        borderRadius:10,
+        padding:15,
+    },
+    headViewAvail:{
+        width:'100%',
+        height:40,
+        backgroundColor:'#ffffff15',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    headerTopic:{
+        color:'white',
+        fontSize:18,
+        fontWeight:'bold',
+    },
+    dateView:{
+        marginTop:15,
+        width:'100%',
+        height:40,
+        backgroundColor:'#ffffff08',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        borderRadius:15
+    },
+    dataViewText:{
+        color:'white',
+        padding:10,
     }
 
 
