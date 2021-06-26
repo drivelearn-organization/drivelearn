@@ -203,6 +203,7 @@ public class CourceService {
         CourceDTO courceDTO=new CourceDTO();
         if(cource!=null){
             courceTypeAssocs=cource.getListCourceTypeAssoc();
+            courceDTO.setCourseId(cource.getCourseId());
             courceDTO.setExamDate1(cource.getExamDate1());
             courceDTO.setExamDate2(cource.getExamDate2());
             courceDTO.setExamDate3(cource.getExamDate3());

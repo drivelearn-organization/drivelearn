@@ -21,6 +21,9 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    const[buttonStatus,setButtonStaus]=useState(false);
+    let enrollUrl=Base+'course/isenroll';
+
     useEffect(()=>{
 
 
@@ -42,6 +45,28 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
+
+
+
+
+        // load the enroall availability
+
+        fetch(enrollUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setButtonStaus(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
 
     },[]);
@@ -330,7 +355,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 7, ත්‍රී රෝද රථ පැය 6, යතුරු පැදි පැය 2 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                <TouchableOpacity disabled={buttonStatus} style={styles.courseButton} onPress={()=>{
                                     PayHere.startPayment(
                                         paymentObjectLN,
                                         (paymentId) => {
@@ -355,7 +380,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබ සැහැල්ලු වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ කාර් පැය 3, ත්‍රී රෝද රථ පැය 2, යතුරු පැදි පැය 1 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 18000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                <TouchableOpacity disabled={buttonStatus} style={styles.courseButton} onPress={()=>{
                                     PayHere.startPayment(
                                         paymentObjectLI,
                                         (paymentId) => {
@@ -379,7 +404,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබට අවශ්‍ය නම් සැහැල්ලු වාහන බලපත්‍රයට අදාල විභාගය, එයට අදාල අධ්‍යාපන කටයුතු සහ ප්‍රයෝගික පරීක්ශණය සදහා අදාල කාරනා සදහාම වූ පැකේජයක්ද අප සතුව පවතී. අය කිරීම රු 11000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                <TouchableOpacity disabled={buttonStatus} style={styles.courseButton} onPress={()=>{
                                     PayHere.startPayment(
                                         paymentObjectLE,
                                         (paymentId) => {
@@ -410,7 +435,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව කිසුදු ධාවන පලපුරුද්දක් නැති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 7 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 25000.00 </Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                <TouchableOpacity disabled={buttonStatus} style={styles.courseButton} onPress={()=>{
                                     PayHere.startPayment(
                                         paymentObjectHN,
                                         (paymentId) => {
@@ -434,7 +459,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබ බර වාහන සම්භන්ධව සාමාන්‍ය ධාවන පලපුරුද්දක් ඇති අයෙක්ද. එසේනම් අපි ඔබට අනුමත කරනුයේ පුහුණු පැය 4 සහ ලිඛිත පරීක්ශන පුහුනුව සහිත පූර්ණ පැකේජයයි. එය වඩාත් නිවැරදිම තේරීම වන අතර අප එහිදී සියලු නීති කරුණු මෙන්ම ප්‍රායෝගික පුහුණුවද මැනවින් ලැබේ. ඔබගේ සියලු ලියකියවිලි කටයුතු අපගේ මෙහෙයවීම යටතේ සිදුකරනු ලැබේ අයකිරීම රු 19000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                <TouchableOpacity disabled={buttonStatus} style={styles.courseButton} onPress={()=>{
                                     PayHere.startPayment(
                                         paymentObjectHI,
                                         (paymentId) => {
@@ -458,7 +483,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                         <View style={styles.bodyViewInCard}>
                             <Text style={styles.lightBody}>ඔබට අවශ්‍ය නම් බර වාහන බලපත්‍රයට අදාල විභාගය, එයට අදාල අධ්‍යාපන කටයුතු සහ ප්‍රයෝගික පරීක්ශණය සදහා අදාල කාරනා සදහාම වූ පැකේජයක්ද අප සතුව පවතී. අය කිරීම රු 11000.00</Text>
                             <View style={styles.buttonViewInCard}>
-                                <TouchableOpacity style={styles.courseButton} onPress={()=>{
+                                <TouchableOpacity disabled={buttonStatus} style={styles.courseButton} onPress={()=>{
                                     PayHere.startPayment(
                                         paymentObjectHE,
                                         (paymentId) => {

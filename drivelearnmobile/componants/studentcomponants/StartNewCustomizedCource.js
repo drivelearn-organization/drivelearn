@@ -52,6 +52,9 @@ const StartNewCustomizedCource = ({route,navigation}) => {
         "custom_2": ""
     };
 
+    const[buttonStatus,setButtonStaus]=useState(false);
+    let enrollUrl=Base+'course/isenroll';
+
 
 
     const setCource=(wheeler,bikes,carAuto,carMan,heavyV,exam)=>{
@@ -173,6 +176,30 @@ const StartNewCustomizedCource = ({route,navigation}) => {
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
+
+
+
+
+
+        // load the enroall availability
+
+        fetch(enrollUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setButtonStaus(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
 
 
     },[]);
@@ -490,7 +517,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.buttonViewPay}  onPress={()=>{
+                            <TouchableOpacity disabled={buttonStatus} style={styles.buttonViewPay}  onPress={()=>{
                                 PayHere.startPayment(
                                     paymentObject1,
                                     (paymentId) => {
@@ -608,7 +635,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.buttonViewPay} onPress={()=>{
+                            <TouchableOpacity disabled={buttonStatus} style={styles.buttonViewPay} onPress={()=>{
                                 PayHere.startPayment(
                                     paymentObject2,
                                     (paymentId) => {
