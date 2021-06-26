@@ -272,7 +272,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*Selected Courses*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('StartNewAvailablePage',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/hand.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 

@@ -199,12 +199,18 @@ public class CourceService {
                 cource=cource1;
             }
         }
-        List<CourceTypeAssoc> courceTypeAssocs=cource.getListCourceTypeAssoc();
+        List<CourceTypeAssoc> courceTypeAssocs=null;
         CourceDTO courceDTO=new CourceDTO();
-        courceDTO.setExamDate1(cource.getExamDate1());
-        courceDTO.setExamDate2(cource.getExamDate2());
-        courceDTO.setExamDate3(cource.getExamDate3());
-        
+        if(cource!=null){
+            courceTypeAssocs=cource.getListCourceTypeAssoc();
+            courceDTO.setExamDate1(cource.getExamDate1());
+            courceDTO.setExamDate2(cource.getExamDate2());
+            courceDTO.setExamDate3(cource.getExamDate3());
+        }
+
+
+
+
 
 //        getting ids
         int examId=getVehiclcleTypeId("exam");
@@ -221,26 +227,33 @@ public class CourceService {
         int heavyVal=0;
         int carManualVal=0;
 
-        for (CourceTypeAssoc courceTypeAssoc : courceTypeAssocs) {
+        if(!(courceTypeAssocs==null || courceTypeAssocs.isEmpty())){
+            for (CourceTypeAssoc courceTypeAssoc : courceTypeAssocs) {
 
-            if (courceTypeAssoc.getVechileType().getTypeId() == examId) {
+                if (courceTypeAssoc.getVechileType().getTypeId() == examId) {
 
-                courceDTO.setExam(courceTypeAssoc.getNumHours());
-            }else if(courceTypeAssoc.getVechileType().getTypeId() == carAutoId){
+                    courceDTO.setExam(courceTypeAssoc.getNumHours());
+                }else if(courceTypeAssoc.getVechileType().getTypeId() == carAutoId){
 
-                courceDTO.setCarAuto(courceTypeAssoc.getNumHours());
-            }else if(courceTypeAssoc.getVechileType().getTypeId() ==wheelerId){
+                    courceDTO.setCarAuto(courceTypeAssoc.getNumHours());
+                }else if(courceTypeAssoc.getVechileType().getTypeId() ==wheelerId){
 
-                courceDTO.setWheeler(courceTypeAssoc.getNumHours());
-            }else if(courceTypeAssoc.getVechileType().getTypeId() ==bikeId){
-                courceDTO.setBike(courceTypeAssoc.getNumHours());
-            }else if(courceTypeAssoc.getVechileType().getTypeId() ==heavyId){
-                courceDTO.setHeavy(courceTypeAssoc.getNumHours());
-            }else if(courceTypeAssoc.getVechileType().getTypeId()==carManualId){
-                courceDTO.setCarManual(courceTypeAssoc.getNumHours());
+                    courceDTO.setWheeler(courceTypeAssoc.getNumHours());
+                }else if(courceTypeAssoc.getVechileType().getTypeId() ==bikeId){
+                    courceDTO.setBike(courceTypeAssoc.getNumHours());
+                }else if(courceTypeAssoc.getVechileType().getTypeId() ==heavyId){
+                    courceDTO.setHeavy(courceTypeAssoc.getNumHours());
+                }else if(courceTypeAssoc.getVechileType().getTypeId()==carManualId){
+                    courceDTO.setCarManual(courceTypeAssoc.getNumHours());
+                }
             }
         }
 
-        return courceDTO;
+
+
+
+            return courceDTO;
+
+
     }
 }
