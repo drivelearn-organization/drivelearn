@@ -269,4 +269,10 @@ public class CourceService {
         return cource!=null ?true:false;
     }
 
+    public void setCourseClosed(CourceDTO dto){
+        Cource cource=courseRepository.findById(dto.getCourseId()).get();
+        cource.setStatus(1);
+        courseRepository.save(cource);
+    }
+
 }

@@ -72,6 +72,27 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
     },[]);
 
 
+    const checkButtonstatus=()=>{
+        fetch(enrollUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setButtonStaus(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }
+
+
     const [navModal,setNavModal]=useState(false);
 
     const [coursePayment,setCoursePayment]=useState(0);
@@ -363,6 +384,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             setCoursePayment(25000);
                                             addPayment();
                                             setCource(6,2,0,7,0,0,2);
+                                            setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -388,6 +410,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             setCoursePayment(18000);
                                             addPayment();
                                             setCource(2,1,0,3,0,0,2);
+                                            setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -412,6 +435,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             setCoursePayment(11000);
                                             addPayment();
                                             setCource(0,0,0,0,0,0,1);
+                                            setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -443,6 +467,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             setCoursePayment(25000);
                                             addPayment();
                                             setCource(0,0,0,0,7,0,3);
+                                            setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -467,6 +492,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             setCoursePayment(19000);
                                             addPayment();
                                             setCource(0,0,0,0,4,0,3);
+                                            setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -491,6 +517,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             setCoursePayment(11000);
                                             addPayment();
                                             setCource(0,0,0,0,0,0,1);
+                                            setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -564,7 +591,7 @@ const styles =StyleSheet.create({
     modalMainView:{
         flex:1,
         backgroundColor:'#ffffff20',
-        flexDirection:'row',
+        flexDirection:'row', 
         justifyContent:'flex-end'
     },
     modalView:{

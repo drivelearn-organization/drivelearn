@@ -155,6 +155,27 @@ const StartNewCustomizedCource = ({route,navigation}) => {
         setPayment(11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000));
     }
 
+    const checkButtonstatus=()=>{
+        fetch(enrollUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setButtonStaus(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }
+
+
     useEffect(()=>{
 
 
@@ -525,6 +546,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                                         // payment
                                         addPayment((11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000)));
                                         setCource(wheel,bike,auto,nanual,0,0);
+                                        checkButtonstatus();
                                     },
                                     (errorData) => {
                                         Alert.alert("PayHere Error", errorData);
@@ -642,6 +664,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                                         console.log("Payment Completed", paymentId);
                                         addPayment(payment2);
                                         setCource(0,0,0,0,havy,0);
+                                        checkButtonstatus();
                                     },
                                     (errorData) => {
                                         Alert.alert("PayHere Error", errorData);

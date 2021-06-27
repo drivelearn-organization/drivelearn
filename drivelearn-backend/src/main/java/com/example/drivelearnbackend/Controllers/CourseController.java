@@ -29,4 +29,8 @@ public class CourseController {
     public boolean isEnrolled(@RequestBody CourceDTO dto){
         return courceService.isEnroll(dto);
     }
+    @PostMapping(value = "/setcourseclose")
+    public void setCloseCourse(@RequestBody CourceDTO dto){
+        courceService.setCourseClosed(dto);
+    }
 }

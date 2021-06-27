@@ -94,6 +94,46 @@ const StartNewAvailablePage = ({route,navigation}) => {
 
     },[]);
 
+    const loadCourse=(value)=>{
+        console.log(value);
+        let courseUrl=Base+'course/showcource';
+        fetch(courseUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setCourse(json);
+                if(json.examDate1!==null){
+                    console.log("done");
+                    console.log("done");
+                    console.log("done");
+                    console.log(json.examDate1.split("T"));
+                    setDate1(json.examDate1.split("T"));
+                }
+                if(json.examDate2!==null){
+                    setDate2(json.examDate2.split("T"));
+                }
+                if(json.examDate3!==null){
+                    setDate3(json.examDate3.split("T"));
+                }
+                if(json.trailDate!==null){
+                    setDateT(json.trailDate.split("T"));
+                }
+
+                setCourse(json);
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
+    }
+
 
     const [navModal,setNavModal]=useState(false);
 
@@ -254,7 +294,24 @@ const StartNewAvailablePage = ({route,navigation}) => {
                                     <Text style={styles.warnText}>මෙමගින් ඔබබේ පාඨමාලා ලියාපදිංචිය අහෝසි වේ. ඔබගේ මුදල් ආපසු නොගෙවනු ලැබේ. එබැවින් ඔබගේ පාඨමාළාවට අදාල බලපත්‍රය ළබාගෙන අවසන් වූ විට පමණක් මෙය භාවිතා කරන්න. අහෝසි කිරීම දිගටම කරගෙන යාමට හරි ලෙසද නැතිනම් නැත ලෙසද සලකුණු කරන්න.</Text>
                                     <View
                                     style={styles.warnButtonView}>
-                                        <TouchableOpacity style={styles.hariButton}><Text>හරි</Text></TouchableOpacity>
+                                        <TouchableOpacity style={styles.hariButton} onPress={()=>{
+                                            fetch(Base+'course/setcourseclose', {
+                                                method: 'POST',
+                                                headers: {
+                                                    Accept: 'application/json',
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    courseId:course.courseId ,
+
+                                                })
+                                            });
+
+                                            setCourse([]);
+                                            setTimeout(()=>{loadCourse('done');},2000);
+
+                                            setFlashWindow(false);
+                                        }}><Text>හරි</Text></TouchableOpacity>
                                         <TouchableOpacity onPress={()=>setFlashWindow(false)} style={styles.nathaButton}><Text>නැත</Text></TouchableOpacity>
                                     </View>
                                 </View>
