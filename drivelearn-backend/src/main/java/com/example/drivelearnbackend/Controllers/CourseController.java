@@ -24,4 +24,13 @@ public class CourseController {
     public CourceDTO sendCource(@RequestBody CourceDTO dto){
         return courceService.sendCourses(dto);
     }
+
+    @PostMapping(value = "/isenroll")
+    public boolean isEnrolled(@RequestBody CourceDTO dto){
+        return courceService.isEnroll(dto);
+    }
+    @PostMapping(value = "/setcourseclose")
+    public void setCloseCourse(@RequestBody CourceDTO dto){
+        courceService.setCourseClosed(dto);
+    }
 }

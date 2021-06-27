@@ -52,6 +52,9 @@ const StartNewCustomizedCource = ({route,navigation}) => {
         "custom_2": ""
     };
 
+    const[buttonStatus,setButtonStaus]=useState(false);
+    let enrollUrl=Base+'course/isenroll';
+
 
 
     const setCource=(wheeler,bikes,carAuto,carMan,heavyV,exam)=>{
@@ -152,6 +155,27 @@ const StartNewCustomizedCource = ({route,navigation}) => {
         setPayment(11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000));
     }
 
+    const checkButtonstatus=()=>{
+        fetch(enrollUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setButtonStaus(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }
+
+
     useEffect(()=>{
 
 
@@ -173,6 +197,30 @@ const StartNewCustomizedCource = ({route,navigation}) => {
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
+
+
+
+
+
+        // load the enroall availability
+
+        fetch(enrollUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setButtonStaus(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
 
 
     },[]);
@@ -490,7 +538,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.buttonViewPay}  onPress={()=>{
+                            <TouchableOpacity disabled={buttonStatus} style={styles.buttonViewPay}  onPress={()=>{
                                 PayHere.startPayment(
                                     paymentObject1,
                                     (paymentId) => {
@@ -498,6 +546,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                                         // payment
                                         addPayment((11000 + (auto*1000) + (nanual*1000) + (bike*1000) + (wheel*1000)));
                                         setCource(wheel,bike,auto,nanual,0,0);
+                                        checkButtonstatus();
                                     },
                                     (errorData) => {
                                         Alert.alert("PayHere Error", errorData);
@@ -608,13 +657,14 @@ const StartNewCustomizedCource = ({route,navigation}) => {
 
 
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.buttonViewPay} onPress={()=>{
+                            <TouchableOpacity disabled={buttonStatus} style={styles.buttonViewPay} onPress={()=>{
                                 PayHere.startPayment(
                                     paymentObject2,
                                     (paymentId) => {
                                         console.log("Payment Completed", paymentId);
                                         addPayment(payment2);
                                         setCource(0,0,0,0,havy,0);
+                                        checkButtonstatus();
                                     },
                                     (errorData) => {
                                         Alert.alert("PayHere Error", errorData);

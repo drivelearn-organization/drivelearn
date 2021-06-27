@@ -25,6 +25,7 @@ const StartNewAvailablePage = ({route,navigation}) => {
     const [date2, setDate2]=useState([]);
     const [date3, setDate3]=useState([]);
     const [dateT, setDateT]=useState([]);
+    const [flashWimdow,setFlashWindow]=useState(false);
 
     useEffect(()=>{
 
@@ -92,6 +93,46 @@ const StartNewAvailablePage = ({route,navigation}) => {
 
 
     },[]);
+
+    const loadCourse=(value)=>{
+        console.log(value);
+        let courseUrl=Base+'course/showcource';
+        fetch(courseUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setCourse(json);
+                if(json.examDate1!==null){
+                    console.log("done");
+                    console.log("done");
+                    console.log("done");
+                    console.log(json.examDate1.split("T"));
+                    setDate1(json.examDate1.split("T"));
+                }
+                if(json.examDate2!==null){
+                    setDate2(json.examDate2.split("T"));
+                }
+                if(json.examDate3!==null){
+                    setDate3(json.examDate3.split("T"));
+                }
+                if(json.trailDate!==null){
+                    setDateT(json.trailDate.split("T"));
+                }
+
+                setCourse(json);
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
+    }
 
 
     const [navModal,setNavModal]=useState(false);
@@ -237,8 +278,46 @@ const StartNewAvailablePage = ({route,navigation}) => {
 
                         </View>
 
+                        {course.courseId!==0?<View style={styles.buttonViewInCourse}>
+                            <TouchableOpacity onPress={()=>{
+                                setFlashWindow(true);
+                            }} style={styles.ednButton}><Text>End Course</Text></TouchableOpacity>
+
+                        </View>:null}
+
 
                     </View>
+                    <Modal visible={flashWimdow} transparent={true}>
+                        <TouchableWithoutFeedback onPress={()=>setFlashWindow(false)} >
+                            <View style={styles.modBackground}>
+                                <View style={styles.innerModalView}>
+                                    <Text style={styles.warnText}>මෙමගින් ඔබබේ පාඨමාලා ලියාපදිංචිය අහෝසි වේ. ඔබගේ මුදල් ආපසු නොගෙවනු ලැබේ. එබැවින් ඔබගේ පාඨමාළාවට අදාල බලපත්‍රය ළබාගෙන අවසන් වූ විට පමණක් මෙය භාවිතා කරන්න. අහෝසි කිරීම දිගටම කරගෙන යාමට හරි ලෙසද නැතිනම් නැත ලෙසද සලකුණු කරන්න.</Text>
+                                    <View
+                                    style={styles.warnButtonView}>
+                                        <TouchableOpacity style={styles.hariButton} onPress={()=>{
+                                            fetch(Base+'course/setcourseclose', {
+                                                method: 'POST',
+                                                headers: {
+                                                    Accept: 'application/json',
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    courseId:course.courseId ,
+
+                                                })
+                                            });
+
+                                            setCourse([]);
+                                            setTimeout(()=>{loadCourse('done');},2000);
+
+                                            setFlashWindow(false);
+                                        }}><Text>හරි</Text></TouchableOpacity>
+                                        <TouchableOpacity onPress={()=>setFlashWindow(false)} style={styles.nathaButton}><Text>නැත</Text></TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </Modal>
 
 
 
@@ -468,7 +547,64 @@ const styles =StyleSheet.create({
     dataViewText:{
         color:'white',
         padding:10,
+    },
+    buttonViewInCourse:{
+        marginTop:15,
+        width:'100%',
+        height:60,
+        // backgroundColor:'#ffffff08',
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        // borderRadius:15
+        padding:15
+    },
+    ednButton:{
+        backgroundColor:'red',
+        width:120,
+        height:40,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10
+    },
+    modBackground:{
+        flex:1,
+        backgroundColor:'#ffffff20',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    innerModalView:{
+        width:300,
+        height:250,
+        backgroundColor:'#ffffff',
+        borderRadius:10,
+        borderColor:'red',
+        borderWidth:2
+    },
+    warnText:{
+        padding:10
+    },
+    warnButtonView:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+    },
+    hariButton:{
+        width:100,
+        height:45,
+        backgroundColor:'red',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    nathaButton:{
+        width:100,
+        height:45,
+        backgroundColor:'green',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
     }
+
 
 
 })

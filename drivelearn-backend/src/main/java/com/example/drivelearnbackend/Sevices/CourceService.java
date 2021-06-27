@@ -203,6 +203,7 @@ public class CourceService {
         CourceDTO courceDTO=new CourceDTO();
         if(cource!=null){
             courceTypeAssocs=cource.getListCourceTypeAssoc();
+            courceDTO.setCourseId(cource.getCourseId());
             courceDTO.setExamDate1(cource.getExamDate1());
             courceDTO.setExamDate2(cource.getExamDate2());
             courceDTO.setExamDate3(cource.getExamDate3());
@@ -249,11 +250,29 @@ public class CourceService {
             }
         }
 
-
-
-
-            return courceDTO;
-
-
+        return courceDTO;
     }
+    public boolean isEnroll(CourceDTO dto){
+        LinkedList<Student> list=studentRepository.findByUsername(dto.getUsername());
+        Student student=null;
+        for (Student student1 : list) {
+            student = student1;
+        }
+
+        List<Cource> cources=student.getCourceList();
+        Cource cource=null;
+        for (Cource cource1 : cources) {
+            if(cource1.getStatus()==0){
+                cource=cource1;
+            }
+        }
+        return cource!=null ?true:false;
+    }
+
+    public void setCourseClosed(CourceDTO dto){
+        Cource cource=courseRepository.findById(dto.getCourseId()).get();
+        cource.setStatus(1);
+        courseRepository.save(cource);
+    }
+
 }
