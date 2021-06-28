@@ -591,7 +591,7 @@ const styles =StyleSheet.create({
     modalMainView:{
         flex:1,
         backgroundColor:'#ffffff20',
-        flexDirection:'row', 
+        flexDirection:'row',
         justifyContent:'flex-end'
     },
     modalView:{
