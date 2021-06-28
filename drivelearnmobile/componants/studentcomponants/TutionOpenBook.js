@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Alert,
     ImageBackground,
     Modal,
-    ScrollView, StyleSheet,
+    ScrollView,
+    StyleSheet,
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
     View
 } from "react-native";
-import PayHere from "@payhere/payhere-mobilesdk-reactnative";
 import {Base} from "../../urls/base";
 
-const StartNewAvailablePage = ({route,navigation}) => {
+const TutionOpenBook = ({route,navigation}) => {
 
     const { username } = route.params;
 
@@ -20,12 +19,6 @@ const StartNewAvailablePage = ({route,navigation}) => {
     let url1=Base+'student/getStudent';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-    const [course, setCourse] = useState([]);
-    const [date1, setDate1]=useState([]);
-    const [date2, setDate2]=useState([]);
-    const [date3, setDate3]=useState([]);
-    const [dateT, setDateT]=useState([]);
-    const [flashWimdow,setFlashWindow]=useState(false);
 
     useEffect(()=>{
 
@@ -54,88 +47,15 @@ const StartNewAvailablePage = ({route,navigation}) => {
 
 
 // load the course
-        let courseUrl=Base+'course/showcource';
-        fetch(courseUrl, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username
-            })
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                setCourse(json);
-                if(json.examDate1!==null){
-                    console.log("done");
-                    console.log("done");
-                    console.log("done");
-                    console.log(json.examDate1.split("T"));
-                    setDate1(json.examDate1.split("T"));
-                }
-                if(json.examDate2!==null){
-                    setDate2(json.examDate2.split("T"));
-                }
-                if(json.examDate3!==null){
-                    setDate3(json.examDate3.split("T"));
-                }
-                if(json.trailDate!==null){
-                    setDateT(json.trailDate.split("T"));
-                }
-
-                setCourse(json);
-                console.log(json);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-
 
     },[]);
 
-    const loadCourse=(value)=>{
-        console.log(value);
-        let courseUrl=Base+'course/showcource';
-        fetch(courseUrl, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username
-            })
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                setCourse(json);
-                if(json.examDate1!==null){
-                    console.log("done");
-                    console.log("done");
-                    console.log("done");
-                    console.log(json.examDate1.split("T"));
-                    setDate1(json.examDate1.split("T"));
-                }
-                if(json.examDate2!==null){
-                    setDate2(json.examDate2.split("T"));
-                }
-                if(json.examDate3!==null){
-                    setDate3(json.examDate3.split("T"));
-                }
-                if(json.trailDate!==null){
-                    setDateT(json.trailDate.split("T"));
-                }
 
-                setCourse(json);
-                console.log(json);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    }
 
 
     const [navModal,setNavModal]=useState(false);
+
+
 
     return (
         <TouchableWithoutFeedback >
@@ -149,20 +69,24 @@ const StartNewAvailablePage = ({route,navigation}) => {
                         <View style={styles.navbar}>
 
                             {/*available List*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/handlist.png')} style={styles.iconStyle}></ImageBackground>
+                            <TouchableOpacity >
+                                <ImageBackground source={require('../../asets/icons/games.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
                             {/*customize the course*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StartNewCustomizedCource',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/equalizer.png')} style={styles.iconStyle}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TutionQuiz',{username:username})}>
+                                <ImageBackground source={require('../../asets/icons/quiz.png')} style={styles.iconStyle}>
 
                                 </ImageBackground>
                             </TouchableOpacity>
 
                             {/*Selected Courses*/}
                             <TouchableOpacity>
-                                <ImageBackground source={require('../../asets/icons/hand.png')} style={styles.iconStyle}></ImageBackground>
+                                <ImageBackground source={require('../../asets/icons/play-button.png')} style={styles.iconStyle}></ImageBackground>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
+                                <ImageBackground source={require('../../asets/icons/open-book.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
 
@@ -207,117 +131,6 @@ const StartNewAvailablePage = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
-                    <View style={styles.displayMainView}>
-                        <View style={styles.headViewAvail}><Text style={styles.headerTopic}>Course Details</Text></View>
-                        {date1.length===2?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Date1</Text>
-                            <Text style={styles.dataViewText}>{date1[0]}</Text>
-                            <Text style={styles.dataViewText}>{date1[1]}</Text>
-                        </View>:null}
-
-                        {date2.length===2?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Date2</Text>
-                            <Text style={styles.dataViewText}>{date2[0]}</Text>
-                            <Text style={styles.dataViewText}>{date2[1]}</Text>
-                        </View>:null}
-
-                        {date3.length===2?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Date3</Text>
-                            <Text style={styles.dataViewText}>{date3[0]}</Text>
-                            <Text style={styles.dataViewText}>{date3[1]}</Text>
-                        </View>:null}
-
-                        {dateT.length===2?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Date Trail</Text>
-                            <Text style={styles.dataViewText}>{dateT[0]}</Text>
-                            <Text style={styles.dataViewText}>{dateT[1]}</Text>
-                        </View>:null}
-
-                        <View
-                            style={{
-                                marginTop:10,
-                                padding:2,
-                                borderBottomColor: 'white',
-                                borderBottomWidth: 1,
-                            }}
-                        />
-
-                        {course.bike!==0?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Bike</Text>
-                            <Text style={styles.dataViewText}>{course.bike}/hours</Text>
-
-                        </View>:null}
-{/*change*/}
-                        {course.carAuto!==0?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Auto Cars</Text>
-                            <Text style={styles.dataViewText}>{course.carAuto}/hours</Text>
-
-                        </View>:null}
-
-                        {course.carManual!==0?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Manual cars</Text>
-                            <Text style={styles.dataViewText}>{course.carManual}/hours</Text>
-
-                        </View>:null}
-
-                        {course.heavy!==0?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Heavy vehicle</Text>
-                            <Text style={styles.dataViewText}>{course.heavy}/hours</Text>
-
-                        </View>:null}
-
-                        {course.wheeler!==0?<View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Three Wheeler</Text>
-                            <Text style={styles.dataViewText}>{course.wheeler}/hours</Text>
-
-                        </View>:null}
-
-                        <View style={styles.dateView}>
-                            <Text style={styles.dataViewText}>Exam</Text>
-                            <Text style={styles.dataViewText}>mandatory</Text>
-
-                        </View>
-
-                        {course.courseId!==0?<View style={styles.buttonViewInCourse}>
-                            <TouchableOpacity onPress={()=>{
-                                setFlashWindow(true);
-                            }} style={styles.ednButton}><Text>End Course</Text></TouchableOpacity>
-
-                        </View>:null}
-
-
-                    </View>
-                    <Modal visible={flashWimdow} transparent={true}>
-                        <TouchableWithoutFeedback onPress={()=>setFlashWindow(false)} >
-                            <View style={styles.modBackground}>
-                                <View style={styles.innerModalView}>
-                                    <Text style={styles.warnText}>මෙමගින් ඔබබේ පාඨමාලා ලියාපදිංචිය අහෝසි වේ. ඔබගේ මුදල් ආපසු නොගෙවනු ලැබේ. එබැවින් ඔබගේ පාඨමාළාවට අදාල බලපත්‍රය ළබාගෙන අවසන් වූ විට පමණක් මෙය භාවිතා කරන්න. අහෝසි කිරීම දිගටම කරගෙන යාමට හරි ලෙසද නැතිනම් නැත ලෙසද සලකුණු කරන්න.</Text>
-                                    <View
-                                    style={styles.warnButtonView}>
-                                        <TouchableOpacity style={styles.hariButton} onPress={()=>{
-                                            fetch(Base+'course/setcourseclose', {
-                                                method: 'POST',
-                                                headers: {
-                                                    Accept: 'application/json',
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    courseId:course.courseId ,
-
-                                                })
-                                            });
-
-                                            setCourse([]);
-                                            setTimeout(()=>{loadCourse('done');},2000);
-
-                                            setFlashWindow(false);
-                                        }}><Text>හරි</Text></TouchableOpacity>
-                                        <TouchableOpacity onPress={()=>setFlashWindow(false)} style={styles.nathaButton}><Text>නැත</Text></TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </Modal>
 
 
 
@@ -608,4 +421,4 @@ const styles =StyleSheet.create({
 
 
 })
-export default StartNewAvailablePage;
+export default TutionOpenBook;
