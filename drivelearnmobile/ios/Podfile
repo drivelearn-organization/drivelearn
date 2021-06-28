@@ -14,6 +14,14 @@ target 'drivelearnmobile' do
   pod 'payhere-mobilesdk-reactnative', :path => '../node_modules/@payhere/payhere-mobilesdk-reactnative'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
+  pod 'react-native-progress-bar-android', :path => '../node_modules/@react-native-community/progress-bar-android'
+
+  pod 'react-native-progress-view', :path => '../node_modules/@react-native-community/progress-view'
+
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+
   target 'drivelearnmobileTests' do
     inherit! :complete
     # Pods for testing

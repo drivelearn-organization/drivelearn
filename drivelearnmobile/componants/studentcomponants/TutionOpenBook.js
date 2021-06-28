@@ -10,6 +10,7 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
+import BookPDF from "../common/BookPDF";
 
 const TutionOpenBook = ({route,navigation}) => {
 
@@ -59,7 +60,7 @@ const TutionOpenBook = ({route,navigation}) => {
 
     return (
         <TouchableWithoutFeedback >
-            <ScrollView>
+
                 <ImageBackground source={require('../../asets/background/StudentView.png')} style={styles.imageBac}>
                     <View style={styles.headerView}>
                         {/*logo*/}
@@ -131,12 +132,16 @@ const TutionOpenBook = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
+                    <ScrollView>
+                        <BookPDF></BookPDF>
+                    </ScrollView>
+
 
 
 
 
                 </ImageBackground>
-            </ScrollView>
+
         </TouchableWithoutFeedback>
     );
 };
