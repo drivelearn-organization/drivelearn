@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,47 +6,53 @@ using UnityEngine;
 public class Car_controler : MonoBehaviour
 {
     private const string HORIZONTAL = "Horizontal" ;
-    private const string VERTICAL = "vertical" ;
+    private const string VERTICAL = "Vertical" ;
 
     private float horizontalInput;
     private float verticalInput;
-    private float steerAngle;
+    private float currentSteerAngle;
     private float currentBreakForce;
-    private bool isBreaking  ;
+    private bool isBreaking;
 
-    [SerializedField] private float motorForce;
-    [SerializedField] private float breakForce;
-    [SerializedField] private float maxStreerAngle;
+    [SerializeField] private float motorForce;
+    [SerializeField] private float breakForce;
+    [SerializeField] private float maxStreerAngle;
+  
 
-    [SerializedField] private WheelCollider WheelCollider_FL;
-    [SerializedField] private WheelCollider WheelCollider_FR;
-    [SerializedField] private WheelCollider WheelCollider_RL;
-    [SerializedField] private WheelCollider WheelCollider_RR;
+    [SerializeField] private WheelCollider WheelCollider_FL;
+    [SerializeField] private WheelCollider WheelCollider_FR;
+    [SerializeField] private WheelCollider WheelCollider_RL;
+    [SerializeField] private WheelCollider WheelCollider_RR;
+    
+
+    [SerializeField] private Transform FL;
+    [SerializeField] private Transform FR;
+    [SerializeField] private Transform RL;
+    [SerializeField] private Transform RR;
 
     private void FixedUpdate()
     {
         GetInput();
-        HandleMorter();
+        HandleMotor();
         HandleStreering();
         UpdaterWheels();
 
     }
-    private void GetInpuut()
+    private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
         verticalInput = Input.GetAxis(VERTICAL);
         isBreaking = Input.GetKey(KeyCode.Space);
 
     }
-    private void HandleMorter()
+    private void HandleMotor()
     {
-        WheelCollider_FL.mortorTorque = verticalImput * motorForce;
-        WheelCollider_FR .mortorTorque = verticalImput * motorForce;
+        WheelCollider_FL.motorTorque = verticalInput * motorForce;
+        WheelCollider_FR .motorTorque = verticalInput * motorForce;
         currentBreakForce = isBreaking ? breakForce : 0f ;
         if (isBreaking)
         {
             ApplyBreaking();
-
         }
     }
 
@@ -54,15 +61,37 @@ public class Car_controler : MonoBehaviour
         WheelCollider_FR.brakeTorque = currentBreakForce;
         WheelCollider_FL.brakeTorque = currentBreakForce;
         WheelCollider_RR.brakeTorque = currentBreakForce;
-        WheelCollid  er_RL .brakeTorque = currentBreakForce;
+        WheelCollider_RL.brakeTorque = currentBreakForce;
 
     }
 
     private void HandleStreering()
     {
-        steerAngle = maxStreerAngle = horizontalInput;
-        frontLeftWheelCollider.steerAngle = steerAngle ;
+        currentSteerAngle = maxStreerAngle * horizontalInput;
+        WheelCollider_FL.steerAngle = currentSteerAngle;
+        WheelCollider_FR.steerAngle = currentSteerAngle;
+       
     }
     
+     
+    private void UpdaterWheels()
+    {
+        UpdaterSingelWheels(WheelCollider_FL,FL);
+        UpdaterSingelWheels(WheelCollider_FR,FR);
+        UpdaterSingelWheels(WheelCollider_RR,RR);
+        UpdaterSingelWheels(WheelCollider_RL,RL);
+
+    }
+
+    private void UpdaterSingelWheels(WheelCollider wheelCollider, Transform wheelTransform)
+    {
+        Vector3 pos;
+        Quaternion rot;
+        wheelCollider.GetWorldPose(out pos , out rot);
+        wheelTransform.rotation = rot ;
+        wheelTransform.position = pos ;
+
+         
+    }
      
 }
