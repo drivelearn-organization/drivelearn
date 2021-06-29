@@ -5,7 +5,7 @@ function UserDetailsForm() {
     return (
         <div className ="emp-card-container">
             <div class="heading-secondary margin-b-m margin-t-m">
-                <p class="center-text">Account Settings: </p>
+                <p class="center-text">Account Settings </p>
             </div>
             <form className="dash-content__form" method="POST">
                 <div className="dash-content__input">

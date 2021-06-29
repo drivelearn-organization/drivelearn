@@ -14,6 +14,14 @@ input[type="file"] {
 
 .seperator{
     height: 1px;
-    margin: 5rem 0 5rem 0;
-    background-color: rgba(94, 21, 21,1);
+    margin: 20px 0;
+    margin-bottom: 40px;
+    background-color: rgba(31, 58, 147, 0.8);
+    width: 80%;
+}
+
+.margin-t-end{
+    margin-top: 20px;
+    position: relative;
+    left: 240px;
 }

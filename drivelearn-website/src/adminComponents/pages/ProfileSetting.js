@@ -5,7 +5,7 @@ function ProfileSetting() {
     return (
         <div className ="emp-card-container">
             <div class="heading-secondary margin-b-m margin-t-m">
-                <p class="center-text">Account Settings: </p>
+                <p class="center-text">Account Settings </p>
             </div>
             <form className="dash-content__form" method="POST">
                 <div className="dash-content__input">
@@ -57,9 +57,27 @@ function ProfileSetting() {
                 </label>
                 <input id="file-upload" type="file"/>
                 </div>
-                <button class="btn btn-round-blue margin-b-l margin-t-s" type="submit">Save Settings</button>
+                <button class="btn btn-round-blue margin-b-l margin-t-end" type="submit">Save Settings</button>
             </form>
             <div class="seperator"></div>
+            <div class="heading-secondary margin-b-m margin-t-m">
+                <p class="center-text">Pasword change </p>
+            </div>
+            <form className="dash-content__form" method="POST">
+                <div className="dash-content__input">
+                    <lable className="dash-content__lable">First Name: </lable>
+                    <input type ="text" class="form__input"/>
+                </div>
+                <div className="dash-content__input">
+                    <lable className="dash-content__lable">Last Name: </lable>
+                    <input type ="text" class="form__input"/>
+                </div>
+                <div className="dash-content__input">
+                    <lable className="dash-content__lable">Email: </lable>
+                    <input type ="text" class="form__input"/>
+                </div>
+                <button class="btn btn-round-blue margin-b-l margin-t-end" type="submit">Save Settings</button>
+            </form>
         </div>
     )
 }
