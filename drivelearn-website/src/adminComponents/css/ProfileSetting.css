@@ -1,0 +1,19 @@
+
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    padding: 5px;
+    border-bottom: 1px solid rgba(31, 58, 147, 0.8);
+    transition: all 0.3s;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.seperator{
+    height: 1px;
+    margin: 5rem 0 5rem 0;
+    background-color: rgba(94, 21, 21,1);
+}

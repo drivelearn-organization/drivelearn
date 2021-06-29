@@ -27,6 +27,9 @@ function Navbar({show}) {
                <li>
                     <Link to="/View">view</Link>
                </li>
+               <li>
+                    <Link to="/Settings">Settings</Link>
+               </li>
               
            </ul> 
         </div>
