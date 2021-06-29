@@ -18,7 +18,34 @@
 .dash-content__lable{
     font-size: 15px;
     padding: 10px;
+    color: rgb(31, 58, 147);
 }
 .form__input{
   padding: 10px;
+}
+
+.btn-round-blue{
+    width: 150px;
+    text-align: center;
+    background-color: #3c7aad;
+    border-radius: 10rem;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    font-family: "Lato", "sans-serif";
+    font-size: 18px;
+    cursor: pointer;
+    
+}
+
+.btn-round-blue:hover{
+    background-color: rgb(27, 56, 136);
+    color: rgb(255, 255, 255);
+   
+}
+
+.heading-secondary{
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #3c7aad;
+    font-weight: 400;
 }
