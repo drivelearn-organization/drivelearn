@@ -38,7 +38,15 @@ function UserDetailsForm() {
                       
                     </select>
                 </div>
-
+                <div className="dash-content__input">
+                    <lable className="dash-content__lable">Branch</lable>
+                    <select name="cars" class="form__input">
+                      
+                        <option value="">Matar</option>
+                        <option value="">Galle</option>
+                      
+                    </select>
+                </div>
             </form>
         </div>
     )
