@@ -283,7 +283,7 @@ const StartNewCustomizedCource = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
                                         <Text style={styles.modelIndex}>DriveLearn Material</Text>
                                     </TouchableOpacity>
 

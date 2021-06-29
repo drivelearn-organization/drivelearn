@@ -346,7 +346,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
                                         <Text style={styles.modelIndex}>DriveLearn Material</Text>
                                     </TouchableOpacity>
 
@@ -591,7 +591,7 @@ const styles =StyleSheet.create({
     modalMainView:{
         flex:1,
         backgroundColor:'#ffffff20',
-        flexDirection:'row', 
+        flexDirection:'row',
         justifyContent:'flex-end'
     },
     modalView:{

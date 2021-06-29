@@ -10,15 +10,11 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
-import SessionCard from "../common/SessionCard";
+import BookPDF from "../common/BookPDF";
 
-const StudentSessions = ({route,navigation}) => {
+const TutionOpenBook = ({route,navigation}) => {
+
     const { username } = route.params;
-
-
-
-    // this is the count for notification count
-    const [notificCount,setNotificCount]=useState('0');
 
     // getting student
     let url1=Base+'student/getStudent';
@@ -49,69 +45,13 @@ const StudentSessions = ({route,navigation}) => {
 
 
 
-        // here the notification number calling at the be begining
-        let notificUrl=Base+'notification/unreads';
-        fetch(notificUrl, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                receiverUserId:0,
-                receiverUsername: username,
-                receiverType:3
-
-            })
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                //code here
-                if(json<10){
-                    setNotificCount(json.toString());
-                }else if (json>=10){
-                    setNotificCount('9+');
-                }
-                console.log(json);
-            })
-            .catch((error) => console.error(error))
 
 
+// load the course
 
-
-        //here is the notification updating
-        const setNotificUpdate=setInterval(()=>{
-            fetch(notificUrl, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    receiverUserId:0,
-                    receiverUsername: username,
-                    receiverType:3
-
-                })
-            })
-                .then((response) => response.json())
-                .then((json) => {
-                    //code here
-                    if(json<10){
-                        setNotificCount(json.toString());
-                    }else if (json>=10){
-                        setNotificCount('9+');
-                    }
-                    console.log(json);
-                })
-                .catch((error) => console.error(error))
-
-        },10000);
-
-        return()=>{
-            clearInterval(setNotificUpdate);
-        }
     },[]);
+
+
 
 
     const [navModal,setNavModal]=useState(false);
@@ -120,7 +60,7 @@ const StudentSessions = ({route,navigation}) => {
 
     return (
         <TouchableWithoutFeedback >
-            <ScrollView>
+
                 <ImageBackground source={require('../../asets/background/StudentView.png')} style={styles.imageBac}>
                     <View style={styles.headerView}>
                         {/*logo*/}
@@ -129,27 +69,27 @@ const StudentSessions = ({route,navigation}) => {
                         {/*nav div*/}
                         <View style={styles.navbar}>
 
-                            {/*home navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
+                            {/*available List*/}
+                            <TouchableOpacity >
+                                <ImageBackground source={require('../../asets/icons/games.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
-                            {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
-                                    {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
+                            {/*customize the course*/}
+                            <TouchableOpacity onPress={()=>navigation.navigate('TutionQuiz',{username:username})}>
+                                <ImageBackground source={require('../../asets/icons/quiz.png')} style={styles.iconStyle}>
+
                                 </ImageBackground>
                             </TouchableOpacity>
 
-                            {/*display navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
+                            {/*Selected Courses*/}
+                            <TouchableOpacity>
+                                <ImageBackground source={require('../../asets/icons/play-button.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
-                            {/*location navigation*/}
-                            <TouchableOpacity>
-                                <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
+                                <ImageBackground source={require('../../asets/icons/open-book.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
+
 
                             {/*central navigation navigation*/}
                             <TouchableOpacity onPress={()=>setNavModal(true)}>
@@ -169,7 +109,7 @@ const StudentSessions = ({route,navigation}) => {
 
                                     {/*home navigation*/}
                                     <Text style={styles.modalHeader}>{data.name}</Text>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
                                         <Text style={styles.modelIndex}>Home</Text>
                                     </TouchableOpacity>
 
@@ -192,28 +132,20 @@ const StudentSessions = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
+                    <ScrollView>
+                        <BookPDF></BookPDF>
+                    </ScrollView>
 
 
 
 
 
-
-
-
-
-
-
-
-                    {/*space for body*/}
-
-
-                    <SessionCard></SessionCard>
-                    <SessionCard></SessionCard>
                 </ImageBackground>
-            </ScrollView>
+
         </TouchableWithoutFeedback>
     );
 };
+
 
 const styles =StyleSheet.create({
     imageBac:{
@@ -347,8 +279,151 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
+    },
+    lightVehicle:{
+        margin:15,
+        padding:15,
+        width:'95%',
+        marginLeft: '2.5%',
+        marginRight: '2.5%',
+        // height:200,
+        backgroundColor:'#ffffff20',
+        borderRadius:10,
+
+
+    },
+    headerViewInCard:{
+
+        width:'100%',
+        height:45,
+        backgroundColor:'#ffffff08',
+        borderRadius:25,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    lightHeader:{
+        color:'white',
+        fontSize:18,
+        fontWeight:'bold'
+    },
+    bodyViewInCard:{
+        marginTop:20,
+        padding:15,
+        width:'100%',
+        backgroundColor:'#ffffff08',
+        borderRadius:25,
+
+
+    },
+    lightBody:{
+        color:'white'
+    },
+    buttonViewInCard:{
+        flexDirection:'row',
+        justifyContent:'flex-end'
+    },
+    courseButton:{
+        width:100,
+        height:45,
+        backgroundColor:'#32DE3B',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+        margin:15
+    },
+    displayMainView:{
+        width:'95%',
+        minHeight:100,
+        backgroundColor:'#ffffff20',
+        marginRight:'2.5%',
+        marginLeft:'2.5%',
+        borderRadius:10,
+        padding:15,
+    },
+    headViewAvail:{
+        width:'100%',
+        height:40,
+        backgroundColor:'#ffffff15',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    headerTopic:{
+        color:'white',
+        fontSize:18,
+        fontWeight:'bold',
+    },
+    dateView:{
+        marginTop:15,
+        width:'100%',
+        height:40,
+        backgroundColor:'#ffffff08',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        borderRadius:15
+    },
+    dataViewText:{
+        color:'white',
+        padding:10,
+    },
+    buttonViewInCourse:{
+        marginTop:15,
+        width:'100%',
+        height:60,
+        // backgroundColor:'#ffffff08',
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        // borderRadius:15
+        padding:15
+    },
+    ednButton:{
+        backgroundColor:'red',
+        width:120,
+        height:40,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10
+    },
+    modBackground:{
+        flex:1,
+        backgroundColor:'#ffffff20',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    innerModalView:{
+        width:300,
+        height:250,
+        backgroundColor:'#ffffff',
+        borderRadius:10,
+        borderColor:'red',
+        borderWidth:2
+    },
+    warnText:{
+        padding:10
+    },
+    warnButtonView:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+    },
+    hariButton:{
+        width:100,
+        height:45,
+        backgroundColor:'red',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    nathaButton:{
+        width:100,
+        height:45,
+        backgroundColor:'green',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
     }
 
 
-});
-export default StudentSessions;
+
+})
+export default TutionOpenBook;
