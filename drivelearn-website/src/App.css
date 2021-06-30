@@ -132,8 +132,37 @@ z-index: -2;
   margin-bottom: 20px; */
 }
 
-.logout{
+.logoutbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgb(255, 255, 255);
   float: right;
-  padding-right: 50px;
+ 
+ 
+ 
 }
+
+.logout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  float: right;
+  margin-right: 0;
+  padding-left: 20px;
+ 
+ 
+}
+
+
+
+.logout:hover {
+  text-decoration: none;
+  color: #4ca2e9;
+}
+
+.logout .fa-bell:hover{
+  color: rgb(255, 255, 255);
+}
+
