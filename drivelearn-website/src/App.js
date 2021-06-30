@@ -53,6 +53,11 @@ function App() {
         <i class="fas fa-caret-down"></i>
         </a>
         </div>
+        <div className="header-user__dropdown">
+          <ul>
+            <li>logout</li>
+          </ul>
+        </div>
         </header> 
    
       
