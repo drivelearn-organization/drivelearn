@@ -65,16 +65,16 @@ function ProfileSetting() {
             </div>
             <form className="dash-content__form" method="POST">
                 <div className="dash-content__input">
-                    <lable className="dash-content__lable">First Name: </lable>
-                    <input type ="text" class="form__input"/>
+                    <lable className="dash-content__lable">Current Pasword: </lable>
+                    <input type ="password" class="form__input" placeholder="*************"/>
                 </div>
                 <div className="dash-content__input">
-                    <lable className="dash-content__lable">Last Name: </lable>
-                    <input type ="text" class="form__input"/>
+                    <lable className="dash-content__lable">New Pasword: </lable>
+                    <input type ="password" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
-                    <lable className="dash-content__lable">Email: </lable>
-                    <input type ="text" class="form__input"/>
+                    <lable className="dash-content__lable">Confirm Password: </lable>
+                    <input type ="password" class="form__input"/>
                 </div>
                 <button class="btn btn-round-blue margin-b-l margin-t-end" type="submit">Save Settings</button>
             </form>
