@@ -8,8 +8,11 @@ body{
 
 }
 header{
-position: fixed;
-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
   width: 100%; 
   overflow: hidden;
   padding: 20px;
@@ -31,7 +34,7 @@ top: 0px;
 .fas.fa-bars{
   position: relative;
   font-size: 30px;
- bottom: 5px;
+ bottom: 12px;
 }
 
 .newmain{
