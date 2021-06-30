@@ -183,8 +183,8 @@ z-index: -2;
 
 .header-user__dropdown-box{
   position: fixed;
-  background-color: rgb(173, 20, 20);
-  
+  background-color:  #4ca2e9;
+  color: rgb(255, 255, 255);
   overflow: auto;
   padding: 10px;
   height: 100px;
