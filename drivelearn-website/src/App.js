@@ -42,7 +42,7 @@ function App() {
         
         <i onClick={()=>setShownav(!showNav)} className="fas fa-bars" ></i>
         <img className="mylogo" src={'images/LogoBoxWhite.png'} width="60" height="60"/>
-        <div className="logout"><i class="fas fa-bell"></i></div>
+        <div className="logout"><i class="fas fa-bell"></i><i class="fas fa-user-alt"></i></div>
         </header> 
    
       
