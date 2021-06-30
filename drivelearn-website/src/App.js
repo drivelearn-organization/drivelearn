@@ -52,14 +52,21 @@ function App() {
         <i class="fas fa-user-circle"></i>
         <i class="fas fa-caret-down"></i>
         </a>
+        
         </div>
+        
+        </header> 
         <div className="header-user__dropdown">
-          <ul>
-            <li>logout</li>
+        <div className="header-user__dropdown-box">
+        <ul>
+            <li><i class="fas fa-sign-out-alt"></i> logout</li>
+            <li><i class="fas fa-tachometer-alt"></i> Dashboardt</li>
+            
           </ul>
         </div>
-        </header> 
-   
+          
+        </div>
+        
       
         {/* {showNav && <Navbar/>} */}
 
