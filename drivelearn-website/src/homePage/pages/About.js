@@ -16,6 +16,15 @@ function About() {
         rigorous training and background checks, and training is in safe, late-model vehicles. 
         Our classroom are conveniently located in schools and at many DriveLEARN retail locations.
         </p>
+        <h3>Official Driving School Core Values</h3>
+        <ul>
+        <li>We care</li>
+        <li>We respect: people, time, values and needs</li>
+        <li>We make every encounter engaging</li>
+        <li>We do what we say with urgency, honesty and integrity</li>
+        <li>We strive for excellence because what we do is important</li>
+        </ul>
+
     </div>
     </div>
 
