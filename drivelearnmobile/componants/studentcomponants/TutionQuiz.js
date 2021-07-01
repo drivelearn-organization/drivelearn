@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+const { forwardRef, useRef, useImperativeHandle } = React;
 import {
     ImageBackground,
     Modal,
@@ -9,6 +10,7 @@ import {
     View
 } from "react-native";
 import {Base} from "../../urls/base";
+import QuizComp from "../common/QuizComp";
 
 const TutionQuiz = ({route,navigation}) => {
     const { username } = route.params;
@@ -53,6 +55,10 @@ const TutionQuiz = ({route,navigation}) => {
 
     const [navModal,setNavModal]=useState(false);
 
+    const quizref=useRef();
+    const quizref1=useRef();
+    const quizref2=useRef();
+    const quizref3=useRef();
 
     return (
         <TouchableWithoutFeedback >
@@ -129,6 +135,25 @@ const TutionQuiz = ({route,navigation}) => {
                     </Modal>
 
 
+                    <QuizComp num={1} question={"මෙම සඳ්ඳාවෙන් කියවෙන්නේ කුමක්ද?"} A={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} B={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} C={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} D={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} an={"B"} ref={quizref}></QuizComp>
+                    <QuizComp num={2} question={"මෙම සඳ්ඳාවෙන් කියවෙන්නේ කුමක්ද?"} A={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} B={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} C={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} D={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} an={"B"} ref={quizref1}></QuizComp>
+                    <QuizComp num={3} question={"මෙම සඳ්ඳාවෙන් කියවෙන්නේ කුමක්ද?"} A={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} B={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} C={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} D={"වමෙන් අතුරු මාර්ගයක් ප්‍රධාන මාර්ගයට සනම්භන්ධ වේ"} an={"B"} ref={quizref2}></QuizComp>
+
+                    <TouchableOpacity onPress={()=>{
+                        let count =0;
+                        if(quizref.current.checkForAnswer()==1){count=count+1;}
+                        if(quizref1.current.checkForAnswer()==1){count=count+1;}
+                        if(quizref2.current.checkForAnswer()==1){count=count+1;}
+                        console.log("count is :"+count);
+
+                    }}><Text style={{color:'white'}}>Click</Text></TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=>{
+                        quizref.current.refresh();
+                        quizref1.current.refresh();
+                        quizref2.current.refresh();
+
+                    }}><Text style={{color:'white'}}>Refresh</Text></TouchableOpacity>
 
 
 
