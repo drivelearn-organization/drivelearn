@@ -18,7 +18,7 @@ function App() {
           <Route path='/contacts' component={Contacts} />
           <Route path='/sign-up' component={SignUp} />
         </Switch>
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );
