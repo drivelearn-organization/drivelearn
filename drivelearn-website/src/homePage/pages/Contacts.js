@@ -1,9 +1,12 @@
 import React from 'react';
 import '../../App.css';
 import './../Contact.css';
+import Navbar from './../Navbar';
 
 function Contacts() {
   return (
+	<>
+    <Navbar/>
     <div className="container">
 		 <div className="contact-box">
 			 <div className="left">
@@ -19,6 +22,7 @@ function Contacts() {
 		    </div>
       </div>
     </div>
+	</>
   );
 
 }

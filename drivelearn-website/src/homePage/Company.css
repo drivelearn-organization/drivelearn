@@ -1,0 +1,77 @@
+.container1{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 100px;
+    background-color: #f5f5f5;
+}
+
+.contact-box1{
+    margin-top: 50px;
+    margin-bottom: 50px;
+	max-width: 850px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
+}
+
+.left{
+	background-size: cover;
+	height: 100%;
+}
+
+.right1{
+	padding: 25px 40px;
+}
+
+.right1 > h1{
+	position: relative;
+	padding: 0 0 10px;
+	margin-bottom: 10px;
+    color: red;
+}
+
+.right1 > h4{
+    background:linear-gradient(to right, red, pink);
+    columns: white;
+    margin-top: 8px;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+    border-radius: 10px;
+    color: #fff;
+}
+.warning{
+	width: 100%;
+	padding: 0.5rem 1rem;
+    border-color: green;
+    background-color: #fff;
+    border-radius: 10px;
+	color: green;
+	font-size: 1.1rem;
+	outline: none;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.warning:hover{
+    background-color: green;
+    color: #fff;
+}
+
+
+@media screen and (max-width: 880px){
+	.contact-box1{
+		grid-template-columns: 1fr;
+	}
+	.left{
+		height: 200px;
+	}
+}

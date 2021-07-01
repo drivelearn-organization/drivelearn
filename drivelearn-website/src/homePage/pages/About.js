@@ -1,10 +1,12 @@
 import React from 'react';
 import '../../App.css';
 import './../About.css';
+import Navbar from './../Navbar';
 
 function About() {
   return (
-    
+    <>
+    <Navbar/>
     <div className="container">
     <div className="contact-box">
         <h1><big>Over 20 Years of Excellence in Drivers Education</big></h1>
@@ -30,6 +32,7 @@ function About() {
         </div>
     </div>
     </div>
+    </>
 
   );
 }
