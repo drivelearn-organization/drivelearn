@@ -4,17 +4,18 @@ import './../AboutBody.css';
 
 function About() {
   return (
+    
     <div className="about-section">
     <div className="inner-container">
-        <h1>About Us</h1>
+        <h1><big>Over 20 Years of Excellence in Drivers Education</big></h1>
         <p className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+        Official Driving School has provided superior driver education in Kalutara 
+        for more than 20 years under the DriveLEARN Driving School brand. 
+        Our programs are fully certified by the State 
+        of kalutara and are lead by selected instructors that have completed 
+        rigorous training and background checks, and training is in safe, late-model vehicles. 
+        Our classroom are conveniently located in schools and at many DriveLEARN retail locations.
         </p>
-        <div className="skills">
-            {/* <span>Web Design</span>
-            <span>Photoshop & Illustrator</span>
-            <span>Coding</span> */}
-        </div>
     </div>
     </div>
 

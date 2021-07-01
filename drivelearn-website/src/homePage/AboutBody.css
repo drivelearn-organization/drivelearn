@@ -1,31 +1,16 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Open Sans",sans-serif;
-    box-sizing: border-box;
-}
-
-body{
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f5f5f5;
-}
-
 .about-section{
-    /* background: url('../../public/images/About.webp') no-repeat left; */
+    /* background-image: url(image1.jpeg) no-repeat left;  */
     background-size: 55%;
-    background-color: #fdfdfd;
+    background: #f5f5f5; 
     overflow: hidden;
-    padding: 100px 0;
+    padding: 30px 0px;
 }
 
 .inner-container{
     width: 55%;
     float: right;
-    background-color: #fdfdfd;
-    padding: 150px;
+    background: #f5f5f5;
+    padding: 120px;
 }
 
 .inner-container h1{
@@ -35,19 +20,13 @@ body{
 }
 
 .text{
-    font-size: 13px;
-    color: #545454;
+    font-size: 16px;
+    color: #000000;
     line-height: 30px;
     text-align: justify;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
-.skills{
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 13px;
-}
 
 @media screen and (max-width:1200px){
     .inner-container{
