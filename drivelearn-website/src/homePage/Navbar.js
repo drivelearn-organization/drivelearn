@@ -30,7 +30,7 @@ function Navbar() {
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
           <img src='images/LogoWhite.png' alt="Logo" width="50" height="50"/>
-          &nbsp;&nbsp; <big>DriveLEARN</big>
+          &nbsp;&nbsp; <big>DiveLEARN</big>
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
