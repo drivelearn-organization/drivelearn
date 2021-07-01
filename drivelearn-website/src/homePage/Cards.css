@@ -19,6 +19,7 @@
 
 .cards__items {
   box-shadow: #252e48;
+  background-color: #fff;
 }
 
 .cards__item {
@@ -37,7 +38,7 @@
   box-shadow: 0 6px 20px rgba(67, 68, 71, 0.938);
   -webkit-filter: drop-shadow(0 6px 20px rgba(72, 75, 78, 0.017));
   filter: drop-shadow(0 6px 20px rgba(74, 81, 92, 0.017));
-  border-radius: 20px;
+  border-radius: 0px;
   overflow: hidden;
   text-decoration: none;
   padding: 20px 40px 20px 40px;
@@ -58,7 +59,7 @@
   box-shadow: 0 6px 20px rgba(67, 68, 71, 0.938);
   -webkit-filter: drop-shadow(0 6px 20px rgba(72, 75, 78, 0.017));
   filter: drop-shadow(0 6px 20px rgba(74, 81, 92, 0.017));
-  border-radius: 20px;
+  border-radius: 0px;
   overflow: hidden;
   text-decoration: none;
   text-align: center;
