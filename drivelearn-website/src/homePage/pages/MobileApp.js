@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../App.css';
 import './../Signup.css';
-import Navbar from './../Navbar';
+import Navbar from '../Navbar';
 
-function SignUp() {
+function MobileApp() {
   return (
     <>
     <Navbar />
@@ -32,4 +32,4 @@ function SignUp() {
 
 }
 
-export default SignUp;
+export default MobileApp;
