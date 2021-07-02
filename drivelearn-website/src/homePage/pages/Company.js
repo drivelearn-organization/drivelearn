@@ -18,7 +18,7 @@ function Company() {
         This page is only for company access. Unauthorized people are not allowed to access the page.
         </h4>
         <br/><br/>
-        <button className="warning" href="./pages/Login.js">Wish to continue</button>
+        <a className="warning" href="./login">Wish to continue</a>
 		  </div>
       </div>
     </div>

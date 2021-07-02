@@ -47,7 +47,7 @@ h2{
 	margin-bottom: 10px;
 }
 
-h2:after{
+/* h2:after{
 	content: '';
     position: absolute;
     left: 50%;
@@ -57,7 +57,7 @@ h2:after{
     width: 50px;
     border-radius: 2px;
     background-color: green;
-}
+} */
 
 .field{
 	width: 100%;
