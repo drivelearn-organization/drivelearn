@@ -13,12 +13,12 @@ function Company() {
 			    <img src='images/petlock.png' alt="Logo" width='100%' height='100%'/>
 			  </div>
 			<div className="right1">
-				<h1><big>Warning!!!</big></h1>
+				<h6><big>Warning!!!</big></h6>
         <h4>
-        This page is only for company access. Unauthorized people are not allowed to access the page
+        This page is only for company access. Unauthorized people are not allowed to access the page.
         </h4>
         <br/><br/>
-        <button className="warning">Wish to continue</button>
+        <button className="warning" href="./pages/Login.js">Wish to continue</button>
 		  </div>
       </div>
     </div>

@@ -31,13 +31,25 @@
 	padding: 25px 40px;
 }
 
-.right1 > h1{
+.right1 > h6{
 	position: relative;
 	padding: 0 0 10px;
 	margin-bottom: 10px;
     color: red;
+	font-size: 30px;
 }
 
+/* .right > h1:after{
+	content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+
+} */
 .right1 > h4{
     background:linear-gradient(to right, red, pink);
     columns: white;

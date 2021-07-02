@@ -16,7 +16,7 @@ function App() {
           <Route path='/about' component={About} />
           <Route path='/contacts' component={Contacts} />
           <Route path='/company' component={Company} />
-          <Route path='/sign-up' component={SignUp} />
+          <Route path='/mobile-app' component={SignUp} />
         </Switch>
         <Footer />
       </Router>
