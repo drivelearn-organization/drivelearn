@@ -97,11 +97,12 @@
     border-radius: 10px;
     font-size: 16px;
     color: #555;
+    margin-bottom: 10px;
   }
   .option option{
     font-size: 16px;
   }
-  .radio{
+  /* .radio{
     display: inline-block;
     padding-right: 70px;
     font-size: 25px;
@@ -115,12 +116,12 @@
     border-radius: 50%;
     cursor:pointer;
     outline: none;
-  }
+  } */
   .regButton{
     display:inline-flex;
   }
-  .submit-btn {
-    border: none;
+  .submit1-btn{
+    border-color: green;
     outline: none;
     background: green;
     font-size: 1rem;
@@ -129,9 +130,15 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    transition: .3s;
   }
-  .reset-btn {
-    border: none;
+  .submit1-btn:hover{
+    background-color: green;
+    color: #fff;
+    border-color: #fff;
+}
+  .reset-btn{
+    border-color: red;
     outline: none;
     background:red;
     font-size: 1rem;
@@ -140,8 +147,16 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 260px;
+    margin-right: 20px;
+    transition: .3s;
   }
+
+  .reset-btn:hover{
+    background-color: red;
+    color: #fff;
+    border-color: #fff;
+}
+
   .forgot-pw {
     color: inherit;
   }
