@@ -19,14 +19,6 @@ function HeroSection() {
         >
           GET STARTED
         </Button>
-        {/* <Button
-          className='btns'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
-          onClick={console.log('hey')}
-        >
-          Button <i className='far fa-play-circle' />
-        </Button> */}
       </div>
     </div>
   );

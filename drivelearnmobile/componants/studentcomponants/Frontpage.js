@@ -136,7 +136,7 @@ const Frontpage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*display navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
@@ -168,12 +168,12 @@ const Frontpage = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
                                         <Text style={styles.modelIndex}>DriveLearn Material</Text>
                                     </TouchableOpacity>
 
                                     {/*Start a Course*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
                                         <Text style={styles.modelIndex}>Start a Course</Text>
                                     </TouchableOpacity>
 
@@ -190,6 +190,36 @@ const Frontpage = ({route,navigation}) => {
                     <View style={styles.nameBox}>
                         <View style={styles.nameView}><Text style={styles.textStyles}>{data.name}</Text></View>
 
+                    </View>
+
+
+
+
+
+
+
+
+
+
+
+                    {/*space for body*/}
+
+
+
+
+
+
+
+                    <View style={styles.newCourceOuterView}>
+                        <View>
+                            <Text style={styles.headerStyle}>Start a Course</Text>
+                        </View>
+
+                        <View>
+                            <Text style={styles.descStyle}>There are several packages suitable for you. Click the start for more details.</Text>
+                        </View>
+
+                        <View style={styles.courceHeaderView}><TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})} style={styles.startButton}><Text>Start</Text></TouchableOpacity></View>
                     </View>
                 </ImageBackground>
             </ScrollView>
@@ -297,7 +327,39 @@ const styles =StyleSheet.create({
         backgroundColor:'#00ff49',
         borderRadius:10
 
+    },
+    newCourceOuterView:{
+        width:'95%',
+        height:150,
+        backgroundColor:'#ffffff20',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        borderRadius:12,
+        marginTop: 20,
+        padding:15,
+    },
+    courceHeaderView:{
+        paddingTop:10,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+    },
+    headerStyle:{
+        color:'white',
+        fontSize:19,
+    },
+    descStyle:{
+        color:'white',
+        paddingTop: 12,
+    },
+    startButton:{
+        backgroundColor:'#32DE3B',
+        width:75,
+        height:35,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:7
     }
+
 
 })
 export default Frontpage;

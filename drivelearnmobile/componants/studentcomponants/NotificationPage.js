@@ -135,7 +135,7 @@ const NotificationPage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*display navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
@@ -167,12 +167,12 @@ const NotificationPage = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
                                         <Text style={styles.modelIndex}>DriveLearn Material</Text>
                                     </TouchableOpacity>
 
                                     {/*Start a Course*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
                                         <Text style={styles.modelIndex}>Start a Course</Text>
                                     </TouchableOpacity>
 
@@ -185,7 +185,7 @@ const NotificationPage = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
-                    {notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  id={notification.notificationId}></NotificationView>)}
+                    {notifications.length===0 ? null : notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  id={notification.notificationId}></NotificationView>)}
                     {/*notification content*/}
 
 
