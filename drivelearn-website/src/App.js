@@ -60,7 +60,7 @@ function App() {
         <div className="header-user__dropdown-box">
         <ul>
             <li><i class="fas fa-sign-out-alt"></i> logout</li>
-            <li><i class="fas fa-tachometer-alt"></i> Dashboardt</li>
+            <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
             
           </ul>
         </div>

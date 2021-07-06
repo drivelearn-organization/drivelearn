@@ -24,9 +24,7 @@ function Navbar({show}) {
                <li>
                     <Link to="/ManageRequest">Manage Request</Link>
                </li>
-               <li>
-                    <Link to="/View">view</Link>
-               </li>
+              
                <li>
                     <Link to="/Settings">Settings</Link>
                </li>

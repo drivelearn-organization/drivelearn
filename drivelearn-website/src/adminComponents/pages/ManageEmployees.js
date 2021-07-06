@@ -1,8 +1,10 @@
 import React from 'react';
 import '../css/ManageEmployees.css';
 import ReactDOM from 'react-dom';
+// import {Link} from 'react-router-dom';
 
 function ManageEmployees() {
+    let url = "/View"
     return (
         <div className ="emp-card-container">
             <form className="searchbar-admin" method="POST">
@@ -36,7 +38,7 @@ function ManageEmployees() {
             <div className="manage-users-name">Hasani</div>
             <div>Active</div>
             <div>Instructor</div>
-            <a href="" className="btn btn-box-active margin-r-s">View</a>
+            <a href="/View" className="btn btn-box-active margin-r-s">View</a>
             <a href="" className="btn btn-box-delete margin-r-s">Deactivated</a>
          
         </div>
@@ -45,7 +47,7 @@ function ManageEmployees() {
             <div className="manage-users-name">Hasani</div>
             <div>Active</div>
             <div>Instructor</div>
-            <a href="" className="btn btn-box-active margin-r-s">View</a>
+            <a href="/View" className="btn btn-box-active margin-r-s">View</a>
             <a href="" className="btn btn-box-delete margin-r-s">Deactivated</a>
          
         </div>
