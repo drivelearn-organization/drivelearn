@@ -54,6 +54,10 @@ public class Car_controler : MonoBehaviour
         {
             ApplyBreaking();
         }
+        else
+        {
+            UpdaterWheels();
+        }
     }
 
     private void ApplyBreaking()
