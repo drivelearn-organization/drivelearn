@@ -1,0 +1,63 @@
+.view-btn{
+    background-color: rgb(65, 211, 65);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    
+  }
+
+
+.view-btn:hover{
+  color: black;
+  cursor: pointer;
+  background-color: yellowgreen;
+}
+
+.title{
+
+padding: 20px;
+border-radius: 10px;
+margin-left: 40px;
+margin-bottom: 0;
+margin-top: 20px;
+font-weight: bold;
+
+}
+
+.message{
+width: 100%;
+padding: 10px;
+margin-left: 40px;
+height: 100px;
+font-weight: bold;
+margin-top: 20px;
+font-size: 20px;
+border-radius: 10px;
+margin-bottom: 50px;
+}
+
+.message:focus{
+    outline: none;
+}
+
+.select-btn {
+    background-color: rgb(65, 211, 65);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    margin-top: 15px;
+}
+
+.select-btn:hover{
+    color: black;
+    cursor: pointer;
+    background-color: yellowgreen;
+  }
