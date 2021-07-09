@@ -4,20 +4,13 @@
     
   }
 
-  .container{
-      width: 100%;
-      min-height: 100vh;
-      background: gray;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
 
   .vehical-form {
       
       background: white;
-      width: 70%;
-      min-height: 95vh;
+      width: 100%;
+      height: 85vh;
+      
 
   }
 
@@ -76,13 +69,15 @@ label{
     padding-left: 50px;
     padding-right: 50px;
     position: absolute;
-    right: 0;
+    right: 10%;
     margin-top: 20px;
     margin-right: 40px;
+    color: white;
 }
 
 .submit-btn:hover{
-    color: white;
+    color: black;
     cursor: pointer;
     background-color: yellowgreen;
 }
+

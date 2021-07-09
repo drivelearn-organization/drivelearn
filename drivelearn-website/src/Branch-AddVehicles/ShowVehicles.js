@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AddVehicles from './AddVehicles';
 import './ShowVehicles.css'
+import UpdateVehicles from './UpdateVehicles';
 
 
 const ShowVehicles = () => {
+
+    const [modal, setModal] = useState(false);
+    const [modal1, setModal1] = useState(false);
+
+    const toggleModal = () => {
+        setModal(!modal);
+    };
+
+    const toggleModal1 = () => {
+        setModal1(!modal1);
+    };
+
+    if (modal) {
+        document.body.classList.add('active-modal')
+    } else {
+        document.body.classList.remove('active-modal')
+    }
+
+    if (modal1) {
+        document.body.classList.add('active-modal')
+    } else {
+        document.body.classList.remove('active-modal')
+    }
+
     return (
         <div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
@@ -23,7 +49,35 @@ const ShowVehicles = () => {
                     </div>
                 </form>
             </div>
-            <div style={{padding: "20px"}}>
+            <div style={{ position: "absolute", right: "5%" }}>
+                <button onClick={toggleModal} className="update-btn">Add New Vehicle</button>
+            </div>
+
+            {modal && (
+                <div className="modal">
+                    <div onClick={toggleModal} className="overlay"></div>
+                    <div className="modal-content">
+                        < AddVehicles />
+                        <button className="close-modal" onClick={toggleModal}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {modal1 && (
+                <div className="modal">
+                    <div onClick={toggleModal1} className="overlay"></div>
+                    <div className="modal-content">
+                        < UpdateVehicles />
+                        <button className="close-modal" onClick={toggleModal1}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            <div style={{ padding: "20px" }}>
                 <h2 style={{ margin: "20px" }}>Vehicle</h2>
 
 
@@ -47,7 +101,7 @@ const ShowVehicles = () => {
                         <td>3</td>
                         <td>Car</td>
                         <td>Available</td>
-                        <td><input type='submit' value='Update' className='update-btn' /></td>
+                        <td><input type='submit' onClick={toggleModal1} value='Update' className='update-btn' /></td>
                         <td><input type='submit' value='Delete' className='delete-btn' /></td>
                     </tr>
 

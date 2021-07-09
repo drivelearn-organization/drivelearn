@@ -4,7 +4,7 @@ import './AddVehicles.css';
 
 const AddVehicles = () => {
     return (
-        <div className='container'>
+        <div>
             <div className='vehical-form'>
                 <h2 style={{ marginTop: "30px", marginLeft: "40px" }}>Add Vehical</h2>
                 <form>
@@ -55,25 +55,27 @@ const AddVehicles = () => {
                     </div>
 
 
-                    <div className='a' style={{ width: "42%" }}>
-                        <div className='detail-input'>
-                            <label>Branch</label>
+                    <div className='double-colum'>
+                        <div className='a'>
+                            <div className='detail-input'>
+                                <label>Branch</label>
 
-                            <div className='input-feild'>
-                                <input type='text' />
+                                <div className='input-feild'>
+                                    <input type='text' />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div className='b'>
+                            <div className='detail-input'>
+                                <label>Chessis No</label>
 
-                    <div className='a' style={{ width: "42%" }} >
-                        <div className='detail-input'>
-                            <label>Chassis Number</label>
-
-                            <div className='input-feild'>
-                                <input type='text' />
+                                <div className='input-feild'>
+                                    <input type='text' />
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                     <h4 style={{ marginLeft: "10px", marginTop: "20px", textAlign: "center" }}>Register Details</h4>
