@@ -57,7 +57,7 @@ const TutionPlayer = ({route, navigation}) => {
   const onStateChange = useCallback((state) => {
     if (state === "ended") {
       setPlaying(false);
-      
+
     }
   }, []);
 
