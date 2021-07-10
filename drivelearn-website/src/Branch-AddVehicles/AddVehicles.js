@@ -25,6 +25,12 @@ const AddVehicles = () => {
         });
     }
 
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        setErrors(Validation(value));
+        setDataIsCorrect(true);
+      }
+
     return (
         <div>
             <div className='vehical-form'>
@@ -153,7 +159,7 @@ const AddVehicles = () => {
                     </div>
 
                     <div style={{ position: "relative" }}>
-                        <input className="submit-btn" type='submit' value='Add' />
+                        <input className="submit-btn" type='submit' value='Add' onClick={handleFormSubmit} />
                     </div>
 
                 </form>
