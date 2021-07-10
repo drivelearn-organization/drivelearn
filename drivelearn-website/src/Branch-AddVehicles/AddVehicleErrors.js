@@ -31,7 +31,7 @@ const Validation = (value) => {
     }
 
     if(!value.L_ExpireDate){
-        errors.L_ExpireDate="License Expire date< is required."
+        errors.L_ExpireDate="License Expire date is required."
     } 
 
     if(!value.I_StartingDate){
