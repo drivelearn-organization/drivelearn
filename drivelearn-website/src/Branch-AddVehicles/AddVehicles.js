@@ -18,6 +18,9 @@ const AddVehicles = () => {
         
       });
 
+      const [errors, setErrors] =useState({});
+      const [dataIsCorrect, setDataIsCorrect]  = useState(false);
+
       const handleChange = (event) => {
         setValue({
           ...value,
@@ -30,6 +33,12 @@ const AddVehicles = () => {
         setErrors(Validation(value));
         setDataIsCorrect(true);
       }
+
+      useEffect(() => {
+        if(Object.keys(errors).length === 0 && dataIsCorrect){
+          submitForm(true);
+        }
+      }, [errors]);
 
     return (
         <div>
