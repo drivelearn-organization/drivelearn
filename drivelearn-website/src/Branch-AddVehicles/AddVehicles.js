@@ -18,6 +18,13 @@ const AddVehicles = () => {
         
       });
 
+      const handleChange = (event) => {
+        setValue({
+          ...value,
+          [event.target.name]: event.target.value,
+        });
+    }
+
     return (
         <div>
             <div className='vehical-form'>
@@ -29,7 +36,7 @@ const AddVehicles = () => {
                                 <label>Vehical No</label>
 
                                 <div className='input-feild'>
-                                    <input type='text' name='VehicleNo' />
+                                    <input type='text' name='VehicleNo' value={value.VehicleNo} onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +46,7 @@ const AddVehicles = () => {
                                 <label>Starting Mileage</label>
 
                                 <div className='input-feild'>
-                                    <input type='text' name='StartingMileage' />
+                                    <input type='text' name='StartingMileage' value={value.StartingMileage} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>
@@ -52,7 +59,7 @@ const AddVehicles = () => {
                                 <label>Register Date</label>
 
                                 <div className='input-feild'>
-                                    <input type='text' name='RegisterDate' />
+                                    <input type='text' name='RegisterDate' value={value.RegisterDate} onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +69,7 @@ const AddVehicles = () => {
                                 <label>Vehical type</label>
 
                                 <div className='input-feild'>
-                                    <input type='text' name='VehicleType' />
+                                    <input type='text' name='VehicleType' value={value.VehicleType} onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +83,7 @@ const AddVehicles = () => {
                                 <label>Branch</label>
 
                                 <div className='input-feild'>
-                                    <input type='text' name='Branch' />
+                                    <input type='text' name='Branch' value={value.Branch} onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +93,7 @@ const AddVehicles = () => {
                                 <label>Chessis No</label>
 
                                 <div className='input-feild'>
-                                    <input type='text' name='ChessisNo' />
+                                    <input type='text' name='ChessisNo' value={value.ChessisNo} onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +108,7 @@ const AddVehicles = () => {
                                     <label>License starting date</label>
 
                                     <div className='input-feild'>
-                                        <input type='date' name='L_StartingDate' />
+                                        <input type='date' name='L_StartingDate' value={value.L_StartingDate} onChange={handleChange} />
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +118,7 @@ const AddVehicles = () => {
                                     <label>License expire date</label>
 
                                     <div className='input-feild'>
-                                        <input type='date' name="L_ExpireDate" />
+                                        <input type='date' name="L_ExpireDate" value={value.L_ExpireDate} onChange={handleChange} />
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +132,7 @@ const AddVehicles = () => {
                                     <label>Insurance starting date</label>
 
                                     <div className='input-feild'>
-                                        <input type='date' name='I_StartingDate' />
+                                        <input type='date' name='I_StartingDate' value={value.I_StartingDate} onChange={handleChange}/>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +142,7 @@ const AddVehicles = () => {
                                     <label>Insurance expire date</label>
 
                                     <div className='input-feild'>
-                                        <input type='date' name='I_ExpireDate' />
+                                        <input type='date' name='I_ExpireDate' value={value.I_ExpireDate} onChange={handleChange}/>
                                     </div>
                                 </div>
                             </div>
