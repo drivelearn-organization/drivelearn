@@ -1,16 +1,15 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
-import com.example.drivelearnbackend.Repositories.BranchRepository;
-import com.example.drivelearnbackend.Repositories.EmployeeRepository;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
-import com.example.drivelearnbackend.Repositories.UserRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +25,12 @@ public class EmployeeService {
 
     @Autowired
     private BranchRepository branchRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
+
+    @Autowired
+    private UserReceiveNotificationRepository userReceiveNotificationRepository;
 
     public void addTrainer(EmployeeDTO dto){
 
@@ -44,7 +49,10 @@ public class EmployeeService {
         LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
         LinkedList<Notification> sentMessage=new LinkedList<>();
 
-        userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), userReceiveNotifications,sentMessage));
+        User user=userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), userReceiveNotifications,sentMessage));
+
+        Notification notification=notificationRepository.findById(85).get();
+        userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
     }
 
     public boolean isAccouuntAvailable(EmployeeDTO dto){
