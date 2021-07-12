@@ -1,16 +1,15 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
-import com.example.drivelearnbackend.Repositories.BranchRepository;
-import com.example.drivelearnbackend.Repositories.EmployeeRepository;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
-import com.example.drivelearnbackend.Repositories.UserRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +25,12 @@ public class EmployeeService {
 
     @Autowired
     private BranchRepository branchRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
+
+    @Autowired
+    private UserReceiveNotificationRepository userReceiveNotificationRepository;
 
     public void addTrainer(EmployeeDTO dto){
 
@@ -44,7 +49,10 @@ public class EmployeeService {
         LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
         LinkedList<Notification> sentMessage=new LinkedList<>();
 
-        userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), userReceiveNotifications,sentMessage));
+        User user=userRepository.save(new User(employee.getEmpid(), 2, dto.getUsername(), userReceiveNotifications,sentMessage));
+
+        Notification notification=notificationRepository.findById(85).get();
+        userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
     }
 
     public boolean isAccouuntAvailable(EmployeeDTO dto){
@@ -56,12 +64,23 @@ public class EmployeeService {
             e.printStackTrace();
         }
 
-        List list=repository.findByUsernameAndPassword(dto.getUsername(), pass);
+        LinkedList<Employee> list=repository.findByUsernameAndPassword(dto.getUsername(), pass);
+        boolean temp;
+        boolean ret = false;
         if(list.isEmpty()){
-            return false;
+            temp= false;
         }else {
-            return true;
+            temp= true;
         }
+        for (Employee employee: list) {
+            if(employee.getIsActive()==2){
+                ret=true;
+            }else{
+                ret=false;
+            }
+        }
+
+        return ret && temp;
     }
 
     public boolean isEmplAvailable(String usernane){
@@ -71,5 +90,15 @@ public class EmployeeService {
         }else{
             return false;
         }
+    }
+
+    public EmployeeDTO getEmployee(EmployeeDTO dto){
+        LinkedList<Employee> list=repository.findByUsername(dto.getUsername());
+        Employee employee=null;
+        for (Employee employee1 : list) {
+            employee = employee1;
+        }
+
+        return new EmployeeDTO(employee.getMoNumber(), null, employee.getFullName(), employee.getNid(), null,null,null);
     }
 }
