@@ -85,7 +85,7 @@
   .submit-btn {
     display: block;
     margin-left: auto;
-    border: none;
+    border-color: green;
     outline: none;
     background: green;
     font-size: 1rem;
@@ -95,6 +95,11 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  .submit-btn:hover{
+    background-color: green;
+    color: #fff;
+    border-color: #fff;
+}
   .forgot-pw {
     color: inherit;
   }
