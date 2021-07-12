@@ -56,12 +56,23 @@ public class EmployeeService {
             e.printStackTrace();
         }
 
-        List list=repository.findByUsernameAndPassword(dto.getUsername(), pass);
+        LinkedList<Employee> list=repository.findByUsernameAndPassword(dto.getUsername(), pass);
+        boolean temp;
+        boolean ret = false;
         if(list.isEmpty()){
-            return false;
+            temp= false;
         }else {
-            return true;
+            temp= true;
         }
+        for (Employee employee: list) {
+            if(employee.getIsActive()==2){
+                ret=true;
+            }else{
+                ret=false;
+            }
+        }
+
+        return ret && temp;
     }
 
     public boolean isEmplAvailable(String usernane){
@@ -71,5 +82,15 @@ public class EmployeeService {
         }else{
             return false;
         }
+    }
+
+    public EmployeeDTO getEmployee(EmployeeDTO dto){
+        LinkedList<Employee> list=repository.findByUsername(dto.getUsername());
+        Employee employee=null;
+        for (Employee employee1 : list) {
+            employee = employee1;
+        }
+
+        return new EmployeeDTO(employee.getMoNumber(), null, employee.getFullName(), employee.getNid(), null,null,null);
     }
 }
