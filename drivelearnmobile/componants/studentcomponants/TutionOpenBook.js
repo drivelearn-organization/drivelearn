@@ -82,7 +82,7 @@ const TutionOpenBook = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*Selected Courses*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TutionPlayer',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/play-button.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 

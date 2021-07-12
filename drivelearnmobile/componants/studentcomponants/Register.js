@@ -222,6 +222,8 @@ const isAvail = value => {
                 onSubmit={values => {
                   // formik.resetForm();
                   register(values);
+                  navigation.navigate('Login');
+
                 }}
                 validationSchema={reviewSchema}>
               {props => (
