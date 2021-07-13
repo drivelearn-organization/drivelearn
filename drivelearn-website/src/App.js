@@ -13,6 +13,8 @@ import ManageEmployees from './adminComponents/pages/ManageEmployees';
 import RequestEmplyee from './adminComponents/pages/RequestEmplyee';
 import UserDetailsForm from './adminComponents/pages/UserDetailsForm';
 import ProfileSetting from './adminComponents/pages/ProfileSetting';
+import Login from './Registration-Login/page/Login';
+import Registration from './Registration-Login/page/Registration';
 
 
 // import Home from './homePage/pages/Home';
@@ -22,13 +24,17 @@ import ProfileSetting from './adminComponents/pages/ProfileSetting';
 
 function App() {
   const [showNav, setShownav] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
   
   const handlesetShownav = () => {
     setShownav(!showNav);
   
     
   }
-  
+  const handleetShowDropDown = () => {
+    setShowDropDown(!showDropDown);
+      
+  }
 
  
   return (
@@ -44,23 +50,25 @@ function App() {
         <img className="mylogo" src={'images/LogoBoxWhite.png'} width="60" height="60"/>
         <div className="logoutbox">
         <i class="fas fa-bell"></i>
-        <a  className="logout" href="">
+        <div className="logout" href="">
         
         <div className="dropdown">
           S.H.Nimeshika
         </div>
         <i class="fas fa-user-circle"></i>
-        <i class="fas fa-caret-down"></i>
-        </a>
+        <i onClick={()=>setShowDropDown(!showDropDown)} class="fas fa-caret-down"></i>
+        </div>
         
         </div>
         
         </header> 
-        <div className="header-user__dropdown">
-        <div className="header-user__dropdown-box">
+        <div className='header-user__dropdown'>
+        <div className={showDropDown ? 'header-user__dropdown-box':'header-user__dropdown-box-hide'}>
+        {/* <div className="header-user__dropdown-box"> */}
         <ul>
-            <li><i class="fas fa-sign-out-alt"></i> logout</li>
             <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+            <li><i class="fas fa-sign-out-alt"></i> logout</li>
+            
             
           </ul>
         </div>
@@ -73,8 +81,8 @@ function App() {
         <Navbar show = {showNav}/>
         <div className={showNav ? 'newmain' : 'main'}>
           <Route path="/" exact={true} component={Home}/>
-          <Route path="/AboutUs" exact={true} component={AboutUs}/>
-          <Route path="/ContactUs" exact={true} component={ContactUs}/>
+          <Route path="/Login" exact={true} component={Login}/>
+          <Route path="/Sign up" exact={true} component={Registration}/>
           <Route path="/PaymentDetails" exact={true} component={PaymentDetails}/>
           <Route path="/ManageEmployees" exact={true} component={ManageEmployees}/>
           <Route path="/ManageRequest" exact={true} component={RequestEmplyee}/>

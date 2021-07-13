@@ -1,16 +1,15 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
-import com.example.drivelearnbackend.Repositories.BranchRepository;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
-import com.example.drivelearnbackend.Repositories.StudentRepository;
-import com.example.drivelearnbackend.Repositories.UserRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -24,6 +23,12 @@ public class StudentServices {
 
     @Autowired
     private StudentRepository repository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
+
+    @Autowired
+    private UserReceiveNotificationRepository userReceiveNotificationRepository;
 
     public Student addStudent(StudentDTO dto){
         System.out.println("before the branch search");
@@ -51,11 +56,16 @@ public class StudentServices {
         Student student=repository.save(new Student(dto.getName(),LocalDate.now(), dto.getNid(), dto.getAddress(),date, dto.getUsername(), pass, dto.getContact(), feedbacks,branch,stuSessionList,courceList,paymentList,vechileTypes));
         System.out.println(branch.getBranchName());
 
-        List<UserReceiveNotification> userReceiveNotifications=new ArrayList<>();
-        List<Notification> sentMessage=new ArrayList<>();
+        LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
+        LinkedList<Notification> sentMessage=new LinkedList<>();
 
 
-        userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), userReceiveNotifications,sentMessage));
+        User user=userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), userReceiveNotifications,sentMessage));
+
+//        below part must be adjusted after database implemented
+        Notification notification=notificationRepository.findById(85).get();
+        userReceiveNotificationRepository.save(new UserReceiveNotification(1,LocalDateTime.now(),user,notification));
+//        user.setUserReceiveNotifications(new LinkedList<UserReceiveNotification>().add(new UserReceiveNotification(1, LocalDateTime.now(),user,notificationRepository.findById(50).get())));
         return null;
     }
 

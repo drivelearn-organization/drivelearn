@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,10 @@ public class VechileType {
     @OneToMany(mappedBy = "vechileType")
     @JsonManagedReference
     private List<Vehicle> vehicleList=new ArrayList<>();
+
+    @OneToMany(mappedBy = "vechileType")
+    @JsonManagedReference
+    private List<CourceTypeAssoc> courceTypeAssocList=new ArrayList<>();
 
     public VechileType() {
     }

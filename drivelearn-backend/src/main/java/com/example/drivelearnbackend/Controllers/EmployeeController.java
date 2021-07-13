@@ -33,4 +33,7 @@ public class EmployeeController {
     public boolean isAccountAvailable(@RequestBody EmployeeDTO dto){
         return employeeService.isAccouuntAvailable(dto);
     }
+
+    @PostMapping(value = "/getemployee")
+    public EmployeeDTO getEmployee(@RequestBody EmployeeDTO dto){return employeeService.getEmployee(dto);}
 }

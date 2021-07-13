@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class NontificationService {
@@ -64,5 +62,94 @@ public class NontificationService {
             }
         }
         userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
+    }
+
+    public LinkedList<NotificationDTO> sendAllNotification(NotificationDTO dto){
+        User user = null;
+        LinkedList<User> userList;
+        if(dto.getReceiverUserId()==0){
+            userList=userRepository.findByUsernameAndAndUserType(dto.getReceiverUsername(), dto.getReceiverType());
+            for (User user1 : userList) {
+                user = user1;
+            }
+        }else{
+            userList=userRepository.findByExternalIdAndUserType(dto.getReceiverUserId(),dto.getReceiverType());
+            for (User user1 : userList) {
+                user = user1;
+            }
+            System.out.println(user.getUsername());
+        }
+        List<UserReceiveNotification> userReceiveNotifications= user.getUserReceiveNotifications();
+
+        if(userReceiveNotifications.isEmpty()){
+            return null;
+
+        }else{
+            Comparator<UserReceiveNotification> com =new Comparator<UserReceiveNotification>() {
+                @Override
+                public int compare(UserReceiveNotification userReceiveNotification, UserReceiveNotification t1) {
+                    if(userReceiveNotification.getDate().isAfter(t1.getDate())){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                }
+            };
+
+//        Collections.sort(userReceiveNotifications,com);
+            Collections.reverse(userReceiveNotifications);
+
+
+
+
+            List<NotificationDTO> notificationDTOS=new LinkedList<>();
+
+            for (UserReceiveNotification notification : userReceiveNotifications) {
+                notificationDTOS.add(new NotificationDTO(notification.getAccocId(),notification.getNotification().getHeader(),notification.getNotification().getMessage(),notification.getDate().toLocalDate(),notification.getStatus()));
+            }
+            return (LinkedList<NotificationDTO>) notificationDTOS;
+        }
+
+
+    }
+
+
+    public void changeState(NotificationDTO dto){
+        UserReceiveNotification notification=userReceiveNotificationRepository.findById(dto.getNotificationId()).get();
+        notification.setStatus(2);
+        userReceiveNotificationRepository.save(notification);
+    }
+
+
+    public int countOfUnReadMessages(NotificationDTO dto){
+
+        User user = null;
+        int count=0;
+        LinkedList<User> userList;
+        if(dto.getReceiverUserId()==0){
+            userList=userRepository.findByUsernameAndAndUserType(dto.getReceiverUsername(), dto.getReceiverType());
+            for (User user1 : userList) {
+                user = user1;
+            }
+        }else{
+            userList=userRepository.findByExternalIdAndUserType(dto.getReceiverUserId(),dto.getReceiverType());
+            for (User user1 : userList) {
+                user = user1;
+            }
+            System.out.println(user.getUsername());
+        }
+            List<UserReceiveNotification> userReceiveNotifications= user.getUserReceiveNotifications();
+        if(userReceiveNotifications.isEmpty()){
+            return 0;
+        }else{
+
+            for (UserReceiveNotification notification : userReceiveNotifications) {
+                if(notification.getStatus()==1){
+                    count++;
+                }
+            }
+            return count;
+        }
+
     }
 }

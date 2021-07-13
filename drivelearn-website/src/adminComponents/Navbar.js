@@ -9,10 +9,13 @@ function Navbar({show}) {
                <li>
                     <Link to="/">Home</Link>
                </li>
-               <li>
-                    <Link to="/AbutUs">About us</Link>
+               {/* <li>
+                    <Link to="/Login">Login</Link>
                </li>
-              
+               <li>
+                    <Link to="/Sign up">Sign up</Link>
+               </li> */}
+               
                <li>
                     <Link to="/PaymentDetails">Payment Details</Link>
                </li>

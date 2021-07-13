@@ -14,12 +14,18 @@ const Frontpage = ({route,navigation}) => {
 
     const { username } = route.params;
 
+    // this is the count for notification count
+    const [notificCount,setNotificCount]=useState('0');
+
     // getting student
     let url1=Base+'student/getStudent';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
     useEffect(()=>{
+
+
+        // this is student loading
         fetch(url1, {
             method: 'POST',
             headers: {
@@ -38,6 +44,70 @@ const Frontpage = ({route,navigation}) => {
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
 
+
+
+        // here the notification number calling at the be begining
+        let notificUrl=Base+'notification/unreads';
+        fetch(notificUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                receiverUserId:0,
+                receiverUsername: username,
+                receiverType:3
+
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                //code here
+                if(json<10){
+                    setNotificCount(json.toString());
+                }else if (json>=10){
+                    setNotificCount('9+');
+                }
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+
+
+
+
+        //here is the notification updating
+        const setNotificUpdate=setInterval(()=>{
+            fetch(notificUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    receiverUserId:0,
+                    receiverUsername: username,
+                    receiverType:3
+
+                })
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    //code here
+                    if(json<10){
+                        setNotificCount(json.toString());
+                    }else if (json>=10){
+                        setNotificCount('9+');
+                    }
+                    console.log(json);
+                })
+                .catch((error) => console.error(error))
+
+        },10000);
+
+        return()=>{
+            clearInterval(setNotificUpdate);
+        }
     },[]);
 
 
@@ -59,12 +129,14 @@ const Frontpage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent')}>
-                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}></ImageBackground>
+                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
+                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
+                                    {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
+                                </ImageBackground>
                             </TouchableOpacity>
 
                             {/*display navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
@@ -96,12 +168,12 @@ const Frontpage = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
                                         <Text style={styles.modelIndex}>DriveLearn Material</Text>
                                     </TouchableOpacity>
 
                                     {/*Start a Course*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
                                         <Text style={styles.modelIndex}>Start a Course</Text>
                                     </TouchableOpacity>
 
@@ -118,6 +190,36 @@ const Frontpage = ({route,navigation}) => {
                     <View style={styles.nameBox}>
                         <View style={styles.nameView}><Text style={styles.textStyles}>{data.name}</Text></View>
 
+                    </View>
+
+
+
+
+
+
+
+
+
+
+
+                    {/*space for body*/}
+
+
+
+
+
+
+
+                    <View style={styles.newCourceOuterView}>
+                        <View>
+                            <Text style={styles.headerStyle}>Start a Course</Text>
+                        </View>
+
+                        <View>
+                            <Text style={styles.descStyle}>There are several packages suitable for you. Click the start for more details.</Text>
+                        </View>
+
+                        <View style={styles.courceHeaderView}><TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})} style={styles.startButton}><Text>Start</Text></TouchableOpacity></View>
                     </View>
                 </ImageBackground>
             </ScrollView>
@@ -150,10 +252,12 @@ const styles =StyleSheet.create({
         paddingEnd:10
     },
     iconStyle:{
-        width:20,
-        height:20,
+        width:21,
+        height:21,
         padding:10,
-        margin: 5
+        margin: 5,
+        justifyContent:'center',
+        alignItems:'center'
     },
     modalMainView:{
         flex:1,
@@ -209,7 +313,53 @@ const styles =StyleSheet.create({
         paddingLeft:15,
         // paddingTop:10,
         paddingBottom:15,
+    },
+    notificWarn:{
+        color:'red',
+        fontSize:10,
+        fontWeight:'bold'
+    },
+    notificWarnView:{
+        width:12,
+        height:12,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#00ff49',
+        borderRadius:10
+
+    },
+    newCourceOuterView:{
+        width:'95%',
+        height:150,
+        backgroundColor:'#ffffff20',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        borderRadius:12,
+        marginTop: 20,
+        padding:15,
+    },
+    courceHeaderView:{
+        paddingTop:10,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+    },
+    headerStyle:{
+        color:'white',
+        fontSize:19,
+    },
+    descStyle:{
+        color:'white',
+        paddingTop: 12,
+    },
+    startButton:{
+        backgroundColor:'#32DE3B',
+        width:75,
+        height:35,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:7
     }
+
 
 })
 export default Frontpage;
