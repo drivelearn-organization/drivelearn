@@ -59,8 +59,7 @@ function App() {
         <i onClick={()=>setShowDropDown(!showDropDown)} class="fas fa-caret-down"></i>
         </div>
         
-        </div>
-        
+        </div>       
         </header> 
         <div className='header-user__dropdown'>
         <div className={showDropDown ? 'header-user__dropdown-box':'header-user__dropdown-box-hide'}>

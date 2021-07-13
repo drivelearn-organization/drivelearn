@@ -11,16 +11,16 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "adminId")
+//    @Column(name = "adminId")
     private int adminId;
     private String name;
     private String password;
     private String username;
 
 
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "admin")
-//    private List<Employee> employees=new ArrayList<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "admin")
+    private List<Employee> employees=new ArrayList<>();
 
     public Admin() {
     }
