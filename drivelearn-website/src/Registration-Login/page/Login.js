@@ -6,7 +6,7 @@ import Nav from './../Nav';
 
 function Login() {
     return (
-          <>
+          <div className="login-background">
           <Nav />
           <div className="login-wrapper">
             <form action="" className="form" >
@@ -36,7 +36,7 @@ function Login() {
                 </form>  
             </div>
   </div>  
-  </>
+  </div>
 );
 
 }
