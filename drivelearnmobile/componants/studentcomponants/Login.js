@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
 import {Formik} from 'formik';
 import {Base} from "../../urls/base";
@@ -37,7 +38,12 @@ const Login = ({navigation}) => {
     }).then((response) => response.json())
         .then((json) => {
           console.log( "Login is "+json);
-          navigation.navigate('FrontPageStudent',{username:values.username})
+          if(json){
+            navigation.navigate('FrontPageStudent',{username:values.username})
+          }else{
+            ToastAndroid.show("Invalid login credentials", ToastAndroid.SHORT);
+          }
+
         })
         .catch((error) => {
           console.error(error);
@@ -131,7 +137,7 @@ const Login = ({navigation}) => {
                     <TouchableOpacity
                       style={styles.buttonSubmit}
                       onPress={props.handleSubmit}>
-                      <Text>Change</Text>
+                      <Text>Login</Text>
                     </TouchableOpacity>
                   </View>
                 </View>

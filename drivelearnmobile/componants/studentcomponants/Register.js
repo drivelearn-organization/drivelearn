@@ -168,6 +168,7 @@ const isAvail = value => {
           .catch(error => {
             console.error(error);
           });
+      navigation.navigate('Login');
     }
 
 
@@ -222,6 +223,8 @@ const isAvail = value => {
                 onSubmit={values => {
                   // formik.resetForm();
                   register(values);
+
+
                 }}
                 validationSchema={reviewSchema}>
               {props => (

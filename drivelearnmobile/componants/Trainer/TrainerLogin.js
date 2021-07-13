@@ -36,7 +36,10 @@ const TrainerLogin = ({navigation}) => {
       })
     }).then((response) => response.json())
         .then((json) => {
-          console.log('login is '+json);
+          if(json){
+            navigation.navigate('TrainerFrontPage',{username:values.username})
+          }
+          console.log('login is now'+json);
         })
         .catch((error) => {
           console.error(error);
