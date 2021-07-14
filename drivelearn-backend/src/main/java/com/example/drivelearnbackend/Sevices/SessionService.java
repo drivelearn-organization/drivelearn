@@ -1,6 +1,7 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
+import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class SessionService {
 
     @Autowired
     private UserReceiveNotificationRepository  userReceiveNotificationRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     private User giveUser(int id,String username,int userType){
         User user = null;
@@ -61,5 +65,32 @@ public class SessionService {
         Notification notification=notificationRepository.save(new Notification("Assigned for a session", "you are assigned as the the instructor for a training session at "+dto.getDate()+" from "+dto.getStartTime()+" to "+dto.getEndTime(), LocalDate.now(),1,usersReceivedotificaction,null));
         userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),TrainerUser,notification));
 
+    }
+
+    private Branch getUserBranch(int id,String username){
+        System.out.println(username);
+        Student student=null;
+        LinkedList<Student> stuList;
+        if(id==0){
+            stuList=studentRepository.findByUsername(username);
+            for (Student student1 : stuList) {
+                student = student1;
+            }
+        }else{
+            student=studentRepository.findById(id).get();
+        }
+        return student.getBranch();
+    }
+
+    public LinkedList<SessionDTO> getAllSessions(StudentDTO dto){
+        Branch branch =getUserBranch(dto.getStuID(), dto.getUsername());
+        LinkedList<Session> sessions=sessionRepository.findAllByBranch(branch);
+        LinkedList<SessionDTO> retList=new LinkedList<>();
+        for (Session session : sessions) {
+            if(session.getStatus()==1){
+                retList.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(),session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime()));//code to complete
+            }
+        }
+        return retList;
     }
 }

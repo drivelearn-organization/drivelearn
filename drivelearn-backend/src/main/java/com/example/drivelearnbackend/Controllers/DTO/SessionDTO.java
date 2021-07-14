@@ -20,6 +20,18 @@ public class SessionDTO {
     public SessionDTO() {
     }
 
+
+    public SessionDTO(int sessionId, String trainerUsername, LocalDate date, int status, int numOfStudent, String route, String startTime, String endTime) {
+        this.sessionId = sessionId;
+        this.trainerUsername = trainerUsername;
+        this.date = date;
+        this.status = status;
+        this.numOfStudent = numOfStudent;
+        this.route = route;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public int getSessionId() {
         return sessionId;
     }
