@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import {Base} from "../../urls/base";
 import SessionCard from "../common/SessionCard";
+import TrainerSessionCacrd from "../common/TrainerSessionCacrd";
 
 const TrainerFrontPage = ({route,navigation}) => {
     const { username } = route.params;
@@ -169,9 +170,10 @@ const TrainerFrontPage = ({route,navigation}) => {
 
                     {/*space for body*/}
 
+                    <TrainerSessionCacrd></TrainerSessionCacrd>
+                    <TrainerSessionCacrd></TrainerSessionCacrd>
+                    <TrainerSessionCacrd></TrainerSessionCacrd>
 
-                    <SessionCard></SessionCard>
-                    <SessionCard></SessionCard>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
