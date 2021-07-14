@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,12 +14,12 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int sessionId;
-    private Date date;
+    private LocalDate date;
     private int status;
     private int numOfStudent;
     private String route;
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+    private String endTime;
 
     @ManyToOne
     @JsonBackReference
@@ -34,11 +35,15 @@ public class Session {
     @JsonManagedReference
     List<StuSession> stuSessions=new ArrayList<>();
 
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "branch_id", referencedColumnName = "branchid")
+    private Branch branch;
+
     public Session() {
     }
 
-    public Session(int sessionId, Date date, int status, int numOfStudent, String route, Date startTime, Date endTime, Employee trainer, Employee assigner, List<StuSession> stuSessions) {
-        this.sessionId = sessionId;
+    public Session(LocalDate date, int status, int numOfStudent, String route, String startTime, String endTime, Employee trainer, Employee assigner) {
         this.date = date;
         this.status = status;
         this.numOfStudent = numOfStudent;
@@ -47,7 +52,26 @@ public class Session {
         this.endTime = endTime;
         this.trainer = trainer;
         this.assigner = assigner;
-        this.stuSessions = stuSessions;
+    }
+
+    public Session(LocalDate date, int status, int numOfStudent, String route, String startTime, String endTime, Employee trainer, Employee assigner, Branch branch) {
+        this.date = date;
+        this.status = status;
+        this.numOfStudent = numOfStudent;
+        this.route = route;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.trainer = trainer;
+        this.assigner = assigner;
+        this.branch = branch;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public int getSessionId() {
@@ -58,11 +82,11 @@ public class Session {
         this.sessionId = sessionId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -90,19 +114,19 @@ public class Session {
         this.route = route;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

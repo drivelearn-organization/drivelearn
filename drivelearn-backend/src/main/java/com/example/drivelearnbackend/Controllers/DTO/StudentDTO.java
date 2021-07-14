@@ -14,6 +14,8 @@ public class StudentDTO {
     private String month;
     private String year;
 
+    private int stuID;
+
     public StudentDTO(String name, String address, String nid, String contact, String branch, String username, String password, String day, String month, String year) {
         this.name = name;
         this.address = address;
@@ -48,6 +50,14 @@ public class StudentDTO {
 
     public String getNid() {
         return nid;
+    }
+
+    public int getStuID() {
+        return stuID;
+    }
+
+    public void setStuID(int stuID) {
+        this.stuID = stuID;
     }
 
     public void setNid(String nid) {
