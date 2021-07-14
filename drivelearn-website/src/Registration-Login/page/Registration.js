@@ -6,8 +6,9 @@ import Nav from './../Nav';
 function Registration() {
     return (
 
-         <div>
+         <div className="background">
             <Nav />
+            
             <div className="registration-wrapper">
             <form action="" className="Regform" >
                <h2>Sign Up</h2>

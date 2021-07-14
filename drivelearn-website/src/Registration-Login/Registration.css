@@ -2,12 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  body {
-    background: url('img/bg.jpg') no-repeat center;
-    background-size: cover;
-    font-family: sans-serif;
-  } */
+  }*/
+
+  .background {
+    background-color: #f5f5f5;
+  } 
   .registration-wrapper {
     
     /* height: 75.6vh; */
