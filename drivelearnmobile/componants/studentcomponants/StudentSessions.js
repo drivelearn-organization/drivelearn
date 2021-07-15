@@ -25,6 +25,8 @@ const StudentSessions = ({route,navigation}) => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    const [sessions,setSessions]=useState([]);
+
     useEffect(()=>{
 
 
@@ -108,8 +110,54 @@ const StudentSessions = ({route,navigation}) => {
 
         },10000);
 
+        // initial sesson load
+        let sessionUrl=Base+'session/getallsessions';
+        fetch(sessionUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setSessions(json);
+                console.log(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+
+        // interval cheching for sessiobs
+        const getAllSessions=setInterval(()=>{
+            fetch(sessionUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                })
+            }).then((response) => response.json())
+                .then((json) => {
+                    setSessions(json);
+                    console.log(json);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            },10000
+        );
+
+
         return()=>{
             clearInterval(setNotificUpdate);
+            clearInterval(getAllSessions);
         }
     },[]);
 
@@ -200,15 +248,13 @@ const StudentSessions = ({route,navigation}) => {
 
 
 
-
-
+                    {sessions.map(session=><SessionCard key={session.sessionId.toString()} sessionDetails={session} username={username}></SessionCard>)}
 
 
                     {/*space for body*/}
 
 
-                    <SessionCard></SessionCard>
-                    <SessionCard></SessionCard>
+
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>

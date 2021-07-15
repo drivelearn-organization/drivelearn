@@ -2,13 +2,17 @@ import React, {useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from "react-native";
 
 const SessionCard = (props) => {
-
-    const [id,setId]=useState(0);
-    const [date,setDate]=useState('0000-00-00');
-    const [duration,setDuration]=useState('00.00-00.00');
-    const [stCount,setStCount]=useState(0);
+    const {sessionDetails,username}=props;
+    //sessionDetails.trainerUsername
+    const [id,setId]=useState(sessionDetails.sessionId);
+    const [date,setDate]=useState(sessionDetails.date);
+    const [start,setStart]=useState(sessionDetails.startTime);
+    const [end,setEnd]=useState(sessionDetails.endTime);
+    const [stCount,setStCount]=useState(sessionDetails.numOfStudent);
     const [avail,setAvail]=useState(0);
-    const [indTime,setIndTime]=useState(0);
+    const [trainer,settrainer]=useState(sessionDetails.trainerUsername);
+
+
     return (
         <View style={styles.SessionOuterView}>
             <View style={styles.lableView}>
@@ -17,17 +21,17 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>Time Duration</Text>
                 <Text style={styles.cardText}>Student count</Text>
                 <Text style={styles.cardText}>Available Seats</Text>
-                <Text style={styles.cardText}>Time for one/min</Text>
+                <Text style={styles.cardText}>Trainer</Text>
             </View>
 
 
             <View style={styles.contentView}>
                 <Text style={styles.cardHeader}>#{id}</Text>
                 <Text style={styles.cardText}>{date}</Text>
-                <Text style={styles.cardText}>{duration}</Text>
+                <Text style={styles.cardText}>{start} - {end}</Text>
                 <Text style={styles.cardText}>{stCount}</Text>
                 <Text style={styles.cardText}>{avail}</Text>
-                <Text style={styles.cardText}>{indTime}</Text>
+                <Text style={styles.cardText}>{trainer}</Text>
 
                 <View style={styles.buttonView}>
                     <TouchableOpacity style={styles.proceedButton}><Text>Book session</Text></TouchableOpacity>

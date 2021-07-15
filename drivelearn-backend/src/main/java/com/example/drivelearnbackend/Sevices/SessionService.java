@@ -82,15 +82,20 @@ public class SessionService {
         return student.getBranch();
     }
 
-    public LinkedList<SessionDTO> getAllSessions(StudentDTO dto){
-        Branch branch =getUserBranch(dto.getStuID(), dto.getUsername());
-        LinkedList<Session> sessions=sessionRepository.findAllByBranch(branch);
-        LinkedList<SessionDTO> retList=new LinkedList<>();
+    public LinkedList<SessionDTO> getAllSessions(StudentDTO dto) {
+        Branch branch = getUserBranch(dto.getStuID(), dto.getUsername());
+        LinkedList<Session> sessions = sessionRepository.findAllByBranch(branch);
+        LinkedList<SessionDTO> retList = new LinkedList<>();
         for (Session session : sessions) {
-            if(session.getStatus()==1){
-                retList.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(),session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime()));//code to complete
+            if (session.getStatus() == 1) {
+                retList.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(), session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime()));//code to complete
             }
         }
-        return retList;
+
+        if (retList.isEmpty()) {
+            return null;
+        } else{
+            return retList;
+        }
     }
 }
