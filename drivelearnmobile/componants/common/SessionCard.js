@@ -84,7 +84,7 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>{trainer}</Text>
 
                 <View style={styles.buttonView}>
-                    <TouchableOpacity style={styles.proceedButton}><Text>Book session</Text></TouchableOpacity>
+                    <TouchableOpacity style={stCount-booked<=0?styles.proceedButtonRed:styles.proceedButton} disabled={stCount-booked<=0?true:false}><Text>Book session</Text></TouchableOpacity>
                 </View>
             </View>
 
@@ -123,6 +123,16 @@ const styles=StyleSheet.create({
     },
     proceedButton:{
         backgroundColor: '#32DE3B',
+        height: 35,
+        marginTop: 20,
+        justifyContent:'center',
+        alignItems:'center',
+        width: 100,
+        borderRadius: 7
+
+    },
+    proceedButtonRed:{
+        backgroundColor: 'red',
         height: 35,
         marginTop: 20,
         justifyContent:'center',
