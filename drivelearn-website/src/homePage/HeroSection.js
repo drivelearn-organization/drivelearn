@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './Button';
+// import { Button } from './Button';
 import './HeroSection.css';
 import '../App.css';
 
@@ -12,13 +12,13 @@ function HeroSection() {
       <p>The right driving school is accredited <br /> according to state laws and will prepare <br /> you to be a safe confident driver,<br />
           Driving is a seriuos activity that <br /> requires adequate preparation and practice.</p> 
       <div className='hero-btns'>
-        <Button
+        {/* <Button
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
           GET STARTED
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
