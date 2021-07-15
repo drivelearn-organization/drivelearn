@@ -98,4 +98,14 @@ public class SessionService {
             return retList;
         }
     }
+
+    public int getAvailSeats(int sessionId){
+        Session session=sessionRepository.findById(sessionId).get();
+        int count=0;
+        for (StuSession stuSession : session.getStuSessions()) {
+            count++;
+        }
+
+        return count;
+    }
 }

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {Base} from "../../urls/base";
 
 const SessionCard = (props) => {
     const {sessionDetails,username}=props;
@@ -10,9 +11,58 @@ const SessionCard = (props) => {
     const [end,setEnd]=useState(sessionDetails.endTime);
     const [stCount,setStCount]=useState(sessionDetails.numOfStudent);
     const [avail,setAvail]=useState(0);
+    const [booked,setBooked]=useState(2);
     const [trainer,settrainer]=useState(sessionDetails.trainerUsername);
 
+    useEffect(()=>{
 
+        //initial call of vacancies
+        let bookTestUrl=Base+'session/getavailableseats';
+        fetch(bookTestUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: id
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setBooked(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+
+
+
+        //interval call of vacancies.
+        const vacuncies=setInterval(()=>{
+            fetch(bookTestUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: id
+                })
+            }).then((response) => response.json())
+                .then((json) => {
+                    setBooked(json);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },10000);
+
+        return()=>{
+            clearInterval(vacuncies);
+        }
+    },[]);
     return (
         <View style={styles.SessionOuterView}>
             <View style={styles.lableView}>
@@ -30,7 +80,7 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>{date}</Text>
                 <Text style={styles.cardText}>{start} - {end}</Text>
                 <Text style={styles.cardText}>{stCount}</Text>
-                <Text style={styles.cardText}>{avail}</Text>
+                <Text style={styles.cardText}>{stCount-booked}</Text>
                 <Text style={styles.cardText}>{trainer}</Text>
 
                 <View style={styles.buttonView}>

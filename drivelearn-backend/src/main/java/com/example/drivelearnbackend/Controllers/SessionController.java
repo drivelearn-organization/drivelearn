@@ -45,5 +45,12 @@ public class SessionController {
     public LinkedList<SessionDTO> loadAllSessions(@RequestBody StudentDTO dto){
         return sessionService.getAllSessions(dto);
     }
+    @PostMapping(value = "/getavailableseats")
+    public int getAvailSeatsCount(@RequestBody SessionDTO dto){
+        return sessionService.getAvailSeats(dto.getSessionId());
+    }
+
+
+
 
 }

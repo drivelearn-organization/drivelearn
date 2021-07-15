@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Session {
     @JoinColumn(name = "assigner_id",referencedColumnName = "empid")
     private Employee assigner;
 
-    @OneToMany(mappedBy = "session")
+    @OneToMany(mappedBy = "session",fetch = FetchType.EAGER)
     @JsonManagedReference
     List<StuSession> stuSessions=new ArrayList<>();
 
@@ -150,7 +151,7 @@ public class Session {
         return stuSessions;
     }
 
-    public void setStuSessions(List<StuSession> stuSessions) {
+    public void setStuSessions(LinkedList<StuSession> stuSessions) {
         this.stuSessions = stuSessions;
     }
 }
