@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from "react-native";
 import {Base} from "../../urls/base";
+import ToastAndroid from "react-native/Libraries/Components/ToastAndroid/ToastAndroid";
 
 const SessionCard = (props) => {
     const {sessionDetails,username}=props;
@@ -13,6 +14,31 @@ const SessionCard = (props) => {
     const [avail,setAvail]=useState(0);
     const [booked,setBooked]=useState(2);
     const [trainer,settrainer]=useState(sessionDetails.trainerUsername);
+
+    const bookSession=()=>{
+        let url=Base+'session/book';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                studentUsername: username,
+                sessionId: id
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                if(json){
+                    ToastAndroid.show("The session is booked", ToastAndroid.SHORT);
+                }else{
+                    ToastAndroid.show("The session is already booked by you", ToastAndroid.SHORT);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     useEffect(()=>{
 
@@ -84,7 +110,7 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>{trainer}</Text>
 
                 <View style={styles.buttonView}>
-                    <TouchableOpacity style={stCount-booked<=0?styles.proceedButtonRed:styles.proceedButton} disabled={stCount-booked<=0?true:false}><Text>Book session</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>bookSession()} style={stCount-booked<=0?styles.proceedButtonRed:styles.proceedButton} disabled={stCount-booked<=0?true:false}><Text>Book session</Text></TouchableOpacity>
                 </View>
             </View>
 
