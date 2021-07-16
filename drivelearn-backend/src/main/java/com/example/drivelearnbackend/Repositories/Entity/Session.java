@@ -41,6 +41,12 @@ public class Session {
     @JoinColumn(name = "branch_id", referencedColumnName = "branchid")
     private Branch branch;
 
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "vehicle_type_id", referencedColumnName = "typeId")
+    private VechileType type;
+
     public Session() {
     }
 
@@ -153,5 +159,30 @@ public class Session {
 
     public void setStuSessions(LinkedList<StuSession> stuSessions) {
         this.stuSessions = stuSessions;
+    }
+
+    public void setStuSessions(List<StuSession> stuSessions) {
+        this.stuSessions = stuSessions;
+    }
+
+    public VechileType getType() {
+        return type;
+    }
+
+    public void setType(VechileType type) {
+        this.type = type;
+    }
+
+    public Session(LocalDate date, int status, int numOfStudent, String route, String startTime, String endTime, Employee trainer, Employee assigner, Branch branch, VechileType type) {
+        this.date = date;
+        this.status = status;
+        this.numOfStudent = numOfStudent;
+        this.route = route;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.trainer = trainer;
+        this.assigner = assigner;
+        this.branch = branch;
+        this.type = type;
     }
 }

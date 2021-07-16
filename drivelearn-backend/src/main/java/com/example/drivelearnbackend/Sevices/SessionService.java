@@ -4,6 +4,7 @@ import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
+import com.example.drivelearnbackend.Sevices.Support.VehiclesTypeEn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +39,9 @@ public class SessionService {
     @Autowired
     private StuSessionRepository stuSessionRepository;
 
+    @Autowired
+    private VehicleTypeRepository vehicleTypeRepository;
+
 
     private User giveUser(int id,String username,int userType){
         User user = null;
@@ -58,11 +62,27 @@ public class SessionService {
         return user;
     }
 
+    private VechileType giveVehicleType(String name){
+        if(name=="car_auto"){
+            return vehicleTypeRepository.findById(1).get();
+        }else if(name=="wheeler"){
+            return vehicleTypeRepository.findById(2).get();
+        }else if(name=="bike"){
+            return vehicleTypeRepository.findById(3).get();
+        }else if(name=="heavy"){
+            return vehicleTypeRepository.findById(4).get();
+        }else if(name=="car_manual"){
+            return vehicleTypeRepository.findById(6).get();
+        }else {
+            return vehicleTypeRepository.findById(5).get();
+        }
+    }
+
     public void addSession(SessionDTO dto){
         Employee manager=employeeRepository.findById(dto.getManagerId()).get();
         Employee trainer=employeeRepository.findById(dto.getTrainerId()).get();
 
-        sessionRepository.save(new Session(dto.getDate(),1, dto.getNumOfStudent(), dto.getRoute(), dto.getStartTime(), dto.getEndTime(), trainer,manager, manager.getBranch()));
+        sessionRepository.save(new Session(dto.getDate(),1, dto.getNumOfStudent(), dto.getRoute(), dto.getStartTime(), dto.getEndTime(), trainer,manager, manager.getBranch(),giveVehicleType(dto.getVehicleType())));
 
         User TrainerUser=giveUser(dto.getTrainerId(), dto.getTrainerUsername(), 2);
 
@@ -93,7 +113,7 @@ public class SessionService {
         LinkedList<SessionDTO> retList = new LinkedList<>();
         for (Session session : sessions) {
             if (session.getStatus() == 1) {
-                retList.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(), session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime()));//code to complete
+                retList.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(), session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime(),session.getType().getTypeName()));//code to complete
             }
         }
 

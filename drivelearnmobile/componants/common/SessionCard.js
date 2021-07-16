@@ -5,7 +5,8 @@ import ToastAndroid from "react-native/Libraries/Components/ToastAndroid/ToastAn
 
 const SessionCard = (props) => {
     const {sessionDetails,username}=props;
-    //sessionDetails.trainerUsername
+    //sessionDetails.vehicleType
+    const [vehicleType,setVehicleType]=useState(sessionDetails.vehicleType);
     const [id,setId]=useState(sessionDetails.sessionId);
     const [date,setDate]=useState(sessionDetails.date);
     const [start,setStart]=useState(sessionDetails.startTime);
@@ -97,6 +98,7 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>Time Duration</Text>
                 <Text style={styles.cardText}>Student count</Text>
                 <Text style={styles.cardText}>Available Seats</Text>
+                <Text style={styles.cardText}>Vehicle Type</Text>
                 <Text style={styles.cardText}>Trainer</Text>
             </View>
 
@@ -107,6 +109,7 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>{start} - {end}</Text>
                 <Text style={styles.cardText}>{stCount}</Text>
                 <Text style={styles.cardText}>{stCount-booked}</Text>
+                <Text style={styles.cardText}>{vehicleType}</Text>
                 <Text style={styles.cardText}>{trainer}</Text>
 
                 <View style={styles.buttonView}>
@@ -123,7 +126,7 @@ const styles=StyleSheet.create({
         width:'95%',
         marginRight:'2.5%',
         marginLeft:'2.5%',
-        height:250,
+        minHeight:250,
         backgroundColor:'#ffffff20',
         marginTop:15,
         borderRadius:10,
