@@ -50,7 +50,11 @@ public class SessionController {
         return sessionService.getAvailSeats(dto.getSessionId());
     }
 
+    @PostMapping(value = "/book")
+    public boolean bookSession(@RequestBody SessionDTO dto){
+        return sessionService.bookSession(dto);
 
+    }
 
 
 }

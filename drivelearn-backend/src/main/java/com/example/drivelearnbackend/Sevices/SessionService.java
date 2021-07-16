@@ -6,6 +6,7 @@ import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,6 +34,10 @@ public class SessionService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private StuSessionRepository stuSessionRepository;
+
 
     private User giveUser(int id,String username,int userType){
         User user = null;
@@ -107,5 +112,49 @@ public class SessionService {
         }
 
         return count;
+    }
+
+    private Student giveStudent(String username){
+        LinkedList<Student> list=studentRepository.findByUsername(username);
+        Student student=null;
+        for (Student student1 : list) {
+            student = student1;
+        }
+        return student;
+    }
+
+    private Cource giveCource(Student student){
+        List<Cource> cources=student.getCourceList();
+        Cource cource=null;
+        for (Cource cource1 : cources) {
+            if(cource1.getStatus()==0){
+                cource=cource1;
+            }
+        }
+        return cource;
+    }
+
+    private boolean isBookedBefore(Student student,Session session){
+        StuSession stuSession=null;
+        boolean val=false;
+        for (StuSession sessionStuSession : session.getStuSessions()) {
+            if(sessionStuSession.getStudent()==student){
+                val=true;
+            }
+        }
+        return val;
+    }
+
+    @Transactional
+    public boolean bookSession(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        Student student=giveStudent(dto.getStudentUsername());
+        Cource cource=giveCource(student);
+        if(isBookedBefore(student,session)==true){
+            return false;
+        }else{
+            stuSessionRepository.save(new StuSession(session.getDate(),1,session,cource,student));
+            return true;
+        }
     }
 }

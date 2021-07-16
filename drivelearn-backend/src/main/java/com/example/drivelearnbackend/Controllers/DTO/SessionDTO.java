@@ -16,6 +16,7 @@ public class SessionDTO {
 
     private int managerId;
     private int trainerId;
+    private String studentUsername;
 
     public SessionDTO() {
     }
@@ -30,6 +31,14 @@ public class SessionDTO {
         this.route = route;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+
+    public void setStudentUsername(String studentUsername) {
+        this.studentUsername = studentUsername;
     }
 
     public int getSessionId() {
