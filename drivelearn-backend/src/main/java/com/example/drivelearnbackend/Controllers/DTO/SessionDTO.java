@@ -13,9 +13,11 @@ public class SessionDTO {
     private String route;
     private String startTime;
     private String endTime;
+    private String vehicleType;
 
     private int managerId;
     private int trainerId;
+    private String studentUsername;
 
     public SessionDTO() {
     }
@@ -30,6 +32,27 @@ public class SessionDTO {
         this.route = route;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public SessionDTO(int sessionId, String trainerUsername, LocalDate date, int status, int numOfStudent, String route, String startTime, String endTime,String vehicleType) {
+        this.sessionId = sessionId;
+        this.trainerUsername = trainerUsername;
+        this.date = date;
+        this.status = status;
+        this.numOfStudent = numOfStudent;
+        this.route = route;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.vehicleType = vehicleType;
+    }
+
+
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+
+    public void setStudentUsername(String studentUsername) {
+        this.studentUsername = studentUsername;
     }
 
     public int getSessionId() {
@@ -111,5 +134,13 @@ public class SessionDTO {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 }
