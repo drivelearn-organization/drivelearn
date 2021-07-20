@@ -76,4 +76,9 @@ public class SessionController {
         return sessionService.checkStaarted(dto);
     }
 
+    @PostMapping(value = "/trainerssession")
+    public LinkedList<SessionDTO> trainersSessions(@RequestBody SessionDTO dto){
+        return sessionService.trainersSessions(dto);
+    }
+
 }

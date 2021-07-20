@@ -46,3 +46,5 @@
 
 
 ## priorrequirement in vehicle type is wheather the some vehicle need to add prior licence level to complete it
+
+####  @LazyCollection(LazyCollectionOption.FALSE)

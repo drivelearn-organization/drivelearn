@@ -232,4 +232,22 @@ public class SessionService {
             return false;
         }
     }
+
+    public LinkedList<SessionDTO> trainersSessions(SessionDTO dto){
+        Employee employee=null;
+        for (Employee employee1 : employeeRepository.findByUsername(dto.getTrainerUsername())) {
+            employee=employee1;
+        }
+
+        LinkedList<SessionDTO> sessionDTOS=new LinkedList<>();
+        for (Session session : employee.getTrainersSessionList()) {
+            if(session.getStatus()==1){
+                sessionDTOS.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(), session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime(),session.getType().getTypeName()));
+            }
+        }
+
+
+        return sessionDTOS;
+
+    }
 }

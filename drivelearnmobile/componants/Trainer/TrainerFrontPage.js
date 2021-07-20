@@ -12,6 +12,7 @@ import {
 import {Base} from "../../urls/base";
 import SessionCard from "../common/SessionCard";
 import TrainerSessionCacrd from "../common/TrainerSessionCacrd";
+import TrainerSessionCard from "../common/TrainerSessionCard";
 
 const TrainerFrontPage = ({route,navigation}) => {
     const { username } = route.params;
@@ -25,6 +26,7 @@ const TrainerFrontPage = ({route,navigation}) => {
     let url1=Base+'employee/getemployee';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [sessions,setSessions]=useState([]);
 
     useEffect(()=>{
 
@@ -109,6 +111,33 @@ const TrainerFrontPage = ({route,navigation}) => {
 
         },10000);
 
+
+
+
+
+        // load the session data
+        let sessionUrl=Base+'session/trainerssession';
+        fetch(sessionUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                trainerUsername: username,
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setSessions(json);
+                console.log(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+
+
         return()=>{
             clearInterval(setNotificUpdate);
         }
@@ -166,13 +195,10 @@ const TrainerFrontPage = ({route,navigation}) => {
 
 
 
-
+                    {sessions.map(session=><TrainerSessionCard key={session.sessionId.toString()} sessionDetails={session} username={username}></TrainerSessionCard>)}
 
                     {/*space for body*/}
 
-                    <TrainerSessionCacrd></TrainerSessionCacrd>
-                    <TrainerSessionCacrd></TrainerSessionCacrd>
-                    <TrainerSessionCacrd></TrainerSessionCacrd>
 
                 </ImageBackground>
             </ScrollView>
