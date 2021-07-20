@@ -71,6 +71,9 @@ public class SessionController {
         sessionService.endSession(dto);
     }
 
-    
+    @PostMapping(value = "/checkstarted")
+    public boolean checkStarted(@RequestBody SessionDTO dto){
+        return sessionService.checkStaarted(dto);
+    }
 
 }

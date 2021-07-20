@@ -223,4 +223,13 @@ public class SessionService {
         }
 
     }
+
+    public boolean checkStaarted(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        if(session.getStatus()==5){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
