@@ -19,6 +19,10 @@ public class SessionDTO {
     private int trainerId;
     private String studentUsername;
 
+
+    private String laditude;
+    private String longititude;
+
     public SessionDTO() {
     }
 
@@ -46,6 +50,21 @@ public class SessionDTO {
         this.vehicleType = vehicleType;
     }
 
+    public String getLaditude() {
+        return laditude;
+    }
+
+    public void setLaditude(String laditude) {
+        this.laditude = laditude;
+    }
+
+    public String getLongititude() {
+        return longititude;
+    }
+
+    public void setLongititude(String longititude) {
+        this.longititude = longititude;
+    }
 
     public String getStudentUsername() {
         return studentUsername;

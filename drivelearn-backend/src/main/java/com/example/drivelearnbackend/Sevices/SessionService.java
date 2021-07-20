@@ -191,4 +191,12 @@ public class SessionService {
         }
 
     }
+
+    public void startSession(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        session.setStatus(5);
+        session.setLadtitude(dto.getLaditude());
+        session.setLongatitude(dto.getLongititude());
+        sessionRepository.save(session);
+    }
 }

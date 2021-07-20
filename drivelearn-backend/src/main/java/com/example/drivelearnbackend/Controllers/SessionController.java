@@ -61,5 +61,10 @@ public class SessionController {
         return sessionService.viewAllBooking(dto);
     }
 
+    @PostMapping(value = "/start")
+    public void makeStart(@RequestBody SessionDTO dto){
+        sessionService.startSession(dto);
+    }
+
 
 }
