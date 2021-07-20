@@ -66,5 +66,11 @@ public class SessionController {
         sessionService.startSession(dto);
     }
 
+    @PostMapping(value = "/end")
+    public void makeEnd(@RequestBody SessionDTO dto){
+        sessionService.endSession(dto);
+    }
+
+    
 
 }

@@ -198,5 +198,29 @@ public class SessionService {
         session.setLadtitude(dto.getLaditude());
         session.setLongatitude(dto.getLongititude());
         sessionRepository.save(session);
+
+        List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
+        Notification notification=notificationRepository.save(new Notification("Session is started", "The session which session id is "+dto.getSessionId()+" was started just now.", LocalDate.now(),1,usersReceivedotificaction,null));
+
+        for (StuSession stuSession : session.getStuSessions()) {
+            User user=giveUser(stuSession.getStudent().getStuId(),"",3);
+            userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
+        }
+
+    }
+
+    public void endSession(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        session.setStatus(6);
+        sessionRepository.save(session);
+
+        List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
+        Notification notification=notificationRepository.save(new Notification("Session is Ended", "The session which session id is "+dto.getSessionId()+" was ended just now.", LocalDate.now(),1,usersReceivedotificaction,null));
+
+        for (StuSession stuSession : session.getStuSessions()) {
+            User user=giveUser(stuSession.getStudent().getStuId(),"",3);
+            userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
+        }
+
     }
 }
