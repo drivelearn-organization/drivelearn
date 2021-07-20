@@ -136,7 +136,7 @@ const TrainerFrontPage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity >
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerNotification',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
                                     {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
                                 </ImageBackground>

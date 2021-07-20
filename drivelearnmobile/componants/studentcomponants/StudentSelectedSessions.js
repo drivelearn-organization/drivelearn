@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Base} from "../../urls/base";
 import {
     ImageBackground,
     Modal,
@@ -9,10 +10,10 @@ import {
     TouchableWithoutFeedback,
     View
 } from "react-native";
-import {Base} from "../../urls/base";
 import SessionCard from "../common/SessionCard";
+import SelectedSessionCard from "../common/SelectedSessionCard";
 
-const StudentSessions = ({route,navigation}) => {
+const StudentSelectedSessions = ({route,navigation}) => {
     const { username } = route.params;
 
 
@@ -111,7 +112,7 @@ const StudentSessions = ({route,navigation}) => {
         },10000);
 
         // initial sesson load
-        let sessionUrl=Base+'session/getallsessions';
+        let sessionUrl=Base+'session/viewallbooking';
         fetch(sessionUrl, {
             method: 'POST',
             headers: {
@@ -119,7 +120,7 @@ const StudentSessions = ({route,navigation}) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: username,
+                studentUsername: username,
             })
         }).then((response) => response.json())
             .then((json) => {
@@ -134,23 +135,23 @@ const StudentSessions = ({route,navigation}) => {
 
         // interval cheching for sessiobs
         const getAllSessions=setInterval(()=>{
-            fetch(sessionUrl, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username,
-                })
-            }).then((response) => response.json())
-                .then((json) => {
-                    setSessions(json);
-                    console.log(json);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+                fetch(sessionUrl, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentUsername: username,
+                    })
+                }).then((response) => response.json())
+                    .then((json) => {
+                        setSessions(json);
+                        console.log(json);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
             },10000
         );
 
@@ -160,6 +161,7 @@ const StudentSessions = ({route,navigation}) => {
             clearInterval(getAllSessions);
         }
     },[]);
+
 
 
     const [navModal,setNavModal]=useState(false);
@@ -195,7 +197,7 @@ const StudentSessions = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*location navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSelectedSessions',{username:username})}>
+                            <TouchableOpacity>
                                 <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
@@ -248,7 +250,7 @@ const StudentSessions = ({route,navigation}) => {
 
 
 
-                    {sessions.map(session=><SessionCard key={session.sessionId.toString()} sessionDetails={session} username={username}></SessionCard>)}
+                    {sessions.map(session=><SelectedSessionCard key={session.sessionId.toString()} sessionDetails={session} username={username}></SelectedSessionCard>)}
 
 
                     {/*space for body*/}
@@ -259,6 +261,7 @@ const StudentSessions = ({route,navigation}) => {
             </ScrollView>
         </TouchableWithoutFeedback>
     );
+
 };
 
 const styles =StyleSheet.create({
@@ -397,4 +400,4 @@ const styles =StyleSheet.create({
 
 
 });
-export default StudentSessions;
+export default StudentSelectedSessions;

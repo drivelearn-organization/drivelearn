@@ -125,28 +125,21 @@ const TrainerNotification = ({route,navigation}) => {
                         <View style={styles.navbar}>
 
                             {/*home navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerFrontPage',{username:username})} >
                                 <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}></ImageBackground>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerNotification',{username:username})}>
+                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
+
+                                </ImageBackground>
                             </TouchableOpacity>
 
-                            {/*display navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
 
                             {/*location navigation*/}
                             <TouchableOpacity>
-                                <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*central navigation navigation*/}
-                            <TouchableOpacity onPress={()=>setNavModal(true)}>
-                                <ImageBackground source={require('../../asets/icons/menu.png')} style={styles.iconStyle}></ImageBackground>
+                                <ImageBackground source={require('../../asets/icons/user.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
                         </View>
 

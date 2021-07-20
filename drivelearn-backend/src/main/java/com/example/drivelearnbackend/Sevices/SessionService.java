@@ -118,7 +118,7 @@ public class SessionService {
         }
 
         if (retList.isEmpty()) {
-            return null;
+            return retList;
         } else{
             return retList;
         }
@@ -176,5 +176,19 @@ public class SessionService {
             stuSessionRepository.save(new StuSession(session.getDate(),1,session,cource,student));
             return true;
         }
+    }
+
+    public LinkedList<SessionDTO> viewAllBooking(SessionDTO dto){
+        Student student=giveStudent(dto.getStudentUsername());
+        LinkedList<SessionDTO> sessionDTOS=new LinkedList<>();
+        for (StuSession allByStudentAndStatus : stuSessionRepository.findAllByStudentAndStatus(student, 1)) {
+            sessionDTOS.add(new SessionDTO(allByStudentAndStatus.getSession().getSessionId(), allByStudentAndStatus.getSession().getTrainer().getFullName(), allByStudentAndStatus.getSession().getDate(), allByStudentAndStatus.getSession().getStatus(), allByStudentAndStatus.getSession().getNumOfStudent(), allByStudentAndStatus.getSession().getRoute(), allByStudentAndStatus.getSession().getStartTime(), allByStudentAndStatus.getSession().getEndTime(),allByStudentAndStatus.getSession().getType().getTypeName()));
+        }
+        if(sessionDTOS.isEmpty()){
+            return sessionDTOS;
+        }else{
+            return sessionDTOS;
+        }
+
     }
 }
