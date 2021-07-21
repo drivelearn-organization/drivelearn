@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Base} from "../../urls/base";
+import StarRating from 'react-native-star-rating-widget';
+
 import {
-    ImageBackground,
+    ImageBackground, Modal,
     ScrollView,
     StyleSheet,
     Text,
@@ -26,7 +28,15 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
     const [data, setData] = useState([]);
     const [students, setStudenst] = useState([]);
     const [isStart,setIsStart]=useState(3);
-
+    const [visibleFact,setVisibleFact]=useState(false);
+    const [modelId,setModelId]=useState(0);
+    const [start, setStarting] = useState(0);
+    const [end, setEnd] = useState(0);
+    const [reverse, setReverse] = useState(0);
+    const [searBalance, setSearBalance] = useState(0);
+    const [cluchBalance, setCluchBalance] = useState(0);
+    const [gear, setGear] = useState(0);
+    const [maxRating,setMaxRating] = useState([1,2,3,4,5]);
 
     useEffect(()=>{
 
@@ -257,7 +267,10 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
                         <Text style={styles.headStyles}>Students</Text>
                     </View>
 
-                    {students.map(student=><TouchableOpacity key={student.stuID.toString()}><View style={styles.innerViewStyle}>
+                    {students.map(student=><TouchableOpacity onPress={()=>{
+                        setModelId(student.stuID);
+                        setVisibleFact(true);
+                    }} key={student.stuID.toString()}><View style={styles.innerViewStyle}>
                         <Text style={styles.elelmemt}>{student.name}</Text>
                         <Text style={styles.elelmemt}>{student.contact}</Text>
                     </View></TouchableOpacity>)}
@@ -268,6 +281,132 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
                         <TouchableOpacity onPress={()=>startSession()} disabled={isStart===1?true:false} style={isStart===1?styles.startButtonInViewYellow:styles.startButtonInView}><Text>Start</Text></TouchableOpacity>
                         <TouchableOpacity style={styles.endtButtonInView}><Text>End</Text></TouchableOpacity>
                     </View>
+
+                    <Modal visible={visibleFact} transparent={true}>
+                        <TouchableWithoutFeedback onPress={()=>{
+                            setVisibleFact(false);
+                            setStarting(0);
+                            setEnd(0);
+                            setReverse(0);
+                            setSearBalance(0);
+                            setCluchBalance(0);
+                            setGear(0);
+                        }}>
+                            <View style={styles.modBackground}>
+                                <View style={styles.mainContainer}>
+                                    <View style={styles.modelHeader}>
+                                        <Text style={styles.modelHeaderText}>Rate The Student</Text>
+                                    </View>
+
+
+
+                                    {/*start*/}
+                                    <View style={styles.mainRatingView}>
+                                        <Text style={styles.ratingText}>Start   </Text>
+                                        <View style={styles.ratingView}>
+                                            {maxRating.map((rating,key)=>{
+                                                return(
+                                                    <TouchableOpacity key={rating.toString()} activeOpacity={0.7} onPress={()=>setStarting(rating)}>
+                                                        <ImageBackground source={rating<=start?require('../../asets/rating/star_filled.png'):require('../../asets/rating/star_corner.png')} style={styles.starPics}></ImageBackground>
+                                                    </TouchableOpacity>
+                                                )
+                                            })}
+                                        </View>
+                                    </View>
+
+                                    {/*clutch balance*/}
+                                    <View style={styles.mainRatingView}>
+                                        <Text style={styles.ratingText}>Clutch  </Text>
+                                        <View style={styles.ratingView}>
+                                            {maxRating.map((rating,key)=>{
+                                                return(
+                                                    <TouchableOpacity key={rating.toString()} activeOpacity={0.7} onPress={()=>setCluchBalance(rating)}>
+                                                        <ImageBackground source={rating<=cluchBalance?require('../../asets/rating/star_filled.png'):require('../../asets/rating/star_corner.png')} style={styles.starPics}></ImageBackground>
+                                                    </TouchableOpacity>
+                                                )
+                                            })}
+                                        </View>
+                                    </View>
+
+                                    {/*sear balance*/}
+                                    <View style={styles.mainRatingView}>
+                                        <Text style={styles.ratingText}>Stearing</Text>
+                                        <View style={styles.ratingView}>
+                                            {maxRating.map((rating,key)=>{
+                                                return(
+                                                    <TouchableOpacity key={rating.toString()} activeOpacity={0.7} onPress={()=>setSearBalance(rating)}>
+                                                        <ImageBackground source={rating<=searBalance?require('../../asets/rating/star_filled.png'):require('../../asets/rating/star_corner.png')} style={styles.starPics}></ImageBackground>
+                                                    </TouchableOpacity>
+                                                )
+                                            })}
+                                        </View>
+                                    </View>
+
+                                    {/*gear*/}
+                                    <View style={styles.mainRatingView}>
+                                        <Text style={styles.ratingText}>Gear    </Text>
+                                        <View style={styles.ratingView}>
+                                            {maxRating.map((rating,key)=>{
+                                                return(
+                                                    <TouchableOpacity key={rating.toString()} activeOpacity={0.7} onPress={()=>setGear(rating)}>
+                                                        <ImageBackground source={rating<=gear?require('../../asets/rating/star_filled.png'):require('../../asets/rating/star_corner.png')} style={styles.starPics}></ImageBackground>
+                                                    </TouchableOpacity>
+                                                )
+                                            })}
+                                        </View>
+                                    </View>
+
+                                    {/*end*/}
+                                    <View style={styles.mainRatingView}>
+                                        <Text style={styles.ratingText}>End     </Text>
+                                        <View style={styles.ratingView}>
+                                            {maxRating.map((rating,key)=>{
+                                                return(
+                                                    <TouchableOpacity key={rating.toString()} activeOpacity={0.7} onPress={()=>setEnd(rating)}>
+                                                        <ImageBackground source={rating<=end?require('../../asets/rating/star_filled.png'):require('../../asets/rating/star_corner.png')} style={styles.starPics}></ImageBackground>
+                                                    </TouchableOpacity>
+                                                )
+                                            })}
+                                        </View>
+                                    </View>
+
+                                    {/*reverse*/}
+                                    <View style={styles.mainRatingView}>
+                                        <Text style={styles.ratingText}>Reverse </Text>
+                                        <View style={styles.ratingView}>
+                                            {maxRating.map((rating,key)=>{
+                                                return(
+                                                    <TouchableOpacity key={rating.toString()} activeOpacity={0.7} onPress={()=>setReverse(rating)}>
+                                                        <ImageBackground source={rating<=reverse?require('../../asets/rating/star_filled.png'):require('../../asets/rating/star_corner.png')} style={styles.starPics}></ImageBackground>
+                                                    </TouchableOpacity>
+                                                )
+                                            })}
+                                        </View>
+                                    </View>
+
+                                    <View style={styles.filler}></View>
+
+
+                                    <View style={styles.buttonViewForControl}>
+
+                                        <TouchableOpacity   style={styles.startButtonInView}><Text>Rate</Text></TouchableOpacity>
+                                        <TouchableOpacity onPress={()=>{
+                                            setVisibleFact(false);
+                                            setStarting(0);
+                                            setEnd(0);
+                                            setReverse(0);
+                                            setSearBalance(0);
+                                            setCluchBalance(0);
+                                            setGear(0);
+                                        }} style={styles.endtButtonInView}><Text>End</Text></TouchableOpacity>
+                                    </View>
+                                </View>
+
+
+                            </View>
+                        </TouchableWithoutFeedback>
+
+                    </Modal>
 
 
 
@@ -481,6 +620,48 @@ const styles =StyleSheet.create({
         borderRadius:10,
         justifyContent:'center',
         alignItems:'center'
+    },
+    modBackground:{
+        flex:1,
+        backgroundColor:'#ffffff20',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    mainContainer:{
+        width:'95%',
+        minHeight:450,
+        backgroundColor:'#ffffff',
+        borderRadius:10
+    },
+    mainRatingView:{
+        marginTop:10,
+        flexDirection:'row',
+        justifyContent:'space-around',
+    },
+    ratingView:{
+        flexDirection:'row',
+
+    },
+    starPics:{
+        width:30,
+        height:30,
+    },
+    ratingText:{
+        fontSize:20
+    },
+    modelHeader:{
+        width:'100%',
+        height:65,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    modelHeaderText:{
+        fontSize:28,
+        fontWeight:'bold'
+    },
+    filler:{
+        width:'100%',
+        height:20
     }
 
 
