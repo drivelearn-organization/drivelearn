@@ -4,6 +4,7 @@ import antlr.collections.List;
 import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Sevices.SessionService;
+import net.bytebuddy.dynamic.scaffold.MethodGraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,6 +55,35 @@ public class SessionController {
     public boolean bookSession(@RequestBody SessionDTO dto){
         return sessionService.bookSession(dto);
 
+    }
+    @PostMapping(value = "/viewallbooking")
+    public LinkedList<SessionDTO> viewAllBooking(@RequestBody SessionDTO dto){
+        return sessionService.viewAllBooking(dto);
+    }
+
+    @PostMapping(value = "/start")
+    public void makeStart(@RequestBody SessionDTO dto){
+        sessionService.startSession(dto);
+    }
+
+    @PostMapping(value = "/end")
+    public void makeEnd(@RequestBody SessionDTO dto){
+        sessionService.endSession(dto);
+    }
+
+    @PostMapping(value = "/checkstarted")
+    public boolean checkStarted(@RequestBody SessionDTO dto){
+        return sessionService.checkStaarted(dto);
+    }
+
+    @PostMapping(value = "/trainerssession")
+    public LinkedList<SessionDTO> trainersSessions(@RequestBody SessionDTO dto){
+        return sessionService.trainersSessions(dto);
+    }
+
+    @PostMapping(value = "/sessionstudents")
+    public LinkedList<StudentDTO> getSessiosnsStudents(@RequestBody SessionDTO dto){
+        return sessionService.getSessiosnsStudents(dto);
     }
 
 

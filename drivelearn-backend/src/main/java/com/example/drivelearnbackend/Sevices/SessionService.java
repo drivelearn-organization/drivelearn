@@ -8,6 +8,7 @@ import com.example.drivelearnbackend.Sevices.Support.VehiclesTypeEn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -118,7 +119,7 @@ public class SessionService {
         }
 
         if (retList.isEmpty()) {
-            return null;
+            return retList;
         } else{
             return retList;
         }
@@ -176,5 +177,90 @@ public class SessionService {
             stuSessionRepository.save(new StuSession(session.getDate(),1,session,cource,student));
             return true;
         }
+    }
+
+    public LinkedList<SessionDTO> viewAllBooking(SessionDTO dto){
+        Student student=giveStudent(dto.getStudentUsername());
+        LinkedList<SessionDTO> sessionDTOS=new LinkedList<>();
+        for (StuSession allByStudentAndStatus : stuSessionRepository.findAllByStudentAndStatus(student, 1)) {
+            sessionDTOS.add(new SessionDTO(allByStudentAndStatus.getSession().getSessionId(), allByStudentAndStatus.getSession().getTrainer().getFullName(), allByStudentAndStatus.getSession().getDate(), allByStudentAndStatus.getSession().getStatus(), allByStudentAndStatus.getSession().getNumOfStudent(), allByStudentAndStatus.getSession().getRoute(), allByStudentAndStatus.getSession().getStartTime(), allByStudentAndStatus.getSession().getEndTime(),allByStudentAndStatus.getSession().getType().getTypeName()));
+        }
+        if(sessionDTOS.isEmpty()){
+            return sessionDTOS;
+        }else{
+            return sessionDTOS;
+        }
+
+    }
+
+    public void startSession(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        session.setStatus(5);
+        session.setLadtitude(dto.getLaditude());
+        session.setLongatitude(dto.getLongititude());
+        sessionRepository.save(session);
+
+        List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
+        Notification notification=notificationRepository.save(new Notification("Session is started", "The session which session id is "+dto.getSessionId()+" was started just now.", LocalDate.now(),1,usersReceivedotificaction,null));
+
+        for (StuSession stuSession : session.getStuSessions()) {
+            User user=giveUser(stuSession.getStudent().getStuId(),"",3);
+            userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
+        }
+
+    }
+
+    public void endSession(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        session.setStatus(6);
+        sessionRepository.save(session);
+
+        List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
+        Notification notification=notificationRepository.save(new Notification("Session is Ended", "The session which session id is "+dto.getSessionId()+" was ended just now.", LocalDate.now(),1,usersReceivedotificaction,null));
+
+        for (StuSession stuSession : session.getStuSessions()) {
+            User user=giveUser(stuSession.getStudent().getStuId(),"",3);
+            userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
+        }
+
+    }
+
+    public boolean checkStaarted(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        if(session.getStatus()==5){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public LinkedList<SessionDTO> trainersSessions(SessionDTO dto){
+        Employee employee=null;
+        for (Employee employee1 : employeeRepository.findByUsername(dto.getTrainerUsername())) {
+            employee=employee1;
+        }
+
+        LinkedList<SessionDTO> sessionDTOS=new LinkedList<>();
+        for (Session session : employee.getTrainersSessionList()) {
+            if(session.getStatus()==1){
+                sessionDTOS.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(), session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime(),session.getType().getTypeName()));
+            }
+        }
+
+
+        return sessionDTOS;
+
+    }
+    public LinkedList<StudentDTO> getSessiosnsStudents( SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        LinkedList<StudentDTO> list=new LinkedList<>();
+        for (StuSession stuSession : session.getStuSessions()) {
+            if(stuSession.getStatus()==1){
+                list.add(new StudentDTO(stuSession.getStudent().getName(),null,null,stuSession.getStudent().getContact(),null,null,null,null,null,null,stuSession.getStudent().getStuId()));
+            }
+
+        }
+
+        return list;
     }
 }

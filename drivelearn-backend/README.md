@@ -32,6 +32,8 @@
 #### 2-full
 #### 3-closed
 #### 4-posedponed
+#### 5-started
+#### 6-ended
 
 ## status in Course 
 #### 1-start
@@ -44,3 +46,5 @@
 
 
 ## priorrequirement in vehicle type is wheather the some vehicle need to add prior licence level to complete it
+
+####  @LazyCollection(LazyCollectionOption.FALSE)

@@ -140,7 +140,7 @@ const NotificationPage = ({route,navigation}) => {
                             </TouchableOpacity>
 
                             {/*location navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSelectedSessions',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {Base} from "../../urls/base";
 import {
     ImageBackground,
-    Modal,
     ScrollView,
     StyleSheet,
     Text,
@@ -9,11 +9,11 @@ import {
     TouchableWithoutFeedback,
     View
 } from "react-native";
-import {Base} from "../../urls/base";
-import SessionCard from "../common/SessionCard";
+import TrainerSessionCard from "../common/TrainerSessionCard";
+import Geolocation from '@react-native-community/geolocation';
 
-const StudentSessions = ({route,navigation}) => {
-    const { username } = route.params;
+const TrainerSelectedSessionInView = ({route,navigation}) => {
+    const { username,sessionid } = route.params;
 
 
 
@@ -21,11 +21,12 @@ const StudentSessions = ({route,navigation}) => {
     const [notificCount,setNotificCount]=useState('0');
 
     // getting student
-    let url1=Base+'student/getStudent';
+    let url1=Base+'employee/getemployee';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [students, setStudenst] = useState([]);
+    const [isStart,setIsStart]=useState(3);
 
-    const [sessions,setSessions]=useState([]);
 
     useEffect(()=>{
 
@@ -62,7 +63,7 @@ const StudentSessions = ({route,navigation}) => {
             body: JSON.stringify({
                 receiverUserId:0,
                 receiverUsername: username,
-                receiverType:3
+                receiverType:2
 
             })
         })
@@ -92,7 +93,7 @@ const StudentSessions = ({route,navigation}) => {
                 body: JSON.stringify({
                     receiverUserId:0,
                     receiverUsername: username,
-                    receiverType:3
+                    receiverType:2
 
                 })
             })
@@ -110,56 +111,111 @@ const StudentSessions = ({route,navigation}) => {
 
         },10000);
 
-        // initial sesson load
-        let sessionUrl=Base+'session/getallsessions';
-        fetch(sessionUrl, {
+        // this is initial settins of students
+        let stUrl=Base+'session/sessionstudents';
+        fetch(stUrl, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: username,
+                sessionId: sessionid
             })
-        }).then((response) => response.json())
+        })
+            .then((response) => response.json())
             .then((json) => {
-                setSessions(json);
+                setStudenst(json);
                 console.log(json);
             })
-            .catch((error) => {
-                console.error(error);
-            });
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
 
-
-        // interval cheching for sessiobs
-        const getAllSessions=setInterval(()=>{
-            fetch(sessionUrl, {
+        // this is interval setting of students
+        const getSessionStudents=setInterval(()=>{
+            fetch(stUrl, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: username,
+                    sessionId: sessionid
                 })
-            }).then((response) => response.json())
+            })
+                .then((response) => response.json())
                 .then((json) => {
-                    setSessions(json);
+                    setStudenst(json);
                     console.log(json);
                 })
-                .catch((error) => {
-                    console.error(error);
-                });
-            },10000
-        );
+                .catch((error) => console.error(error))
+                .finally(() => setLoading(false));
+        },10000);
+
+
+// check is started or not
+        let checkStarted=Base+'session/checkstarted'
+        fetch(checkStarted, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionid
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                if(json){
+                    setIsStart(1);
+                }
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
+
+
+
 
 
         return()=>{
             clearInterval(setNotificUpdate);
-            clearInterval(getAllSessions);
+            clearInterval(getSessionStudents);
         }
     },[]);
+
+    const startSession=()=>{
+        let lon;
+        let lat;
+        Geolocation.getCurrentPosition(position => {
+            console.log(position);
+            console.log(position.coords.longitude);
+            console.log(position.coords.latitude);
+            lon=position.coords.longitude;
+            lat=position.coords.latitude;
+        })
+        let startSession=Base+'session/start'
+
+        setTimeout(()=>{
+            fetch(startSession, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: sessionid,
+                    laditude:lat+"",
+                    longititude:lon+""
+                })
+            });
+            setIsStart(1);
+        },100)
+
+
+    }
 
 
     const [navModal,setNavModal]=useState(false);
@@ -178,67 +234,40 @@ const StudentSessions = ({route,navigation}) => {
                         <View style={styles.navbar}>
 
                             {/*home navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerFrontPage',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerNotification',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
                                     {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
                                 </ImageBackground>
                             </TouchableOpacity>
 
-                            {/*display navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
 
                             {/*location navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSelectedSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*central navigation navigation*/}
-                            <TouchableOpacity onPress={()=>setNavModal(true)}>
-                                <ImageBackground source={require('../../asets/icons/menu.png')} style={styles.iconStyle}></ImageBackground>
+                            <TouchableOpacity>
+                                <ImageBackground source={require('../../asets/icons/user.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
                         </View>
-
-
                     </View>
 
-                    {/*main nav with modal*/}
+                    <View style={styles.headTopicView}>
+                        <Text style={styles.headStyles}>Students</Text>
+                    </View>
 
-                    <Modal style={styles.modalView} visible={navModal} transparent={true}>
-                        <TouchableWithoutFeedback onPress={()=>setNavModal(false)}>
-                            <View style={styles.modalMainView}>
-                                <View style={styles.modalBox}>
+                    {students.map(student=><TouchableOpacity key={student.stuID.toString()}><View style={styles.innerViewStyle}>
+                        <Text style={styles.elelmemt}>{student.name}</Text>
+                        <Text style={styles.elelmemt}>{student.contact}</Text>
+                    </View></TouchableOpacity>)}
 
-                                    {/*home navigation*/}
-                                    <Text style={styles.modalHeader}>{data.name}</Text>
-                                    <TouchableOpacity>
-                                        <Text style={styles.modelIndex}>Home</Text>
-                                    </TouchableOpacity>
 
-                                    {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
-                                        <Text style={styles.modelIndex}>DriveLearn Material</Text>
-                                    </TouchableOpacity>
+                    <View style={styles.buttonViewForControl}>
 
-                                    {/*Start a Course*/}
-                                    <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
-                                        <Text style={styles.modelIndex}>Start a Course</Text>
-                                    </TouchableOpacity>
-
-                                    {/*profile settings*/}
-                                    <TouchableOpacity>
-                                        <Text style={styles.modelIndex}>Profile Settings</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </Modal>
+                        <TouchableOpacity onPress={()=>startSession()} disabled={isStart===1?true:false} style={isStart===1?styles.startButtonInViewYellow:styles.startButtonInView}><Text>Start</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.endtButtonInView}><Text>End</Text></TouchableOpacity>
+                    </View>
 
 
 
@@ -248,11 +277,9 @@ const StudentSessions = ({route,navigation}) => {
 
 
 
-                    {sessions.map(session=><SessionCard key={session.sessionId.toString()} sessionDetails={session} username={username}></SessionCard>)}
 
 
                     {/*space for body*/}
-
 
 
                 </ImageBackground>
@@ -393,8 +420,69 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
+    },
+    headTopicView:{
+        width:'100%',
+        height:50,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#ffffff27',
+        borderRadius:10
+    },
+    headStyles:{
+        color:'#ffffff',
+        fontSize:24,
+        fontWeight:'bold'
+    },
+    innerViewStyle:{
+        width:'95%',
+        height:45,
+        backgroundColor:'#ffffff20',
+        marginLeft: '2.5%',
+        marginRight: '2.5%',
+        marginTop:10,
+        borderRadius:10,
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    elelmemt:{
+        color:'#ffffff',
+        paddingTop:10,
+        paddingLeft:5,
+        paddingRight:5,
+        fontSize:17
+    },
+    buttonViewForControl:{
+        margin:10,
+        borderRadius:10,
+        flexDirection:'row',
+        justifyContent:'space-around'
+    },
+    startButtonInView:{
+        width:100,
+        height:45,
+        backgroundColor:'#32DE3B',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    endtButtonInView:{
+        width:100,
+        height:45,
+        backgroundColor:'red',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    startButtonInViewYellow:{
+        width:100,
+        height:45,
+        backgroundColor:'yellow',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
     }
 
 
 });
-export default StudentSessions;
+export default TrainerSelectedSessionInView;

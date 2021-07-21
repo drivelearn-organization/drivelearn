@@ -21,6 +21,8 @@ public class Session {
     private String route;
     private String startTime;
     private String endTime;
+    private String ladtitude;
+    private String longatitude;
 
     @ManyToOne
     @JsonBackReference
@@ -184,5 +186,21 @@ public class Session {
         this.assigner = assigner;
         this.branch = branch;
         this.type = type;
+    }
+
+    public String getLadtitude() {
+        return ladtitude;
+    }
+
+    public void setLadtitude(String ladtitude) {
+        this.ladtitude = ladtitude;
+    }
+
+    public String getLongatitude() {
+        return longatitude;
+    }
+
+    public void setLongatitude(String longatitude) {
+        this.longatitude = longatitude;
     }
 }
