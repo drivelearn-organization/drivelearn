@@ -6,7 +6,7 @@ import '../App.css';
 function HeroSection() {
   return (
     <div className='hero-container'>
-      <video src='/videos/video2021.mp4' autoPlay loop muted />
+      <video src='/videos/video2021.mp4'  autoPlay loop muted />
       <h1>DriveLEARN</h1>
       <h5>What are you waiting for?</h5>
       <p>The right driving school is accredited <br /> according to state laws and will prepare <br /> you to be a safe confident driver,<br />
