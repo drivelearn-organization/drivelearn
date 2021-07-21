@@ -8,6 +8,7 @@ import com.example.drivelearnbackend.Sevices.Support.VehiclesTypeEn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -249,5 +250,17 @@ public class SessionService {
 
         return sessionDTOS;
 
+    }
+    public LinkedList<StudentDTO> getSessiosnsStudents( SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        LinkedList<StudentDTO> list=new LinkedList<>();
+        for (StuSession stuSession : session.getStuSessions()) {
+            if(stuSession.getStatus()==1){
+                list.add(new StudentDTO(stuSession.getStudent().getName(),null,null,stuSession.getStudent().getContact(),null,null,null,null,null,null,stuSession.getStudent().getStuId()));
+            }
+
+        }
+
+        return list;
     }
 }

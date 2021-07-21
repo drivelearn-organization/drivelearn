@@ -10,6 +10,7 @@ import {
     View
 } from "react-native";
 import TrainerSessionCard from "../common/TrainerSessionCard";
+import Geolocation from '@react-native-community/geolocation';
 
 const TrainerSelectedSessionInView = ({route,navigation}) => {
     const { username,sessionid } = route.params;
@@ -23,6 +24,8 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
     let url1=Base+'employee/getemployee';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [students, setStudenst] = useState([]);
+    const [isStart,setIsStart]=useState(3);
 
 
     useEffect(()=>{
@@ -108,9 +111,70 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
 
         },10000);
 
+        // this is initial settins of students
+        let stUrl=Base+'session/sessionstudents';
+        fetch(stUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionid
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setStudenst(json);
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
 
+        // this is interval setting of students
+        const getSessionStudents=setInterval(()=>{
+            fetch(stUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: sessionid
+                })
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    setStudenst(json);
+                    console.log(json);
+                })
+                .catch((error) => console.error(error))
+                .finally(() => setLoading(false));
+        },10000);
 
+
+// check is started or not
+        let checkStarted=Base+'session/checkstarted'
+        fetch(checkStarted, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionid
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                if(json){
+                    setIsStart(1);
+                }
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
 
 
@@ -118,8 +182,40 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
 
         return()=>{
             clearInterval(setNotificUpdate);
+            clearInterval(getSessionStudents);
         }
     },[]);
+
+    const startSession=()=>{
+        let lon;
+        let lat;
+        Geolocation.getCurrentPosition(position => {
+            console.log(position);
+            console.log(position.coords.longitude);
+            console.log(position.coords.latitude);
+            lon=position.coords.longitude;
+            lat=position.coords.latitude;
+        })
+        let startSession=Base+'session/start'
+
+        setTimeout(()=>{
+            fetch(startSession, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: sessionid,
+                    laditude:lat+"",
+                    longititude:lon+""
+                })
+            });
+            setIsStart(1);
+        },100)
+
+
+    }
 
 
     const [navModal,setNavModal]=useState(false);
@@ -157,10 +253,21 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
                         </View>
                     </View>
 
+                    <View style={styles.headTopicView}>
+                        <Text style={styles.headStyles}>Students</Text>
+                    </View>
+
+                    {students.map(student=><TouchableOpacity key={student.stuID.toString()}><View style={styles.innerViewStyle}>
+                        <Text style={styles.elelmemt}>{student.name}</Text>
+                        <Text style={styles.elelmemt}>{student.contact}</Text>
+                    </View></TouchableOpacity>)}
 
 
+                    <View style={styles.buttonViewForControl}>
 
-
+                        <TouchableOpacity onPress={()=>startSession()} disabled={isStart===1?true:false} style={isStart===1?styles.startButtonInViewYellow:styles.startButtonInView}><Text>Start</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.endtButtonInView}><Text>End</Text></TouchableOpacity>
+                    </View>
 
 
 
@@ -313,6 +420,67 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
+    },
+    headTopicView:{
+        width:'100%',
+        height:50,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#ffffff27',
+        borderRadius:10
+    },
+    headStyles:{
+        color:'#ffffff',
+        fontSize:24,
+        fontWeight:'bold'
+    },
+    innerViewStyle:{
+        width:'95%',
+        height:45,
+        backgroundColor:'#ffffff20',
+        marginLeft: '2.5%',
+        marginRight: '2.5%',
+        marginTop:10,
+        borderRadius:10,
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    elelmemt:{
+        color:'#ffffff',
+        paddingTop:10,
+        paddingLeft:5,
+        paddingRight:5,
+        fontSize:17
+    },
+    buttonViewForControl:{
+        margin:10,
+        borderRadius:10,
+        flexDirection:'row',
+        justifyContent:'space-around'
+    },
+    startButtonInView:{
+        width:100,
+        height:45,
+        backgroundColor:'#32DE3B',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    endtButtonInView:{
+        width:100,
+        height:45,
+        backgroundColor:'red',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    startButtonInViewYellow:{
+        width:100,
+        height:45,
+        backgroundColor:'yellow',
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
     }
 
 

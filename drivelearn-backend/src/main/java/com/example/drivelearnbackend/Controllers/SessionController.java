@@ -81,4 +81,10 @@ public class SessionController {
         return sessionService.trainersSessions(dto);
     }
 
+    @PostMapping(value = "/sessionstudents")
+    public LinkedList<StudentDTO> getSessiosnsStudents(@RequestBody SessionDTO dto){
+        return sessionService.getSessiosnsStudents(dto);
+    }
+
+
 }

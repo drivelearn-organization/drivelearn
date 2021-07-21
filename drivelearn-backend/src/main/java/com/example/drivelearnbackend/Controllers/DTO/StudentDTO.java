@@ -29,6 +29,20 @@ public class StudentDTO {
         this.year = year;
     }
 
+    public StudentDTO(String name, String address, String nid, String contact, String branch, String username, String password, String day, String month, String year,int stuID) {
+        this.name = name;
+        this.address = address;
+        this.nid = nid;
+        this.contact = contact;
+        this.branch = branch;
+        this.username = username;
+        this.password = password;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.stuID = stuID;
+    }
+
     public StudentDTO() {
     }
 
