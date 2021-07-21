@@ -20,6 +20,7 @@ import TutionPlayer from "../componants/studentcomponants/TutionPlayer";
 import TrainerFrontPage from "../componants/Trainer/TrainerFrontPage";
 import TrainerNotification from "../componants/Trainer/TrainerNotification";
 import StudentSelectedSessions from "../componants/studentcomponants/StudentSelectedSessions";
+import TrainerSelectedSessionInView from "../componants/Trainer/TrainerSelectedSessionInView";
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ function Mainstack() {
         <Stack.Screen name="TrainerFrontPage" component={TrainerFrontPage} options={{headerShown:false}}/>
         <Stack.Screen name="TrainerNotification" component={TrainerNotification} options={{headerShown:false}}/>
         <Stack.Screen name="StudentSelectedSessions" component={StudentSelectedSessions} options={{headerShown:false}}/>
+        <Stack.Screen name="TrainerSelectedSessionInView" component={TrainerSelectedSessionInView} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

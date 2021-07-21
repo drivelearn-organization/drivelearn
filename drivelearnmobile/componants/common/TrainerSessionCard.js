@@ -23,7 +23,7 @@ const TrainerSessionCard = (props) => {
 
     },[]);
     return (
-        <TouchableOpacity style={styles.SessionOuterView}>
+        <View style={styles.SessionOuterView}>
             <View style={styles.lableView}>
                 <Text style={styles.cardHeader}>Session</Text>
                 <Text style={styles.cardText}>Date</Text>
@@ -48,7 +48,7 @@ const TrainerSessionCard = (props) => {
             </View>
 
 
-        </TouchableOpacity>
+        </View>
     );
 };
 

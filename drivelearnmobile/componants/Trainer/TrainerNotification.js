@@ -27,25 +27,25 @@ const TrainerNotification = ({route,navigation}) => {
 
 
         // student loadinig
-        let url1=Base+'student/getStudent';
-        fetch(url1, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username
-            })
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                setData(json)
-                console.log(json);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-
+        // let url1=Base+'student/getStudent';
+        // fetch(url1, {
+        //     method: 'POST',
+        //     headers: {
+        //         Accept: 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         username: username
+        //     })
+        // })
+        //     .then((response) => response.json())
+        //     .then((json) => {
+        //         setData(json)
+        //         console.log(json);
+        //     })
+        //     .catch((error) => console.error(error))
+        //     .finally(() => setLoading(false));
+        //
 
 
         // initial notification loading
