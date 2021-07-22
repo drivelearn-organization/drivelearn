@@ -158,7 +158,7 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
                 .then((response) => response.json())
                 .then((json) => {
                     setStudenst(json);
-                    console.log(json);
+                    // console.log(json);
                 })
                 .catch((error) => console.error(error))
                 .finally(() => setLoading(false));
@@ -188,12 +188,21 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
             .finally(() => setLoading(false));
 
 
+        const makeLocation=setInterval(()=>{
+            console.log("we are in");
+            if(isStart==1){
+
+
+            }
+        },1000);
+
 
 
 
         return()=>{
             clearInterval(setNotificUpdate);
             clearInterval(getSessionStudents);
+            clearInterval(makeLocation);
         }
     },[]);
 
@@ -241,6 +250,28 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
             })
         });
     }
+
+    const clickAddFeedback=()=>{
+        let feedback=Base+'session/addfeedback';
+        fetch(feedback, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                start:start,
+                end:end,
+                reverse:reverse,
+                searingBalance:searBalance,
+                cluchBalance:cluchBalance,
+                gear:gear,
+                sessionId: sessionid,
+                studentId:modelId
+            })
+        });
+    }
+
 
 
     const [navModal,setNavModal]=useState(false);
@@ -404,7 +435,16 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
 
                                     <View style={styles.buttonViewForControl}>
 
-                                        <TouchableOpacity   style={styles.startButtonInView}><Text>Rate</Text></TouchableOpacity>
+                                        <TouchableOpacity disabled={isStart===1?false:true} onPress={()=>{
+                                            clickAddFeedback();
+                                            setVisibleFact(false);
+                                            setStarting(0);
+                                            setEnd(0);
+                                            setReverse(0);
+                                            setSearBalance(0);
+                                            setCluchBalance(0);
+                                            setGear(0);
+                                        }}   style={isStart===1?styles.startButtonInView:styles.startButtonInViewYellow}><Text>Rate</Text></TouchableOpacity>
                                         <TouchableOpacity onPress={()=>{
                                             setVisibleFact(false);
                                             setStarting(0);
