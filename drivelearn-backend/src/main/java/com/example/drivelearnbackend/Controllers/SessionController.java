@@ -97,5 +97,10 @@ public class SessionController {
         sessionService.addLocation(dto);
     }
 
+    @PostMapping(value = "/getlocation")
+    public SessionDTO getLocation(@RequestBody SessionDTO dto){
+        return sessionService.getLocation(dto);
+    }
+
 
 }

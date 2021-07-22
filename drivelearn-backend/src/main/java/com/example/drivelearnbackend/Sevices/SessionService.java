@@ -281,4 +281,10 @@ public class SessionService {
         session.setLongatitude(dto.getLongititude());
         sessionRepository.save(session);
     }
+
+    public SessionDTO getLocation(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        System.out.println(session.getLadtitude()+" / "+session.getLongatitude());
+        return new SessionDTO(session.getLadtitude(),session.getLongatitude());
+    }
 }

@@ -26,6 +26,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
     const [data, setData] = useState([]);
 
     const [sessions,setSessions]=useState([]);
+    const [location,setLocation]=useState([]);
 
     useEffect(()=>{
 
@@ -111,10 +112,53 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
         },10000);
 
 
+        // initial lacation taker initial
+        let location=Base+'session/getlocation';
+        fetch(location, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId:sessionId,
+
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log("here we are writing the latitude",+json.laditude);
+                setLocation(json);
+            })
+            .catch((error) => console.error(error));
+
+
+        const haveLocation=setInterval(()=>{
+            fetch(location, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId:sessionId,
+
+                })
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    console.log("here we are writing the latitude",+json.laditude);
+                    setLocation(json);
+                })
+                .catch((error) => console.error(error));
+
+        }, 10000);
+
 
 
         return()=>{
             clearInterval(setNotificUpdate);
+            clearInterval(haveLocation);
 
         }
     },[]);
