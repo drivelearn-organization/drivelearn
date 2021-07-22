@@ -10,11 +10,10 @@ import {
     TouchableWithoutFeedback,
     View
 } from "react-native";
-import SessionCard from "../common/SessionCard";
 import SelectedSessionCard from "../common/SelectedSessionCard";
 
-const StudentSelectedSessions = ({route,navigation}) => {
-    const { username } = route.params;
+const StudentSelectedSetionMap = ({route,navigation}) => {
+    const { username,sessionId } = route.params;
 
 
 
@@ -111,65 +110,18 @@ const StudentSelectedSessions = ({route,navigation}) => {
 
         },10000);
 
-        // initial sesson load
-        let sessionUrl=Base+'session/viewallbooking';
-        fetch(sessionUrl, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                studentUsername: username,
-            })
-        }).then((response) => response.json())
-            .then((json) => {
-                setSessions(json);
-                console.log(json);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
 
-
-
-        // interval cheching for sessiobs
-        const getAllSessions=setInterval(()=>{
-                fetch(sessionUrl, {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        studentUsername: username,
-                    })
-                }).then((response) => response.json())
-                    .then((json) => {
-                        setSessions(json);
-                        console.log(json);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            },10000
-        );
 
 
         return()=>{
             clearInterval(setNotificUpdate);
-            clearInterval(getAllSessions);
+
         }
     },[]);
 
 
 
     const [navModal,setNavModal]=useState(false);
-
-    const gotomap=(val)=>{
-        navigation.navigate('StudentSelectedSetionMap',{username:username,sessionId:val})
-    }
-
 
     return (
         <TouchableWithoutFeedback >
@@ -253,7 +205,7 @@ const StudentSelectedSessions = ({route,navigation}) => {
 
 
 
-                    {sessions.map(session=><SelectedSessionCard key={session.sessionId.toString()} sessionDetails={session} username={username} gotomap={gotomap}></SelectedSessionCard>)}
+
 
 
                     {/*space for body*/}
@@ -264,8 +216,8 @@ const StudentSelectedSessions = ({route,navigation}) => {
             </ScrollView>
         </TouchableWithoutFeedback>
     );
-
 };
+
 
 const styles =StyleSheet.create({
     imageBac:{
@@ -403,4 +355,4 @@ const styles =StyleSheet.create({
 
 
 });
-export default StudentSelectedSessions;
+export default StudentSelectedSetionMap;
