@@ -190,10 +190,30 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
 
         const makeLocation=setInterval(()=>{
             console.log("we are in");
-            if(isStart==1){
+            let lon;
+            let lat;
+            Geolocation.getCurrentPosition(position => {
+                console.log(position);
+                console.log(position.coords.longitude);
+                console.log(position.coords.latitude);
+                lon=position.coords.longitude;
+                lat=position.coords.latitude;
+            })
+            let startSession=Base+'session/location'
+            fetch(startSession, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: sessionid,
+                    laditude:lat+"",
+                    longititude:lon+""
+                })
+            });
 
 
-            }
         },1000);
 
 

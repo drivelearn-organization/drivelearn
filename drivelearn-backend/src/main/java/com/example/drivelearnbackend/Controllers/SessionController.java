@@ -92,6 +92,10 @@ public class SessionController {
         sessionService.addFeedback(feedbackDTO);
     }
 
+    @PostMapping(value = "/location")
+    public void addLocation(@RequestBody SessionDTO dto){
+        sessionService.addLocation(dto);
+    }
 
 
 }

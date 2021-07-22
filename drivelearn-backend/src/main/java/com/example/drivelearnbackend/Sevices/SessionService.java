@@ -274,4 +274,11 @@ public class SessionService {
         feedbackRepository.save(new Feedback(LocalDate.now(), dto.getStart(), dto.getEnd(), dto.getReverse(), dto.getSearingBalance(), dto.getCluchBalance(), dto.getGear(), student,type));
 
     }
+
+    public void addLocation(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        session.setLadtitude(dto.getLaditude());
+        session.setLongatitude(dto.getLongititude());
+        sessionRepository.save(session);
+    }
 }
