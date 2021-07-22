@@ -200,21 +200,24 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
                 lat=position.coords.latitude;
             })
             let startSession=Base+'session/location'
-            fetch(startSession, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    sessionId: sessionid,
-                    laditude:lat+"",
-                    longititude:lon+""
-                })
-            });
+            setTimeout(()=>{
+                fetch(startSession, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: sessionid,
+                        laditude:lat+"",
+                        longititude:lon+""
+                    })
+                });
+            },100)
 
 
-        },1000);
+
+        },10000);
 
 
 
