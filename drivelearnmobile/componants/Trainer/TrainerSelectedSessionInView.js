@@ -37,6 +37,7 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
     const [cluchBalance, setCluchBalance] = useState(0);
     const [gear, setGear] = useState(0);
     const [maxRating,setMaxRating] = useState([1,2,3,4,5]);
+    const [visibleFact2,setVisibleFact2]=useState(false);
 
     useEffect(()=>{
 
@@ -227,6 +228,20 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
 
     }
 
+    const clickEnd=()=>{
+        let endSession=Base+'session/end';
+        fetch(endSession, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionid
+            })
+        });
+    }
+
 
     const [navModal,setNavModal]=useState(false);
 
@@ -279,7 +294,7 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
                     <View style={styles.buttonViewForControl}>
 
                         <TouchableOpacity onPress={()=>startSession()} disabled={isStart===1?true:false} style={isStart===1?styles.startButtonInViewYellow:styles.startButtonInView}><Text>Start</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.endtButtonInView}><Text>End</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.endtButtonInView} onPress={()=>setVisibleFact2(true)}><Text>End</Text></TouchableOpacity>
                     </View>
 
                     <Modal visible={visibleFact} transparent={true}>
@@ -411,6 +426,33 @@ const TrainerSelectedSessionInView = ({route,navigation}) => {
 
 
 
+                    <Modal visible={visibleFact2} transparent={true}>
+                        <TouchableWithoutFeedback onPress={()=>{setVisibleFact2(false);}}>
+                            <View style={styles.modBackground}>
+                                <View style={styles.mainContainerEx}>
+                                    <View style={styles.modelHeader}>
+                                        <Text style={styles.modelHeaderText}>Rate The Student</Text>
+                                    </View>
+
+
+                                    <View style={styles.filler}><Text style={styles.alertText}>Are you sure. You want to end the session ?</Text></View>
+
+
+                                    <View style={styles.buttonViewForControl}>
+
+                                        <TouchableOpacity onPress={()=>{setVisibleFact2(false);}}  style={styles.startButtonInView}><Text>Cancel</Text></TouchableOpacity>
+                                        <TouchableOpacity  onPress={()=>{
+                                            clickEnd();
+                                            navigation.navigate('TrainerFrontPage',{username:username});
+                                        }} style={styles.endtButtonInView} ><Text>End</Text></TouchableOpacity>
+                                    </View>
+                                </View>
+
+
+                            </View>
+                        </TouchableWithoutFeedback>
+
+                    </Modal>
 
 
 
@@ -660,8 +702,21 @@ const styles =StyleSheet.create({
         fontWeight:'bold'
     },
     filler:{
+        alignItems:'center',
+        justifyContent:'center',
         width:'100%',
-        height:20
+        height:20,
+        marginTop:30,
+        marginBottom:30
+    },
+    mainContainerEx:{
+        width:'95%',
+        minHeight:250,
+        backgroundColor:'#ffffff',
+        borderRadius:10
+    },
+    alertText:{
+        fontSize:16,
     }
 
 

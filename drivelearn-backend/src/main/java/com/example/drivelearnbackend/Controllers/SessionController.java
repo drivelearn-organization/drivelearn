@@ -1,6 +1,7 @@
 package com.example.drivelearnbackend.Controllers;
 
 import antlr.collections.List;
+import com.example.drivelearnbackend.Controllers.DTO.FeedbackDTO;
 import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Sevices.SessionService;
@@ -85,6 +86,12 @@ public class SessionController {
     public LinkedList<StudentDTO> getSessiosnsStudents(@RequestBody SessionDTO dto){
         return sessionService.getSessiosnsStudents(dto);
     }
+
+    @PostMapping(value = "/addfeedback")
+    public void addFeedback(@RequestBody FeedbackDTO feedbackDTO){
+        sessionService.addFeedback(feedbackDTO);
+    }
+
 
 
 }
