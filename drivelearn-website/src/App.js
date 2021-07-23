@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './HomePage/pages/Home';
+// import Footer from './homePage/Footer';
+import Login from './HomePage/pages/Login';
+import Signup from './HomePage/pages/Signup';
+import Administrator from './Administrator/pages/adminDashboard';
+import BranchManager from './BranchManager/pages/managerDashboard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/admin' component={Administrator} />
+          <Route path='/branchmanager' component={BranchManager} />
+        </Switch>
+        {/* <Footer /> */}
+      </Router>
     </div>
   );
 }
