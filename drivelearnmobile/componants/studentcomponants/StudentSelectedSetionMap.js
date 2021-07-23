@@ -12,6 +12,11 @@ import {
 } from "react-native";
 import SelectedSessionCard from "../common/SelectedSessionCard";
 
+import MapboxGL from "@react-native-mapbox-gl/maps";
+
+MapboxGL.setAccessToken("pk.eyJ1IjoiaXN1cnUtbWFsZGVuaXlhIiwiYSI6ImNrcmV5NjR3ODVvc20yb3Fob2RwcHRzOTMifQ.e8EFdkDdDDZtPQj75qg_5w");
+
+
 const StudentSelectedSetionMap = ({route,navigation}) => {
     const { username,sessionId } = route.params;
 
@@ -26,11 +31,11 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
     const [data, setData] = useState([]);
 
     const [sessions,setSessions]=useState([]);
-    const [location,setLocation]=useState([]);
+    const [locations,setLocation]=useState([[-122.0840918,37.4219429]]);
 
     useEffect(()=>{
 
-
+        MapboxGL.setTelemetryEnabled(false);
         // this is student loading
         fetch(url1, {
             method: 'POST',
@@ -128,12 +133,15 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
             .then((response) => response.json())
             .then((json) => {
                 console.log("here we are writing the latitude",+json.laditude);
-                setLocation(json);
+                setLocation([parseFloat(json.longititude),parseFloat(json.laditude)]);
+                // setLocation(json);
+                console.log("this is in the location"+locations);
             })
             .catch((error) => console.error(error));
 
 
         const haveLocation=setInterval(()=>{
+            MapboxGL.setTelemetryEnabled(false);
             fetch(location, {
                 method: 'POST',
                 headers: {
@@ -148,7 +156,9 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                 .then((response) => response.json())
                 .then((json) => {
                     console.log("here we are writing the latitude",+json.laditude);
-                    setLocation(json);
+                    // setLocation(json);
+                    setLocation([parseFloat(json.longititude),parseFloat(json.laditude)]);
+                    console.log("this is in the location"+locations);
                 })
                 .catch((error) => console.error(error));
 
@@ -242,7 +252,22 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                     </Modal>
 
 
+                    <View style={styles.page}>
+                        <View style={styles.container}>
+                            <MapboxGL.MapView
+                                style={styles.map}
+                                zoomLevel={11}
+                                showUserLocation={true}
+                                userTrackingMode={1}
+                            >
+                                {/*<MapboxGL.PointAnnotation*/}
+                                {/*    coordinate={locations}*/}
+                                {/*>*/}
 
+                                {/*</MapboxGL.PointAnnotation>*/}
+                            </MapboxGL.MapView>
+                        </View>
+                    </View>
 
 
 
@@ -395,7 +420,21 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
-    }
+    },
+    page: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F5FCFF"
+    },
+    container: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: "tomato"
+    },
+    map: {
+        flex: 1
+    },
 
 
 });
