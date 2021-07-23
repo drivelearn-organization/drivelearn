@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import './../Signup.css';
+import './../Mobile-app.css';
 import Navbar from '../Navbar';
 
 function MobileApp() {
