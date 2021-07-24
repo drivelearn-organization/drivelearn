@@ -77,7 +77,7 @@ function Signup() {
                </div>
                
                <div className="regButton">
-               <input type="reset" value="Reset" className="reset-btn" />
+               <input type="reset" value="Clear" className="reset-btn" />
                <input type="submit" value="Submit" className="submit1-btn" />
                </div>
                <br/><br/>

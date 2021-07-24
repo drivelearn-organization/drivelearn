@@ -9,9 +9,9 @@ const Navbar = ({sidebarOpen, openSidebar}) => {
         <div className="navbar__left">
         </div>
         <div className="navbar__right">
-          <h5>M.B.A. Ifra</h5>
+          <h5>Ifra15</h5>
           <a href="#">
-          <img width="30" src="images/avatar.svg" alt="" />
+          <img width="30" src="images/avatar.png" alt="" />
           </a>
           <a href="#">
           <i className="fa fa-bell"></i>

@@ -3,6 +3,7 @@ import '../../App.css';
 import './../Dashboard.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import ManagerMain from '../managerMain';
 
 const BranchManager = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -18,10 +19,9 @@ const BranchManager = () => {
  
 return (
   <div className="container">
-     
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      <ManagerMain/>
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-
   </div>
 );
 

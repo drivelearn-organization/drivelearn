@@ -42,7 +42,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
           <a href="#">Vehicles</a>
         </div>
         <div className="sidebar__link">
-          <i className="fa fa-cc-paypal"></i>
+          <i className="fa fa-money"></i>
           <a href="#">Payments</a>
         </div>
         {/* <div className="sidebar__link">
@@ -52,7 +52,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <h2>PROFILE</h2>
         <div className="sidebar__link">
           <i className="fa fa-cog"></i>
-          <a href="#">Settings</a>
+          <a href="./adminsettings">Settings</a>
         </div>
         {/* <div className="sidebar__link">
           <i className="fa fa-user-plus"></i>

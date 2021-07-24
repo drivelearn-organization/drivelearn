@@ -8,6 +8,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <img src='images/LogoWhite.png' alt="Logo" width="50" height="50"/>
           <h1>DriveLEARN</h1>
         </div>
+        &nbsp;&nbsp;&nbsp;
         <div className="closeicon" onClick={ () => closeSidebar()}>
         <i
           className="fa fa-times"
@@ -38,22 +39,22 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
           <a href="#">Vehicles</a>
         </div>
         <div className="sidebar__link">
-          <i className="fa fa-cc-paypal"></i>
+          <i className="fa fa-money"></i>
           <a href="#">Payments</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-clock-o"></i>
           <a href="#">Training Sessions</a>
         </div>
+        {/* <div className="sidebar__link">
+          <i className="fa fa-bell"></i>
+          <a href="#">Notifications</a>
+        </div> */}
         <h2>PROFILE</h2>
         <div className="sidebar__link">
           <i className="fa fa-cog"></i>
-          <a href="#">Settings</a>
+          <a href="./managersettings">Settings</a>
         </div>
-        {/* <div className="sidebar__link">
-          <i className="fa fa-user-plus"></i>
-          <a href="#">Edit Profile</a>
-        </div> */}
         <div className="sidebar__logout">
           <i className="fa fa-power-off"></i>
           <a href="./">Logout</a>
