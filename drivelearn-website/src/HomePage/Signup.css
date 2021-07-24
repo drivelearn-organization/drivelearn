@@ -170,3 +170,15 @@
     color: inherit;
   }
   
+  @media only screen and (max-width: 855px) {
+    .Regform {
+      margin-left : 10px;
+      margin-right: 10px;
+    }
+    .content{
+      width: 300px;
+    }
+    .option{
+      width: 300px; 
+    }
+  }
