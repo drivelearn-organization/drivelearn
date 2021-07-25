@@ -22,20 +22,20 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-tachometer"></i>
-          <a href="./branchmanager">Dashboard</a>
+          <a href="#">Dashboard</a>
         </div>
         <h2>MANAGEMENT</h2>
         <div className="sidebar__link">
           <i className="fa fa-users" aria-hidden="true"></i>
-          <a href="#">Students</a>
+          <a href="./adminstudent">Students</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-secret"></i>
-          <a href="#">Branch Managers</a>
+          <a href="./adminmanager">Branch Managers</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-secret"></i>
-          <a href="#">Instructors</a>
+          <a href="./admininstructor">Instructors</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
