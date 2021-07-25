@@ -10,11 +10,15 @@ import {
     TouchableWithoutFeedback,
     View
 } from "react-native";
-import SessionCard from "../common/SessionCard";
 import SelectedSessionCard from "../common/SelectedSessionCard";
 
-const StudentSelectedSessions = ({route,navigation}) => {
-    const { username } = route.params;
+import MapboxGL from "@react-native-mapbox-gl/maps";
+
+MapboxGL.setAccessToken("pk.eyJ1IjoiaXN1cnUtbWFsZGVuaXlhIiwiYSI6ImNrcmV5NjR3ODVvc20yb3Fob2RwcHRzOTMifQ.e8EFdkDdDDZtPQj75qg_5w");
+
+
+const StudentSelectedSetionMap = ({route,navigation}) => {
+    const { username,sessionId } = route.params;
 
 
 
@@ -27,10 +31,11 @@ const StudentSelectedSessions = ({route,navigation}) => {
     const [data, setData] = useState([]);
 
     const [sessions,setSessions]=useState([]);
+    const [locations,setLocation]=useState([[-122.0840918,37.4219429]]);
 
     useEffect(()=>{
 
-
+        MapboxGL.setTelemetryEnabled(false);
         // this is student loading
         fetch(url1, {
             method: 'POST',
@@ -111,65 +116,66 @@ const StudentSelectedSessions = ({route,navigation}) => {
 
         },10000);
 
-        // initial sesson load
-        let sessionUrl=Base+'session/viewallbooking';
-        fetch(sessionUrl, {
+
+        // initial lacation taker initial
+        let location=Base+'session/getlocation';
+        fetch(location, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                studentUsername: username,
+                sessionId:sessionId,
+
             })
-        }).then((response) => response.json())
+        })
+            .then((response) => response.json())
             .then((json) => {
-                setSessions(json);
-                console.log(json);
+                console.log("here we are writing the latitude",+json.laditude);
+                setLocation([parseFloat(json.longititude),parseFloat(json.laditude)]);
+                // setLocation(json);
+                console.log("this is in the location"+locations);
             })
-            .catch((error) => {
-                console.error(error);
-            });
+            .catch((error) => console.error(error));
 
 
+        const haveLocation=setInterval(()=>{
+            MapboxGL.setTelemetryEnabled(false);
+            fetch(location, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId:sessionId,
 
-        // interval cheching for sessiobs
-        const getAllSessions=setInterval(()=>{
-                fetch(sessionUrl, {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        studentUsername: username,
-                    })
-                }).then((response) => response.json())
-                    .then((json) => {
-                        setSessions(json);
-                        console.log(json);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            },10000
-        );
+                })
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    console.log("here we are writing the latitude",+json.laditude);
+                    // setLocation(json);
+                    setLocation([parseFloat(json.longititude),parseFloat(json.laditude)]);
+                    console.log("this is in the location"+locations);
+                })
+                .catch((error) => console.error(error));
+
+        }, 10000);
+
 
 
         return()=>{
             clearInterval(setNotificUpdate);
-            clearInterval(getAllSessions);
+            clearInterval(haveLocation);
+
         }
     },[]);
 
 
 
     const [navModal,setNavModal]=useState(false);
-
-    const gotomap=(val)=>{
-        navigation.navigate('StudentSelectedSetionMap',{username:username,sessionId:val})
-    }
-
 
     return (
         <TouchableWithoutFeedback >
@@ -246,6 +252,22 @@ const StudentSelectedSessions = ({route,navigation}) => {
                     </Modal>
 
 
+                    <View style={styles.page}>
+                        <View style={styles.container}>
+                            <MapboxGL.MapView
+                                style={styles.map}
+                                zoomLevel={11}
+                                showUserLocation={true}
+                                userTrackingMode={1}
+                            >
+                                {/*<MapboxGL.PointAnnotation*/}
+                                {/*    coordinate={locations}*/}
+                                {/*>*/}
+
+                                {/*</MapboxGL.PointAnnotation>*/}
+                            </MapboxGL.MapView>
+                        </View>
+                    </View>
 
 
 
@@ -253,7 +275,6 @@ const StudentSelectedSessions = ({route,navigation}) => {
 
 
 
-                    {sessions.map(session=><SelectedSessionCard key={session.sessionId.toString()} sessionDetails={session} username={username} gotomap={gotomap}></SelectedSessionCard>)}
 
 
                     {/*space for body*/}
@@ -264,8 +285,8 @@ const StudentSelectedSessions = ({route,navigation}) => {
             </ScrollView>
         </TouchableWithoutFeedback>
     );
-
 };
+
 
 const styles =StyleSheet.create({
     imageBac:{
@@ -399,8 +420,22 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
-    }
+    },
+    page: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F5FCFF"
+    },
+    container: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: "tomato"
+    },
+    map: {
+        flex: 1
+    },
 
 
 });
-export default StudentSelectedSessions;
+export default StudentSelectedSetionMap;

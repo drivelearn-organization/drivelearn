@@ -1,5 +1,6 @@
 package com.example.drivelearnbackend.Sevices;
 
+import com.example.drivelearnbackend.Controllers.DTO.FeedbackDTO;
 import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.*;
@@ -42,6 +43,9 @@ public class SessionService {
 
     @Autowired
     private VehicleTypeRepository vehicleTypeRepository;
+
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
 
     private User giveUser(int id,String username,int userType){
@@ -242,7 +246,7 @@ public class SessionService {
 
         LinkedList<SessionDTO> sessionDTOS=new LinkedList<>();
         for (Session session : employee.getTrainersSessionList()) {
-            if(session.getStatus()==1){
+            if(session.getStatus()==1||session.getStatus()==5){
                 sessionDTOS.add(new SessionDTO(session.getSessionId(), session.getTrainer().getFullName(), session.getDate(), session.getStatus(), session.getNumOfStudent(), session.getRoute(), session.getStartTime(), session.getEndTime(),session.getType().getTypeName()));
             }
         }
@@ -262,5 +266,25 @@ public class SessionService {
         }
 
         return list;
+    }
+
+    public void addFeedback(FeedbackDTO dto){
+        Student student=studentRepository.findById(dto.getStudentId()).get();
+        VechileType type=sessionRepository.findById(dto.getSessionId()).get().getType();
+        feedbackRepository.save(new Feedback(LocalDate.now(), dto.getStart(), dto.getEnd(), dto.getReverse(), dto.getSearingBalance(), dto.getCluchBalance(), dto.getGear(), student,type));
+
+    }
+
+    public void addLocation(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        session.setLadtitude(dto.getLaditude());
+        session.setLongatitude(dto.getLongititude());
+        sessionRepository.save(session);
+    }
+
+    public SessionDTO getLocation(SessionDTO dto){
+        Session session=sessionRepository.findById(dto.getSessionId()).get();
+        System.out.println(session.getLadtitude()+" / "+session.getLongatitude());
+        return new SessionDTO(session.getLadtitude(),session.getLongatitude());
     }
 }

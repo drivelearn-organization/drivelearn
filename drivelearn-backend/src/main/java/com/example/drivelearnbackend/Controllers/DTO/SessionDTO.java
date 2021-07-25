@@ -50,6 +50,12 @@ public class SessionDTO {
         this.vehicleType = vehicleType;
     }
 
+
+    public SessionDTO(String laditude, String longititude) {
+        this.laditude = laditude;
+        this.longititude = longititude;
+    }
+
     public String getLaditude() {
         return laditude;
     }
