@@ -1,104 +1,42 @@
 import React, {useState} from 'react';
 import '../../App.css';
-import './../../BranchManager/Dashboard.css';
-import './../../BranchManager/Profile.css';
-import Navbar from './../../BranchManager/Navbar';
-import Sidebar from './../adminSidebar';
+import './../managerViewStudent.css';
+import Navbar from '../Navbar';
+import Sidebar from '../managerSidebar';
 
 
-const AdminSettings = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const openSidebar = () => {
-     setSidebarOpen(true);
-  };
-
-  const closeSidebar = () => {
-    setSidebarOpen(false);
- };
-
- 
-return (
-  <div className="container">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+const ManagerViewStudents = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+    const openSidebar = () => {
+       setSidebarOpen(true);
+    };
+  
+    const closeSidebar = () => {
+      setSidebarOpen(false);
+   };
+  
+   
+  return (
+    <div className="container">
+        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-    <div className="main__container">
-      {/* <!-- MAIN TITLE STARTS HERE --> */}
-
-      <div className="main__title">
-        <div className="main__greeting">
-          <h1>PROFILE</h1>
-          <p>Ifra15</p>
-        </div>
-      </div>
-
-      {/* <!-- MAIN TITLE ENDS HERE -->
-
-       <!-- CHARTS STARTS HERE --> */}
-      <div className="charts">
-        <div className="charts__left">
-        <div className="charts__left__title">
-            <div>
-              <h1>Administrator of DriveLEARN</h1>
+         <div className="main__container">
+            <div className="main__title">
+                <div className="main__greeting">
+                <h1>View Student</h1>
+                <p> Kalutara Branch</p>
+                </div>
             </div>
-        </div>
-        <div className="charts__left__picture">
-            <center>
-              <div className="picture">
-              <img src="images/avatar.png" alt=""  width="250" height="255"/>
-              </div>
-              <br/>
-              <p>Ifra15</p>
-            </center>
-         </div>
-         <br/><br/>
-          <hr />
-          <br/>
-          <div className="charts__left__title">
-           <div>
-              <p>Change Password</p>
-            </div>
-           </div>
-           <form className="charts__right__cardss">
-            <div className="card-p">
-                <p className="text">Current Password</p>
-                <input className="data" type="password" name="first_name" id="firstname" placeholder="Current Password"  />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            
-            <div className="card-p">
-                <p className="text">New password</p>
-                <input className="data" type="password" name="first_name" id="firstname" placeholder="New Password"  />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-           
-            <div className="card-p">
-                <p className="text">Confirm Password</p>
-                <input className="data" type="Password" name="first_name" id="firstname" placeholder="Confirm Password" />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            <center>
-            <input type="submit" value="Update" className="update-btn" />
-            &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Clear" className="reset1-btn" />
-            </center>
-            </form>
-        </div>
-
-        <div className="charts__right">
+          <center>
+          <div className="charts__rightt">
           <div className="charts__right__title">
             <div>
               <p>Basic Details</p>
             </div>
           </div>
 
-          <form className="charts__right__cardss">
+          <form className="charts__rightt__cardss">
             <div className="card-p">
                 <p className="text">Full Name</p>
                 <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
@@ -160,13 +98,13 @@ return (
             </center>
           </form>
         </div>
-      </div>
-      {/* <!-- CHARTS ENDS HERE --> */}
+        </center>
+        </div>
+      </main>
+        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
-  </main>
-      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-  </div>
-);
-
-}
-export default AdminSettings;
+  );
+  
+  }
+  
+  export default ManagerViewStudents;

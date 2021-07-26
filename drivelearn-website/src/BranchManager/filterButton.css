@@ -9,7 +9,31 @@
   padding: 10px;
   box-shadow: 0 8px 6px -10px #b3c6ff;
 }
-
+.search{
+  display: flex;
+}
+.create-button{
+  margin-left: 245px;
+  margin-top: 10px;
+  color: #9fa3b1;
+  text-align: justify;
+}
+.create_btn > a > i {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #3ea175;
+  background: #fff;
+  border: 1px solid;
+  display: inline-block;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+  transition: 0.3s ease-in-out;
+}
+.create_btn > a > i:active {
+  color: #fff;
+  background: #3ea175;
+}
 .search_box .dropdown{
   width: 150px;
   border-right: 2px solid #dde2f1;

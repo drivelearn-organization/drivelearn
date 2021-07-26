@@ -60,31 +60,38 @@ table>tbody>tr>td>img {
     gap: 10px;
 }
 
-.action_btn> a {
+.action_btn .eye > i {
     text-decoration: none;
-    color: #444;
-    background: #fff;
     border: 1px solid;
     display: inline-block;
-    padding: 7px 20px;
+    color: lightseagreen; 
+    background-color: #fff;
+    padding: 10px;
     font-weight: bold;
     border-radius: 50%;
     transition: 0.3s ease-in-out;
 }
 
-.action_btn>a:nth-child(1) {
-    border-color: #3ea175;;
+.action_btn .eye > i:active {
+    color:#fff; 
+    background-color: lightseagreen;
+}
+.action_btn .trash > i {
+    text-decoration: none;
+    border: 1px solid;
+    display: inline-block;
+    color: red; 
+    background-color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    transition: 0.3s ease-in-out;
 }
 
-.action_btn>a:nth-child(2) {
-    border-color: red;
+.action_btn .trash > i:active {
+    color:#fff; 
+    background-color: red;
 }
-
-.action_btn>a:hover {
-    box-shadow: 0 3px 8px #0003;
-}
-
-
 table>tbody>tr {
     background-color: #fff;
     transition: 0.3s ease-in-out;

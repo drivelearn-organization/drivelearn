@@ -1,16 +1,16 @@
-import './managerMain.css';
+import './../BranchManager/managerMain.css';
 
-const ManagerMain = () => {
+const AdminMain = () => {
    return(
     <main>
     <div className="main__container">
       {/* <!-- MAIN TITLE STARTS HERE --> */}
 
       <div className="main__title">
-        <img src="images/hello.png" alt="" />
+        <img src="images/adminPic.png" alt="" />
         <div className="main__greeting">
           <h1>DriveLEARN</h1>
-          <p> Kalutara Branch</p>
+          <p>Administrator</p>
         </div>
       </div>
 
@@ -20,7 +20,7 @@ const ManagerMain = () => {
       <div className="main__cards">
         <div className="card">
           <i
-            className="fa fa-users fa-2x text-black"
+            className="fa fa-users fa-2x text-black;"
             aria-hidden="true"
           ></i>
           <div className="card_inner">
@@ -28,7 +28,16 @@ const ManagerMain = () => {
             <span className="font-bold text-title">578</span>
           </div>
         </div>
-
+        <div className="card">
+          <i
+            className="fa fa-user-circle-o fa-2x text-black"
+            aria-hidden="true"
+          ></i>
+          <div className="card_inner">
+            <p className="text-primary-p">Branch Managers</p>
+            <span className="font-bold text-title">5</span>
+          </div>
+        </div>
         <div className="card">
           <i className="fa fa-user-secret fa-2x text-black" aria-hidden="true"></i>
           <div className="card_inner">
@@ -44,18 +53,7 @@ const ManagerMain = () => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Vehicles</p>
-            <span className="font-bold text-title">340</span>
-          </div>
-        </div>
-
-        <div className="card">
-          <i
-            className="fa fa-bell fa-2x text-black"
-            aria-hidden="true"
-          ></i>
-          <div className="card_inner">
-            <p className="text-primary-p">Notifications</p>
-            <span className="font-bold text-title">645</span>
+            <span className="font-bold text-title">15</span>
           </div>
         </div>
       </div>
@@ -134,4 +132,4 @@ const ManagerMain = () => {
 
 }
 
-export default ManagerMain;
+export default AdminMain;

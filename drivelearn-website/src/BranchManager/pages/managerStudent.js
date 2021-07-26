@@ -30,8 +30,8 @@ const ManagerStudents = () => {
                 </div>
             </div>
             <br/><br/>
-            <div class="table_responsive">
-             <center>
+            <div className="table_responsive">
+              <div className="search"> 
                <div className="search_box">
                  <div className="dropdown">
                    <div className="default_option">All</div>  
@@ -45,8 +45,16 @@ const ManagerStudents = () => {
                  <input type="text" className="input" placeholder="Search" />
                  <i className="fas fa-search"></i>
                 </div>
+                </div>
+                 <div className="create-button">
+                   <div className="create_btn">
+                     <a href="#"><i className="fa fa-plus-circle"></i></a>
+                     <br/>
+                     <p>Add student</p>
+                   </div>
+                </div>
                </div>
-              </center>
+              
             <br/>
             <table>
               <thead>
@@ -68,9 +76,9 @@ const ManagerStudents = () => {
                      <td>977411236V</td>
                      <td>0767112341</td>
                      <td>
-                     <span class="action_btn">
-                     <a href="#"><i class="fa fa-eye"></i></a>
-                     <a href="#"><i class="fa fa-trash"></i></a>
+                     <span className="action_btn">
+                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                 </tr>
@@ -82,9 +90,9 @@ const ManagerStudents = () => {
                      <td>977411236V</td>
                      <td>0767112341</td>
                      <td>
-                     <span class="action_btn">
-                     <a href="#"><i class="fa fa-eye"></i></a>
-                     <a href="#"><i class="fa fa-trash"></i></a>
+                     <span className="action_btn">
+                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                </tr>
@@ -96,9 +104,9 @@ const ManagerStudents = () => {
                      <td>977411236V</td>
                      <td>0767112341</td>
                      <td>
-                     <span class="action_btn">
-                     <a href="#"><i class="fa fa-eye"></i></a>
-                     <a href="#"><i class="fa fa-trash"></i></a>
+                     <span className="action_btn">
+                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                </tr>
@@ -110,9 +118,9 @@ const ManagerStudents = () => {
                      <td>977411236V</td>
                      <td>0767112341</td>
                      <td>
-                     <span class="action_btn">
-                     <a href="#"><i class="fa fa-eye"></i></a>
-                     <a href="#"><i class="fa fa-trash"></i></a>
+                     <span className="action_btn">
+                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                </tr>
@@ -124,9 +132,9 @@ const ManagerStudents = () => {
                      <td>977411236V</td>
                      <td>0767112341</td>
                      <td>
-                     <span class="action_btn">
-                     <a href="#"><i class="fa fa-eye"></i></a>
-                     <a href="#"><i class="fa fa-trash"></i></a>
+                     <span className="action_btn">
+                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                </tr>
@@ -138,9 +146,9 @@ const ManagerStudents = () => {
                      <td>977411236V</td>
                      <td>0767112341</td>
                      <td>
-                     <span class="action_btn">
-                     <a href="#"><i class="fa fa-eye"></i></a>
-                     <a href="#"><i class="fa fa-trash"></i></a>
+                     <span className="action_btn">
+                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                </tr>
