@@ -45,7 +45,7 @@ const AdminStudents = () => {
                 </div>
                  <div className="create-button">
                    <div className="create_btn">
-                     <a href="#"><i className="fa fa-plus-circle"></i></a>
+                     <a href="./adminaddmanager"><i className="fa fa-plus-circle"></i></a>
                      <br/>
                      <p>Add managers</p>
                    </div>
@@ -74,7 +74,7 @@ const AdminStudents = () => {
                      <td>0767112341</td>
                      <td>
                      <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./adminviewmanager" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
@@ -88,7 +88,7 @@ const AdminStudents = () => {
                      <td>0767112341</td>
                      <td>
                      <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./adminviewmanager" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
@@ -102,7 +102,7 @@ const AdminStudents = () => {
                      <td>0767112341</td>
                      <td>
                      <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./adminviewmanager" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
@@ -116,7 +116,7 @@ const AdminStudents = () => {
                      <td>0767112341</td>
                      <td>
                      <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./adminviewmanager" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
@@ -130,7 +130,7 @@ const AdminStudents = () => {
                      <td>0767112341</td>
                      <td>
                      <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./adminviewmanager" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
@@ -144,7 +144,7 @@ const AdminStudents = () => {
                      <td>0767112341</td>
                      <td>
                      <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./adminviewmanager" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>

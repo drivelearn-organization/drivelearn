@@ -4,7 +4,7 @@ import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 
-const AdminViewInstructors = () => {
+const AdminAddManagers = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
   
     const openSidebar = () => {
@@ -23,7 +23,7 @@ const AdminViewInstructors = () => {
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
-                <h1>View Instructor</h1>
+                <h1>Add Branch Manager</h1>
                 <p>DriveLEARN</p>
                 </div>
             </div>
@@ -38,7 +38,7 @@ const AdminViewInstructors = () => {
           <form className="charts__rightt__cardss">
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="" required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -46,7 +46,7 @@ const AdminViewInstructors = () => {
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="No.65, Kottegoga Road, weligama."  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="" required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -54,7 +54,7 @@ const AdminViewInstructors = () => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="97799541V"  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="" required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -62,7 +62,7 @@ const AdminViewInstructors = () => {
           
             <div className="card-p">
                 <p className="text">Date of Birth</p>
-                <input className="data" type="" Value="15/10/1997" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Date of Birth" required  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -70,7 +70,7 @@ const AdminViewInstructors = () => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="0767333799" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Mobile" required  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -78,17 +78,18 @@ const AdminViewInstructors = () => {
           
             <div className="card-p">
                 <p className="text">Email</p>
-                <input className="data" type="Email" Value="abc@gmail.com" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="Email" Value="" name="first_name" id="firstname" placeholder="Email"  required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
             <div className="card-p">
                 <p className="text">Gender</p>
-                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"   />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+                <select className="option1" name="Register_as" required>
+                <option disabled="disabled" selected="selected">--Choose Option--</option>
+                <option>Male</option>
+                <option>Female</option>
+               </select>
             </div>
             <center>
             <input type="submit" value="Update" className="update-btn" />
@@ -106,4 +107,4 @@ const AdminViewInstructors = () => {
   
   }
   
-  export default AdminViewInstructors;
+  export default AdminAddManagers;

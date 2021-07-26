@@ -17,6 +17,12 @@ import ManagerViewStudents from './BranchManager/pages/managerViewStudent';
 import ManagerViewInstructors from './BranchManager/pages/managerViewInstructor';
 import AdminViewStudents from './Administrator/pages/adminViewStudent';
 import AdminViewInstructors from './Administrator/pages/adminViewInstructor';
+import AdminViewManagers from './Administrator/pages/adminViewManager';
+import ManagerAddStudents from './BranchManager/pages/managerAddStudent';
+import ManagerAddInstructors from './BranchManager/pages/managerAddInstructor';
+import AdminAddStudents from './Administrator/pages/adminAddStudent';
+import AdminAddInstructors from './Administrator/pages/adminAddInstructor';
+import AdminAddManagers from './Administrator/pages/adminAddManager';
 
 function App() {
   return (
@@ -39,6 +45,12 @@ function App() {
           <Route path='/managerviewinstructor' component={ManagerViewInstructors} />
           <Route path='/adminviewstudent' component={AdminViewStudents} />
           <Route path='/adminviewinstructor' component={AdminViewInstructors} />
+          <Route path='/adminviewmanager' component={AdminViewManagers} />
+          <Route path='/manageraddstudent' component={ManagerAddStudents} />
+          <Route path='/manageraddinstructor' component={ManagerAddInstructors} />
+          <Route path='/adminaddstudent' component={AdminAddStudents} />
+          <Route path='/adminaddinstructor' component={AdminAddInstructors} />
+          <Route path='/adminaddmanager' component={AdminAddManagers} />
         </Switch>
         {/* <Footer /> */}
       </Router>

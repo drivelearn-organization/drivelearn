@@ -4,7 +4,7 @@ import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 
-const AdminViewInstructors = () => {
+const AdminViewManagers = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
   
     const openSidebar = () => {
@@ -23,7 +23,7 @@ const AdminViewInstructors = () => {
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
-                <h1>View Instructor</h1>
+                <h1>View Branch Managers</h1>
                 <p>DriveLEARN</p>
                 </div>
             </div>
@@ -106,4 +106,4 @@ const AdminViewInstructors = () => {
   
   }
   
-  export default AdminViewInstructors;
+  export default AdminViewManagers;

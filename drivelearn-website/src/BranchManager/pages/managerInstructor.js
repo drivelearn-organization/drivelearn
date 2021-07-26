@@ -20,7 +20,7 @@ const ManagerInstructors = () => {
    
   return (
     <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+    <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
          <div className="main__container">
             <div className="main__title">
@@ -48,7 +48,7 @@ const ManagerInstructors = () => {
                 </div>
                  <div className="create-button">
                    <div className="create_btn">
-                     <a href="#"><i className="fa fa-plus-circle"></i></a>
+                     <a href="./manageraddinstructor"><i className="fa fa-plus-circle"></i></a>
                      <br/>
                      <p>Add instructors</p>
                    </div>

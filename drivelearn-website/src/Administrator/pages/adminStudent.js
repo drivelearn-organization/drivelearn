@@ -45,7 +45,7 @@ const AdminStudents = () => {
                 </div>
                  <div className="create-button">
                    <div className="create_btn">
-                     <a href="#"><i className="fa fa-plus-circle"></i></a>
+                     <a href="./adminaddstudent"><i className="fa fa-plus-circle"></i></a>
                      <br/>
                      <p>Add student</p>
                    </div>
