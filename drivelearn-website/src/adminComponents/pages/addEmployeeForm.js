@@ -1,42 +1,42 @@
 import React, {Text} from 'react'
 import '../css/UserDetailsForm.css'
 
-function UserDetailsForm() {
+function addEmployeeForm() {
     return (
         <div className ="emp-card-container">
             <div class="heading-secondary margin-b-m margin-t-m">
-                <p class="center-text">Hasani's Account Settings </p>
+                <p class="center-text"> Add Employee</p>
             </div>
             <form className="dash-content__form" method="POST">
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">First Name: </lable>
-                    <input type ="text" class="form__input" value ="Hasani"/>
+                    <input type ="text" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Last Name: </lable>
-                    <input type ="text" class="form__input" value ="Nimeshika"/>
+                    <input type ="text" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Email: </lable>
-                    <input type ="text" class="form__input" value ="hasani@gamil.com"/>
+                    <input type ="text" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Phone number: </lable>
-                    <input type ="text" class="form__input" value ="071 2444719"/>
+                    <input type ="text" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Address: </lable>
-                    <input type="textarea" class="form__input" value ="No.35/A, Matara Road, Sri Lanka"/>
+                    <input type="textarea" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">City:</lable>
-                    <input type ="text" class="form__input" value ="Matara"/>
+                    <input type ="text" class="form__input"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">User Role:</lable>
-                    <select name="cars" class="form__input" >
+                    <select name="cars" class="form__input">
                       
-                        <option value="" selected>Instructor</option>
+                        <option value="">Instructor</option>
                         <option value="">Branch Manegaer</option>
                       
                     </select>
@@ -45,8 +45,8 @@ function UserDetailsForm() {
                     <lable className="dash-content__lable">Branch</lable>
                     <select name="cars" class="form__input">
                       
-                        <option value="" selected>Matara</option>
-                        <option value="" >Galle</option>
+                        <option value="">Matar</option>
+                        <option value="">Galle</option>
                       
                     </select>
                 </div>
@@ -56,4 +56,4 @@ function UserDetailsForm() {
     )
 }
 
-export default UserDetailsForm
+export default addEmployeeForm

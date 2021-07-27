@@ -5,6 +5,8 @@ import com.example.drivelearnbackend.Controllers.DTO.AdminDTO;
 import com.example.drivelearnbackend.Repositories.AdminRepository;
 import com.example.drivelearnbackend.Repositories.Entity.Admin;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
+import com.example.drivelearnbackend.Repositories.Entity.MyAdmin;
+import com.example.drivelearnbackend.Repositories.MyAdminRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class AdminService {
     @Autowired
     private AdminRepository AdminRepository;
 
+    @Autowired
+    private MyAdminRepository MyAdminRepository;
+
     public void addAdmin(AdminDTO dto) {
         System.out.println("before the branch search");
         String pass = "";
@@ -26,8 +31,8 @@ public class AdminService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-//        List<Employee> EmployeeList=new ArrayList<>();
-
-        AdminRepository.save(new Admin(dto.getAdminId(),dto.getName(),dto.getUsername(), pass));
+        List<Employee> EmployeeList=new ArrayList<>();
+//          MyAdminRepository.save(new MyAdmin(dto.getAdminId(), dto.getName(),dto.getUsername(),pass));
+        AdminRepository.save(new Admin(dto.getName(), pass,dto.getUsername()));
     }
 }

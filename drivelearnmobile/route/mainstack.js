@@ -16,6 +16,8 @@ import StartNewCustomizedCource from "../componants/studentcomponants/StartNewCu
 import StartNewAvailablePage from "../componants/studentcomponants/StartNewAvailablePage";
 import TutionQuiz from "../componants/studentcomponants/TutionQuiz";
 import TutionOpenBook from "../componants/studentcomponants/TutionOpenBook";
+import TutionPlayer from "../componants/studentcomponants/TutionPlayer";
+import TrainerFrontPage from "../componants/Trainer/TrainerFrontPage";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +40,8 @@ function Mainstack() {
         <Stack.Screen name="StartNewAvailablePage" component={StartNewAvailablePage} options={{headerShown:false}}/>
         <Stack.Screen name="TutionQuiz" component={TutionQuiz} options={{headerShown:false}}/>
         <Stack.Screen name="TutionOpenBook" component={TutionOpenBook} options={{headerShown:false}}/>
+        <Stack.Screen name="TutionPlayer" component={TutionPlayer} options={{headerShown:false}}/>
+        <Stack.Screen name="TrainerFrontPage" component={TrainerFrontPage} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

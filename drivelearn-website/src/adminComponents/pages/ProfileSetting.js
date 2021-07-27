@@ -10,29 +10,29 @@ function ProfileSetting() {
             <form className="dash-content__form" method="POST">
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">First Name: </lable>
-                    <input type ="text" class="form__input"/>
+                    <input type ="text" class="form__input"  value ="Hasani"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Last Name: </lable>
-                    <input type ="text" class="form__input"/>
+                    <input type ="text" class="form__input" value ="Nimeshika"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Email: </lable>
-                    <input type ="text" class="form__input"/>
+                    <input type ="text" class="form__input"  value ="hasani@gamil.com"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Phone number: </lable>
-                    <input type ="text" class="form__input"/>
+                    <input type ="text" class="form__input" value ="071 2444719"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Address: </lable>
-                    <input type="textarea" class="form__input"/>
+                    <input type="textarea" class="form__input"value ="No.35/A, Matara Road, Sri Lanka"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">City:</lable>
-                    <input type ="text" class="form__input"/>
+                    <input type ="text" class="form__input" value ="Matara"/>
                 </div>
-                <div className="dash-content__input">
+                {/* <div className="dash-content__input">
                     <lable className="dash-content__lable">User Role:</lable>
                     <select name="cars" class="form__input">
                       
@@ -40,13 +40,13 @@ function ProfileSetting() {
                         <option value="">Branch Manegaer</option>
                       
                     </select>
-                </div>
+                </div> */}
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Branch</lable>
                     <select name="cars" class="form__input">
                       
-                        <option value="">Matar</option>
-                        <option value="">Galle</option>
+                        <option value="">Matara</option>
+                        <option value="" selected>Galle</option>
                       
                     </select>
                 </div>
@@ -70,11 +70,11 @@ function ProfileSetting() {
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">New Pasword: </lable>
-                    <input type ="password" class="form__input"/>
+                    <input type ="password" class="form__input" placeholder="*************"/>
                 </div>
                 <div className="dash-content__input">
                     <lable className="dash-content__lable">Confirm Password: </lable>
-                    <input type ="password" class="form__input"/>
+                    <input type ="password" class="form__input" placeholder="*************"/>
                 </div>
                 <button class="btn btn-round-blue margin-b-l margin-t-end" type="submit">Save Settings</button>
             </form>

@@ -22,6 +22,13 @@ target 'drivelearnmobile' do
 
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
+  pod 'YouTubeSdk', :path => '../node_modules/react-native-youtube-sdk'
+
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'drivelearnmobileTests' do
     inherit! :complete
     # Pods for testing

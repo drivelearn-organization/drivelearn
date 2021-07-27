@@ -15,12 +15,15 @@ function Navbar({show}) {
                <li>
                     <Link to="/Sign up">Sign up</Link>
                </li> */}
+               <li>
+                    <Link to="/Student">Student Details</Link>
+               </li>
                
                <li>
-                    <Link to="/PaymentDetails">Payment Details</Link>
+                    <Link to="/ManageEmployees">Manage Employees</Link>
                </li>
                <li>
-                    <Link to="/ManageEmployees">Manage Employees</Link>
+                    <Link to="/PaymentDetails">Payment Details</Link>
                </li>
                <li>
                     <Link to="/ManageRequest">Manage Request</Link>

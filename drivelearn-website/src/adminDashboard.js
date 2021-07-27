@@ -1,4 +1,3 @@
-
 import './App.css';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,8 +14,6 @@ import UserDetailsForm from './adminComponents/pages/UserDetailsForm';
 import ProfileSetting from './adminComponents/pages/ProfileSetting';
 import Login from './Registration-Login/page/Login';
 import Registration from './Registration-Login/page/Registration';
-import manageStudent from './adminComponents/pages/manageStudent';
-import addEmployeeForm from './adminComponents/pages/addEmployeeForm';
 
 
 // import Home from './homePage/pages/Home';
@@ -24,7 +21,7 @@ import addEmployeeForm from './adminComponents/pages/addEmployeeForm';
 // import Contacts from './homePage/pages/Contacts';
 // import SignUp from './homePage/pages/SignUp';
 
-function App() {
+function adminDashboard() {
   const [showNav, setShownav] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   
@@ -84,12 +81,10 @@ function App() {
           <Route path="/" exact={true} component={Home}/>
           <Route path="/Login" exact={true} component={Login}/>
           <Route path="/Sign up" exact={true} component={Registration}/>
-          <Route path="/Student" exact={true} component={manageStudent}/>
           <Route path="/PaymentDetails" exact={true} component={PaymentDetails}/>
           <Route path="/ManageEmployees" exact={true} component={ManageEmployees}/>
           <Route path="/ManageRequest" exact={true} component={RequestEmplyee}/>
           <Route path="/View" exact={true} component={UserDetailsForm}/>
-          <Route path="/addEmployee" exact={true} component={addEmployeeForm}/>
           <Route path="/Settings" exact={true} component={ProfileSetting}/>
         </div>
       
@@ -100,4 +95,4 @@ function App() {
   
 }
 
-export default App;
+export default adminDashboard;

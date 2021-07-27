@@ -11,8 +11,8 @@ function ManageEmployees() {
             <input type="text" class="searchbar-admin_search" placeholder="Search user by name or id"></input>
             <div className="search-icon"><i class="fas fa-search"></i></div>
             </form>
-            <a href="" className="btn btn-square-blue">
-            <div className="btn-square-blue_text">Add User <i class="fas fa-plus-circle"></i></div>
+            <a href="/addEmployee" className="btn btn-square-blue">
+            <div className="btn-square-blue_text">Add Emplyee <i class="fas fa-plus-circle"></i></div>
             
             </a>
         <div className ="filter_container">
@@ -43,7 +43,7 @@ function ManageEmployees() {
          
         </div>
         <div className ="fullCard">
-            <div className="manage-users-id">#1</div>  
+            <div className="manage-users-id">#2</div>  
             <div className="manage-users-name">Hasani</div>
             <div>Active</div>
             <div>Instructor</div>
