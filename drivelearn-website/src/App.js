@@ -1,103 +1,61 @@
-
-import './App.css';
-import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './adminComponents/Navbar';
-import React, { useState,useEffect } from 'react';
-import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
-import Home from './adminComponents/pages/Home';
-import AboutUs from './adminComponents/pages/AboutUs';
-import ContactUs from './adminComponents/pages/ContactUs';
-import PaymentDetails from './adminComponents/pages/PaymentDetails';
-import ManageEmployees from './adminComponents/pages/ManageEmployees';
-import RequestEmplyee from './adminComponents/pages/RequestEmplyee';
-import UserDetailsForm from './adminComponents/pages/UserDetailsForm';
-import ProfileSetting from './adminComponents/pages/ProfileSetting';
-import Login from './Registration-Login/page/Login';
-import Registration from './Registration-Login/page/Registration';
-import manageStudent from './adminComponents/pages/manageStudent';
-import addEmployeeForm from './adminComponents/pages/addEmployeeForm';
-
-
-// import Home from './homePage/pages/Home';
-// import About from './homePage/pages/About';
-// import Contacts from './homePage/pages/Contacts';
-// import SignUp from './homePage/pages/SignUp';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './HomePage/pages/Home';
+// import Footer from './homePage/Footer';
+import Login from './HomePage/pages/Login';
+import Signup from './HomePage/pages/Signup';
+import Administrator from './Administrator/pages/adminDashboard';
+import BranchManager from './BranchManager/pages/managerDashboard';
+import ManagerSettings from './BranchManager/pages/managerSetting';
+import AdminSettings from './Administrator/pages/adminSetting';
+import ManagerStudents from './BranchManager/pages/managerStudent';
+import ManagerInstructors from './BranchManager/pages/managerInstructor';
+import AdminStudents from './Administrator/pages/adminStudent';
+import AdminInstructors from './Administrator/pages/adminInstructor';
+import AdminManagers from './Administrator/pages/adminManager';
+import ManagerViewStudents from './BranchManager/pages/managerViewStudent';
+import ManagerViewInstructors from './BranchManager/pages/managerViewInstructor';
+import AdminViewStudents from './Administrator/pages/adminViewStudent';
+import AdminViewInstructors from './Administrator/pages/adminViewInstructor';
+import AdminViewManagers from './Administrator/pages/adminViewManager';
+import ManagerAddStudents from './BranchManager/pages/managerAddStudent';
+import ManagerAddInstructors from './BranchManager/pages/managerAddInstructor';
+import AdminAddStudents from './Administrator/pages/adminAddStudent';
+import AdminAddInstructors from './Administrator/pages/adminAddInstructor';
+import AdminAddManagers from './Administrator/pages/adminAddManager';
 
 function App() {
-  const [showNav, setShownav] = useState(false);
-  const [showDropDown, setShowDropDown] = useState(false);
-  
-  const handlesetShownav = () => {
-    setShownav(!showNav);
-  
-    
-  }
-  const handleetShowDropDown = () => {
-    setShowDropDown(!showDropDown);
-      
-  }
-
- 
   return (
-    <>
-    <Router>
-   
-    
-    
-    
-        <header >
-        
-        <i onClick={()=>setShownav(!showNav)} className="fas fa-bars" ></i>
-        <img className="mylogo" src={'images/LogoBoxWhite.png'} width="60" height="60"/>
-        <div className="logoutbox">
-        <i class="fas fa-bell"></i>
-        <div className="logout" href="">
-        
-        <div className="dropdown">
-          S.H.Nimeshika
-        </div>
-        <i class="fas fa-user-circle"></i>
-        <i onClick={()=>setShowDropDown(!showDropDown)} class="fas fa-caret-down"></i>
-        </div>
-        
-        </div>       
-        </header> 
-        <div className='header-user__dropdown'>
-        <div className={showDropDown ? 'header-user__dropdown-box':'header-user__dropdown-box-hide'}>
-        {/* <div className="header-user__dropdown-box"> */}
-        <ul>
-            <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-            <li><i class="fas fa-sign-out-alt"></i> logout</li>
-            
-            
-          </ul>
-        </div>
-          
-        </div>
-        
-      
-        {/* {showNav && <Navbar/>} */}
-
-        <Navbar show = {showNav}/>
-        <div className={showNav ? 'newmain' : 'main'}>
-          <Route path="/" exact={true} component={Home}/>
-          <Route path="/Login" exact={true} component={Login}/>
-          <Route path="/Sign up" exact={true} component={Registration}/>
-          <Route path="/Student" exact={true} component={manageStudent}/>
-          <Route path="/PaymentDetails" exact={true} component={PaymentDetails}/>
-          <Route path="/ManageEmployees" exact={true} component={ManageEmployees}/>
-          <Route path="/ManageRequest" exact={true} component={RequestEmplyee}/>
-          <Route path="/View" exact={true} component={UserDetailsForm}/>
-          <Route path="/addEmployee" exact={true} component={addEmployeeForm}/>
-          <Route path="/Settings" exact={true} component={ProfileSetting}/>
-        </div>
-      
-    </Router>
-    </>
-    
+    <div>
+      <Router>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/administrator' component={Administrator} />
+          <Route path='/branchmanager' component={BranchManager} />
+          <Route path='/managersettings' component={ManagerSettings} />
+          <Route path='/adminsettings' component={AdminSettings} />
+          <Route path='/managerstudent' component={ManagerStudents} />
+          <Route path='/managerinstructor' component={ManagerInstructors} />
+          <Route path='/adminstudent' component={AdminStudents} />
+          <Route path='/admininstructor' component={AdminInstructors} />
+          <Route path='/adminmanager' component={AdminManagers} />
+          <Route path='/managerviewstudent' component={ManagerViewStudents} />
+          <Route path='/managerviewinstructor' component={ManagerViewInstructors} />
+          <Route path='/adminviewstudent' component={AdminViewStudents} />
+          <Route path='/adminviewinstructor' component={AdminViewInstructors} />
+          <Route path='/adminviewmanager' component={AdminViewManagers} />
+          <Route path='/manageraddstudent' component={ManagerAddStudents} />
+          <Route path='/manageraddinstructor' component={ManagerAddInstructors} />
+          <Route path='/adminaddstudent' component={AdminAddStudents} />
+          <Route path='/adminaddinstructor' component={AdminAddInstructors} />
+          <Route path='/adminaddmanager' component={AdminAddManagers} />
+        </Switch>
+        {/* <Footer /> */}
+      </Router>
+    </div>
   );
-  
 }
 
 export default App;

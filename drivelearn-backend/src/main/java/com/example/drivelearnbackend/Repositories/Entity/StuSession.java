@@ -2,17 +2,16 @@ package com.example.drivelearnbackend.Repositories.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 public class StuSession {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int stuSessionId;
-    private Date date;
+    private LocalDate date;
     private int status;
 
     @ManyToOne
@@ -20,9 +19,7 @@ public class StuSession {
     @JoinColumn(name = "session_id",referencedColumnName = "sessionId")
     private Session session;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id",referencedColumnName = "vechicleId")
-    private Vehicle vehicle;
+
 
     @ManyToOne
     @JsonBackReference
@@ -34,12 +31,10 @@ public class StuSession {
     @JoinColumn(name = "student_id",referencedColumnName = "stuId")
     private Student student;
 
-    public StuSession(int stuSessionId, Date date, int status, Session session, Vehicle vehicle, Cource cource, Student student) {
-        this.stuSessionId = stuSessionId;
+    public StuSession(LocalDate date, int status, Session session, Cource cource, Student student) {
         this.date = date;
         this.status = status;
         this.session = session;
-        this.vehicle = vehicle;
         this.cource = cource;
         this.student = student;
     }
@@ -55,11 +50,11 @@ public class StuSession {
         this.stuSessionId = stuSessionId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -77,14 +72,6 @@ public class StuSession {
 
     public void setSession(Session session) {
         this.session = session;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
 
     public Cource getCource() {

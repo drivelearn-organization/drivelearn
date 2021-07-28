@@ -6,7 +6,7 @@ import Pdf from 'react-native-pdf';
 export default class BookPDF extends React.Component {
     render() {
         // const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:true};
-        const source = require('../../asets/Book/1625395836894.pdf');  // ios only
+        const source = require('../../asets/Book/converted.pdf');  // ios only
         // const source = {uri:'bundle-assets://asets/Book/ndl_10.pdf'};
         // require('../../asets/Book/ndl_10.pdf')
         // const source={uri:"file:///asets/Book/ndl_10.pdf"}

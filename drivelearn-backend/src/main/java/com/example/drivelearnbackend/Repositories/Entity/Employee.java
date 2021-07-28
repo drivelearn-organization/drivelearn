@@ -2,6 +2,8 @@ package com.example.drivelearnbackend.Repositories.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -38,6 +40,7 @@ public class Employee {
     List<Installment> installmentList=new ArrayList<>();
 
     @OneToMany(mappedBy = "trainer")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
     List<Session> trainersSessionList=new ArrayList<>();
 

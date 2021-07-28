@@ -1,14 +1,95 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {Base} from "../../urls/base";
+import ToastAndroid from "react-native/Libraries/Components/ToastAndroid/ToastAndroid";
 
 const SessionCard = (props) => {
-
-    const [id,setId]=useState(0);
-    const [date,setDate]=useState('0000-00-00');
-    const [duration,setDuration]=useState('00.00-00.00');
-    const [stCount,setStCount]=useState(0);
+    const {sessionDetails,username}=props;
+    //sessionDetails.vehicleType
+    const [vehicleType,setVehicleType]=useState(sessionDetails.vehicleType);
+    const [id,setId]=useState(sessionDetails.sessionId);
+    const [date,setDate]=useState(sessionDetails.date);
+    const [start,setStart]=useState(sessionDetails.startTime);
+    const [end,setEnd]=useState(sessionDetails.endTime);
+    const [stCount,setStCount]=useState(sessionDetails.numOfStudent);
     const [avail,setAvail]=useState(0);
-    const [indTime,setIndTime]=useState(0);
+    const [booked,setBooked]=useState(2);
+    const [trainer,settrainer]=useState(sessionDetails.trainerUsername);
+
+    const bookSession=()=>{
+        let url=Base+'session/book';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                studentUsername: username,
+                sessionId: id
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                if(json){
+                    ToastAndroid.show("The session is booked", ToastAndroid.SHORT);
+                }else{
+                    ToastAndroid.show("The session is already booked by you", ToastAndroid.SHORT);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    useEffect(()=>{
+
+        //initial call of vacancies
+        let bookTestUrl=Base+'session/getavailableseats';
+        fetch(bookTestUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: id
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setBooked(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+
+
+
+        //interval call of vacancies.
+        const vacuncies=setInterval(()=>{
+            fetch(bookTestUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: id
+                })
+            }).then((response) => response.json())
+                .then((json) => {
+                    setBooked(json);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },10000);
+
+        return()=>{
+            clearInterval(vacuncies);
+        }
+    },[]);
     return (
         <View style={styles.SessionOuterView}>
             <View style={styles.lableView}>
@@ -17,20 +98,22 @@ const SessionCard = (props) => {
                 <Text style={styles.cardText}>Time Duration</Text>
                 <Text style={styles.cardText}>Student count</Text>
                 <Text style={styles.cardText}>Available Seats</Text>
-                <Text style={styles.cardText}>Time for one/min</Text>
+                <Text style={styles.cardText}>Vehicle Type</Text>
+                <Text style={styles.cardText}>Trainer</Text>
             </View>
 
 
             <View style={styles.contentView}>
                 <Text style={styles.cardHeader}>#{id}</Text>
                 <Text style={styles.cardText}>{date}</Text>
-                <Text style={styles.cardText}>{duration}</Text>
+                <Text style={styles.cardText}>{start} - {end}</Text>
                 <Text style={styles.cardText}>{stCount}</Text>
-                <Text style={styles.cardText}>{avail}</Text>
-                <Text style={styles.cardText}>{indTime}</Text>
+                <Text style={styles.cardText}>{stCount-booked}</Text>
+                <Text style={styles.cardText}>{vehicleType}</Text>
+                <Text style={styles.cardText}>{trainer}</Text>
 
                 <View style={styles.buttonView}>
-                    <TouchableOpacity style={styles.proceedButton}><Text>Book session</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>bookSession()} style={stCount-booked<=0?styles.proceedButtonRed:styles.proceedButton} disabled={stCount-booked<=0?true:false}><Text>Book session</Text></TouchableOpacity>
                 </View>
             </View>
 
@@ -43,7 +126,7 @@ const styles=StyleSheet.create({
         width:'95%',
         marginRight:'2.5%',
         marginLeft:'2.5%',
-        height:250,
+        minHeight:250,
         backgroundColor:'#ffffff20',
         marginTop:15,
         borderRadius:10,
@@ -69,6 +152,16 @@ const styles=StyleSheet.create({
     },
     proceedButton:{
         backgroundColor: '#32DE3B',
+        height: 35,
+        marginTop: 20,
+        justifyContent:'center',
+        alignItems:'center',
+        width: 100,
+        borderRadius: 7
+
+    },
+    proceedButtonRed:{
+        backgroundColor: 'red',
         height: 35,
         marginTop: 20,
         justifyContent:'center',
