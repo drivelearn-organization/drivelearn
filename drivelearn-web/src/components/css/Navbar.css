@@ -1,0 +1,55 @@
+.sidenav{
+    margin: 0;
+    width: 250px;
+    background: #011627;
+    position: fixed;
+    top:60px;
+    /* position: absolute; */
+    height: 92vh;
+    left:-100%;
+    padding: 0 30px;
+    transition: all 1s;
+    z-index: 1;
+    overflow: auto;
+    
+}
+
+.sidenav.active{
+ 
+    left:0;
+    z-index: 1;
+    /* height: 100vh; */
+}
+
+
+
+
+
+ul{
+    padding: 0;
+
+}
+
+ul li{
+    list-style-type: none;
+  
+}
+
+ul li a{
+    
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+ul li a:hover,
+ul li a.active{
+    text-decoration: none;
+    background: #172b4d;
+    color: rgb(255, 255, 255);
+
+}
+

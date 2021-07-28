@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
-import './../Signup.css';
-import Nav from './../Nav';
+import '../Signup.css';
+import Nav from '../Nav';
 
 function Signup() {
     return (
@@ -67,6 +67,18 @@ function Signup() {
                </select>
                </div>
                <br/><br/>
+
+               <div className="reg-group">
+               <label for="regType">Branch</label>
+               <select className="option" name="Register_as" required>
+               <option disabled="disabled" selected="selected">--Choose Option--</option>
+               <option>Matara</option>
+               <option>Galle</option>
+               <option>Colombo</option>
+               </select>
+               </div>
+               <br/><br/>
+
                <div className="reg-group">
                <label for="regType">Register as</label>
                <select className="option" name="Register_as" required>

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
-import './../Login.css';
-import Nav from './../Nav';
+import '../Login.css';
+import Nav from '../Nav';
 // import Footer from './../../homePage/Footer';
 
 function Login() {
