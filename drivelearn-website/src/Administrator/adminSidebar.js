@@ -39,7 +39,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
-          <a href="adminvehicle">Vehicles</a>
+          <a href="./adminvehicle">Vehicles</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
