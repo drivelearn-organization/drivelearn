@@ -60,10 +60,11 @@ const ManagerVehicle = () => {
               <thead>
                   <tr>
                   <th>Reg No</th>
-                  <th>Full Name</th>
-                  <th>Address</th>
-                  <th>NIC</th>
-                  <th>Mobile</th>
+                  <th>Chassis No</th>
+                  <th>Starting Miles(km)</th>
+                  <th>Vehicle Type</th>
+                  <th>License expire</th>
+                  <th>Insurance expire</th>
                   <th>Action</th>
                  </tr>
              </thead>
@@ -71,13 +72,14 @@ const ManagerVehicle = () => {
              <tbody>
                 <tr>
                      <td>01</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
+                     <td>HR 3323</td>
+                     <td>25000</td>
+                     <td>Car</td>
+                     <td>2021/10/01</td>
+                     <td>2022/09/01</td>
                      <td>
                      <span className="action_btn">
-                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./managerupdatevehicle" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
@@ -85,73 +87,35 @@ const ManagerVehicle = () => {
 
                 <tr>
                      <td>02</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
+                     <td>HR 3323</td>
+                     <td>25000</td>
+                     <td>Car</td>
+                     <td>2021/10/01</td>
+                     <td>2022/09/01</td>
                      <td>
                      <span className="action_btn">
-                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./managerupdatevehicle" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
-               </tr>
-      
-               <tr>
+                </tr>
+
+                <tr>
                      <td>03</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
+                     <td>HR 3323</td>
+                     <td>25000</td>
+                     <td>Car</td>
+                     <td>2021/10/01</td>
+                     <td>2022/09/01</td>
                      <td>
                      <span className="action_btn">
-                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href="./managerupdatevehicle" className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
-               </tr>
+                </tr>
 
-               <tr>
-                     <td>04</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>05</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>06</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewstudent" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
+                
                
              </tbody>
             </table>
