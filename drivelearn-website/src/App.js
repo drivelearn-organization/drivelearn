@@ -23,6 +23,8 @@ import ManagerAddInstructors from './BranchManager/pages/managerAddInstructor';
 import AdminAddStudents from './Administrator/pages/adminAddStudent';
 import AdminAddInstructors from './Administrator/pages/adminAddInstructor';
 import AdminAddManagers from './Administrator/pages/adminAddManager';
+import AdminVehicle from './BranchManager/pages/managerVehicle';
+import managerAddVehicle from './BranchManager/pages/managerAddVehicle'
 
 function App() {
   return (
@@ -51,6 +53,9 @@ function App() {
           <Route path='/adminaddstudent' component={AdminAddStudents} />
           <Route path='/adminaddinstructor' component={AdminAddInstructors} />
           <Route path='/adminaddmanager' component={AdminAddManagers} />
+          <Route path='/adminvehicle' component={AdminVehicle} />
+          <Route path='/manageraddvehicle' component={managerAddVehicle} />
+
         </Switch>
         {/* <Footer /> */}
       </Router>
