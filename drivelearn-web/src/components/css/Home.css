@@ -1,0 +1,44 @@
+.charContent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    align-items: center;
+    padding: 10px;
+    
+
+}
+.studentChart{
+    border-style: solid;
+    margin: 30px;
+    padding: 10px;
+    border-color:black;
+    border-width: 2px;
+}
+
+.incomeChart{
+    border-style: solid;
+  
+    padding: 10px;
+    border-color:black;
+    border-width: 2px;
+
+}
+
+.studentChart-content{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.incomeChart-content{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 25px;
+}

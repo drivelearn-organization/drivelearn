@@ -14,6 +14,8 @@ public class StudentDTO {
     private String month;
     private String year;
 
+    private int stuID;
+
     public StudentDTO(String name, String address, String nid, String contact, String branch, String username, String password, String day, String month, String year) {
         this.name = name;
         this.address = address;
@@ -25,6 +27,20 @@ public class StudentDTO {
         this.day = day;
         this.month = month;
         this.year = year;
+    }
+
+    public StudentDTO(String name, String address, String nid, String contact, String branch, String username, String password, String day, String month, String year,int stuID) {
+        this.name = name;
+        this.address = address;
+        this.nid = nid;
+        this.contact = contact;
+        this.branch = branch;
+        this.username = username;
+        this.password = password;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.stuID = stuID;
     }
 
     public StudentDTO() {
@@ -48,6 +64,14 @@ public class StudentDTO {
 
     public String getNid() {
         return nid;
+    }
+
+    public int getStuID() {
+        return stuID;
+    }
+
+    public void setStuID(int stuID) {
+        this.stuID = stuID;
     }
 
     public void setNid(String nid) {

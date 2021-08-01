@@ -3,6 +3,7 @@ package com.example.drivelearnbackend.Repositories.Entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,13 +12,13 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int feedbackid;
-    private Date date;
-    private String start;
-    private String end;
-    private String reverse;
-    private String searingBalance;
-    private String cluchBalance;
-    private String gear;
+    private LocalDate date;
+    private int start;
+    private int end;
+    private int reverse;
+    private int searingBalance;
+    private int cluchBalance;
+    private int gear;
     @ManyToOne
     @JoinColumn(name = "trainer_id",referencedColumnName = "empid")
     private Employee trainer;
@@ -31,11 +32,15 @@ public class Feedback {
     @JoinColumn(name = "student_id",referencedColumnName = "stuId")
     private Student student;
 
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "vehicle_type_id", referencedColumnName = "typeId")
+    private VechileType type;
+
     public Feedback() {
     }
 
-    public Feedback(int feedbackid, Date date, String start, String end, String reverse, String searingBalance, String cluchBalance, String gear, Employee trainer, StuSession stuSession, Student student) {
-        this.feedbackid = feedbackid;
+    public Feedback(LocalDate date, int start, int end, int reverse, int searingBalance, int cluchBalance, int gear, Student student,VechileType type) {
         this.date = date;
         this.start = start;
         this.end = end;
@@ -43,9 +48,56 @@ public class Feedback {
         this.searingBalance = searingBalance;
         this.cluchBalance = cluchBalance;
         this.gear = gear;
-        this.trainer = trainer;
-        this.stuSession = stuSession;
         this.student = student;
+        this.type=type;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    public int getReverse() {
+        return reverse;
+    }
+
+    public void setReverse(int reverse) {
+        this.reverse = reverse;
+    }
+
+    public int getSearingBalance() {
+        return searingBalance;
+    }
+
+    public void setSearingBalance(int searingBalance) {
+        this.searingBalance = searingBalance;
+    }
+
+    public int getCluchBalance() {
+        return cluchBalance;
+    }
+
+    public void setCluchBalance(int cluchBalance) {
+        this.cluchBalance = cluchBalance;
+    }
+
+    public int getGear() {
+        return gear;
+    }
+
+    public void setGear(int gear) {
+        this.gear = gear;
     }
 
     public int getFeedbackid() {
@@ -56,60 +108,12 @@ public class Feedback {
         this.feedbackid = feedbackid;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public String getStart() {
-        return start;
-    }
-
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public String getReverse() {
-        return reverse;
-    }
-
-    public void setReverse(String reverse) {
-        this.reverse = reverse;
-    }
-
-    public String getSearingBalance() {
-        return searingBalance;
-    }
-
-    public void setSearingBalance(String searingBalance) {
-        this.searingBalance = searingBalance;
-    }
-
-    public String getCluchBalance() {
-        return cluchBalance;
-    }
-
-    public void setCluchBalance(String cluchBalance) {
-        this.cluchBalance = cluchBalance;
-    }
-
-    public String getGear() {
-        return gear;
-    }
-
-    public void setGear(String gear) {
-        this.gear = gear;
     }
 
     public Employee getTrainer() {
@@ -134,5 +138,13 @@ public class Feedback {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public VechileType getType() {
+        return type;
+    }
+
+    public void setType(VechileType type) {
+        this.type = type;
     }
 }

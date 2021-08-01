@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import {Base} from "../../urls/base";
 import SessionCard from "../common/SessionCard";
+import TrainerSessionCacrd from "../common/TrainerSessionCacrd";
+import TrainerSessionCard from "../common/TrainerSessionCard";
 
 const TrainerFrontPage = ({route,navigation}) => {
     const { username } = route.params;
@@ -24,6 +26,7 @@ const TrainerFrontPage = ({route,navigation}) => {
     let url1=Base+'employee/getemployee';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [sessions,setSessions]=useState([]);
 
     useEffect(()=>{
 
@@ -108,6 +111,33 @@ const TrainerFrontPage = ({route,navigation}) => {
 
         },10000);
 
+
+
+
+
+        // load the session data
+        let sessionUrl=Base+'session/trainerssession';
+        fetch(sessionUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                trainerUsername: username,
+            })
+        }).then((response) => response.json())
+            .then((json) => {
+                setSessions(json);
+                console.log(json);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+
+
         return()=>{
             clearInterval(setNotificUpdate);
         }
@@ -130,12 +160,12 @@ const TrainerFrontPage = ({route,navigation}) => {
                         <View style={styles.navbar}>
 
                             {/*home navigation*/}
-                            <TouchableOpacity >
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerFrontPage',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
 
                             {/*notification navigation*/}
-                            <TouchableOpacity >
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerNotification',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
                                     {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
                                 </ImageBackground>
@@ -165,13 +195,11 @@ const TrainerFrontPage = ({route,navigation}) => {
 
 
 
-
+                    {sessions.map(session=><TouchableOpacity onPress={()=>navigation.navigate('TrainerSelectedSessionInView',{username:username,sessionid:session.sessionId})} key={session.sessionId.toString()}><TrainerSessionCard key={session.sessionId.toString()} sessionDetails={session} username={username}></TrainerSessionCard></TouchableOpacity>)}
 
                     {/*space for body*/}
 
 
-                    <SessionCard></SessionCard>
-                    <SessionCard></SessionCard>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
