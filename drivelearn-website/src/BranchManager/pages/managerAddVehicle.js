@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
@@ -6,106 +6,130 @@ import Sidebar from '../managerSidebar';
 
 
 const ManagerAddStudents = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-    const openSidebar = () => {
-       setSidebarOpen(true);
-    };
-  
-    const closeSidebar = () => {
-      setSidebarOpen(false);
-   };
-  
-   
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const openSidebar = () => {
+    setSidebarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
+
   return (
     <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-         <div className="main__container">
-            <div className="main__title">
-                <div className="main__greeting">
-                <h1>Add Vehicle</h1>
-                <p> Kalutara Branch</p>
-                </div>
-            </div>
-          <center>
-          <div className="charts__rightt">
-          <div className="charts__right__title">
-            <div>
-              <p>Basic Details</p>
+        <div className="main__container">
+          <div className="main__title">
+            <div className="main__greeting">
+              <h1>Add Vehicle</h1>
+              <p> Kalutara Branch</p>
             </div>
           </div>
+          <center>
+            <div className="charts__rightt">
+              <div className="charts__right__title">
+                <div>
+                  <p>Basic Details</p>
+                </div>
+              </div>
 
-          <form className="charts__rightt__cardss">
-            <div className="card-p">
-                <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="" required />
-                {/* <div class="alert-danger" id="firstNameError">
+              <form className="charts__rightt__cardss">
+                <div className="card-p">
+                  <p className="text">Vehical No</p>
+                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Vehical No" value="" required />
+                  {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
-            
-            <div className="card-p">
-                <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="" required />
-                {/* <div class="alert-danger" id="firstNameError">
+                </div>
+
+                <div className="card-p">
+                  <p className="text">Starting Mileage</p>
+                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Starting Mileage" value="" required />
+                  {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
-           
-            <div className="card-p">
-                <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="" required />
-                {/* <div class="alert-danger" id="firstNameError">
+                </div>
+
+                <div className="card-p">
+                  <p className="text">Register Date</p>
+                  <input className="data" type="date" name="first_name" id="firstname" placeholder="Register Date" value="" required />
+                  {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
-          
-            <div className="card-p">
-                <p className="text">Date of Birth</p>
-                <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Date of Birth" required  />
-                {/* <div class="alert-danger" id="firstNameError">
+                </div>
+
+                <div className="card-p">
+                  <p className="text">Vehical type</p>
+                  <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Vehical type" required />
+                  {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
-         
-            <div className="card-p">
-                <p className="text">Mobile</p>
-                <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Mobile" required  />
-                {/* <div class="alert-danger" id="firstNameError">
+                </div>
+
+                <div className="card-p">
+                  <p className="text">Chessis No</p>
+                  <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Chessis No" required />
+                  {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
-          
-            <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="" name="first_name" id="firstname" placeholder="Email"  required />
-                {/* <div class="alert-danger" id="firstNameError">
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: "1fr 1fr" }}>
+                  <div className="card-p" style={{marginRight: "10px"}}>
+                    <p className="text">License starting date</p>
+                    <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="License starting date" required />
+                    {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
+                  </div>
+
+                  <div className="card-p" style={{marginLeft: "0px"}}>
+                    <p className="text">License expire date</p>
+                    <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="License expire date" required />
+                    {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+                  </div>
+
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: "1fr 1fr" }}>
+
+                  <div className="card-p" style={{marginRight: "10px"}}>
+                    <p className="text">Insurance starting date</p>
+                    <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Insurance starting date" required />
+                    {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+                  </div>
+
+                  <div className="card-p" style={{marginLeft: "0px"}}>
+                    <p className="text">Insurance expire date</p>
+                    <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Insurance expire date" required />
+                    {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+                  </div>
+
+                </div>
+
+
+                <center>
+                  <input type="submit" value="Add" className="update-btn" />
+                  &nbsp;&nbsp;&nbsp;
+                  <input type="Reset" value="Cancle" className="reset1-btn" />
+                </center>
+              </form>
             </div>
-            <div className="card-p">
-                <p className="text">Gender</p>
-                <select className="option1" name="Register_as" required>
-                <option disabled="disabled" selected="selected">--Choose Option--</option>
-                <option>Male</option>
-                <option>Female</option>
-               </select>
-            </div>
-            <center>
-            <input type="submit" value="Add" className="update-btn" />
-            &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Cancle" className="reset1-btn" />
-            </center>
-          </form>
-        </div>
-        </center>
+          </center>
         </div>
       </main>
-        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
   );
-  
-  }
-  
-  export default ManagerAddStudents;
+
+}
+
+export default ManagerAddStudents;
