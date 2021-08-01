@@ -3,7 +3,7 @@ import Cards from '../Card';
 import '../../App.css';
 import HeroSection from '../HeroSection';
 import Nav from '../Nav';
-//asdsfsdgfdhdghfjglhj
+
 
 function Home() {
   return (
