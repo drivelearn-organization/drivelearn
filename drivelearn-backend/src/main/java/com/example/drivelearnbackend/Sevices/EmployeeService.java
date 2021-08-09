@@ -107,12 +107,22 @@ public class EmployeeService {
 
     public void registerEmployee(EmployeeDTO dto){
         String pass="";
+        int roleType;
+        int role;
 
         try {
             pass=new HashMD5().giveHash(dto.getPassword());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
+        roleType = dto.getRole();
+        if(roleType == 4){
+            role = 4;
+        }else{
+            role = dto.getRole();
+        }
+
 
         String isActive = "1";
 
@@ -122,7 +132,8 @@ public class EmployeeService {
         LocalDate todayregisterDate = LocalDate.now();
         Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
 
-        repository.save(new Employee(dto.getMoNumber(),null, 1, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+
+        repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
 
 
     }

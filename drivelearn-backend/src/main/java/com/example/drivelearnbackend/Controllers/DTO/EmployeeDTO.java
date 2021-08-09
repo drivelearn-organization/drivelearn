@@ -9,6 +9,15 @@ public class EmployeeDTO {
     private String branch;
     private String username;
     private String password;
+    private int role;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public EmployeeDTO(String moNumber, String emNumber, String fullName, String nid, String branch, String username, String password) {
         this.moNumber = moNumber;

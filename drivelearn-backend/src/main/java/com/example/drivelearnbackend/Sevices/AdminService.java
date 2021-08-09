@@ -58,7 +58,7 @@ public class AdminService {
                     if(role == 1)
                     {
                         isActive="branch manageger";
-                    }else{
+                    }else if(role == 4){
                         isActive="admin";
                     }
 
@@ -76,6 +76,6 @@ public class AdminService {
     public String getEmployeeRole() {
 
 
-       return "hell0";
+       return "hello";
     }
 }

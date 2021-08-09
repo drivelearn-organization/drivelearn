@@ -3,6 +3,7 @@ import '../../App.css';
 import '../Signup.css';
 import Nav from '../Nav';
 import axios from 'axios';
+import { getRoles } from '@testing-library/react';
 
 function Signup() {
 
@@ -13,7 +14,8 @@ function Signup() {
         username: '',
         password: '',
         branch: '',
-        nid: ''
+        nid: '',
+        role: ''
     });
 
     const handleChange = (e) => {
@@ -113,10 +115,10 @@ function Signup() {
 
                <div className="reg-group">
                <label for="regType">Register as</label>
-               <select className="option" name="Register_as" required>
+               <select className="option" name="role" onChange={handleChange} required>
                <option disabled="disabled" selected="selected">--Choose Option--</option>
-               <option>Administrator</option>
-               <option>Branch Manager</option>
+               <option value ="4">Administrator</option>
+               <option value ="1">Branch Manager</option>
                </select>
                </div>
                

@@ -25,6 +25,7 @@
 ## Role in employee
 #### 1-branch manager
 #### 2-trainer
+### 4-admin
 
 
 ## status in session and stu_session-
