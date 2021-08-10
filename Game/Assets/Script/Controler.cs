@@ -10,8 +10,14 @@ public class Controler : MonoBehaviour
     public float maxSpeed;
     public float turnStrength;
 
+    public GameObject ForwardUI;
+    public GameObject BackwordUI;
+    public GameObject RightUI;
+    public GameObject LeftUL;
+    
     private float speedInput;
     private float turnInput;
+    //bool ispressed = false;
 
 
 
@@ -29,7 +35,7 @@ public class Controler : MonoBehaviour
         speedInput = 0f ;
         if (Input.GetAxis("Vertical")>0)
         {
-            speedInput = Input.GetAxis("Vertical") *forwardAccel * 1f ;
+            speedInput = Input.GetAxis("Vertical") *(forwardAccel * + 2) * 1f ;
         }
         else
         {
@@ -50,4 +56,15 @@ public class Controler : MonoBehaviour
            TheRb.AddForce(transform.forward * speedInput);
        }
     }
+
+  /* void ForwardForce()
+    {
+         speedInput = 0f ;
+        if(ispressed = true)
+        {
+        speedInput = Input.GetAxis("Vertical") *(forwardAccel * + 2) * 1f ;
+        }
+        
+
+    } */
 }
