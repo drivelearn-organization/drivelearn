@@ -1,9 +1,14 @@
 package com.example.drivelearnbackend.Controllers;
 
 import com.example.drivelearnbackend.Controllers.DTO.AdminDTO;
+import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
+import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
+import com.example.drivelearnbackend.Repositories.Entity.Student;
 import com.example.drivelearnbackend.Sevices.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedList;
 
 @RestController
 @CrossOrigin
@@ -22,10 +27,18 @@ public class AdminController {
         return adminService.loginEmployee(AdminDTO);
     }
 
-    @GetMapping(value = "/role")
-    public String testCustomer(){
-        return adminService.getEmployeeRole();
+    @GetMapping(value = "/students")
+    public LinkedList<StudentDTO> getAllStudents(){
+        return adminService.getAllStudents();
     }
+
+//    @GetMapping(value = "/employee")
+//    public LinkedList<EmployeeDTO> getAllStudents(){
+//        return adminService.getAllStudents();
+//    }
+
+
+
 
 
 }

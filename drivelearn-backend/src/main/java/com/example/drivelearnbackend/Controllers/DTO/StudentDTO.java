@@ -1,5 +1,6 @@
 package com.example.drivelearnbackend.Controllers.DTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class StudentDTO {
@@ -13,6 +14,21 @@ public class StudentDTO {
     private String day;
     private String month;
     private String year;
+    private int count;
+
+    public StudentDTO(String name, String address, String nid, String contact, String branch, String username, LocalDate dob, int stuID, int count) {
+        this.name = name;
+        this.address = address;
+        this.nid = nid;
+        this.contact = contact;
+        this.branch = branch;
+        this.username = username;
+        Dob = dob;
+        this.stuID = stuID;
+        this.count = count;
+    }
+
+    private LocalDate Dob;
 
     private int stuID;
 
@@ -45,6 +61,10 @@ public class StudentDTO {
 
     public StudentDTO() {
     }
+
+    public int getCount() { return count; }
+
+    public LocalDate getDob() { return Dob; }
 
     public String getName() {
         return name;
@@ -89,6 +109,10 @@ public class StudentDTO {
     public String getBranch() {
         return branch;
     }
+
+    public void setCount(int count) { this.count = count; }
+
+    public void setDob(LocalDate dob) { Dob = dob; }
 
     public void setBranch(String branch) {
         this.branch = branch;

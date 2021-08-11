@@ -1,11 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
+import axios from 'axios';
 
 const AdminStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-  
+    const [getData, setGetData] = useState([]);
+    const [count, setCount] = useState({
+      counter: 0
+    });
     const openSidebar = () => {
        setSidebarOpen(true);
     };
@@ -13,9 +17,21 @@ const AdminStudents = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
+
+  
+   useEffect(()=>{
+    axios.get('http://localhost:8080/drivelearn/students')
+    .then(response =>{
+      setGetData(response.data)
+      console.log(getData);
+    })
+    
+   },[]);
+
   
    
   return (
+    
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
@@ -66,12 +82,20 @@ const AdminStudents = () => {
              </thead>
 
              <tbody>
-                <tr>
-                     <td>01</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
+             {
+              
+              getData.map(data =>{
+                if(data.name && data.address && data.nid && data.contact){
+                 
+                  return(
+                  
+                  <tr>
+                    
+                     <td>{data.count}</td>
+                     <td>{data.name}</td>
+                     <td>{data.address}</td>
+                     <td>{data.nid}</td>
+                     <td>{data.contact}</td>
                      <td>
                      <span className="action_btn">
                      <a href="./adminviewstudent" className="eye"><i className="fa fa-eye"></i></a>
@@ -80,7 +104,15 @@ const AdminStudents = () => {
                      </td>
                 </tr>
 
-                <tr>
+                )
+                }
+                
+              })
+             }
+           
+                
+             
+                {/* <tr>
                      <td>02</td>
                      <td>Aysha Ifra</td>
                      <td>No.65, Kottegoda, Weligama.</td>
@@ -148,7 +180,7 @@ const AdminStudents = () => {
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
-               </tr>
+               </tr> */}
                
              </tbody>
             </table>
