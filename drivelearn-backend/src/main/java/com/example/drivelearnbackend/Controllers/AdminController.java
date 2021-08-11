@@ -36,6 +36,8 @@ public class AdminController {
 //    public LinkedList<EmployeeDTO> getAllStudents(){
 //        return adminService.getAllStudents();
 //    }
+    @GetMapping(value = "/student/{stuId}")
+    public StudentDTO getStudent(@PathVariable("stuId") int id){return adminService.getStudent(id);}
 
 
 

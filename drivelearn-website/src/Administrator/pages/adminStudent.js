@@ -7,9 +7,7 @@ import axios from 'axios';
 const AdminStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
-    const [count, setCount] = useState({
-      counter: 0
-    });
+    
     const openSidebar = () => {
        setSidebarOpen(true);
     };
@@ -98,7 +96,7 @@ const AdminStudents = () => {
                      <td>{data.contact}</td>
                      <td>
                      <span className="action_btn">
-                     <a href="./adminviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href={'./adminviewstudent/'+ data.stuID} className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>

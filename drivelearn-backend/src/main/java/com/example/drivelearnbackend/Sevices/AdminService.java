@@ -83,7 +83,7 @@ public class AdminService {
 
     public LinkedList<StudentDTO> getAllStudents() {
         String branchId = null;
-        String br = "ht";
+
         int count = 0;
         Branch branch = null;
         LinkedList<Student> list = studentRepository.findAll();
@@ -106,6 +106,26 @@ public class AdminService {
             studentlist.add(new StudentDTO(student.getName(),student.getAddress(),student.getIdnum(),student.getContact(),branchId,student.getUsername(),student.getDob(),student.getStuId(),count));
         }
         return studentlist;
+    }
+
+    public StudentDTO getStudent(int id){
+        String branchId = null;
+        Branch branch = null;
+        LinkedList<Student> list= studentRepository.findByStuId(id);
+
+        Student student=null;
+        for (Student newStudent : list) {
+            student = newStudent;
+        }
+
+        branch = student.getBranch();
+        if(branch == null){
+            branchId = "nan";
+        }else{
+            branchId =branch.getBranchName();
+        }
+
+        return  new StudentDTO(student.getName(),student.getAddress(),student.getIdnum(),student.getContact(),branchId,student.getUsername(),student.getDob(),student.getStuId(),0);
     }
 
 }

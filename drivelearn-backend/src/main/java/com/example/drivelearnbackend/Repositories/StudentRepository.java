@@ -12,4 +12,5 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     LinkedList<Student> findByUsernameAndPassword(String username, String password);
 //    @LazyCollection(LazyCollectionOption.FALSE)
     LinkedList<Student> findAll();
+    LinkedList<Student> findByStuId(int id);
 }
