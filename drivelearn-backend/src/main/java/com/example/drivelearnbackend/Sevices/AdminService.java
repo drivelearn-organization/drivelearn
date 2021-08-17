@@ -2,6 +2,7 @@ package com.example.drivelearnbackend.Sevices;
 
 
 import com.example.drivelearnbackend.Controllers.DTO.AdminDTO;
+import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.AdminRepository;
 import com.example.drivelearnbackend.Repositories.EmployeeRepository;
@@ -126,6 +127,33 @@ public class AdminService {
         }
 
         return  new StudentDTO(student.getName(),student.getAddress(),student.getIdnum(),student.getContact(),branchId,student.getUsername(),student.getDob(),student.getStuId(),0);
+    }
+
+    public LinkedList<EmployeeDTO> getAllEmployee(){
+        String branchId = null;
+
+        int count = 0;
+        Branch branch = null;
+        LinkedList<Employee> list = repository.findAll();
+        LinkedList<EmployeeDTO> employeelist = new LinkedList<>();
+        for (Employee employee:list) {
+            branch = employee.getBranch();
+
+            if(branch == null){
+                branchId = "nan";
+            }else{
+                branchId =branch.getBranchName();
+            }
+
+            if(employee.getFullName() != null){
+                count = count+1;
+            }else{
+
+            }
+            employeelist.add(new EmployeeDTO(employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,count,employee.getRegisteredDate()));
+
+        }
+        return employeelist;
     }
 
 }

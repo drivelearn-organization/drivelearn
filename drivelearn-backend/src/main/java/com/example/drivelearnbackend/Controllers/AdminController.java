@@ -32,12 +32,13 @@ public class AdminController {
         return adminService.getAllStudents();
     }
 
-//    @GetMapping(value = "/employee")
-//    public LinkedList<EmployeeDTO> getAllStudents(){
-//        return adminService.getAllStudents();
-//    }
     @GetMapping(value = "/student/{stuId}")
     public StudentDTO getStudent(@PathVariable("stuId") int id){return adminService.getStudent(id);}
+
+        @GetMapping(value = "/employee")
+    public LinkedList<EmployeeDTO> getAllEmployee(){
+        return adminService.getAllEmployee();
+    }
 
 
 

@@ -43,7 +43,7 @@ function App() {
           <Route path='/adminmanager' component={AdminManagers} />
           <Route path='/managerviewstudent' component={ManagerViewStudents} />
           <Route path='/managerviewinstructor' component={ManagerViewInstructors} />
-          <Route path='/adminviewstudent/:id' component={AdminViewStudents} />
+          <Route path='/adminviewstudent/:id' component={AdminViewStudents} />                                    
           <Route path='/adminviewinstructor' component={AdminViewInstructors} />
           <Route path='/adminviewmanager' component={AdminViewManagers} />
           <Route path='/manageraddstudent' component={ManagerAddStudents} />
