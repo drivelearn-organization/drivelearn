@@ -134,7 +134,7 @@ public class AdminService {
 
         int count = 0;
         Branch branch = null;
-        LinkedList<Employee> list = repository.findAll();
+        LinkedList<Employee> list = repository.findAllByRoleAndIsActive(1, 2);
         LinkedList<EmployeeDTO> employeelist = new LinkedList<>();
         for (Employee employee:list) {
             branch = employee.getBranch();
