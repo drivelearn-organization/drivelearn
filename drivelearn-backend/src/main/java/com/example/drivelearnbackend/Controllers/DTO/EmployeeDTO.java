@@ -14,8 +14,9 @@ public class EmployeeDTO {
     private int role;
     private int count;
     private LocalDate registerDate;
+    private int empid;
 
-    public EmployeeDTO(String moNumber, String fullName, String nid, String branch, int count, LocalDate registerDate) {
+    public EmployeeDTO(int empid, String moNumber, String fullName, String nid, String branch, int count, LocalDate registerDate) {
         this.moNumber = moNumber;
         this.fullName = fullName;
         this.nid = nid;
@@ -23,6 +24,15 @@ public class EmployeeDTO {
         this.password = password;
         this.count = count;
         this.registerDate = registerDate;
+        this.empid = empid;
+    }
+
+    public int getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(int empid) {
+        this.empid = empid;
     }
 
     public int getRole() {

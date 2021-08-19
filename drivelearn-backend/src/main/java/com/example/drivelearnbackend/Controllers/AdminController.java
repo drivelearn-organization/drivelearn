@@ -14,6 +14,7 @@ import java.util.LinkedList;
 @CrossOrigin
 @RequestMapping(value = "/drivelearn")
 public class AdminController {
+
     @Autowired
     private AdminService adminService;
 
@@ -35,13 +36,13 @@ public class AdminController {
     @GetMapping(value = "/student/{stuId}")
     public StudentDTO getStudent(@PathVariable("stuId") int id){return adminService.getStudent(id);}
 
-        @GetMapping(value = "/employee")
+    @GetMapping(value = "/employee")
     public LinkedList<EmployeeDTO> getAllEmployee(){
         return adminService.getAllEmployee();
     }
 
-
-
+    @GetMapping(value = "/employee/{empid}")
+    public EmployeeDTO getEmployee(@PathVariable("empid") int id){return adminService.getEmployee(id);}
 
 
 }

@@ -150,10 +150,29 @@ public class AdminService {
             }else{
 
             }
-            employeelist.add(new EmployeeDTO(employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,count,employee.getRegisteredDate()));
+            employeelist.add(new EmployeeDTO(employee.getEmpid(), employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,count,employee.getRegisteredDate()));
 
         }
         return employeelist;
     }
 
+    public EmployeeDTO getEmployee(int id){
+        String branchId = null;
+        Branch branch = null;
+        LinkedList<Employee> list= repository.findByEmpid(id);
+
+        Employee employee=null;
+        for (Employee newemployee : list) {
+            employee = newemployee;
+        }
+
+        branch = employee.getBranch();
+        if(branch == null){
+            branchId = "nan";
+        }else{
+            branchId =branch.getBranchName();
+        }
+
+        return  new EmployeeDTO(employee.getEmpid(), employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,0,employee.getRegisteredDate());
+    }
 }

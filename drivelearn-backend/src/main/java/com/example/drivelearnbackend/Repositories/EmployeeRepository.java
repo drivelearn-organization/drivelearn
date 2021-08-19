@@ -9,6 +9,9 @@ import java.util.LinkedList;
 
 public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
    LinkedList<Employee> findByUsername(String username);
+//   LinkedList<Employee> findById(int id);
+   LinkedList<Employee> findByEmpid(int id);
+
    LinkedList<Employee> findAllByRoleAndIsActive(int id, int active);
    LinkedList<Employee> findByUsernameAndPassword(String username, String password);
    LinkedList<Employee> findAll();

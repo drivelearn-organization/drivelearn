@@ -45,7 +45,7 @@ function App() {
           <Route path='/managerviewinstructor' component={ManagerViewInstructors} />
           <Route path='/adminviewstudent/:id' component={AdminViewStudents} />                                    
           <Route path='/adminviewinstructor' component={AdminViewInstructors} />
-          <Route path='/adminviewmanager' component={AdminViewManagers} />
+          <Route path='/adminviewmanager/:id' component={AdminViewManagers} />
           <Route path='/manageraddstudent' component={ManagerAddStudents} />
           <Route path='/manageraddinstructor' component={ManagerAddInstructors} />
           <Route path='/adminaddstudent' component={AdminAddStudents} />
