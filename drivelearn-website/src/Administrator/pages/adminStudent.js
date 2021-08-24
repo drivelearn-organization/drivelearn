@@ -4,18 +4,19 @@ import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
 
-const AdminStudents = () => {
+const AdminStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+    const [searchStudent, setSearchStudent] = useState(false);
     const[state, setState] = useState({
-      moNumber:'',
-      fullName: '',
-      username: '',
-      password: '',
-      branch: '',
-      nid: '',
-      role: ''
+   
+      name: ''
+    
   });
+
+  const handleSearchStudent = () => {
+    setSearchStudent(!searchStudent);
+  }
 
   const handleChange = (e) => {
     setState({
@@ -27,8 +28,11 @@ const AdminStudents = () => {
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('http://192.168.56.1:8080/employee/register',state)    
-    console.log(state);
+    axios.post('http://192.168.56.1:8080/drivelearn/serchStudent',state)    
+    .then(response =>{
+      setGetData(response.data)
+      console.log(getData);
+    })
    
 }
 
@@ -69,7 +73,7 @@ const handleSubmit = (e) =>{
             <br/><br/>
             <div className="table_responsive">
               <div className="search"> 
-              <form>
+              <form action="" onSubmit={handleSubmit}>
                 <div className="search_box">
                  <div className="dropdown">
                    <div className="default_option">All</div>  
@@ -80,8 +84,8 @@ const handleSubmit = (e) =>{
                        </ul> */}
                    </div>
                  <div className="search_field">
-                 <input type="text" className="input" placeholder="Search"  onChange={handleChange}/>
-                 <i className="fas fa-search"></i>
+                 <input type="text" className="input" placeholder="Search" name="name"  onChange={handleChange}/>
+                 <i className="fas fa-search" onSubmit={handleSubmit}></i>
                 </div>
                 </div>
               </form>

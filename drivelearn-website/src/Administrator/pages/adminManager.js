@@ -16,6 +16,30 @@ const AdminStudents = () => {
       setSidebarOpen(false);
    };
 
+   const[state, setState] = useState({
+   
+    fullName: ''
+  
+});
+
+const handleChange = (e) => {
+  setState({
+      ...state,
+      [e.target.name]: e.target.value
+  }) 
+
+}
+
+   const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('http://192.168.56.1:8080/drivelearn/serchEmployee',state)    
+    .then(response =>{
+      setGetData(response.data)
+      
+    })
+   
+}
+
    useEffect(()=>{
     axios.get('http://localhost:8080/drivelearn/employee')
     .then(response =>{
@@ -39,7 +63,9 @@ const AdminStudents = () => {
             </div>
             <br/><br/>
             <div className="table_responsive">
-              <div className="search"> 
+            
+            <div className="search"> 
+            <form action="" onSubmit={handleSubmit}>
                <div className="search_box">
                  <div className="dropdown">
                    <div className="default_option">All</div>  
@@ -50,10 +76,11 @@ const AdminStudents = () => {
                        </ul> */}
                    </div>
                  <div className="search_field">
-                 <input type="text" className="input" placeholder="Search" />
-                 <i className="fas fa-search"></i>
+                 <input type="text" className="input" placeholder="Search" name="fullName"  onChange={handleChange}/>
+                 <i className="fas fa-search" onSubmit={handleSubmit}></i>
                 </div>
                 </div>
+                </form>
                  <div className="create-button">
                    <div className="create_btn">
                      <a href="./adminaddmanager"><i className="fa fa-plus-circle"></i></a>
@@ -62,6 +89,8 @@ const AdminStudents = () => {
                    </div>
                 </div>
                </div>
+            
+              
               
             <br/>
             <table>
