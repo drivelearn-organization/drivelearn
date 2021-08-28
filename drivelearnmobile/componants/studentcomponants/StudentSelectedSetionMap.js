@@ -11,7 +11,7 @@ import {
     View
 } from "react-native";
 import SelectedSessionCard from "../common/SelectedSessionCard";
-
+import turf from '@turf/bbox'
 import MapboxGL from "@react-native-mapbox-gl/maps";
 
 MapboxGL.setAccessToken("pk.eyJ1IjoiaXN1cnUtbWFsZGVuaXlhIiwiYSI6ImNrcmV5NjR3ODVvc20yb3Fob2RwcHRzOTMifQ.e8EFdkDdDDZtPQj75qg_5w");
@@ -133,8 +133,11 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
             .then((response) => response.json())
             .then((json) => {
                 console.log("here we are writing the latitude",+json.laditude);
-                setLocation([parseFloat(json.longititude),parseFloat(json.laditude)]);
+                // var bbox = require('@turf/bbox')
+                // var turf = require('@turf/turf');
+                var coords=[[parseFloat(json.longititude),parseFloat(json.laditude)]];
                 // setLocation(json);
+                setLocation(coords);
                 console.log("this is in the location"+locations);
             })
             .catch((error) => console.error(error));
@@ -157,7 +160,10 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                 .then((json) => {
                     console.log("here we are writing the latitude",+json.laditude);
                     // setLocation(json);
-                    setLocation([parseFloat(json.longititude),parseFloat(json.laditude)]);
+                    // var bbox = require('@turf/bbox')
+                    // var turf = require('@turf/turf');
+                    var coords=[[parseFloat(json.longititude),parseFloat(json.laditude)]];
+                    setLocation(coords);
                     console.log("this is in the location"+locations);
                 })
                 .catch((error) => console.error(error));
