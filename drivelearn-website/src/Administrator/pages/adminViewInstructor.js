@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
+import axios from 'axios';
 
-const AdminViewInstructors = () => {
+const AdminViewInstructors = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [getData, setGetData] = useState([]);
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -14,6 +16,15 @@ const AdminViewInstructors = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
+
+   useEffect(()=>{
+    axios.get('http://localhost:8080/drivelearn/trainer/'+props.match.params.id)
+    .then(response =>{
+      setGetData(response.data)
+      console.log(getData);
+    })
+    
+   },[]);
   
    
   return (
@@ -38,7 +49,7 @@ const AdminViewInstructors = () => {
           <form className="charts__rightt__cardss">
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value={getData.fullName}/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -54,15 +65,15 @@ const AdminViewInstructors = () => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="97799541V"  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value={getData.nid}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
           
             <div className="card-p">
-                <p className="text">Date of Birth</p>
-                <input className="data" type="" Value="15/10/1997" name="first_name" id="firstname" placeholder="DOB"   />
+                <p className="text">Registered Date</p>
+                <input className="data" type="" Value="15/10/1997" name="first_name" id="firstname" placeholder="DOB"  value={getData.registerDate}/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -70,7 +81,7 @@ const AdminViewInstructors = () => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="0767333799" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value="0767333799" name="first_name" id="firstname" placeholder="DOB"  value={getData.moNumber} />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -84,8 +95,8 @@ const AdminViewInstructors = () => {
                 </div> */}
             </div>
             <div className="card-p">
-                <p className="text">Gender</p>
-                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"   />
+                <p className="text">Branch</p>
+                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB" value={getData.branch}/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}

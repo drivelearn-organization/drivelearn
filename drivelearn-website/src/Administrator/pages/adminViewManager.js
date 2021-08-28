@@ -93,7 +93,7 @@ const AdminViewManagers = (props) => {
             </div>
             <div className="card-p">
                 <p className="text">Branch</p>
-                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"  value={getData.branch} />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
