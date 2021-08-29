@@ -6,6 +6,7 @@ public class AdminDTO {
     private String password;
     private String username;
 
+
     public AdminDTO(int adminId,String name, String password, String username) {
 
         this.name = name;

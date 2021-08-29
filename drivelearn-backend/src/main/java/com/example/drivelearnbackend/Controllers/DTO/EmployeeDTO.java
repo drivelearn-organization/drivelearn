@@ -1,5 +1,7 @@
 package com.example.drivelearnbackend.Controllers.DTO;
 
+import java.time.LocalDate;
+
 public class EmployeeDTO {
 
     private String moNumber;
@@ -9,6 +11,43 @@ public class EmployeeDTO {
     private String branch;
     private String username;
     private String password;
+    private int role;
+    private int count;
+    private LocalDate registerDate;
+    private int empid;
+
+    public EmployeeDTO(String username, String password, int role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public EmployeeDTO(int empid, String moNumber, String fullName, String nid, String branch, int count, LocalDate registerDate) {
+        this.moNumber = moNumber;
+        this.fullName = fullName;
+        this.nid = nid;
+        this.branch = branch;
+        this.password = password;
+        this.count = count;
+        this.registerDate = registerDate;
+        this.empid = empid;
+    }
+
+    public int getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(int empid) {
+        this.empid = empid;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public EmployeeDTO(String moNumber, String emNumber, String fullName, String nid, String branch, String username, String password) {
         this.moNumber = moNumber;
@@ -22,6 +61,10 @@ public class EmployeeDTO {
 
     public EmployeeDTO() {
     }
+
+    public LocalDate getRegisterDate() { return registerDate; }
+
+    public int getCount() { return count; }
 
     public String getMoNumber() {
         return moNumber;
@@ -58,6 +101,8 @@ public class EmployeeDTO {
     public String getNid() {
         return nid;
     }
+    public void setRegisterDate(LocalDate registerDate) { this.registerDate = registerDate; }
+    public void setCount(int count) { this.count = count; }
 
     public void setNid(String nid) {
         this.nid = nid;

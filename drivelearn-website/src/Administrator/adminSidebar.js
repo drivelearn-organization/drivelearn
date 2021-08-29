@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 import "./../BranchManager/Sidebar.css";
 
 const Sidebar = ({sidebarOpen, closeSidebar}) => {  
@@ -60,7 +62,8 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div> */}
         <div className="sidebar__logout">
           <i className="fa fa-power-off"></i>
-          <a href="./">Logout</a>
+          {/* <a href="../HomePa">Logout</a> */}
+        <Link to = "/" onClick={ () => sessionStorage.clear()}>Logout</Link>
         </div>
         <div className="sidebar__logout">
           <i className="fa fa-times-circle"></i>

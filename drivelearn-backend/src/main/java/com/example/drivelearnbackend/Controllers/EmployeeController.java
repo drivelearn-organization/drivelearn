@@ -5,12 +5,10 @@ import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
 import com.example.drivelearnbackend.Sevices.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "employee")
 public class EmployeeController {
     @Autowired
@@ -36,4 +34,8 @@ public class EmployeeController {
 
     @PostMapping(value = "/getemployee")
     public EmployeeDTO getEmployee(@RequestBody EmployeeDTO dto){return employeeService.getEmployee(dto);}
+
+//  sign up branch
+    @PostMapping(value = "/register")
+    public void registerEmployee(@RequestBody EmployeeDTO dto){ employeeService.registerEmployee(dto);}
 }

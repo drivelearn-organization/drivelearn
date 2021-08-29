@@ -1,11 +1,43 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
+import axios from 'axios';
 
-const AdminStudents = () => {
+const AdminStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-  
+    const [getData, setGetData] = useState([]);
+    const [searchStudent, setSearchStudent] = useState(false);
+    const[state, setState] = useState({
+   
+      name: ''
+    
+  });
+
+  const handleSearchStudent = () => {
+    setSearchStudent(!searchStudent);
+  }
+
+  const handleChange = (e) => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value
+    }) 
+   
+}
+
+const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('http://192.168.56.1:8080/drivelearn/serchStudent',state)    
+    .then(response =>{
+      setGetData(response.data)
+      console.log(getData);
+    })
+   
+}
+
+
+    
     const openSidebar = () => {
        setSidebarOpen(true);
     };
@@ -13,9 +45,21 @@ const AdminStudents = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
+
+  
+   useEffect(()=>{
+    axios.get('http://localhost:8080/drivelearn/students')
+    .then(response =>{
+      setGetData(response.data)
+      console.log(getData);
+    })
+    
+   },[]);
+
   
    
   return (
+    
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
@@ -29,7 +73,8 @@ const AdminStudents = () => {
             <br/><br/>
             <div className="table_responsive">
               <div className="search"> 
-               <div className="search_box">
+              <form action="" onSubmit={handleSubmit}>
+                <div className="search_box">
                  <div className="dropdown">
                    <div className="default_option">All</div>  
                    {/* <ul>
@@ -39,10 +84,12 @@ const AdminStudents = () => {
                        </ul> */}
                    </div>
                  <div className="search_field">
-                 <input type="text" className="input" placeholder="Search" />
-                 <i className="fas fa-search"></i>
+                 <input type="text" className="input" placeholder="Search" name="name"  onChange={handleChange}/>
+                 <i className="fas fa-search" onSubmit={handleSubmit}></i>
                 </div>
                 </div>
+              </form>
+              
                  <div className="create-button">
                    <div className="create_btn">
                      <a href="./adminaddstudent"><i className="fa fa-plus-circle"></i></a>
@@ -66,90 +113,33 @@ const AdminStudents = () => {
              </thead>
 
              <tbody>
-                <tr>
-                     <td>01</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
+             {
+              
+              getData.map(data =>{
+                if(data.name && data.address && data.nid && data.contact){
+                 
+                  return(
+                  
+                  <tr>
+                    
+                     <td>{data.count}</td>
+                     <td>{data.name}</td>
+                     <td>{data.address}</td>
+                     <td>{data.nid}</td>
+                     <td>{data.contact}</td>
                      <td>
                      <span className="action_btn">
-                     <a href="./adminviewstudent" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href={'./adminviewstudent/'+ data.stuID} className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                 </tr>
 
-                <tr>
-                     <td>02</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-      
-               <tr>
-                     <td>03</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>04</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>05</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>06</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="#" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-               
+                )
+                }
+                
+              })
+             }              
              </tbody>
             </table>
             </div>

@@ -30,6 +30,9 @@ public class EmployeeService {
     private NotificationRepository notificationRepository;
 
     @Autowired
+    private AdminRepository adminRepository;
+
+    @Autowired
     private UserReceiveNotificationRepository userReceiveNotificationRepository;
 
     public void addTrainer(EmployeeDTO dto){
@@ -100,5 +103,38 @@ public class EmployeeService {
         }
 
         return new EmployeeDTO(employee.getMoNumber(), null, employee.getFullName(), employee.getNid(), null,null,null);
+    }
+
+    public void registerEmployee(EmployeeDTO dto){
+        String pass="";
+        int roleType;
+        int role;
+
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        roleType = dto.getRole();
+        if(roleType == 4){
+            role = 4;
+        }else{
+            role = dto.getRole();
+        }
+
+
+        String isActive = "1";
+
+        List<Installment> installmentList=new ArrayList<>();
+        List<Session> trainersSessionList=new ArrayList<>();
+        List<Session> assinersSessionList=new ArrayList<>();
+        LocalDate todayregisterDate = LocalDate.now();
+        Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+
+
+        repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+
+
     }
 }
