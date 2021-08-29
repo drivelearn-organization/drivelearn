@@ -29,15 +29,18 @@ function Login() {
     axios.post('http://localhost:8080/drivelearn/login',state)
     .then(response => {
       console.log(response.data);
-      if(response.data){
-        if(response.data == "admin"){
+      if(response.data.username != null){
+        if(response.data.role == 4){
           window.location = '/administrator';
+       
         }else{
           window.location = '/branchmanager';
           
         }
-       
-      
+        sessionStorage.setItem('username',response.data.username);
+        sessionStorage.setItem('password',response.data.password);
+        sessionStorage.setItem('role',response.data.role); 
+        // sessionStorage.clear();
       }else{
         alert('Your details are wrong. Please enter detail again!');
         setState({

@@ -18,7 +18,8 @@
 ## externalId in user is id of student branch manager or employee
 
 ## isActive in Employee
-#### 1-pending for approval
+#### 
+
 #### 2-working
 #### 3-rewoked
 

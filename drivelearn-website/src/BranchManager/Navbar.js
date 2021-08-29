@@ -9,7 +9,7 @@ const Navbar = ({sidebarOpen, openSidebar}) => {
         <div className="navbar__left">
         </div>
         <div className="navbar__right">
-          <h5>Ifra15</h5>
+          <h5>{sessionStorage.getItem('username')}</h5>
           <a href="#">
           <img width="30" src="images/avatar.png" alt="" />
           </a>

@@ -16,6 +16,12 @@ public class EmployeeDTO {
     private LocalDate registerDate;
     private int empid;
 
+    public EmployeeDTO(String username, String password, int role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public EmployeeDTO(int empid, String moNumber, String fullName, String nid, String branch, int count, LocalDate registerDate) {
         this.moNumber = moNumber;
         this.fullName = fullName;

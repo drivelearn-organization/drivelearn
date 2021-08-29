@@ -24,8 +24,8 @@ public class AdminController {
     }
 
     @PostMapping(value = "/login")
-    public String loginEmployee(@RequestBody AdminDTO AdminDTO){
-        return adminService.loginEmployee(AdminDTO);
+    public EmployeeDTO loginEmployee(@RequestBody EmployeeDTO dto){
+        return adminService.loginEmployee(dto);
     }
 
     @GetMapping(value = "/students")
@@ -44,5 +44,24 @@ public class AdminController {
     @GetMapping(value = "/employee/{empid}")
     public EmployeeDTO getEmployee(@PathVariable("empid") int id){return adminService.getEmployee(id);}
 
+    @PostMapping(value = "/serchStudent")
+    public  LinkedList<StudentDTO> registerEmployee(@RequestBody StudentDTO dto){ return adminService.getSearchStudent(dto);}
+
+    @GetMapping(value = "/trainer")
+    public LinkedList<EmployeeDTO> getAllTrainer(){
+        return adminService.getAllTrainer();
+    }
+
+    @PostMapping(value = "/serchEmployee")
+    public  LinkedList<EmployeeDTO> searchEmployee(@RequestBody EmployeeDTO dto){ return adminService.getSearchEmployee(dto);}
+
+    @PostMapping(value = "/serchTrainer")
+    public  LinkedList<EmployeeDTO> searchTrainer(@RequestBody EmployeeDTO dto){ return adminService.getSearchTrainer(dto);}
+
+    @GetMapping(value = "/trainer/{empid}")
+    public EmployeeDTO getTrainer(@PathVariable("empid") int id){return adminService.getEmployee(id);}
+
+//    @PostMapping(value = "/addStudent")
+//    public  string searchTrainer(@RequestBody StudentDTO dto){ return adminService.addNewStudent(dto);}
 
 }
