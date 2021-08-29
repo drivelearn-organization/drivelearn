@@ -1,4 +1,5 @@
 import './../BranchManager/managerMain.css';
+import Chart from './adminChart';
 
 const AdminMain = () => {
    return(
@@ -64,42 +65,20 @@ const AdminMain = () => {
         <div className="charts__left">
           <div className="charts__left__title">
             <div>
-              <h1>Available Training Sessions</h1>
-              <p>DriveLEARN, Kalutara</p>
+              <h1>Statistical Chart</h1>
+              <p>DriveLEARN</p>
             </div>
-            {/* <i className="fa fa-usd" aria-hidden="true"></i> */}
           </div>
-          {/* <div id="apex1"></div> */}
-          {/* <div className="charts__right__cards">
-            <div className="card1">
-              <h1>Income</h1>
-              <p>$75,300</p>
-            </div>
-
-            <div className="card2">
-              <h1>Sales</h1>
-              <p>$124,200</p>
-            </div>
-
-            <div className="card3">
-              <h1>Users</h1>
-              <p>3900</p>
-            </div>
-
-            <div className="card4">
-              <h1>Orders</h1>
-              <p>1881</p>
-            </div>
-          </div> */}
+          <Chart />
         </div>
 
         <div className="charts__right">
           <div className="charts__right__title">
             <div>
-              <h1>Branch Income</h1>
-              <p>DriveLEARN, Kalutara</p>
+              <h1>Income</h1>
+              <p>DriveLEARN</p>
             </div>
-            {/* <i className="fa fa-usd" aria-hidden="true"></i> */}
+           
           </div>
 
           <div className="charts__right__cards">

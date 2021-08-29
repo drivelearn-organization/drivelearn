@@ -24,7 +24,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-tachometer"></i>
-          <a href="./administrator/">Dashboard</a>
+          <a href="./administrator">Dashboard</a>
         </div>
         <h2>MANAGEMENT</h2>
         <div className="sidebar__link">
@@ -41,7 +41,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
-          <a href="#">Vehicles</a>
+          <a href="./adminvehicle">Vehicles</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
