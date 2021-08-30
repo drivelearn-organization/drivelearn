@@ -176,7 +176,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
             clearInterval(setNotificUpdate);
             clearInterval(haveLocation);
 
-        }
+        };
     },[]);
 
 
