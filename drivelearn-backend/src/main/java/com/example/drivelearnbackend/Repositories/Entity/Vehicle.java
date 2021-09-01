@@ -13,7 +13,7 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vechicleId;
     private String regiNumner;
-    private String ChacieNumber;
+    private String chacieNumber;
     private int currentLicenId;
     private int currentInsuranceId;
     private int startingMilage;
@@ -41,10 +41,9 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(int vechicleId, String regiNumner, String chacieNumber, int currentLicenId, int currentInsuranceId, int startingMilage, int status, Date addedDate, Branch branch, VechileType vechileType, List<Insuarance> insuaranceList, List<License> licenseList) {
-        this.vechicleId = vechicleId;
+    public Vehicle(String regiNumner, String chacieNumber, int currentLicenId, int currentInsuranceId, int startingMilage, int status, Date addedDate, Branch branch, VechileType vechileType) {
         this.regiNumner = regiNumner;
-        ChacieNumber = chacieNumber;
+        this.chacieNumber = chacieNumber;
         this.currentLicenId = currentLicenId;
         this.currentInsuranceId = currentInsuranceId;
         this.startingMilage = startingMilage;
@@ -52,8 +51,6 @@ public class Vehicle {
         this.addedDate = addedDate;
         this.branch = branch;
         this.vechileType = vechileType;
-        this.insuaranceList = insuaranceList;
-        this.licenseList = licenseList;
     }
 
     public int getVechicleId() {
@@ -73,11 +70,11 @@ public class Vehicle {
     }
 
     public String getChacieNumber() {
-        return ChacieNumber;
+        return chacieNumber;
     }
 
     public void setChacieNumber(String chacieNumber) {
-        ChacieNumber = chacieNumber;
+        this.chacieNumber = chacieNumber;
     }
 
     public int getCurrentLicenId() {
