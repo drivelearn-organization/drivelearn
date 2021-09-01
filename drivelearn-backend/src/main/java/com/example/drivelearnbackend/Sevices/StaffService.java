@@ -3,7 +3,6 @@ package com.example.drivelearnbackend.Sevices;
 import com.example.drivelearnbackend.Controllers.DTO.StaffDTO;
 import com.example.drivelearnbackend.Repositories.AdminRepository;
 import com.example.drivelearnbackend.Repositories.EmployeeRepository;
-import com.example.drivelearnbackend.Repositories.Entity.Admin;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,13 @@ public class StaffService {
     public StaffDTO getEmploy(int spec,String username){
         StaffDTO dto=null;
         if(spec==1){
-            for (Admin admin : adminRepository.findByUsername(username)) {
-                dto=new StaffDTO(admin.getAdminId(), admin.getUsername(), admin.getPassword(), admin.getName());
+//            for (Admin admin : adminRepository.findByUsername(username)) {
+//                dto=new StaffDTO(admin.getAdminId(), admin.getUsername(), admin.getPassword(), admin.getName());
+//            }
+//            return dto;
+
+            for (Employee employee : employeeRepository.findByUsername(username)) {
+                dto=new StaffDTO(employee.getEmpid(), employee.getUsername(), employee.getPassword(), employee.getFullName(), employee.getNid(), employee.getMoNumber());
             }
             return dto;
         }else if(spec==2){
@@ -48,12 +52,19 @@ public class StaffService {
             e.printStackTrace();
         }
         if(dto.getSpec()==1){
-            Admin adminref=null;
-            for (Admin admin : adminRepository.findByUsername(dto.getUsername())) {
-                adminref=admin;
+//            Admin adminref=null;
+//            for (Admin admin : adminRepository.findByUsername(dto.getUsername())) {
+//                adminref=admin;
+//            }
+//            adminref.setPassword(pass);
+//            adminRepository.save(adminref);
+
+            Employee employee=null;
+            for (Employee employee1 : employeeRepository.findByUsername(dto.getUsername())) {
+                employee=employee1;
             }
-            adminref.setPassword(pass);
-            adminRepository.save(adminref);
+            employee.setPassword(pass);
+            employeeRepository.save(employee);
         }else if(dto.getSpec()==2){
             Employee employee=null;
             for (Employee employee1 : employeeRepository.findByUsername(dto.getUsername())) {
@@ -70,18 +81,36 @@ public class StaffService {
 
     public void updateDetails(StaffDTO dto){
         if(dto.getSpec()==1){
-            Admin adminref=null;
-            for (Admin admin : adminRepository.findByUsername(dto.getUsername())) {
-                adminref=admin;
+//            Admin adminref=null;
+//            for (Admin admin : adminRepository.findByUsername(dto.getUsername())) {
+//                adminref=admin;
+//            }
+//            if(dto.getNewUsername()!="" && dto.getNewUsername()!=null){
+//                adminref.setUsername(dto.getNewUsername());
+//            }
+//            if(dto.getName()!="" && dto.getName()!=null){
+//                adminref.setName(dto.getName());
+//            }
+//            adminRepository.save(adminref);
+
+            Employee employee=null;
+            for (Employee employee1 : employeeRepository.findByUsername(dto.getUsername())) {
+                employee=employee1;
             }
+
             if(dto.getNewUsername()!="" && dto.getNewUsername()!=null){
-                adminref.setUsername(dto.getNewUsername());
+                employee.setUsername(dto.getNewUsername());
             }
-            if(dto.getName()!="" && dto.getName()!=null){
-                adminref.setName(dto.getName());
+            if(dto.getName()!=""&& dto.getName()!=null){
+                employee.setFullName(dto.getName());
             }
-//            adminref.setPassword(pass);
-            adminRepository.save(adminref);
+            if(dto.getNic()!=""&& dto.getNic()!=null){
+                employee.setNid(dto.getNic());
+            }
+            if(dto.getMobileNumber()!="" && dto.getMobileNumber()!=null){
+                employee.setMoNumber(dto.getMobileNumber());
+            }
+            employeeRepository.save(employee);
         }else if(dto.getSpec()==2){
             Employee employee=null;
             for (Employee employee1 : employeeRepository.findByUsername(dto.getUsername())) {
@@ -111,7 +140,11 @@ public class StaffService {
     public boolean isUsernameAvailable(int spec,String username){
         int count=0;
         if(spec==1){
-            for (Admin admin : adminRepository.findByUsername(username)) {
+//            for (Admin admin : adminRepository.findByUsername(username)) {
+//                count++;
+//            }
+
+            for (Employee employee : employeeRepository.findByUsername(username)) {
                 count++;
             }
         }else if(spec==2){

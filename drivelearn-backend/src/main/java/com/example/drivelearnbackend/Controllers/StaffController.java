@@ -31,6 +31,7 @@ public class StaffController {
         staffService.updateDetails(dto);
     }
 
+//    spec(admin-1,branch manager-2),username
     @GetMapping(value = "isaval/{spec}/{username}")
     public boolean isUsernameAvailable(@PathVariable int spec,@PathVariable String username){
         return staffService.isUsernameAvailable(spec,username);
