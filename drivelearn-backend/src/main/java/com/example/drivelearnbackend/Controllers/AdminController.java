@@ -18,6 +18,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+
     @PostMapping(value = "/addAdmin")
     public void addStudent(@RequestBody AdminDTO AdminDTO){
         adminService.addAdmin(AdminDTO);
