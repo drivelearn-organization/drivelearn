@@ -35,7 +35,7 @@ function Nav() {
                 Signup
               </Link>
             </li>
-            <li className='nav-item'>
+            {/* <li className='nav-item'>
               <Link to='/administrator' className='nav-links' onClick={closeMobileMenu}>
                 Admin
               </Link>
@@ -44,7 +44,7 @@ function Nav() {
               <Link to='/branchmanager' className='nav-links' onClick={closeMobileMenu}>
                 Branch Manager
               </Link>
-            </li>
+            </li> */}
           </ul>
           
         </div>
