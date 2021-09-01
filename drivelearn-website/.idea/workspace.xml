@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/drivelearn-website.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCourceFrontPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCourceFrontPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/StaffController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/StaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +26,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager" selected="npm.start">
@@ -81,6 +78,8 @@
       <option name="presentableId" value="Default" />
       <updated>1624803738244</updated>
       <workItem from="1624803740514" duration="3995000" />
+      <workItem from="1630497242500" duration="1441000" />
+      <workItem from="1630508908781" duration="1194000" />
     </task>
     <servers />
   </component>
