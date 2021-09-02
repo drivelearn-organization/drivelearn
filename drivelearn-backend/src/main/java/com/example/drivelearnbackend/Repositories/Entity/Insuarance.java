@@ -22,6 +22,12 @@ public class Insuarance {
     public Insuarance() {
     }
 
+    public Insuarance(LocalDate payedDate, LocalDate expireDate, Vehicle vehicle) {
+        this.payedDate = payedDate;
+        this.expireDate = expireDate;
+        this.vehicle=vehicle;
+    }
+
     public Insuarance(int insuaranceId, double amount, LocalDate payedDate, LocalDate expireDate, Vehicle vehicle) {
         this.insuaranceId = insuaranceId;
         this.amount = amount;

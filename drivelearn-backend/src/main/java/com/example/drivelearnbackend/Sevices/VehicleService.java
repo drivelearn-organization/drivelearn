@@ -2,9 +2,7 @@ package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Repositories.*;
-import com.example.drivelearnbackend.Repositories.Entity.Branch;
-import com.example.drivelearnbackend.Repositories.Entity.VechileType;
-import com.example.drivelearnbackend.Repositories.Entity.Vehicle;
+import com.example.drivelearnbackend.Repositories.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +33,18 @@ public class VehicleService {
         for (VechileType type : vehicleTypeRepository.findByTypeName(dto.getVehicleType())) {
             type1=type;
         }
-        vehiclRepository.save(new Vehicle(dto.getRegiNumner(), dto.getChacieNumber(),dto.getStartingMilage(),dto.getStatus(), LocalDate.now(),branch,type1));
+        Vehicle vehicle=vehiclRepository.save(new Vehicle(dto.getRegiNumner(), dto.getChacieNumber(),dto.getStartingMilage(),dto.getStatus(), LocalDate.now(),branch,type1));
+        License license=null;
+        Insuarance insuarance=null;
+        if(dto.getLicencePayedDate()!=null && dto.getLicenceExpireDate()!=null){
+            license=licenseRepository.save(new License(dto.getPayedDate(),dto.getLicenceExpireDate(), vehicle));
+        }
+        if(dto.getPayedDate()!=null && dto.getExpireDate()!=null){
+            insuarance=insuaranceRepository.save(new Insuarance(dto.getPayedDate(),dto.getLicenceExpireDate(), vehicle));
+        }
+        vehicle.setCurrentInsuranceId(insuarance.getInsuaranceId());
+        vehicle.setCurrentLicenId(license.getLicenseId());
+        vehiclRepository.save(vehicle);
     }
 
     public LinkedList<VehicleDTO> giveAllVehicles(int spec,int branchid){

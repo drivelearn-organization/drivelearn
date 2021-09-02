@@ -22,6 +22,12 @@ public class License {
     public License() {
     }
 
+    public License(LocalDate payedDate, LocalDate expireDate,Vehicle vehicle) {
+        this.payedDate = payedDate;
+        this.expireDate = expireDate;
+        this.vehicle=vehicle;
+    }
+
     public License(int licenseId, double amount, LocalDate payedDate, LocalDate expireDate, Vehicle vehicle) {
         this.licenseId = licenseId;
         this.amount = amount;
