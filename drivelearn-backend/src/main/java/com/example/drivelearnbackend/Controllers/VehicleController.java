@@ -53,8 +53,15 @@ public class VehicleController {
 //        "licencePayedDate":"2021-01-01",
 //        "licenceExpireDate":"2021-10-01"
 //}
+//    vehicleid is must
     @PutMapping(value = "updatevehicle")
     public void updateVehicle(@RequestBody VehicleDTO dto){
         vehicleService.updateVehicle(dto);
+    }
+
+//    this is for delete vehicle vehicleid is must there
+    @DeleteMapping(value = "deletevehicle/{vehicleid}")
+    public void deleteVehicle(@PathVariable int vehicleid){
+        vehicleService.deleteVehicle(vehicleid);
     }
 }

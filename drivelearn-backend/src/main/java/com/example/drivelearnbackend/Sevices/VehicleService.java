@@ -104,4 +104,8 @@ public class VehicleService {
         }
         vehiclRepository.save(vehicle);
     }
+
+    public void deleteVehicle(int vehicleId){
+        vehiclRepository.delete(vehiclRepository.findById(vehicleId).get());
+    }
 }
