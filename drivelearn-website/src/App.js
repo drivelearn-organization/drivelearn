@@ -26,6 +26,9 @@ import AdminAddManagers from './Administrator/pages/adminAddManager';
 import AdminVehicle from './BranchManager/pages/managerVehicle';
 import ManagerAddVehicle from './BranchManager/pages/managerAddVehicle';
 import ManagerUpdateVehicle from './BranchManager/pages/managerUpdateVehicle';
+import ManagerSession from './BranchManager/pages/managerSession';
+import ManagerAddSession from './BranchManager/pages/managerAddSession';
+import ManagerUpdateSession from './BranchManager/pages/managerUpdateSession';
 
 function App() {
   return (
@@ -57,6 +60,9 @@ function App() {
           <Route path='/adminvehicle' component={AdminVehicle} />
           <Route path='/manageraddvehicle' component={ManagerAddVehicle} />
           <Route path='/managerupdatevehicle' component={ManagerUpdateVehicle} />
+          <Route path='/managersession' component={ManagerSession} />
+          <Route path='/manageraddsession' component={ManagerAddSession} />
+          <Route path='/managerupdatesession' component={ManagerUpdateSession} />
 
         </Switch>
         {/* <Footer /> */}
