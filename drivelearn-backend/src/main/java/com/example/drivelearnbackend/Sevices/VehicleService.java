@@ -1,16 +1,16 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
-import com.example.drivelearnbackend.Repositories.BranchRepository;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.Branch;
 import com.example.drivelearnbackend.Repositories.Entity.VechileType;
 import com.example.drivelearnbackend.Repositories.Entity.Vehicle;
-import com.example.drivelearnbackend.Repositories.VehicleRepository;
-import com.example.drivelearnbackend.Repositories.VehicleTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 @Service
 public class VehicleService {
@@ -23,6 +23,12 @@ public class VehicleService {
     @Autowired
     private VehicleRepository vehiclRepository;
 
+    @Autowired
+    private InsuaranceRepository insuaranceRepository;
+
+    @Autowired
+    private LicenseRepository licenseRepository;
+
     public void addVehicle(VehicleDTO dto){
         Branch branch=branchRepository.findBranchByBranchName(dto.getBranchName());
         VechileType type1 = null;
@@ -30,5 +36,32 @@ public class VehicleService {
             type1=type;
         }
         vehiclRepository.save(new Vehicle(dto.getRegiNumner(), dto.getChacieNumber(),dto.getStartingMilage(),dto.getStatus(), LocalDate.now(),branch,type1));
+    }
+
+    public LinkedList<VehicleDTO> giveAllVehicles(int spec,int branchid){
+        LinkedList<VehicleDTO> list=new LinkedList<>();
+        if(spec==1){
+            LocalDate isuranceDate=null;
+            LocalDate licensDate=null;
+            for (Vehicle vehicle : vehiclRepository.findAll()) {
+                try{
+                    isuranceDate= insuaranceRepository.findById(vehicle.getCurrentInsuranceId()).get().getExpireDate();
+                    licensDate= licenseRepository.findById(vehicle.getCurrentLicenId()).get().getExpireDate();
+                }catch (NoSuchElementException exception){}
+                list.add(new VehicleDTO(vehicle.getVechicleId(),vehicle.getRegiNumner(),vehicle.getChacieNumber(),vehicle.getStartingMilage(),vehicle.getVechileType().getTypeName() ,isuranceDate,licensDate));
+            }
+        }else{
+            LocalDate isuranceDate=null;
+            LocalDate licensDate=null;
+            for (Vehicle vehicle : vehiclRepository.findVehicleByBranch(branchRepository.findById(branchid).get())) {
+                try{
+                    isuranceDate= insuaranceRepository.findById(vehicle.getCurrentInsuranceId()).get().getExpireDate();
+                    licensDate= licenseRepository.findById(vehicle.getCurrentLicenId()).get().getExpireDate();
+                }catch (NoSuchElementException exception){}
+                list.add(new VehicleDTO(vehicle.getVechicleId(),vehicle.getRegiNumner(),vehicle.getChacieNumber(),vehicle.getStartingMilage(),vehicle.getVechileType().getTypeName() ,isuranceDate,licensDate));
+            }
+
+        }
+        return list;
     }
 }

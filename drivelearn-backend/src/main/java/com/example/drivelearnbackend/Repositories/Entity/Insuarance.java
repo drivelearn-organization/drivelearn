@@ -3,7 +3,7 @@ package com.example.drivelearnbackend.Repositories.Entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Insuarance {
@@ -11,8 +11,8 @@ public class Insuarance {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int insuaranceId;
     private double amount;
-    private Date payedDate;
-    private Date expireDate;
+    private LocalDate payedDate;
+    private LocalDate expireDate;
 
     @ManyToOne
     @JsonBackReference
@@ -22,7 +22,7 @@ public class Insuarance {
     public Insuarance() {
     }
 
-    public Insuarance(int insuaranceId, double amount, Date payedDate, Date expireDate, Vehicle vehicle) {
+    public Insuarance(int insuaranceId, double amount, LocalDate payedDate, LocalDate expireDate, Vehicle vehicle) {
         this.insuaranceId = insuaranceId;
         this.amount = amount;
         this.payedDate = payedDate;
@@ -46,19 +46,19 @@ public class Insuarance {
         this.amount = amount;
     }
 
-    public Date getPayedDate() {
+    public LocalDate getPayedDate() {
         return payedDate;
     }
 
-    public void setPayedDate(Date payedDate) {
+    public void setPayedDate(LocalDate payedDate) {
         this.payedDate = payedDate;
     }
 
-    public Date getExpireDate() {
+    public LocalDate getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(LocalDate expireDate) {
         this.expireDate = expireDate;
     }
 
