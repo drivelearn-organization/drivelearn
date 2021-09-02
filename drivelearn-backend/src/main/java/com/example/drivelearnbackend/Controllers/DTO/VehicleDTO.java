@@ -14,6 +14,7 @@ public class VehicleDTO{
     private LocalDate addedDate;
     private String branchName;
     private String vehicleType;
+    private String vehicleNumber;
 
     private int insuaranceId;
     private double amount;
@@ -36,6 +37,14 @@ public class VehicleDTO{
         this.vehicleType = vehicleType;
         this.expireDate = expireDate;
         this.licenceExpireDate = licenceExpireDate;
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
     }
 
     public int getVechicleId() {

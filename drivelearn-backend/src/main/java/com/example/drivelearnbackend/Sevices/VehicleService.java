@@ -73,4 +73,35 @@ public class VehicleService {
         }
         return list;
     }
+
+    public void updateVehicle(VehicleDTO dto){
+        Vehicle vehicle=vehiclRepository.findById(dto.getVechicleId()).get();
+        License license=null;
+        Insuarance insuarance=null;
+        if(dto.getLicencePayedDate()!=null && dto.getLicenceExpireDate()!=null){
+            license=licenseRepository.save(new License(dto.getPayedDate(),dto.getLicenceExpireDate(), vehicle));
+            vehicle.setCurrentLicenId(license.getLicenseId());
+        }
+        if(dto.getPayedDate()!=null && dto.getExpireDate()!=null){
+            insuarance=insuaranceRepository.save(new Insuarance(dto.getPayedDate(),dto.getLicenceExpireDate(), vehicle));
+            vehicle.setCurrentInsuranceId(insuarance.getInsuaranceId());
+        }
+        if(dto.getRegiNumner()!=null && dto.getRegiNumner()!=""){
+            vehicle.setRegiNumner(dto.getRegiNumner());
+        }
+        if(dto.getStartingMilage()!=0 ){
+            vehicle.setStartingMilage(dto.getStartingMilage());
+        }
+        if(dto.getVehicleType()!=null && dto.getVehicleType()!=""){
+            VechileType type=null;
+            for (VechileType vechileType : vehicleTypeRepository.findByTypeName(dto.getVehicleType())) {
+                type=vechileType;
+            }
+            vehicle.setVechileType(type);
+        }
+        if(dto.getChacieNumber()!=null && dto.getChacieNumber()!=""){
+            vehicle.setChacieNumber(dto.getChacieNumber());
+        }
+        vehiclRepository.save(vehicle);
+    }
 }

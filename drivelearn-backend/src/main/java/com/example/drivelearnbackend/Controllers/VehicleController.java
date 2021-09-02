@@ -14,12 +14,16 @@ public class VehicleController {
     private VehicleService vehicleService;
 
 //    {
-//        "regiNumner":"ABC-1234",
-//            "ChacieNumber":"rkvd4234243",
-//            "startingMilage":2000,
+//        "regiNumner":"ABC-1578",
+//            "chacieNumber":"svdffsd4243",
+//            "startingMilage":20564,
 //            "status":1,
-//            "branchName":"mathugama",
-//            "vehicleType":"bike"
+//            "branchName":"kaluthatara",
+//            "vehicleType":"bike",
+//            "payedDate":"2021-01-01",
+//            "expireDate":"2021-10-01",
+//            "licencePayedDate":"2021-01-01",
+//            "licenceExpireDate":"2021-10-01"
 //    }
 //    this is called when the function initially loading
     @PostMapping(value = "addvehicle")
@@ -33,5 +37,24 @@ public class VehicleController {
     @GetMapping(value = "getvehicle/{spec}/{branchid}")
     public LinkedList<VehicleDTO> getAllVehicles(@PathVariable int spec,@PathVariable int branchid){
         return vehicleService.giveAllVehicles(spec,branchid);
+    }
+
+//    this is used to update form
+//{
+//    "vechicleId":522,
+//        "regiNumner":"ABC-1818",
+//        "chacieNumber":"abcsvdffsd4243",
+//        "startingMilage":2,
+//        "status":1,
+//        "branchName":"mathugama",
+//        "vehicleType":"bike",
+//        "payedDate":"2021-01-01",
+//        "expireDate":"2021-10-01",
+//        "licencePayedDate":"2021-01-01",
+//        "licenceExpireDate":"2021-10-01"
+//}
+    @PutMapping(value = "updatevehicle")
+    public void updateVehicle(@RequestBody VehicleDTO dto){
+        vehicleService.updateVehicle(dto);
     }
 }
