@@ -38,12 +38,12 @@ public class VehicleService {
         Insuarance insuarance=null;
         if(dto.getLicencePayedDate()!=null && dto.getLicenceExpireDate()!=null){
             license=licenseRepository.save(new License(dto.getPayedDate(),dto.getLicenceExpireDate(), vehicle));
+            vehicle.setCurrentLicenId(license.getLicenseId());
         }
         if(dto.getPayedDate()!=null && dto.getExpireDate()!=null){
             insuarance=insuaranceRepository.save(new Insuarance(dto.getPayedDate(),dto.getLicenceExpireDate(), vehicle));
+            vehicle.setCurrentInsuranceId(insuarance.getInsuaranceId());
         }
-        vehicle.setCurrentInsuranceId(insuarance.getInsuaranceId());
-        vehicle.setCurrentLicenId(license.getLicenseId());
         vehiclRepository.save(vehicle);
     }
 
