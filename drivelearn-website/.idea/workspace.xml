@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/DTO/StaffSessionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/StaffSessionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/StaffSessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/DTO/EmployeeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/DTO/EmployeeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/StaffSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/StaffSessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Repositories/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Repositories/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/StaffSessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/StaffSessionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,17 +33,6 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
