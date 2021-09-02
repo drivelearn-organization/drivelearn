@@ -94,9 +94,85 @@ const ManagerVehicle = () => {
             </table>
             </div> 
         </div>
+
+
+
+
+
+        <div className="main__container">
+            <div className="main__title">
+                <div className="main__greeting">
+                <h1>Add Student</h1>
+                <p> Kalutara Branch</p>
+                </div>
+            </div>
+            <br/><br/>
+            <div className="table_responsive">
+              <div className="search"> 
+               <div className="search_box">
+                 <div className="dropdown">
+                   <div className="default_option">All</div>  
+                   {/* <ul>
+                         <li>All</li>
+                         <li>Recent</li>
+                         <li>Popular</li>
+                       </ul> */}
+                   </div>
+                 <div className="search_field">
+                 <input type="text" className="input" placeholder="Search" />
+                 <i className="fas fa-search"></i>
+                </div>
+                </div>
+                 <div className="create-button">
+                   
+                </div>
+               </div>
+              
+            <br/>
+            <table>
+              <thead>
+                  <tr>
+                  <th>StudentId</th>
+                  <th>NIC</th>
+                  <th>Name</th>
+                  <th>Total Hour</th>
+                  <th>Completed</th>
+                  <th>Session id</th>
+                  <th>Action</th>
+                 </tr>
+             </thead>
+
+             <tbody>
+                <tr>
+                     <td>01</td>
+                     <td>961022142V</td>
+                     <td>Buddika Perera</td>
+                     <td>10h</td>
+                     <td>5</td>
+                     <td> <input type="text" /> </td>
+                    
+
+                     <td>
+                     <span className="action_btn">
+                     
+                     <a href="./managerupdatesession" className="eye"><i className="fa fa-plus-circle"></i></a>
+                    
+                     </span>
+                     </td>
+                </tr>
+               
+             </tbody>
+            </table>
+            </div> 
+        </div>
+
+
       </main>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
+
+
+
   );
   
   }
