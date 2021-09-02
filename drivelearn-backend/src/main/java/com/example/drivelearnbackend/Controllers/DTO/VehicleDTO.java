@@ -1,31 +1,50 @@
 package com.example.drivelearnbackend.Controllers.DTO;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class VehicleDTO{
 
     private int vechicleId;
     private String regiNumner;
-    private String ChacieNumber;
+    private String chacieNumber;
     private int currentLicenId;
     private int currentInsuranceId;
     private int startingMilage;
     private int status;
-    private Date addedDate;
+    private LocalDate addedDate;
     private String branchName;
     private String vehicleType;
+    private String vehicleNumber;
 
     private int insuaranceId;
     private double amount;
-    private Date payedDate;
-    private Date expireDate;
+    private LocalDate payedDate;
+    private LocalDate expireDate;
 
     private int licenseId;
     private double licenceAmount;
-    private Date licencePayedDate;
-    private Date licenceExpireDate;
+    private LocalDate licencePayedDate;
+    private LocalDate licenceExpireDate;
 
     public VehicleDTO() {
+    }
+
+    public VehicleDTO(int vechicleId, String regiNumner, String chacieNumber, int startingMilage, String vehicleType, LocalDate expireDate, LocalDate licenceExpireDate) {
+        this.vechicleId = vechicleId;
+        this.regiNumner = regiNumner;
+        this.chacieNumber = chacieNumber;
+        this.startingMilage = startingMilage;
+        this.vehicleType = vehicleType;
+        this.expireDate = expireDate;
+        this.licenceExpireDate = licenceExpireDate;
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
     }
 
     public int getVechicleId() {
@@ -61,11 +80,11 @@ public class VehicleDTO{
     }
 
     public String getChacieNumber() {
-        return ChacieNumber;
+        return chacieNumber;
     }
 
     public void setChacieNumber(String chacieNumber) {
-        ChacieNumber = chacieNumber;
+        this.chacieNumber = chacieNumber;
     }
 
     public int getCurrentLicenId() {
@@ -100,11 +119,11 @@ public class VehicleDTO{
         this.status = status;
     }
 
-    public Date getAddedDate() {
+    public LocalDate getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Date addedDate) {
+    public void setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
     }
 
@@ -124,20 +143,36 @@ public class VehicleDTO{
         this.amount = amount;
     }
 
-    public Date getPayedDate() {
+    public LocalDate getPayedDate() {
         return payedDate;
     }
 
-    public void setPayedDate(Date payedDate) {
+    public void setPayedDate(LocalDate payedDate) {
         this.payedDate = payedDate;
     }
 
-    public Date getExpireDate() {
+    public LocalDate getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(LocalDate expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public LocalDate getLicencePayedDate() {
+        return licencePayedDate;
+    }
+
+    public void setLicencePayedDate(LocalDate licencePayedDate) {
+        this.licencePayedDate = licencePayedDate;
+    }
+
+    public LocalDate getLicenceExpireDate() {
+        return licenceExpireDate;
+    }
+
+    public void setLicenceExpireDate(LocalDate licenceExpireDate) {
+        this.licenceExpireDate = licenceExpireDate;
     }
 
     public int getLicenseId() {
@@ -156,19 +191,4 @@ public class VehicleDTO{
         this.licenceAmount = licenceAmount;
     }
 
-    public Date getLicencePayedDate() {
-        return licencePayedDate;
-    }
-
-    public void setLicencePayedDate(Date licencePayedDate) {
-        this.licencePayedDate = licencePayedDate;
-    }
-
-    public Date getLicenceExpireDate() {
-        return licenceExpireDate;
-    }
-
-    public void setLicenceExpireDate(Date licenceExpireDate) {
-        this.licenceExpireDate = licenceExpireDate;
-    }
 }
