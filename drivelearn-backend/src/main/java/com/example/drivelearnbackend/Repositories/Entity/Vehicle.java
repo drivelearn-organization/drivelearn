@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,7 +18,7 @@ public class Vehicle {
     private int currentInsuranceId;
     private int startingMilage;
     private int status;
-    private Date addedDate;
+    private LocalDate addedDate;
 
     @ManyToOne
     @JsonBackReference
@@ -41,11 +41,9 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(String regiNumner, String chacieNumber, int currentLicenId, int currentInsuranceId, int startingMilage, int status, Date addedDate, Branch branch, VechileType vechileType) {
+    public Vehicle(String regiNumner, String chacieNumber, int startingMilage, int status, LocalDate addedDate, Branch branch, VechileType vechileType) {
         this.regiNumner = regiNumner;
         this.chacieNumber = chacieNumber;
-        this.currentLicenId = currentLicenId;
-        this.currentInsuranceId = currentInsuranceId;
         this.startingMilage = startingMilage;
         this.status = status;
         this.addedDate = addedDate;
@@ -109,11 +107,11 @@ public class Vehicle {
         this.status = status;
     }
 
-    public Date getAddedDate() {
+    public LocalDate getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Date addedDate) {
+    public void setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
     }
 

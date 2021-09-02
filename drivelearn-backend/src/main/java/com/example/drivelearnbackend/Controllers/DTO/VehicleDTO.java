@@ -1,5 +1,6 @@
 package com.example.drivelearnbackend.Controllers.DTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class VehicleDTO{
@@ -11,7 +12,7 @@ public class VehicleDTO{
     private int currentInsuranceId;
     private int startingMilage;
     private int status;
-    private Date addedDate;
+    private LocalDate addedDate;
     private String branchName;
     private String vehicleType;
 
@@ -100,11 +101,11 @@ public class VehicleDTO{
         this.status = status;
     }
 
-    public Date getAddedDate() {
+    public LocalDate getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Date addedDate) {
+    public void setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
     }
 

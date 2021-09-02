@@ -14,8 +14,19 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
+//    {
+//        "regiNumner":"ABC-1234",
+//            "ChacieNumber":"rkvd4234243",
+//            "startingMilage":2000,
+//            "status":1,
+//            "branchName":"mathugama",
+//            "vehicleType":"bike"
+//    }
+//    this is called when the function initially loading
     @PostMapping(value = "addvehicle")
     public void addVehicle(@RequestBody VehicleDTO dto){
         vehicleService.addVehicle(dto);
     }
+
+    
 }
