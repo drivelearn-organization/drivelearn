@@ -2,6 +2,7 @@ package com.example.drivelearnbackend.Controllers;
 
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StaffSessionDTO;
+import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Sevices.StaffSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,5 +28,9 @@ public class StaffSessionController {
     public LinkedList<EmployeeDTO> getAllTrainers(@PathVariable int branchid){
         return staffSessionService.getAllTrainers(branchid);
     }
-    
+//    this is used to get the all vehicles regarding to the branch
+    @GetMapping(value = "getallvehicles/{branchid}")
+    public LinkedList<VehicleDTO> getAllVehicles(@PathVariable int branchid){
+        return staffSessionService.getAllVehicles(branchid);
+    }
 }
