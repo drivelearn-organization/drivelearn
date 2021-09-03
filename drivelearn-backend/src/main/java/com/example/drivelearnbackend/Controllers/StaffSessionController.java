@@ -5,10 +5,7 @@ import com.example.drivelearnbackend.Controllers.DTO.StaffSessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Sevices.StaffSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -32,5 +29,9 @@ public class StaffSessionController {
     @GetMapping(value = "getallvehicles/{branchid}")
     public LinkedList<VehicleDTO> getAllVehicles(@PathVariable int branchid){
         return staffSessionService.getAllVehicles(branchid);
+    }
+    @PutMapping(value = "updatesession")
+    public void updateSession(@RequestBody StaffSessionDTO dto){
+        staffSessionService.updateSession(dto);
     }
 }
