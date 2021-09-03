@@ -29,6 +29,9 @@ import ManagerUpdateVehicle from './BranchManager/pages/managerUpdateVehicle';
 import ManagerSession from './BranchManager/pages/managerSession';
 import ManagerAddSession from './BranchManager/pages/managerAddSession';
 import ManagerUpdateSession from './BranchManager/pages/managerUpdateSession';
+import ManagerPayment from './BranchManager/pages/managerPayment';
+import ManagerAddPayment from './BranchManager/pages/manageAddPayment';
+import ManagerUpdatePayment from './BranchManager/pages/managerUpdatePayment';
 
 function App() {
   return (
@@ -63,6 +66,9 @@ function App() {
           <Route path='/managersession' component={ManagerSession} />
           <Route path='/manageraddsession' component={ManagerAddSession} />
           <Route path='/managerupdatesession' component={ManagerUpdateSession} />
+          <Route path='/managerpayment' component={ManagerPayment} />
+          <Route path='/manageraddpayment' component={ManagerAddPayment} />
+          <Route path='/managerupdatepayment' component={ManagerUpdatePayment} />
 
         </Switch>
         {/* <Footer /> */}
