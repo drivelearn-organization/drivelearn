@@ -30,8 +30,22 @@ public class StaffSessionController {
     public LinkedList<VehicleDTO> getAllVehicles(@PathVariable int branchid){
         return staffSessionService.getAllVehicles(branchid);
     }
+//    this is used to update the session
+//{
+//        "sessionId":310,
+//        "trainerId":255,
+//        "date":"2021-10-11"
+//}
+//    there can be more variables add them
     @PutMapping(value = "updatesession")
     public void updateSession(@RequestBody StaffSessionDTO dto){
         staffSessionService.updateSession(dto);
+    }
+
+//    this is used to cancel the session
+//    sessionId is must here
+    @PutMapping(value = "makeclose/{id}")
+    public void makeClose(@PathVariable int id){
+        staffSessionService.makeClose(id);
     }
 }

@@ -124,8 +124,12 @@ public class StaffSessionService {
             }
             userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
         }
+    }
 
-
+    public void makeClose(int id){
+        Session session=sessionRepository.findById(id).get();
+        session.setStatus(6);
+        sessionRepository.save(session);
     }
 
 }
