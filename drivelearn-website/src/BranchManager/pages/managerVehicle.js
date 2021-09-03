@@ -1,13 +1,31 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import './../Table.css';
 import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import axios from 'axios';
 
 
 const ManagerVehicle = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [vehicleState , setVehicleState] = useState([]);
+
+    useEffect(()=>{
+      getVehicle();
+    }, []);
+
+    const getVehicle=()=>{
+      axios
+      .get("http://localhost:8080/vehicle/getvehicle/1/1")
+      .then(data =>{
+        setVehicleState(data.data);
+        
+
+      })
+    }
+
+    console.log(vehicleState.data);
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -70,54 +88,36 @@ const ManagerVehicle = () => {
              </thead>
 
              <tbody>
-                <tr>
-                     <td>01</td>
-                     <td>HR 3323</td>
-                     <td>25000</td>
-                     <td>Car</td>
-                     <td>2021/10/01</td>
-                     <td>2022/09/01</td>
+             {
+              
+              vehicleState.map(d =>(
+               
+                
+                  
+                  
+                  <tr>
+                    
+                     <td>{d.regiNumner}</td>
+                     <td>{d.chacieNumber}</td>
+                     <td>{d.startingMilage}</td>
+                     <td>{d.vehicleType}</td>
+                     <td>{d.licenceExpireDate}</td>
+                     <td>{d.expireDate}</td>
                      <td>
                      <span className="action_btn">
-                     <a href="./managerupdatevehicle" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-                </tr>
-
-                <tr>
-                     <td>02</td>
-                     <td>HR 3323</td>
-                     <td>25000</td>
-                     <td>Car</td>
-                     <td>2021/10/01</td>
-                     <td>2022/09/01</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerupdatevehicle" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-                </tr>
-
-                <tr>
-                     <td>03</td>
-                     <td>HR 3323</td>
-                     <td>25000</td>
-                     <td>Car</td>
-                     <td>2021/10/01</td>
-                     <td>2022/09/01</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerupdatevehicle" className="eye"><i className="fa fa-eye"></i></a>
+                     <a href={'./adminviewstudent/'+ d.vechicleId} className="eye"><i className="fa fa-eye"></i></a>
                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                 </tr>
 
                 
-               
-             </tbody>
+                
+                
+  ))
+             }
+
+</tbody>
             </table>
             </div> 
         </div>
