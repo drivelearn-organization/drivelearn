@@ -5,10 +5,7 @@ import com.example.drivelearnbackend.Controllers.DTO.StaffSessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Sevices.StaffSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -32,5 +29,23 @@ public class StaffSessionController {
     @GetMapping(value = "getallvehicles/{branchid}")
     public LinkedList<VehicleDTO> getAllVehicles(@PathVariable int branchid){
         return staffSessionService.getAllVehicles(branchid);
+    }
+//    this is used to update the session
+//{
+//        "sessionId":310,
+//        "trainerId":255,
+//        "date":"2021-10-11"
+//}
+//    there can be more variables add them
+    @PutMapping(value = "updatesession")
+    public void updateSession(@RequestBody StaffSessionDTO dto){
+        staffSessionService.updateSession(dto);
+    }
+
+//    this is used to cancel the session
+//    sessionId is must here
+    @PutMapping(value = "makeclose/{id}")
+    public void makeClose(@PathVariable int id){
+        staffSessionService.makeClose(id);
     }
 }
