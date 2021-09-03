@@ -29,6 +29,11 @@ public class VehicleDTO{
     public VehicleDTO() {
     }
 
+    public VehicleDTO(int vechicleId, String regiNumner) {
+        this.vechicleId = vechicleId;
+        this.regiNumner = regiNumner;
+    }
+
     public VehicleDTO(int vechicleId, String regiNumner, String chacieNumber, int startingMilage, String vehicleType, LocalDate expireDate, LocalDate licenceExpireDate) {
         this.vechicleId = vechicleId;
         this.regiNumner = regiNumner;

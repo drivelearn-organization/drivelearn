@@ -33,6 +33,11 @@ public class EmployeeDTO {
         this.empid = empid;
     }
 
+    public EmployeeDTO(String fullName, int empid) {
+        this.fullName = fullName;
+        this.empid = empid;
+    }
+
     public int getEmpid() {
         return empid;
     }
