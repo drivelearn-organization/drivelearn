@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Payment {
@@ -24,6 +23,11 @@ public class Payment {
     @JoinColumn(name = "course_id",referencedColumnName = "courseId")
     private Cource cource;
 
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "totai_payment_id",referencedColumnName = "id")
+    private TotalPayment totalPayment;
+
     public Payment() {
     }
 
@@ -33,6 +37,14 @@ public class Payment {
         this.date = date;
         this.student = student;
         this.cource = cource;
+    }
+
+    public Payment(double amount, LocalDate date, Student student, Cource cource, TotalPayment totalPayment) {
+        this.amount = amount;
+        this.date = date;
+        this.student = student;
+        this.cource = cource;
+        this.totalPayment = totalPayment;
     }
 
     public Payment(double amount, LocalDate date, Student student) {

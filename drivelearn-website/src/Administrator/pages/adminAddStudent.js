@@ -6,6 +6,37 @@ import Sidebar from './../adminSidebar';
 
 const AdminAddStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const[state, setState] = useState({
+      name:'',
+      password: '',
+      address: '',
+      username: '',
+      contact: '',
+      sdob: '',
+      branch: '',
+      nid:''
+  });
+
+  const handleChange = (e) => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value
+    }) 
+ 
+}
+
+const handleSubmit = (e) =>{
+    e.preventDefault()
+    
+
+    
+
+    
+
+    console.log(state);
+   
+}
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -14,6 +45,8 @@ const AdminAddStudents = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
+
+
   
    
   return (
@@ -35,10 +68,10 @@ const AdminAddStudents = () => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="" required />
+                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value={state.name}  onChange={handleChange} required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -46,7 +79,7 @@ const AdminAddStudents = () => {
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="" required />
+                <input className="data" type="text" name="address" id="firstname" placeholder="Address" value={state.address}  onChange={handleChange} required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -54,7 +87,7 @@ const AdminAddStudents = () => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="" required />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid}  onChange={handleChange} required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -62,7 +95,7 @@ const AdminAddStudents = () => {
           
             <div className="card-p">
                 <p className="text">Date of Birth</p>
-                <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Date of Birth" required  />
+                <input className="data" type="date" name="sdob" value={state.sdob} id="firstname" placeholder="Date of Birth" onChange={handleChange} required  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -70,27 +103,38 @@ const AdminAddStudents = () => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Mobile" required  />
+                <input className="data" type="text" value={state.contact} name="contact" id="firstname" placeholder="Mobile"  onChange={handleChange} required  />
+                {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+            </div>
+
+            <div className="card-p">
+                <p className="text">User Name</p>
+                <input className="data" type="text" name="username" id="firstname" placeholder="Full Name" value={state.username}  onChange={handleChange} required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
           
             <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="" name="first_name" id="firstname" placeholder="Email"  required />
+                <p className="text">password</p>
+                <input className="data" type="password" value={state.password} name="password" id="firstname" placeholder="*********"  onChange={handleChange}  required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
             <div className="card-p">
                 <p className="text">Gender</p>
-                <select className="option1" name="Register_as" required>
+                <select className="option1" name="branch"  onChange={handleChange} required>
                 <option disabled="disabled" selected="selected">--Choose Option--</option>
-                <option>Male</option>
-                <option>Female</option>
-               </select>
+                <option value ="mathugama">mathugama</option>
+                <option value ="kaluthatara">kaluthatara</option>
+                <option value ="Aluthgama">Aluthgama</option>
+                </select>
             </div>
+
+            
             <center>
             <input type="submit" value="Update" className="update-btn" />
             &nbsp;&nbsp;&nbsp;

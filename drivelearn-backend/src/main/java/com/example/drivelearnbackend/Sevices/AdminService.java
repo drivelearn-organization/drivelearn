@@ -5,11 +5,9 @@ import com.example.drivelearnbackend.Controllers.DTO.AdminDTO;
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.AdminRepository;
+import com.example.drivelearnbackend.Repositories.BranchRepository;
 import com.example.drivelearnbackend.Repositories.EmployeeRepository;
-import com.example.drivelearnbackend.Repositories.Entity.Admin;
-import com.example.drivelearnbackend.Repositories.Entity.Branch;
-import com.example.drivelearnbackend.Repositories.Entity.Employee;
-import com.example.drivelearnbackend.Repositories.Entity.Student;
+import com.example.drivelearnbackend.Repositories.Entity.*;
 import com.example.drivelearnbackend.Repositories.StudentRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +30,9 @@ public class AdminService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private BranchRepository branchRepository;
 
 
     public void addAdmin(AdminDTO dto) {
@@ -318,8 +320,81 @@ public class AdminService {
         return employeelist;
     }
 
-//    public String addNewStudent(EmployeeDTO dto){
-//
-//    return "hello";
-//    }
+    public String addNewStudent(StudentDTO dto){
+        String error = "";
+        String pass = "";
+        LinkedList<Student> username = new LinkedList<>();
+        LinkedList<Student> password = new LinkedList<>();
+
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        List<StuSession> stuSessionList=new ArrayList<>();
+        List<Feedback> feedbacks=new ArrayList<>();
+        List<Cource> courceList=new ArrayList<>();
+        List<Payment> paymentList=new ArrayList<>();
+        List<VechileType> vechileTypes=new ArrayList<>();
+        LocalDate todayregisterDate = LocalDate.now();
+        Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+        username = studentRepository.findByUsername(dto.getUsername());
+        password = studentRepository.findByPassword(pass);
+
+        if(username.isEmpty() && password.isEmpty()){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String date = dto.getSdob();
+            LocalDate localDate = LocalDate.parse(date, formatter);
+
+            studentRepository.save(new Student(dto.getName(), todayregisterDate, dto.getNid(), dto.getAddress(), localDate, dto.getUsername(),pass, dto.getContact(), feedbacks, branch, stuSessionList, courceList, paymentList, vechileTypes));
+
+            error = "Added Successfully";
+        }else if(username.isEmpty()){
+            error = "Invalid Password";
+        }else if(password.isEmpty()){
+
+            error = "Invalid Username";
+        }else{
+
+            error = "Invalid Username and Password";
+        }
+
+
+        return error;
+    }
+
+
+    public String addNewInstructor(EmployeeDTO dto){
+        String pass="";
+        int roleType;
+        int role;
+
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        roleType = dto.getRole();
+        if(roleType == 4){
+            role = 4;
+        }else{
+            role = dto.getRole();
+        }
+
+
+        String isActive = "1";
+
+        List<Installment> installmentList=new ArrayList<>();
+        List<Session> trainersSessionList=new ArrayList<>();
+        List<Session> assinersSessionList=new ArrayList<>();
+        LocalDate todayregisterDate = LocalDate.now();
+        Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+
+
+        repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+
+        return "hello";
+    }
 }
