@@ -9,23 +9,23 @@ import axios from 'axios';
 
 const ManagerVehicle = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [vehicleState , setVehicleState] = useState([]);
+    const [paymentState , setPayementState] = useState([]);
 
     useEffect(()=>{
-      getVehicle();
+      getPayment();
     }, []);
 
-    const getVehicle=()=>{
+    const getPayment=()=>{
       axios
       .get("http://localhost:8080/vehicle/getvehicle/1/1")
       .then(data =>{
-        setVehicleState(data.data);
+        setPayementState(data.data);
         
 
       })
     }
 
-    console.log(vehicleState.data);
+  
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -43,7 +43,7 @@ const ManagerVehicle = () => {
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
-                <h1>Manage Vehicles</h1>
+                <h1>Manage Payment</h1>
                 <p> Kalutara Branch</p>
                 </div>
             </div>
@@ -66,9 +66,9 @@ const ManagerVehicle = () => {
                 </div>
                  <div className="create-button">
                    <div className="create_btn">
-                     <a href="./manageraddvehicle"><i className="fa fa-plus-circle"></i></a>
+                     <a href="./manageraddpayment"><i className="fa fa-plus-circle"></i></a>
                      <br/>
-                     <p>Add vehicle</p>
+                     <p>Add Payemnt</p>
                    </div>
                 </div>
                </div>
@@ -77,20 +77,22 @@ const ManagerVehicle = () => {
             <table>
               <thead>
                   <tr>
-                  <th>Reg No</th>
-                  <th>Chassis No</th>
-                  <th>Starting Miles(km)</th>
-                  <th>Vehicle Type</th>
-                  <th>License expire</th>
-                  <th>Insurance expire</th>
-                  <th>Action</th>
+                  <th>Student Id</th>
+                  <th>NIC</th>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Course Fee</th>
+                  <th>Paid Amount</th>
+                  <th>Rest Amount</th>
+                  <th>Update</th>
+                  
                  </tr>
              </thead>
 
              <tbody>
              {
               
-              vehicleState.map(d =>(
+              paymentState.map(d =>(
                
                 
                   
@@ -99,15 +101,17 @@ const ManagerVehicle = () => {
                     
                      <td>{d.regiNumner}</td>
                      <td>{d.chacieNumber}</td>
+                     <td>2021-04-11</td>
                      <td>{d.startingMilage}</td>
                      <td>{d.vehicleType}</td>
                      <td>{d.licenceExpireDate}</td>
                      <td>{d.expireDate}</td>
                      <td>
-                     <span className="action_btn">
-                     <a href={'./adminviewstudent/'+ d.vechicleId} className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
+                   <div className="create_btn">
+                     <a href="./managerupdatepayment"><i className="fa fa-plus-circle"></i></a>
+                    
+                
+                   </div>
                      </td>
                 </tr>
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -13,12 +13,12 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vechicleId;
     private String regiNumner;
-    private String ChacieNumber;
+    private String chacieNumber;
     private int currentLicenId;
     private int currentInsuranceId;
     private int startingMilage;
     private int status;
-    private Date addedDate;
+    private LocalDate addedDate;
 
     @ManyToOne
     @JsonBackReference
@@ -41,19 +41,14 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(int vechicleId, String regiNumner, String chacieNumber, int currentLicenId, int currentInsuranceId, int startingMilage, int status, Date addedDate, Branch branch, VechileType vechileType, List<Insuarance> insuaranceList, List<License> licenseList) {
-        this.vechicleId = vechicleId;
+    public Vehicle(String regiNumner, String chacieNumber, int startingMilage, int status, LocalDate addedDate, Branch branch, VechileType vechileType) {
         this.regiNumner = regiNumner;
-        ChacieNumber = chacieNumber;
-        this.currentLicenId = currentLicenId;
-        this.currentInsuranceId = currentInsuranceId;
+        this.chacieNumber = chacieNumber;
         this.startingMilage = startingMilage;
         this.status = status;
         this.addedDate = addedDate;
         this.branch = branch;
         this.vechileType = vechileType;
-        this.insuaranceList = insuaranceList;
-        this.licenseList = licenseList;
     }
 
     public int getVechicleId() {
@@ -73,11 +68,11 @@ public class Vehicle {
     }
 
     public String getChacieNumber() {
-        return ChacieNumber;
+        return chacieNumber;
     }
 
     public void setChacieNumber(String chacieNumber) {
-        ChacieNumber = chacieNumber;
+        this.chacieNumber = chacieNumber;
     }
 
     public int getCurrentLicenId() {
@@ -112,11 +107,11 @@ public class Vehicle {
         this.status = status;
     }
 
-    public Date getAddedDate() {
+    public LocalDate getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Date addedDate) {
+    public void setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
     }
 

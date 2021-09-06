@@ -41,11 +41,11 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
-          <a href="#">Payments</a>
+          <a href="./managerpayment">Payments</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-clock-o"></i>
-          <a href="#">Training Sessions</a>
+          <a href="./managersession">Training Sessions</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-clock-o"></i>

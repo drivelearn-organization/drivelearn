@@ -1,8 +1,7 @@
 package com.example.drivelearnbackend.Repositories;
 
-import antlr.collections.List;
+import com.example.drivelearnbackend.Repositories.Entity.Branch;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
-import com.example.drivelearnbackend.Repositories.Entity.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -24,4 +23,6 @@ public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
 
    @Query("SELECT e FROM Employee e WHERE (e.fullName LIKE %:name% or e.empid = :name) AND e.isActive = 2 AND e.role = 2")
    LinkedList<Employee> searchByTrainerUsernam(@Param("name")String name);
+
+   LinkedList<Employee> findAllByBranchAndRole(Branch branch,int role);
 }
