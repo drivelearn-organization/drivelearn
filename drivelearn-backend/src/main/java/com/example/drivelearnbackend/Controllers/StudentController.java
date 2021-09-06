@@ -6,6 +6,8 @@ import com.example.drivelearnbackend.Sevices.StudentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
+
 @RestController
 @RequestMapping(value = "/student")
 public class StudentController {
@@ -36,5 +38,14 @@ public class StudentController {
     public boolean isAvailableAccount(@RequestBody StudentDTO dto){
         return studentServices.isAvailAccounut(dto);
     }
+
+//    this is used to get student by branch
+//    localhost:8080/student/getstudentbybranch/1
+//    branchId is required
+    @GetMapping(value = "getstudentbybranch/{branchid}")
+    public LinkedList<StudentDTO> getStudentByBranch(@PathVariable int branchid){
+        return studentServices.getStudenutBybranch(branchid);
+    }
+
 
 }
