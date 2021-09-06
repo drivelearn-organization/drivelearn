@@ -8,6 +8,32 @@ import axios from 'axios';
 const AdminViewStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+
+    const[state, setState] = useState({
+      name:'',
+      address: '',
+      username: '',
+      contact: '',
+      stuID: '',
+      branch: '',
+      nid:'',
+      dob:'',
+      count:''
+  }); 
+
+  const handleChange = (e) => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value
+    }) 
+ 
+}
+
+const handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log(state);
+   
+}
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -22,9 +48,25 @@ const AdminViewStudents = (props) => {
     .then(response =>{
       setGetData(response.data)
       console.log(getData);
+
+      setState({
+      name:response.data.name,
+      address: response.data.address,
+      username: response.data.username,
+      contact: response.data.contact,
+      stuID: response.data.stuID,
+      branch: response.data.branch,
+      nid:response.data.nid,
+      dob:response.data.dob,
+      count:response.data.count
+      })
     })
+
+    console.log(state)
     
    },[]);
+
+ 
   
    
   return (
@@ -46,10 +88,10 @@ const AdminViewStudents = (props) => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value={getData.name}  />
+                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value={state.name} onChange={handleChange} />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -57,7 +99,7 @@ const AdminViewStudents = (props) => {
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value={getData.address}  />
+                <input className="data" type="text" name="address" id="firstname" value={state.address} value={getData.address}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -65,7 +107,7 @@ const AdminViewStudents = (props) => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value={getData.nid}  />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -73,7 +115,7 @@ const AdminViewStudents = (props) => {
           
             <div className="card-p">
                 <p className="text">Date of Birth</p>
-                <input className="data" type="" Value={getData.dob} name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="" Value={state.dob} name="dob" id="firstname" placeholder="DOB"   />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -81,7 +123,7 @@ const AdminViewStudents = (props) => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value={getData.contact} name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value={state.contact} name="contact" id="firstname" placeholder="DOB"   />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -89,7 +131,7 @@ const AdminViewStudents = (props) => {
 
             <div className="card-p">
                 <p className="text">Branch</p>
-                <input className="data" type="text" Value={getData.branch} name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value={state.branch} name="branch" id="firstname" placeholder="DOB"   />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
