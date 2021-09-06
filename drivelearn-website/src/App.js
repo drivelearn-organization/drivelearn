@@ -9,6 +9,7 @@ import BranchManager from './BranchManager/pages/managerDashboard';
 import ManagerSettings from './BranchManager/pages/managerSetting';
 import AdminSettings from './Administrator/pages/adminSetting';
 import ManagerStudents from './BranchManager/pages/managerStudent';
+import ManagerNotifications from './BranchManager/pages/managerNotification';
 import ManagerInstructors from './BranchManager/pages/managerInstructor';
 import AdminStudents from './Administrator/pages/adminStudent';
 import AdminInstructors from './Administrator/pages/adminInstructor';
@@ -46,6 +47,7 @@ function App() {
           <Route path='/managersettings' component={ManagerSettings} />
           <Route path='/adminsettings' component={AdminSettings} />
           <Route path='/managerstudent' component={ManagerStudents} />
+          <Route path='/managernotification' component={ManagerNotifications} />
           <Route path='/managerinstructor' component={ManagerInstructors} />
           <Route path='/adminstudent' component={AdminStudents} />
           <Route path='/admininstructor' component={AdminInstructors} />

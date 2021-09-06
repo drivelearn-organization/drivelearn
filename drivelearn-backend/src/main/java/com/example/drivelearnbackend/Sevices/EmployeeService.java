@@ -105,8 +105,12 @@ public class EmployeeService {
         return new EmployeeDTO(employee.getMoNumber(), null, employee.getFullName(), employee.getNid(), null,null,null);
     }
 
-    public void registerEmployee(EmployeeDTO dto){
+    public String registerEmployee(EmployeeDTO dto){
+        String error = "";
         String pass="";
+
+        LinkedList<Employee> username = new LinkedList<>();
+        LinkedList<Employee> password = new LinkedList<>();
         int roleType;
         int role;
 
@@ -131,10 +135,22 @@ public class EmployeeService {
         List<Session> assinersSessionList=new ArrayList<>();
         LocalDate todayregisterDate = LocalDate.now();
         Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+        username = repository.findByUsername(dto.getUsername());
+        password = repository.findByPassword(pass);
+
+        if(username.isEmpty() && password.isEmpty()){
+            repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+            error = "Register Successfully";
+        }else if(username.isEmpty()){
+            error = "Invalid Password";
+        }else if(password.isEmpty()){
+            error = "Invalid Username";
+        }else{
+            error = "Invalid Username and Password";
+        }
 
 
-        repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
-
+        return error;
 
     }
 }
