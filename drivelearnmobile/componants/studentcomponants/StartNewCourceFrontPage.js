@@ -106,7 +106,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
     const paymentObjectLN = {
         "sandbox": true,                 // true if using Sandbox Merchant ID
         "merchant_id": "1217670",        // Replace your Merchant ID
-        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "merchant_secret": "8cOuclxa3wQ4OUvjPTauXq4jsBq7fFDlK4EvgCrmDl22",        // See step 4e
         "notify_url": "http://sample.com/notify",
         "order_id": "ItemNo12345",
         "items": "Hello from React Native!",
@@ -130,7 +130,7 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
     const paymentObjectLI = {
         "sandbox": true,                 // true if using Sandbox Merchant ID
         "merchant_id": "1217670",        // Replace your Merchant ID
-        "merchant_secret": "8m6xE46jD2H8LUozW1h2QP4OUvM7SBVDv8W6KJGse1ov",        // See step 4e
+        "merchant_secret": "4q9Gk1QhSL28MOIKYUVIwq48blCsEqGLE4qC5WbNTs8p",        // See step 4e
         "notify_url": "http://sample.com/notify",
         "order_id": "ItemNo12345",
         "items": "Hello from React Native!",
@@ -381,10 +381,10 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                         paymentObjectLN,
                                         (paymentId) => {
                                             console.log("Payment Completed", paymentId);
-                                            setCoursePayment(25000);
-                                            addPayment();
-                                            setCource(6,2,0,7,0,0,2);
-                                            setTimeout(()=>{checkButtonstatus();},2000);
+                                            // setCoursePayment(25000);
+                                            // addPayment();
+                                            // setCource(6,2,0,7,0,0,2);
+                                            // setTimeout(()=>{checkButtonstatus();},2000);
                                         },
                                         (errorData) => {
                                             Alert.alert("PayHere Error", errorData);
@@ -393,7 +393,10 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             console.log("Payment Dismissed");
                                         }
                                     );
-
+                                    setCoursePayment(25000);
+                                    addPayment();
+                                    setCource(6,2,0,7,0,0,2);
+                                    setTimeout(()=>{checkButtonstatus();},2000);
 
                                 }}><Text>Start Course</Text></TouchableOpacity>
                             </View>

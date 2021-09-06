@@ -8,6 +8,21 @@ public class PaymentDTO {
     private String username;
     private int userId;
 
+
+    private String name;
+    private String nic;
+    private double rest;
+
+    public PaymentDTO(double amount, LocalDate date, int userId, String name, String nic, double rest,int paymentId) {
+        this.paymentId=paymentId;
+        this.amount = amount;
+        this.date = date;
+        this.userId = userId;
+        this.name = name;
+        this.nic = nic;
+        this.rest = rest;
+    }
+
     public PaymentDTO() {
     }
 
@@ -29,6 +44,30 @@ public class PaymentDTO {
         this.amount = amount;
         this.date = date;
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public double getRest() {
+        return rest;
+    }
+
+    public void setRest(double rest) {
+        this.rest = rest;
     }
 
     public String getUsername() {
