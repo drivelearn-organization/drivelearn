@@ -15,7 +15,9 @@ public class StudentDTO {
     private String month;
     private String year;
     private int count;
+    private  String sdob;
 
+       private LocalDate Dob;
     public StudentDTO(String name, String address, String nid, String contact, String branch, String username, LocalDate dob, int stuID, int count) {
         this.name = name;
         this.address = address;
@@ -28,7 +30,7 @@ public class StudentDTO {
         this.count = count;
     }
 
-    private LocalDate Dob;
+
 
     private int stuID;
 
@@ -60,6 +62,22 @@ public class StudentDTO {
     }
 
     public StudentDTO() {
+    }
+
+//    public LocalDate getDto() {
+//        return dto;
+//    }
+//
+//    public void setDto(LocalDate dto) {
+//        this.dto = dto;
+//    }
+
+    public String getSdob() {
+        return sdob;
+    }
+
+    public void setSdob(String sdob) {
+        this.sdob = sdob;
     }
 
     public int getCount() { return count; }

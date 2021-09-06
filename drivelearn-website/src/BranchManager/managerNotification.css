@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+.table_responsive {
+    /* max-width: 1000px; */
+    border: 1px solid #3ea175;
+    background-color: #efefef33;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    background: #d6d8d9;
+    color: #3a3e41;
+    box-shadow: 5px 5px 5px #ededed, -5px -5px -px #ffffff;
+  }
+
+  .title{
+    max-width: 850px;
+  }
+
+  .description{
+    max-width: 850px;
+    min-height: 150px;
+  }
+
+  .add-btn {
+    margin-left: auto;
+    border-color: #3ea175;;
+    outline: none;
+    background: #3ea175;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-btn:hover{
+    background-color: #3ea175;;
+    color: #fff;
+    border-color: #fff;
+}
+
+.select-all {
+  display: block;
+  position: relative;
+  margin-top: 15px;
+  margin-left: 150px;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.select-all input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.select-all:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.select-all input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.select-all .checkmark:after {
+  left: 6px;
+  top: 4px;
+  width: 5px;
+  height: 8px;
+  border: solid #3ea175;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+

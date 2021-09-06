@@ -62,7 +62,10 @@ public class AdminController {
     @GetMapping(value = "/trainer/{empid}")
     public EmployeeDTO getTrainer(@PathVariable("empid") int id){return adminService.getEmployee(id);}
 
-//    @PostMapping(value = "/addStudent")
-//    public  string searchTrainer(@RequestBody StudentDTO dto){ return adminService.addNewStudent(dto);}
+    @PostMapping(value = "/addStudent")
+    public  String addNewStudent(@RequestBody StudentDTO dto){ return adminService.addNewStudent(dto);}
+
+    @PostMapping(value = "/addInstructors")
+    public  String addNewInstructor(@RequestBody EmployeeDTO dto){ return adminService.addNewInstructor(dto);}
 
 }

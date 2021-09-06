@@ -3,6 +3,7 @@ import '../../App.css';
 import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
+import axios from 'axios';
 
 const AdminAddInstructors = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -14,6 +15,32 @@ const AdminAddInstructors = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
+
+   const[state, setState] = useState({
+    moNumber:'',
+    fullName: '',
+    username: '',
+    password: '',
+    branch: '',
+    nid: '',
+    role: ''
+});
+
+const handleChange = (e) => {
+  setState({
+      ...state,
+      [e.target.name]: e.target.value
+  }) 
+
+}
+
+const handleSubmit = (e) =>{
+  e.preventDefault()
+  // axios.post('http://192.168.56.1:8080/employee/register',state)
+
+ console.log(state);
+ 
+}
   
    
   return (
@@ -35,10 +62,10 @@ const AdminAddInstructors = () => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="" required />
+                <input className="data" type="text" name="fullName" id="firstname" placeholder="Full Name" value={state.fullName} onChange={handleChange} required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -54,7 +81,7 @@ const AdminAddInstructors = () => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="" required />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid} onChange={handleChange} required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -70,7 +97,7 @@ const AdminAddInstructors = () => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Mobile" required  />
+                <input className="data" type="text" Value="" name="moNumber" id="firstname" placeholder="Mobile" value={state.moNumber} onChange={handleChange} required  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -83,12 +110,37 @@ const AdminAddInstructors = () => {
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
+
+            <div className="card-p">
+                <p className="text">Username</p>
+                <input className="data" type="text" Value="" id="firstname" placeholder="Username" name="username" value={state.username} onChange={handleChange}  required />
+                {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+            </div>
+            <div className="card-p">
+                <p className="text">Password</p>
+                <input className="data" type="password" Value="" name="password" id="firstname" placeholder="******" value={state.password} onChange={handleChange} required />
+                {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+            </div>
             <div className="card-p">
                 <p className="text">Gender</p>
                 <select className="option1" name="Register_as" required>
                 <option disabled="disabled" selected="selected">--Choose Option--</option>
                 <option>Male</option>
                 <option>Female</option>
+               </select>
+            </div>
+
+            <div className="card-p">
+                <p className="text">Gender</p>
+                <select className="option1" name="Register_as" onChange={handleChange} required>
+                <option disabled="disabled" selected="selected">--Choose Option--</option>
+                <option value ="mathugama">mathugama</option>
+                <option value ="kaluthatara">kaluthatara</option>
+                <option value ="Aluthgama">Aluthgama</option>
                </select>
             </div>
             <center>

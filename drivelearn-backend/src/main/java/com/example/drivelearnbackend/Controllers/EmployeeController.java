@@ -37,5 +37,5 @@ public class EmployeeController {
 
 //  sign up branch
     @PostMapping(value = "/register")
-    public void registerEmployee(@RequestBody EmployeeDTO dto){ employeeService.registerEmployee(dto);}
+    public String registerEmployee(@RequestBody EmployeeDTO dto){ return employeeService.registerEmployee(dto);}
 }
