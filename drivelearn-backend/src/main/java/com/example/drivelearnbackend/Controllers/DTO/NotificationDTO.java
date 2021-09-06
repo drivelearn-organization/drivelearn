@@ -18,6 +18,12 @@ public class NotificationDTO {
     public NotificationDTO() {
     }
 
+    public NotificationDTO(int notificationId, String header, String message) {
+        this.notificationId = notificationId;
+        this.header = header;
+        this.message = message;
+    }
+
     public NotificationDTO(int notificationId, String header, String message, LocalDate date, int status) {
         this.notificationId = notificationId;
         this.header = header;

@@ -1,14 +1,11 @@
 package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.NotificationDTO;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.Notification;
 import com.example.drivelearnbackend.Repositories.Entity.User;
 import com.example.drivelearnbackend.Repositories.Entity.UserReceiveNotification;
-import com.example.drivelearnbackend.Repositories.NotificationRepository;
-import com.example.drivelearnbackend.Repositories.UserReceiveNotificationRepository;
-import com.example.drivelearnbackend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,6 +23,12 @@ public class NontificationService {
 
     @Autowired
     private UserReceiveNotificationRepository userReceiveNotificationRepository;
+
+    @Autowired
+    private BranchRepository branchRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     public Notification addNotification(NotificationDTO dto){
         User user = null;
@@ -151,5 +154,20 @@ public class NontificationService {
             return count;
         }
 
+    }
+
+    public LinkedList<NotificationDTO> getAllNotificationByBranch(int branchId){
+        LinkedList<NotificationDTO> notificationDTOS=new LinkedList<>();
+        for (Notification notification : repository.findAll()) {
+            if(notification.getSender()!=null){
+//                if(branchRepository.findById(employeeRepository.findById(notification.getSender().getExternalId()).get().getBranch().getBranchid()).get()!=null){
+                    if(employeeRepository.findById(notification.getSender().getExternalId()).get().getBranch().getBranchid()==branchId){
+                        notificationDTOS.add(new NotificationDTO(notification.getNotificationId(), notification.getHeader(), notification.getMessage()));
+                    }
+//                }
+            }
+        }
+
+        return notificationDTOS;
     }
 }

@@ -47,5 +47,4 @@ public class StudentController {
         return studentServices.getStudenutBybranch(branchid);
     }
 
-
 }
