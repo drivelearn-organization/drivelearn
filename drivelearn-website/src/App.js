@@ -50,8 +50,8 @@ function App() {
           <Route path='/adminstudent' component={AdminStudents} />
           <Route path='/admininstructor' component={AdminInstructors} />
           <Route path='/adminmanager' component={AdminManagers} />
-          <Route path='/managerviewstudent' component={ManagerViewStudents} />
-          <Route path='/managerviewinstructor' component={ManagerViewInstructors} />
+          <Route path='/managerviewstudent/:id' component={ManagerViewStudents} />
+          <Route path='/managerviewinstructor/:id' component={ManagerViewInstructors} />
           <Route path='/adminviewstudent/:id' component={AdminViewStudents} />                                    
           <Route path='/adminviewinstructor/:id' component={AdminViewInstructors} />
           <Route path='/adminviewmanager/:id' component={AdminViewManagers} />
@@ -62,13 +62,14 @@ function App() {
           <Route path='/adminaddmanager' component={AdminAddManagers} />
           <Route path='/adminvehicle' component={AdminVehicle} />
           <Route path='/manageraddvehicle' component={ManagerAddVehicle} />
-          <Route path='/managerupdatevehicle' component={ManagerUpdateVehicle} />
+          <Route path='/managerupdatevehicle/:id' component={ManagerUpdateVehicle} />
           <Route path='/managersession' component={ManagerSession} />
           <Route path='/manageraddsession' component={ManagerAddSession} />
           <Route path='/managerupdatesession' component={ManagerUpdateSession} />
           <Route path='/managerpayment' component={ManagerPayment} />
           <Route path='/manageraddpayment' component={ManagerAddPayment} />
           <Route path='/managerupdatepayment' component={ManagerUpdatePayment} />
+          
 
         </Switch>
         {/* <Footer /> */}
