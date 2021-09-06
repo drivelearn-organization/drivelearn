@@ -61,4 +61,19 @@ public class NotificationController {
     public LinkedList<NotificationDTO> getAllNotificationByBranch(@PathVariable int branchid){
         return nontificationService.getAllNotificationByBranch(branchid);
     }
+
+//    {
+//            "notificationId":50,
+//            "receiverType":3,
+//            "receiverUserIdAtrray":[244,257,251]
+//
+//    }
+    @PostMapping(value = "addstudentlist")
+    public void addNotificationForListOfNumbers(@RequestBody NotificationDTO dto){
+        for (int i : dto.getReceiverUserIdAtrray()) {
+//            System.out.println(i);
+            nontificationService.addReceiver(new NotificationDTO(dto.getNotificationId(), i, dto.getReceiverType()));
+        }
+
+    }
 }
