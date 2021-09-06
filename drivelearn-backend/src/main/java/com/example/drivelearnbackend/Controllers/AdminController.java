@@ -68,4 +68,9 @@ public class AdminController {
     @PostMapping(value = "/addInstructors")
     public  String addNewInstructor(@RequestBody EmployeeDTO dto){ return adminService.addNewInstructor(dto);}
 
+//    @GetMapping(value = "/loginUser")
+//    public LinkedList<StudentDTO> getAllStudents(){
+//        return adminService.getAllStudents();
+//    }
+
 }
