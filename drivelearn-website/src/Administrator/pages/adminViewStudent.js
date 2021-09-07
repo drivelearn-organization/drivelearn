@@ -47,7 +47,7 @@ const handleSubmit = (e) =>{
     axios.get('http://localhost:8080/drivelearn/student/'+props.match.params.id)
     .then(response =>{
       setGetData(response.data)
-      console.log(getData);
+      
 
       setState({
       name:response.data.name,
