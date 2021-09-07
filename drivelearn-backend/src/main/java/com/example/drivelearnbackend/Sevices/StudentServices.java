@@ -103,6 +103,18 @@ public class StudentServices {
         return studentRet;
     }
 
+    public LinkedList<StudentDTO> getStudenutBybranch(int branchId){
+        LinkedList<StudentDTO> studentDTOS=new LinkedList<>();
+        for (Student student : repository.findAll()) {
+            if(student.getBranch()!=null){
+                if(student.getBranch().getBranchid()==branchId){
+                    studentDTOS.add(new StudentDTO(student.getName(), student.getIdnum(), student.getStuId()));
+                }
+            }
+        }
+        return studentDTOS;
+    }
+
     public void addStudent(){
         repository.save(new Student());
     }
