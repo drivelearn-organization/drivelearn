@@ -68,9 +68,20 @@ public class AdminController {
     @PostMapping(value = "/addInstructors")
     public  String addNewInstructor(@RequestBody EmployeeDTO dto){ return adminService.addNewInstructor(dto);}
 
-//    @GetMapping(value = "/loginUser")
+//    @GetMapping(value = "/loginUser/")
 //    public LinkedList<StudentDTO> getAllStudents(){
 //        return adminService.getAllStudents();
 //    }
 
+    @GetMapping(value = "/settingProfile/{username}")
+    public EmployeeDTO getSettingProfile(@PathVariable("username") String username){return adminService.getSettingProfile(username);}
+
+    @GetMapping(value = "/updateEmployee")
+    public String updateEmployee(@RequestBody EmployeeDTO dto){return adminService.updateEmployee(dto);}
+
+    @PostMapping(value = "/updateStudent")
+    public  String updateStudent(@RequestBody StudentDTO dto){ return adminService.updateStudent(dto);}
+
+    @PostMapping(value = "/settingMyProfile")
+    public  String settingMyProfile(@RequestBody EmployeeDTO dto){ return adminService.settingMyProfile(dto);}
 }

@@ -15,6 +15,8 @@ public class EmployeeDTO {
     private int count;
     private LocalDate registerDate;
     private int empid;
+    private String password2;
+    private String password3;
 
     public EmployeeDTO(String username, String password, int role) {
         this.username = username;
@@ -66,6 +68,13 @@ public class EmployeeDTO {
 
     public EmployeeDTO() {
     }
+    public String getPassword2() { return password2; }
+
+    public void setPassword2(String password2) { this.password2 = password2; }
+
+    public String getPassword3() { return password3; }
+
+    public void setPassword3(String password3) { this.password3 = password3; }
 
     public LocalDate getRegisterDate() { return registerDate; }
 
