@@ -1,13 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../App.css';
 import './../../BranchManager/Dashboard.css';
 import './../../BranchManager/Profile.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
-
+import axios from 'axios';
 
 const AdminSettings = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [getData, setGetData] = useState([]);
+  const[state, setState] = useState({
+    name:'',
+    address: '',
+    username: sessionStorage.getItem('username'),
+    contact: '',
+    stuID: '',
+    branch: '',
+    nid:'',
+    dob:'',
+    count:''
+}); 
+
+const handleChange = (e) => {
+  setState({
+      ...state,
+      [e.target.name]: e.target.value
+  }) 
+
+}
+
+const handleSubmit = (e) =>{
+  e.preventDefault()
+  console.log(state);
+ 
+}
 
   const openSidebar = () => {
      setSidebarOpen(true);
@@ -16,6 +42,29 @@ const AdminSettings = () => {
   const closeSidebar = () => {
     setSidebarOpen(false);
  };
+
+ useEffect(()=>{
+  axios.get('http://localhost:8080/drivelearn/settingProfile/'+sessionStorage.getItem('username'))
+  .then(response =>{
+    setGetData(response.data)
+    console.log(response.data);
+
+    setState({
+    name:response.data.name,
+    address: response.data.address,
+    username: sessionStorage.getItem('username'),
+    contact: response.data.contact,
+    stuID: response.data.stuID,
+    branch: response.data.branch,
+    nid:response.data.nid,
+    dob:response.data.dob,
+    count:response.data.count
+    })
+  })
+
+
+  
+ },[]);
 
  
 return (
@@ -101,7 +150,7 @@ return (
           <form className="charts__right__cardss">
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
+                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}

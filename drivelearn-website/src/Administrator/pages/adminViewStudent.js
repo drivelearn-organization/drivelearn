@@ -18,7 +18,10 @@ const AdminViewStudents = (props) => {
       branch: '',
       nid:'',
       dob:'',
-      count:''
+      count:'',
+      password:'',
+      password2:'',
+      password3:''
   }); 
 
   const handleChange = (e) => {
@@ -46,7 +49,7 @@ const handleSubmit = (e) =>{
    useEffect(()=>{
     axios.get('http://localhost:8080/drivelearn/student/'+props.match.params.id)
     .then(response =>{
-      setGetData(response.data)
+      // setGetData(response.data)
       
 
       setState({
@@ -58,11 +61,15 @@ const handleSubmit = (e) =>{
       branch: response.data.branch,
       nid:response.data.nid,
       dob:response.data.dob,
-      count:response.data.count
+      count:response.data.count,
+      password:response.data.password,
+      password2:response.data.password2,
+      password3:response.data.password3
       })
+      console.log(state)
     })
 
-    console.log(state)
+  
     
    },[]);
 
@@ -99,7 +106,7 @@ const handleSubmit = (e) =>{
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="address" id="firstname" value={state.address} value={getData.address}  />
+                <input className="data" type="text" name="address" id="firstname" value={state.address}   />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
