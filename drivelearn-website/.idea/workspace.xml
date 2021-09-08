@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/DTO/NotificationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/DTO/NotificationDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Controllers/NotificationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/android/app/src/main/java/com/drivelearnmobile/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/android/app/src/main/java/com/drivelearnmobile/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +102,9 @@
       <workItem from="1630826335141" duration="1871000" />
       <workItem from="1630910132670" duration="590000" />
       <workItem from="1630912750559" duration="1345000" />
+      <workItem from="1631016566169" duration="1067000" />
+      <workItem from="1631097050270" duration="587000" />
+      <workItem from="1631099435196" duration="730000" />
     </task>
     <servers />
   </component>
