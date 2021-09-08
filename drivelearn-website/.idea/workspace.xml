@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/android/app/src/main/java/com/drivelearnmobile/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/android/app/src/main/java/com/drivelearnmobile/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/android/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/ios/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCourceFrontPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCourceFrontPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
