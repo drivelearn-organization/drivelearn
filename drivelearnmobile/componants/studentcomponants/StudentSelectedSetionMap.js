@@ -31,7 +31,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
     const [data, setData] = useState([]);
 
     const [sessions,setSessions]=useState([]);
-    const [locations,setLocation]=useState([[-122.0840918,37.4219429]]);
+    const [locations,setLocation]=useState([80.214081,6.538201]);
 
     useEffect(()=>{
 
@@ -137,7 +137,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                 // var turf = require('@turf/turf');
                 var coords=[[parseFloat(json.longititude),parseFloat(json.laditude)]];
                 // setLocation(json);
-                setLocation(coords);
+                // setLocation(coords);
                 console.log("this is in the location"+locations);
             })
             .catch((error) => console.error(error));
@@ -162,7 +162,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                     // setLocation(json);
                     // var bbox = require('@turf/bbox')
                     // var turf = require('@turf/turf');
-                    var coords=[[parseFloat(json.longititude),parseFloat(json.laditude)]];
+                    var coords=[parseFloat(json.longititude),parseFloat(json.laditude)];
                     setLocation(coords);
                     console.log("this is in the location"+locations);
                 })
@@ -179,6 +179,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
         };
     },[]);
 
+    // const pointInView = await this._map.getPointInView([-37.817070, 144.949901]);
 
 
     const [navModal,setNavModal]=useState(false);
@@ -262,10 +263,17 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                         <View style={styles.container}>
                             <MapboxGL.MapView
                                 style={styles.map}
-                                zoomLevel={11}
+                                // zoomLevel={11}
                                 showUserLocation={true}
                                 userTrackingMode={1}
+                                // centerCoordinate={locations}
+                                // locations
                             >
+                                <MapboxGL.Camera
+                                    zoomLevel={11}
+                                    centerCoordinate={locations}
+                                />
+                                <MapboxGL.PointAnnotation coordinate={locations} />
                                 {/*<MapboxGL.PointAnnotation*/}
                                 {/*    coordinate={locations}*/}
                                 {/*>*/}
