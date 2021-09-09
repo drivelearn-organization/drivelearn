@@ -52,6 +52,7 @@ public class PaymentService {
 
     public LinkedList<PaymentDTO> getAllPayment(int spec, int branchId){
         LinkedList<PaymentDTO> paymentDTOS=new LinkedList<>();
+
         if(spec==1){
             for (TotalPayment totalPayment : totalPaymentRepository.findAll()) {
                 double paymentAmount=totalPayment.getAmount();
