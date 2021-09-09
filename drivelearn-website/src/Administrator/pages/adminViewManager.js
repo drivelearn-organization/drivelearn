@@ -25,6 +25,21 @@ const AdminViewManagers = (props) => {
     })
     
    },[]);
+
+  //  const handleChange = (e) => {
+  //   setState({
+  //       ...state,
+  //       [e.target.name]: e.target.value
+  //   }) 
+ 
+  // }
+
+  // const handleSubmit = (e) =>{
+  //   e.preventDefault()
+  //   axios.post('http://localhost:8080/drivelearn/updateEmployee',state)
+  //   console.log(state);
+   
+  // }
    
   return (
     <div className="container">

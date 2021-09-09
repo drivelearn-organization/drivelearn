@@ -20,23 +20,10 @@ const AdminViewStudents = (props) => {
       dob:'',
       count:'',
       password:'',
-      password2:'',
-      password3:''
+      
   }); 
 
-  const handleChange = (e) => {
-    setState({
-        ...state,
-        [e.target.name]: e.target.value
-    }) 
- 
-}
-
-const handleSubmit = (e) =>{
-    e.preventDefault()
-    console.log(state);
-   
-}
+  
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -63,8 +50,7 @@ const handleSubmit = (e) =>{
       dob:response.data.dob,
       count:response.data.count,
       password:response.data.password,
-      password2:response.data.password2,
-      password3:response.data.password3
+      
       })
       console.log(state)
     })
@@ -73,7 +59,20 @@ const handleSubmit = (e) =>{
     
    },[]);
 
+   const handleChange = (e) => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value
+    }) 
  
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('http://localhost:8080/drivelearn/updateStudent',state)
+    console.log(state);
+   
+  }
   
    
   return (
@@ -98,7 +97,7 @@ const handleSubmit = (e) =>{
           <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value={state.name} onChange={handleChange} />
+                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value={state.name} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -106,7 +105,7 @@ const handleSubmit = (e) =>{
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="address" id="firstname" value={state.address}   />
+                <input className="data" type="text" name="address" id="firstname" value={state.address} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -114,7 +113,7 @@ const handleSubmit = (e) =>{
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid}  />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -122,7 +121,7 @@ const handleSubmit = (e) =>{
           
             <div className="card-p">
                 <p className="text">Date of Birth</p>
-                <input className="data" type="" Value={state.dob} name="dob" id="firstname" placeholder="DOB"   />
+                <input className="data" type="date" Value={state.dob} name="dob" id="firstname" placeholder="DOB" onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -130,7 +129,7 @@ const handleSubmit = (e) =>{
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value={state.contact} name="contact" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value={state.contact} name="contact" id="firstname" placeholder="DOB" onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -138,10 +137,11 @@ const handleSubmit = (e) =>{
 
             <div className="card-p">
                 <p className="text">Branch</p>
-                <input className="data" type="text" Value={state.branch} name="branch" id="firstname" placeholder="DOB"   />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+                <select className="data" type="text" Value={state.branch} name="branch" id="firstname" placeholder="DOB" onChange={handleChange}  required>
+                <option value ="mathugama">mathugama</option>
+                <option value ="kaluthatara">kaluthatara</option>
+                <option value ="Aluthgama">Aluthgama</option>
+                </select>
             </div>
           
             
