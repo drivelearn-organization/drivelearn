@@ -144,13 +144,7 @@ const handleSubmit = (e) =>{
                 </div> */}
             </div>
           
-            {/* <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="abc@gmail.com" name="first_name" id="firstname" placeholder="DOB"   /> */}
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            {/* </div> */}
+            
             
             <center>
             <input type="submit" value="Update" className="update-btn" />
