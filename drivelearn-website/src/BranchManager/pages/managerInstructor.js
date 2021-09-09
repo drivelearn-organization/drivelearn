@@ -1,14 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import './../Table.css';
 import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import axios from 'axios';
 
 
 const ManagerInstructors = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [instructorState,setInstructor] = useState([]);
+
+    useEffect(()=>{
+      getInstructor();
+    }, []);
   
+    const getInstructor=()=>{
+      axios
+      .get("http://localhost:8080/drivelearn/employee")
+      .then(data=>{
+        setInstructor(data.data)
+      })
+    }
+
+    console.log(instructorState.data);
+
     const openSidebar = () => {
        setSidebarOpen(true);
     };
@@ -69,89 +85,29 @@ const ManagerInstructors = () => {
              </thead>
 
              <tbody>
+               {
+             instructorState.map(d =>(
+               
+
                 <tr>
-                     <td>01</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewinstructor" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
+                  
+                   <td>{d.count}</td>
+                   <td>{d.fullName}</td>
+                   <td>No.65, Kottegoda, Weligama.</td>
+                   <td>{d.nid}</td>
+                   <td>{d.moNumber}</td>
+                   <td>
+                   <span className="action_btn">
+                   <a href={'./managerviewinstructor/'+ d.empid} className="eye"><i className="fa fa-eye"></i></a>
+                   <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                   </span>
+                   </td>
                 </tr>
 
-                <tr>
-                     <td>02</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewinstructor" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-      
-               <tr>
-                     <td>03</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewinstructor" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>04</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewinstructor" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>05</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewinstructor" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
-
-               <tr>
-                     <td>06</td>
-                     <td>Aysha Ifra</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
-                     <td>977411236V</td>
-                     <td>0767112341</td>
-                     <td>
-                     <span className="action_btn">
-                     <a href="./managerviewinstructor" className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                     </span>
-                     </td>
-               </tr>
+              
+              
+             ))
+           }
                
              </tbody>
             </table>

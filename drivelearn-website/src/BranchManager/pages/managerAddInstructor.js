@@ -3,10 +3,13 @@ import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import axios from 'axios';
 
 
 const ManagerAddInstructors = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -16,6 +19,41 @@ const ManagerAddInstructors = () => {
       setSidebarOpen(false);
    };
   
+   const submit = e =>{
+    
+    let name = e.target[0].value;
+    let address = e.target[1].value;
+    let nid = e.target[2].value;
+    let Dob = e.target[3].value;
+    let contact = e.target[4].value;
+    let email = e.target[5].value;
+    let gender = e.target[6].value;
+    
+    
+
+    let data= {
+      name,
+      address,
+      nid,
+      Dob,
+      contact,
+      email,
+      gender
+
+    };
+  
+  console.log(data);
+ // postInstructor(data);
+
+   }
+
+   /*const postInstructor=(data)=>{
+    axios
+    .post("http://localhost:8080/vehicle/",data)
+    .then(d=>{
+      console.log(d);
+    })
+  } */
    
   return (
     <div className="container">
@@ -36,7 +74,14 @@ const ManagerAddInstructors = () => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" 
+          
+          onSubmit={e=>{
+            e.preventDefault();
+            submit(e);
+          }}
+
+          >
             <div className="card-p">
                 <p className="text">Full Name</p>
                 <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="" required />
@@ -93,7 +138,7 @@ const ManagerAddInstructors = () => {
                </select>
             </div>
             <center>
-            <input type="submit" value="Update" className="update-btn" />
+            <input type="submit" value="Add" className="update-btn" />
             &nbsp;&nbsp;&nbsp;
             <input type="Reset" value="Clear" className="reset1-btn" />
             </center>
