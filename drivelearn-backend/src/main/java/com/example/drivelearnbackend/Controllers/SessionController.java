@@ -4,13 +4,11 @@ import antlr.collections.List;
 import com.example.drivelearnbackend.Controllers.DTO.FeedbackDTO;
 import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
+import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Sevices.SessionService;
 import net.bytebuddy.dynamic.scaffold.MethodGraph;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 

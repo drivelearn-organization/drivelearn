@@ -1,5 +1,7 @@
 package com.example.drivelearnbackend.Controllers;
 
+import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
+import com.example.drivelearnbackend.Controllers.DTO.UpdateVehicleDTO;
 import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Sevices.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,4 +67,7 @@ public class VehicleController {
     public void deleteVehicle(@PathVariable int vehicleid){
         vehicleService.deleteVehicle(vehicleid);
     }
+
+    @GetMapping(value = "/getvehicles/{vehiId}")
+    public UpdateVehicleDTO getStudent(@PathVariable("vehiId") int id){return vehicleService.getVehicle(id);}
 }
