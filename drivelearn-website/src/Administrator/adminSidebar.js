@@ -58,7 +58,8 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <h2>PROFILE</h2>
         <div className="sidebar__link">
           <i className="fa fa-cog"></i>
-          <a href="./adminsettings">Settings</a>
+          {/* <a href="./adminsettings">Settings</a> */}
+          <Link to = "/adminsettings" >Settings</Link>
         </div>
         {/* <div className="sidebar__link">
           <i className="fa fa-user-plus"></i>

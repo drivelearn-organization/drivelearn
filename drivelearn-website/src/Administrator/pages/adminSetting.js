@@ -10,30 +10,28 @@ const AdminSettings = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
   const[state, setState] = useState({
-    name:'',
-    address: '',
+    
     username: sessionStorage.getItem('username'),
-    contact: '',
-    stuID: '',
+    fullName:'',
+    nid: '',
+    registerDate: '',
+    moNumber: '',
     branch: '',
-    nid:'',
-    dob:'',
-    count:''
+    empid: '',
+    
+    
 }); 
 
-const handleChange = (e) => {
-  setState({
-      ...state,
-      [e.target.name]: e.target.value
-  }) 
+const[newPassword, setNewPassword] = useState({
+    
+  username: sessionStorage.getItem('username'),
+  password: '',
+  password2: '',
+  password3: ''
+  
+}); 
 
-}
 
-const handleSubmit = (e) =>{
-  e.preventDefault()
-  console.log(state);
- 
-}
 
   const openSidebar = () => {
      setSidebarOpen(true);
@@ -50,21 +48,50 @@ const handleSubmit = (e) =>{
     console.log(response.data);
 
     setState({
-    name:response.data.name,
-    address: response.data.address,
+    fullName:response.data.fullName,
+    nid: response.data.nid,
     username: sessionStorage.getItem('username'),
-    contact: response.data.contact,
-    stuID: response.data.stuID,
+    registerDate: response.data.registerDate,
+    moNumber: response.data.moNumber,
     branch: response.data.branch,
-    nid:response.data.nid,
-    dob:response.data.dob,
-    count:response.data.count
+    empid:response.data.empid,
+    
     })
   })
 
 
   
  },[]);
+
+ const handleChange = (e) => {
+  setState({
+      ...state,
+      [e.target.name]: e.target.value
+  }) 
+
+}
+
+const handleSubmit = (e) =>{
+  e.preventDefault()
+  axios.post('http://localhost:8080/drivelearn/settingMyProfile',state)
+  console.log(state);
+ 
+}
+
+const handleChangePassword = (e) => {
+  setNewPassword({
+      ...newPassword,
+      [e.target.name]: e.target.value
+  }) 
+
+}
+
+const handleSubmitPassword = (e) =>{
+  e.preventDefault()
+  axios.post('http://localhost:8080/drivelearn/settingMyProfilePassword',newPassword)
+  
+ 
+}
 
  
 return (
@@ -108,10 +135,10 @@ return (
               <p>Change Password</p>
             </div>
            </div>
-           <form className="charts__right__cardss">
+           <form className="charts__right__cardss" onSubmit={handleSubmitPassword}>
             <div className="card-p">
                 <p className="text">Current Password</p>
-                <input className="data" type="password" name="first_name" id="firstname" placeholder="Current Password"  />
+                <input className="data" type="password" name="password" id="firstname" placeholder="Current Password" value={newPassword.password} onChange={handleChangePassword}/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -119,7 +146,7 @@ return (
             
             <div className="card-p">
                 <p className="text">New password</p>
-                <input className="data" type="password" name="first_name" id="firstname" placeholder="New Password"  />
+                <input className="data" type="password" name="password2" id="firstname" placeholder="New Password" value={newPassword.password2} onChange={handleChangePassword}/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -127,7 +154,7 @@ return (
            
             <div className="card-p">
                 <p className="text">Confirm Password</p>
-                <input className="data" type="Password" name="first_name" id="firstname" placeholder="Confirm Password" />
+                <input className="data" type="Password" name="password3" id="firstname" placeholder="Confirm Password" value={newPassword.password3} onChange={handleChangePassword}/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -147,34 +174,34 @@ return (
             </div>
           </div>
 
-          <form className="charts__right__cardss">
+          <form className="charts__right__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
+                <input className="data" type="text" name="fullName" id="firstname" placeholder="Full Name" value={state.fullName} onChange={handleChange}  required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
             
-            <div className="card-p">
+            {/* <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="No.65, Kottegoga Road, weligama."  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="No.65, Kottegoga Road, weligama."  /> */}
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
+            {/* </div> */}
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="97799541V"  />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid} onChange={handleChange}  required />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
           
             <div className="card-p">
-                <p className="text">Date of Birth</p>
-                <input className="data" type="" Value="15/10/1997" name="first_name" id="firstname" placeholder="DOB"   />
+                <p className="text">Registered Date</p>
+                <input className="data" type="" name="registerDate" id="firstname" placeholder="DOB"  value={getData.registerDate} required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -182,25 +209,20 @@ return (
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="0767333799" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" name="moNumber" id="firstname" placeholder="DOB"  value={state.moNumber} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
           
+          
             <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="abc@gmail.com" name="first_name" id="firstname" placeholder="DOB"   />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            <div className="card-p">
-                <p className="text">Gender</p>
-                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"   />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+                <p className="text">Branch</p>
+                <select className="data" type="text"  name="branch" id="firstname" placeholder="DOB"  value={state.branch} onChange={handleChange}  required >
+                <option value ="mathugama">mathugama</option>
+                <option value ="kaluthatara">kaluthatara</option>
+                <option value ="Aluthgama">Aluthgama</option>
+                </select>
             </div>
             <center>
             <input type="submit" value="Update" className="update-btn" />

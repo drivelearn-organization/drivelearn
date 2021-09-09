@@ -76,7 +76,7 @@ public class AdminController {
     @GetMapping(value = "/settingProfile/{username}")
     public EmployeeDTO getSettingProfile(@PathVariable("username") String username){return adminService.getSettingProfile(username);}
 
-    @GetMapping(value = "/updateEmployee")
+    @PostMapping(value = "/updateEmployee")
     public String updateEmployee(@RequestBody EmployeeDTO dto){return adminService.updateEmployee(dto);}
 
     @PostMapping(value = "/updateStudent")
@@ -84,4 +84,7 @@ public class AdminController {
 
     @PostMapping(value = "/settingMyProfile")
     public  String settingMyProfile(@RequestBody EmployeeDTO dto){ return adminService.settingMyProfile(dto);}
+
+    @PostMapping(value = "/settingMyProfilePassword")
+    public  String settingMyProfilePassword(@RequestBody EmployeeDTO dto){ return adminService.settingMyProfilePassword(dto);}
 }

@@ -24,6 +24,19 @@ public class EmployeeDTO {
         this.role = role;
     }
 
+    public EmployeeDTO(int empid, String moNumber, String fullName, String nid, String branch, int count, LocalDate registerDate,String password,String password2, String password3) {
+        this.moNumber = moNumber;
+        this.fullName = fullName;
+        this.nid = nid;
+        this.branch = branch;
+        this.password = password;
+        this.count = count;
+        this.registerDate = registerDate;
+        this.empid = empid;
+        this.password = password;
+        this.password2 = password2;
+        this.password3 = password3;
+    }
     public EmployeeDTO(int empid, String moNumber, String fullName, String nid, String branch, int count, LocalDate registerDate) {
         this.moNumber = moNumber;
         this.fullName = fullName;
@@ -33,6 +46,7 @@ public class EmployeeDTO {
         this.count = count;
         this.registerDate = registerDate;
         this.empid = empid;
+
     }
 
     public EmployeeDTO(String fullName, int empid) {

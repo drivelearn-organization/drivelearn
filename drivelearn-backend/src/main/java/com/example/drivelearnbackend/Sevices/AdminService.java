@@ -454,50 +454,31 @@ public class AdminService {
 
     public String settingMyProfile(EmployeeDTO dto){
         String error = "";
-        String pass = "";
-        String newPass = "";
+        int branchId =0 ;
+
         LinkedList<Employee> list= repository.findByUsername(dto.getUsername());
 
-        try {
-            pass=new HashMD5().giveHash(dto.getPassword());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
         Employee employee=null;
         for (Employee newemployee : list) {
             employee = newemployee;
         }
 
-        if(pass.equals(employee.getPassword())){
-            if(dto.getPassword2().equals(dto.getPassword3())){
-                try {
-                    newPass=new HashMD5().giveHash(dto.getPassword2());
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+        Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+//        if(!dto.getPassword().isEmpty() && !dto.getP().isEmpty() &&  !dto.getBranch().isEmpty())
 
-                employee.setPassword(newPass);
-                repository.save(employee);
-                error = "Updated successfully";
-            }else{
-                error = "password mistmach";
-            }
+        if(!dto.getFullName().isEmpty() && !dto.getNid().isEmpty() &&  !dto.getBranch().isEmpty() && !dto.getMoNumber().isEmpty()){
+            employee.setFullName(dto.getFullName());
+            employee.setNid(dto.getNid());
+            employee.setBranch(branch);
+            employee.setMoNumber(dto.getMoNumber());
+            error = "update successfully";
 
+            repository.save(employee);
         }else{
-            error = "password incorrect";
+            error = "has empty field";
         }
 
-//        if(!dto.getFullName().isEmpty() && !dto.getNid().isEmpty() &&  !dto.getMoNumber().isEmpty() && !dto.getUsername().isEmpty()){
-//            if(dto.getUsername().equals(employee.getUsername())){
-//
-//            }else{
-//                employee.setUsername(dto.getUsername());
-//                error = "Updated username correctly";
-//            }
-//            employee.setFullName(dto.getFullName());
-//            employee.setNid(dto.getNid());
-//            employee.setMoNumber(dto.getMoNumber());
-//        }
+
         return error;
     }
 
@@ -528,6 +509,44 @@ public class AdminService {
         }
 
 
+        return error;
+    }
+
+    public String settingMyProfilePassword(EmployeeDTO dto){
+        String error = "";
+        String pass = "";
+        String newPass = "";
+        LinkedList<Employee> list= repository.findByUsername(dto.getUsername());
+
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        Employee employee=null;
+        for (Employee newemployee : list) {
+            employee = newemployee;
+        }
+
+
+            if(pass.equals(employee.getPassword())){
+                if(dto.getPassword2().equals(dto.getPassword3())){
+                    try {
+                        newPass=new HashMD5().giveHash(dto.getPassword2());
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
+
+                    employee.setPassword(newPass);
+                    repository.save(employee);
+                    error = "Updated successfully";
+                }else{
+                    error = "password mistmach";
+                }
+
+            }else{
+                error = "password incorrect";
+            }
         return error;
     }
 
