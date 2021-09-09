@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSelectedSetionMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSelectedSetionMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/asets/background/StudentView.png" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/asets/background/StudentView.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/asets/logo/Logo_Box.png" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/asets/logo/Logo_Box.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +104,7 @@
       <workItem from="1631099435196" duration="970000" />
       <workItem from="1631115025849" duration="598000" />
       <workItem from="1631167227576" duration="585000" />
+      <workItem from="1631193941809" duration="585000" />
     </task>
     <servers />
   </component>
