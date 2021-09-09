@@ -108,7 +108,7 @@ const AdminViewManagers = (props) => {
           
             <div className="card-p">
                 <p className="text">Registered Date</p>
-                <input className="data" type="" Value="15/10/1997" name="registerDate" id="firstname" placeholder="DOB"  value={getData.registerDate} required/>
+                <input className="data" type="" name="registerDate" id="firstname" placeholder="DOB"  value={getData.registerDate} required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -116,7 +116,7 @@ const AdminViewManagers = (props) => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="0767333799" name="moNumber" id="firstname" placeholder="DOB"  value={state.moNumber} onChange={handleChange}  required/>
+                <input className="data" type="text" name="moNumber" id="firstname" placeholder="DOB"  value={state.moNumber} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -125,7 +125,7 @@ const AdminViewManagers = (props) => {
             
             <div className="card-p">
                 <p className="text">Branch</p>
-                <select className="data" type="text" Value="Female" name="branch" id="firstname" placeholder="DOB"  value={state.branch} onChange={handleChange}  required >
+                <select className="data" type="text"  name="branch" id="firstname" placeholder="DOB"  value={state.branch} onChange={handleChange}  required >
                 <option value ="mathugama">mathugama</option>
                 <option value ="kaluthatara">kaluthatara</option>
                 <option value ="Aluthgama">Aluthgama</option>
