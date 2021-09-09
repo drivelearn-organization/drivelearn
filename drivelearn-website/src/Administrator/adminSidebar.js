@@ -29,19 +29,23 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <h2>MANAGEMENT</h2>
         <div className="sidebar__link">
           <i className="fa fa-users" aria-hidden="true"></i>
-          <a href="./adminstudent">Students</a>
+          {/* <a href="./adminstudent">Students</a> */}
+          <Link to = "/adminstudent" >Students</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-circle-o"></i>
-          <a href="./adminmanager">Branch Managers</a>
+          {/* <a href="./adminmanager">Branch Managers</a> */}
+          <Link to = "/adminmanager" >Branch Managers</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-secret"></i>
-          <a href="./admininstructor">Instructors</a>
+          {/* <a href="./admininstructor">Instructors</a> */}
+          <Link to = "/admininstructor" >Instructors</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
-          <a href="./adminvehicle">Vehicles</a>
+          {/* <a href="./adminvehicle">Vehicles</a> */}
+          <Link to = "/adminvehicle" >Vehicles</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>

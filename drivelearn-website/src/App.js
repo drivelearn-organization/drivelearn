@@ -40,37 +40,37 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
-          <Route path='/administrator' component={Administrator} />
-          <Route path='/branchmanager' component={BranchManager} />
-          <Route path='/managersettings' component={ManagerSettings} />
-          <Route path='/adminsettings' component={AdminSettings} />
-          <Route path='/managerstudent' component={ManagerStudents} />
-          <Route path='/managernotification' component={ManagerNotifications} />
-          <Route path='/managerinstructor' component={ManagerInstructors} />
-          <Route path='/adminstudent' component={AdminStudents} />
-          <Route path='/admininstructor' component={AdminInstructors} />
-          <Route path='/adminmanager' component={AdminManagers} />
-          <Route path='/managerviewstudent' component={ManagerViewStudents} />
-          <Route path='/managerviewinstructor' component={ManagerViewInstructors} />
-          <Route path='/adminviewstudent/:id' component={AdminViewStudents} />                                    
-          <Route path='/adminviewinstructor/:id' component={AdminViewInstructors} />
-          <Route path='/adminviewmanager/:id' component={AdminViewManagers} />
-          <Route path='/manageraddstudent' component={ManagerAddStudents} />
-          <Route path='/manageraddinstructor' component={ManagerAddInstructors} />
-          <Route path='/adminaddstudent' component={AdminAddStudents} />
-          <Route path='/adminaddinstructor' component={AdminAddInstructors} />
-          <Route path='/adminaddmanager' component={AdminAddManagers} />
-          <Route path='/adminvehicle' component={AdminVehicle} />
-          <Route path='/manageraddvehicle' component={ManagerAddVehicle} />
-          <Route path='/managerupdatevehicle' component={ManagerUpdateVehicle} />
-          <Route path='/managersession' component={ManagerSession} />
-          <Route path='/manageraddsession' component={ManagerAddSession} />
-          <Route path='/managerupdatesession' component={ManagerUpdateSession} />
-          <Route path='/managerpayment' component={ManagerPayment} />
-          <Route path='/manageraddpayment' component={ManagerAddPayment} />
-          <Route path='/managerupdatepayment' component={ManagerUpdatePayment} />
+          <Route path='/login' exact component={Login} />
+          <Route path='/signup' exact component={Signup} />
+          <Route path='/administrator' exact component={Administrator} />
+          <Route path='/branchmanager' exact component={BranchManager} />
+          <Route path='/managersettings' exact component={ManagerSettings} />
+          <Route path='/adminsettings' exact component={AdminSettings} />
+          <Route path='/managerstudent' exact component={ManagerStudents} />
+          <Route path='/managernotification' exact component={ManagerNotifications} />
+          <Route path='/managerinstructor' exact component={ManagerInstructors} />
+          <Route path='/adminstudent' exact component={AdminStudents} />
+          <Route path='/admininstructor' exact component={AdminInstructors} />
+          <Route path='/adminmanager' exact component={AdminManagers} />
+          <Route path='/managerviewstudent' exact component={ManagerViewStudents} />
+          <Route path='/managerviewinstructor' exact component={ManagerViewInstructors} />
+          <Route path='/adminviewstudent/:id' exact component={AdminViewStudents} />                                    
+          <Route path='/adminviewinstructor/:id' exact component={AdminViewInstructors} />
+          <Route path='/adminviewmanager/:id' exact component={AdminViewManagers} />
+          <Route path='/manageraddstudent' exact component={ManagerAddStudents} />
+          <Route path='/manageraddinstructor' exact component={ManagerAddInstructors} />
+          <Route path='/adminaddstudent' exact component={AdminAddStudents} />
+          <Route path='/adminaddinstructor' exact component={AdminAddInstructors} />
+          <Route path='/adminaddmanager' exact component={AdminAddManagers} />
+          <Route path='/adminvehicle' exact component={AdminVehicle} />
+          <Route path='/manageraddvehicle' exact component={ManagerAddVehicle} />
+          <Route path='/managerupdatevehicle' exact component={ManagerUpdateVehicle} />
+          <Route path='/managersession' exact component={ManagerSession} />
+          <Route path='/manageraddsession' exact component={ManagerAddSession} />
+          <Route path='/managerupdatesession' exact component={ManagerUpdateSession} />
+          <Route path='/managerpayment' exact component={ManagerPayment} />
+          <Route path='/manageraddpayment' exact component={ManagerAddPayment} />
+          <Route path='/managerupdatepayment' exact component={ManagerUpdatePayment} />
 
         </Switch>
         {/* <Footer /> */}
