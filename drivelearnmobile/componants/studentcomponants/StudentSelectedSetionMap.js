@@ -135,9 +135,9 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                 console.log("here we are writing the latitude",+json.laditude);
                 // var bbox = require('@turf/bbox')
                 // var turf = require('@turf/turf');
-                var coords=[[parseFloat(json.longititude),parseFloat(json.laditude)]];
+                var coords=[parseFloat(json.longititude),parseFloat(json.laditude)];
                 // setLocation(json);
-                // setLocation(coords);
+                setLocation(coords);
                 console.log("this is in the location"+locations);
             })
             .catch((error) => console.error(error));
@@ -273,7 +273,7 @@ const StudentSelectedSetionMap = ({route,navigation}) => {
                                     zoomLevel={11}
                                     centerCoordinate={locations}
                                 />
-                                <MapboxGL.PointAnnotation coordinate={locations} />
+                                <MapboxGL.PointAnnotation id={toString(Math.random())} coordinate={locations} />
                                 {/*<MapboxGL.PointAnnotation*/}
                                 {/*    coordinate={locations}*/}
                                 {/*>*/}
