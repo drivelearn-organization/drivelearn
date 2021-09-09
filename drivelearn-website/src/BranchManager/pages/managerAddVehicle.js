@@ -3,10 +3,52 @@ import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import axios from 'axios';
 
 
 const ManagerAddStudents = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const submit = e =>{
+    
+    let regiNumner = e.target[0].value;
+    let chacieNumber = e.target[4].value;
+    let startingMilage = e.target[1].value;
+    let status = 1;
+    let branchName = "kaluthatara";
+    let vehicleType = e.target[3].value;
+    let payedDate = e.target[6].value;
+    let expireDate = e.target[7].value;
+    let licencePayedDate = e.target[8].value;
+    let licenceExpireDate = e.target[5].value;
+    
+
+    let data= {
+      regiNumner,
+      chacieNumber,
+      startingMilage,
+      status,
+      branchName,
+      vehicleType,
+      payedDate,
+      expireDate,
+      licencePayedDate,
+      licenceExpireDate
+
+    };
+    console.log(data);
+
+    postVehicle(data);
+    
+  }
+
+  const postVehicle=(data)=>{
+    axios
+    .post("http://localhost:8080/vehicle/addvehicle",data)
+    .then(d=>{
+      console.log(d);
+    })
+  }
 
   const openSidebar = () => {
     setSidebarOpen(true);
@@ -36,10 +78,17 @@ const ManagerAddStudents = () => {
                 </div>
               </div>
 
-              <form className="charts__rightt__cardss">
+              <form className="charts__rightt__cardss" 
+
+                onSubmit={e=>{
+                  e.preventDefault();
+                  submit(e);
+                }}
+
+              >
                 <div className="card-p">
                   <p className="text">Vehical No</p>
-                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Vehical No" value="" required />
+                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Vehical No" required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -47,7 +96,7 @@ const ManagerAddStudents = () => {
 
                 <div className="card-p">
                   <p className="text">Starting Mileage</p>
-                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Starting Mileage" value="" required />
+                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Starting Mileage" required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -55,7 +104,7 @@ const ManagerAddStudents = () => {
 
                 <div className="card-p">
                   <p className="text">Register Date</p>
-                  <input className="data" type="date" name="first_name" id="firstname" placeholder="Register Date" value="" required />
+                  <input className="data" type="date" name="first_name" id="firstname" placeholder="Register Date" required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}

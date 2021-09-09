@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import axios from 'axios';
 
 
-const ManagerViewStudents = () => {
+const ManagerViewStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [stateStudent,getData] = useState([]);
+
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -15,7 +18,27 @@ const ManagerViewStudents = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
-  
+
+
+   useEffect(()=>{
+     axios.get('http://localhost:8080/drivelearn/student/'+props.match.params.id)
+     .then(d=>{
+       getData(d.data);
+      
+     })
+   },[])
+
+
+   const putStudent=e=>{
+    axios
+    .put("http://localhost:8080/student/updatestudent",stateStudent)
+    .then(d=>{
+      props.history.push("/");
+    })
+  }
+
+   
+  console.log(stateStudent);
    
   return (
     <div className="container">
@@ -36,10 +59,26 @@ const ManagerViewStudents = () => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" onSubmit={
+                e=>{
+                  
+                  putStudent(e);
+                }
+              }
+          >
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="Ayaha Ifra"  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value={stateStudent.name} onChange={e=>{
+                  let value=e.target.value;
+                  getData({
+                    name: value,
+                    address: stateStudent.address,
+                    nid: stateStudent.nid,
+                    dob: stateStudent.dob,
+                    contact: stateStudent.contact,
+                    branch: stateStudent.branch
+                   } );
+                }}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -47,7 +86,17 @@ const ManagerViewStudents = () => {
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="No.65, Kottegoga Road, weligama."  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value={stateStudent.address} onChange={e=>{
+                  let value=e.target.value;
+                  getData({
+                    name: stateStudent.name,
+                    address: value,
+                    nid: stateStudent.nid,
+                    dob: stateStudent.dob,
+                    contact: stateStudent.contact,
+                    branch: stateStudent.branch
+                   } );
+                }}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -55,7 +104,17 @@ const ManagerViewStudents = () => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="97799541V"  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value={stateStudent.nid}  onChange={e=>{
+                  let value=e.target.value;
+                  getData({
+                    name: stateStudent.name,
+                    address: stateStudent.address,
+                    nid: value,
+                    dob: stateStudent.dob,
+                    contact: stateStudent.contact,
+                    branch: stateStudent.branch
+                   } );
+                }} />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -63,7 +122,17 @@ const ManagerViewStudents = () => {
           
             <div className="card-p">
                 <p className="text">Date of Birth</p>
-                <input className="data" type="" Value="15/10/1997" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="date"  name="first_name" id="firstname" value={stateStudent.dob} placeholder="DOB"  onChange={e=>{
+                  let value=e.target.value;
+                  getData({
+                    name: stateStudent.name,
+                    address: stateStudent.address,
+                    nid: stateStudent.nid,
+                    dob: value,
+                    contact: stateStudent.contact,
+                    branch: stateStudent.branch
+                   } );
+                }}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -71,22 +140,36 @@ const ManagerViewStudents = () => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="0767333799" name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" name="first_name" id="firstname" value={stateStudent.contact} placeholder="DOB"  onChange={e=>{
+                  let value=e.target.value;
+                  getData({
+                    name: stateStudent.name,
+                    address: stateStudent.address,
+                    nid: stateStudent.nid,
+                    dob: stateStudent.dob,
+                    contact: value,
+                    branch: stateStudent.branch
+                   } );
+                }}  />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
           
+            
             <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="abc@gmail.com" name="first_name" id="firstname" placeholder="DOB"   />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            <div className="card-p">
-                <p className="text">Gender</p>
-                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"   />
+                <p className="text">Branch</p>
+                <input className="data" type="text" name="first_name" id="firstname" value={stateStudent.branch} placeholder="DOB" onChange={e=>{
+                  let value=e.target.value;
+                  getData({
+                    name: stateStudent.name,
+                    address: stateStudent.address,
+                    nid: stateStudent.nid,
+                    dob: stateStudent.dob,
+                    contact: stateStudent.contact,
+                    branch: value
+                   } );
+                }}   />
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}

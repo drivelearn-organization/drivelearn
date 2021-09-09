@@ -5,11 +5,40 @@ import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import ManagerNewUpdatePayment from "./managerNewUpdatePayment ";
 
 
 const ManagerVehicle = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [paymentState , setPayementState] = useState([]);
+    const [modal, setModal] = useState(false);
+    const [data, setData] = useState([]);
+
+    const toggleModal = (id, name, nic, amount,rest,paymentId) => {
+      setData(
+        {
+          id: id,
+          name: name,
+          nic: nic,
+          amount: amount,
+          rest:rest,
+          paymentId:paymentId
+  
+        }
+      );
+  
+      setModal(!modal);
+    };
+  
+    console.log(data);
+  
+  
+  
+    if (modal) {
+      document.body.classList.add('active-modal')
+    } else {
+      document.body.classList.remove('active-modal')
+    }
 
     useEffect(()=>{
       getPayment();
@@ -17,7 +46,7 @@ const ManagerVehicle = () => {
 
     const getPayment=()=>{
       axios
-      .get("http://localhost:8080/vehicle/getvehicle/1/1")
+      .get("http://localhost:8080/payment/getallpayment/1/2")
       .then(data =>{
         setPayementState(data.data);
         
@@ -25,7 +54,7 @@ const ManagerVehicle = () => {
       })
     }
 
-  
+    
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -34,7 +63,7 @@ const ManagerVehicle = () => {
     const closeSidebar = () => {
       setSidebarOpen(false);
    };
-  
+  console.log(paymentState);
    
   return (
     <div className="container">
@@ -64,15 +93,21 @@ const ManagerVehicle = () => {
                  <i className="fas fa-search"></i>
                 </div>
                 </div>
-                 <div className="create-button">
-                   <div className="create_btn">
-                     <a href="./manageraddpayment"><i className="fa fa-plus-circle"></i></a>
-                     <br/>
-                     <p>Add Payemnt</p>
-                   </div>
-                </div>
+                
                </div>
               
+
+               {modal && (
+              <div className="modal">
+                <div onClick={toggleModal} className="overlay"></div>
+                <div className="modal-content">
+                  <ManagerNewUpdatePayment data={data} toggleModal={toggleModal} />
+
+                </div>
+              </div>
+            )}
+
+
             <br/>
             <table>
               <thead>
@@ -99,16 +134,18 @@ const ManagerVehicle = () => {
                   
                   <tr>
                     
-                     <td>{d.regiNumner}</td>
-                     <td>{d.chacieNumber}</td>
-                     <td>2021-04-11</td>
-                     <td>{d.startingMilage}</td>
-                     <td>{d.vehicleType}</td>
-                     <td>{d.licenceExpireDate}</td>
-                     <td>{d.expireDate}</td>
+                     <td>{d.userId}</td>
+                     <td>{d.nic}</td>
+                     <td>{d.name}</td>
+                     <td>{d.date}</td>
+                     <td>{d.amount}</td>
+                     <td>{d.amount-d.rest}</td>
+                     <td>{d.rest}</td>
                      <td>
                    <div className="create_btn">
-                     <a href="./managerupdatepayment"><i className="fa fa-plus-circle"></i></a>
+                     <a  onClick={() => {
+                        toggleModal(d.userId, d.name, d.nic, d.amount,d.rest,d.paymentId)
+                      }}><i className="fa fa-plus-circle"></i></a>
                     
                 
                    </div>
