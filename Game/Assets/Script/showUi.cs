@@ -6,6 +6,7 @@ public class showUi : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject uiObject;
+    public GameObject DestroyuiObject;
     public GameObject BockerObject;
     public GameObject BockerObject1;
     public GameObject BockerObject2;
@@ -37,7 +38,7 @@ public class showUi : MonoBehaviour
        Destroy(BockerObject);
        Destroy(BockerObject1);
        Destroy(BockerObject2);
-       Destroy(uiObject);
+       Destroy(DestroyuiObject);
        HitActiveObject.gameObject.SetActive(true);
        
        
