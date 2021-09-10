@@ -48,6 +48,11 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
           <Link to = "/adminvehicle" >Vehicles</Link>
         </div>
         <div className="sidebar__link">
+          <i className="fa fa-bus"></i>
+          {/* <a href="./adminvehicle">Vehicles</a> */}
+          <Link to = "/adminEmployeeReaquest" >Request</Link>
+        </div>
+        <div className="sidebar__link">
           <i className="fa fa-money"></i>
           <a href="#">Payments</a>
         </div>

@@ -33,6 +33,7 @@ import ManagerUpdateSession from './BranchManager/pages/managerUpdateSession';
 import ManagerPayment from './BranchManager/pages/managerPayment';
 import ManagerAddPayment from './BranchManager/pages/manageAddPayment';
 import ManagerUpdatePayment from './BranchManager/pages/managerUpdatePayment';
+import AdminEmployeeReaquest from './Administrator/pages/adminEmployeeReaquest';
 
 function App() {
   return (
@@ -70,8 +71,8 @@ function App() {
           <Route path='/managerupdatesession' exact component={ManagerUpdateSession} />
           <Route path='/managerpayment' exact component={ManagerPayment} />
           <Route path='/manageraddpayment' exact component={ManagerAddPayment} />
-          <Route path='/managerupdatepayment' exact component={ManagerUpdatePayment} />
-
+          <Route path='/managerupdatepayment' exact component={ManagerUpdatePayment} />    
+          <Route path='/adminEmployeeReaquest' exact component={AdminEmployeeReaquest} />
         </Switch>
         {/* <Footer /> */}
       </Router>
