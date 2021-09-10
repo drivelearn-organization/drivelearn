@@ -7,6 +7,7 @@ import axios from 'axios';
 const AdminEmployeeReaquest = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+    const [active, setActive] = useState(false);
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -18,9 +19,14 @@ const AdminEmployeeReaquest = () => {
 
    const[state, setState] = useState({
    
-    fullName: ''
+    empid: ''
   
 });
+
+// const handleSetActive = (e) => {
+//     setActive(!active) 
+  
+//   }
 
 const handleChange = (e) => {
   setState({
@@ -30,24 +36,24 @@ const handleChange = (e) => {
 
 }
 
-   const handleSubmit = (e) =>{
-    e.preventDefault()
-    axios.post('http://192.168.56.1:8080/drivelearn/serchEmployee',state)    
-    .then(response =>{
-      setGetData(response.data)
-      
+   const handleSubmit = (id) =>{
+    // e.preventDefault()
+    setState({
+      empid:id
     })
-   
+    axios.post('http://192.168.56.1:8080/drivelearn/activeEmployee',state)    
+    
+   console.log(state)
 }
 
    useEffect(()=>{
-    axios.get('http://localhost:8080/drivelearn/employee')
+    axios.get('http://localhost:8080/drivelearn/deactiveEmployee')
     .then(response =>{
       setGetData(response.data)
       console.log(getData);
     })
-    
-   },[]);
+    console.log(state);
+   },[state]);
   
    
   return (
@@ -65,7 +71,7 @@ const handleChange = (e) => {
             <div className="table_responsive">
             
             <div className="search"> 
-            <form action="" onSubmit={handleSubmit}>
+            <form action="" >
                <div className="search_box">
                  <div className="dropdown">
                    <div className="default_option">All</div>  
@@ -76,8 +82,8 @@ const handleChange = (e) => {
                        </ul> */}
                    </div>
                  <div className="search_field">
-                 <input type="text" className="input" placeholder="Search" name="fullName"  onChange={handleChange}/>
-                 <i className="fas fa-search" onSubmit={handleSubmit}></i>
+                 <input type="text" className="input" placeholder="Search" name="fullName" />
+                 <i className="fas fa-search" ></i>
                 </div>
                 </div>
                 </form>
@@ -90,7 +96,6 @@ const handleChange = (e) => {
                 </div>
                </div>
             
-              
               
             <br/>
             <table>
@@ -121,17 +126,22 @@ const handleChange = (e) => {
                      <td>{data.moNumber}</td>
                      <td>
                      <span className="action_btn">
-                     <a href={'./adminviewmanager/'+ data.empid} className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                     {/* <a href="#" className="eye" onClick = {handleSetActive}><i class={active ?"fas fa-toggle-on": "fas fa-toggle-off"}></i></a> */}
+                     {/* <a href="#" className="eye" onClick = {(e)=>{setState({
+                        empid:data.empid,})
+                       handleSubmit(e);  
+                        }}>Activate</a> */}
+                        <a href="#" className="eye" onClick = {()=>handleSubmit(data.empid)} >Activate</a>
+                     {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
                      </span>
                      </td>
                   </tr>
-
+                  
+                  
                 )
                 
               })
              }
-               
              </tbody>
             </table>
             </div>
@@ -140,7 +150,7 @@ const handleChange = (e) => {
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
   );
-  
+
   }
   
   export default AdminEmployeeReaquest;
