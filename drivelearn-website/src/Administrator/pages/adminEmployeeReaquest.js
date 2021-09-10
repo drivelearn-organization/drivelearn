@@ -28,11 +28,8 @@ const AdminEmployeeReaquest = () => {
   
 //   }
 
-const handleChange = (id) => {
-  setState({
-    empid:id
-  }) 
-  // handleSubmit(state);
+const handleChange = () => {
+  alert("Are you sure");
 }
 
 //    const handleSubmit = (state) =>{
@@ -53,7 +50,7 @@ const handleChange = (id) => {
     })
     axios.post('http://192.168.56.1:8080/drivelearn/activeEmployee',state)  
     console.log(state);
-   },[state]);
+   });
   
    
   return (
@@ -131,7 +128,7 @@ const handleChange = (id) => {
                         empid:data.empid,})
                        handleSubmit(e);  
                         }}>Activate</a> */}
-                        <a href="#" className="eye" onClick = {()=>{handleChange(data.empid); }} >Activate</a>
+                        <a href="#" className="eye" onClick = {()=>{ setState({empid:data.empid}); handleChange(); }}>Activate</a>
                      {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
                      </span>
                      </td>
