@@ -63,10 +63,7 @@ public class PauseMenu : MonoBehaviour
    { 
        SceneManager.LoadScene("S_MainMenu");
    }
-    public void Replay()
-   { 
-       SceneManager.LoadScene("Level");
-   }
+   
    //RepalyGame
     public void ReplayGame_S()
    { 
