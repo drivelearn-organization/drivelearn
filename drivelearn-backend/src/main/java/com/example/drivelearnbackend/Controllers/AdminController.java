@@ -41,6 +41,10 @@ public class AdminController {
     public LinkedList<EmployeeDTO> getAllEmployee(){
         return adminService.getAllEmployee();
     }
+    @GetMapping(value = "/deactiveEmployee")
+    public LinkedList<EmployeeDTO> getdeactiveEmployee(){
+        return adminService.getdeactiveEmployee();
+    }
 
     @GetMapping(value = "/employee/{empid}")
     public EmployeeDTO getEmployee(@PathVariable("empid") int id){return adminService.getEmployee(id);}
@@ -87,4 +91,7 @@ public class AdminController {
 
     @PostMapping(value = "/settingMyProfilePassword")
     public  String settingMyProfilePassword(@RequestBody EmployeeDTO dto){ return adminService.settingMyProfilePassword(dto);}
+
+    @PostMapping(value = "/activeEmployee")
+    public  String activeEmployee(@RequestBody EmployeeDTO dto){ return adminService.activeEmployee(dto);}
 }

@@ -178,6 +178,33 @@ public class AdminService {
         return employeelist;
     }
 
+    public LinkedList<EmployeeDTO> getdeactiveEmployee(){
+        String branchId = null;
+
+        int count = 0;
+        Branch branch = null;
+        LinkedList<Employee> list = repository.findAllByIsActive(1);
+        LinkedList<EmployeeDTO> employeelist = new LinkedList<>();
+        for (Employee employee:list) {
+            branch = employee.getBranch();
+
+            if(branch == null){
+                branchId = "nan";
+            }else{
+                branchId =branch.getBranchName();
+            }
+
+            if(employee.getFullName() != null){
+                count = count+1;
+            }else{
+
+            }
+            employeelist.add(new EmployeeDTO(employee.getEmpid(), employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,count,employee.getRegisteredDate()));
+
+        }
+        return employeelist;
+    }
+
     public EmployeeDTO getEmployee(int id){
         String branchId = null;
         Branch branch = null;
@@ -549,5 +576,21 @@ public class AdminService {
             }
         return error;
     }
+
+    public String activeEmployee(EmployeeDTO dto){
+        String error = "";
+        LinkedList<Employee> list= repository.findByEmpid(dto.getEmpid());
+
+        Employee employee=null;
+        for (Employee newemployee : list) {
+            employee = newemployee;
+        }
+        if(employee.getIsActive() == 1){
+            employee.setIsActive(2);
+            repository.save(employee);
+        }
+        return error;
+    }
+
 
 }
