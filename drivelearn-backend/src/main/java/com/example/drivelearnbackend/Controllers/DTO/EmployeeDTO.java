@@ -17,6 +17,24 @@ public class EmployeeDTO {
     private int empid;
     private String password2;
     private String password3;
+    private int branchId;
+
+    public int getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(int branchId) {
+        this.branchId = branchId;
+    }
+
+    public EmployeeDTO(String username, String password, int role, String branch, int branchId) {
+
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.branch = branch;
+        this.branchId = branchId;
+    }
 
     public EmployeeDTO(String username, String password, int role) {
         this.username = username;

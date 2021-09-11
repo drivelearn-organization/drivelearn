@@ -54,8 +54,8 @@ function App() {
           <Route path='/adminstudent' exact component={AdminStudents} />
           <Route path='/admininstructor' exact component={AdminInstructors} />
           <Route path='/adminmanager' exact component={AdminManagers} />
-          <Route path='/managerviewstudent' exact component={ManagerViewStudents} />
-          <Route path='/managerviewinstructor' exact component={ManagerViewInstructors} />
+          <Route path='/managerviewstudent/:id' exact component={ManagerViewStudents} />
+          <Route path='/managerviewinstructor/:id' exact component={ManagerViewInstructors} />
           <Route path='/adminviewstudent/:id' exact component={AdminViewStudents} />                                    
           <Route path='/adminviewinstructor/:id' exact component={AdminViewInstructors} />
           <Route path='/adminviewmanager/:id' exact component={AdminViewManagers} />
