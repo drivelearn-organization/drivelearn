@@ -8,6 +8,22 @@ import axios from 'axios';
 const AdminViewStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+
+    const[state, setState] = useState({
+      name:'',
+      address: '',
+      username: '',
+      contact: '',
+      stuID: '',
+      branch: '',
+      nid:'',
+      dob:'',
+      count:'',
+      password:'',
+      
+  }); 
+
+  
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -20,11 +36,43 @@ const AdminViewStudents = (props) => {
    useEffect(()=>{
     axios.get('http://localhost:8080/drivelearn/student/'+props.match.params.id)
     .then(response =>{
-      setGetData(response.data)
-      console.log(getData);
+      // setGetData(response.data)
+      
+
+      setState({
+      name:response.data.name,
+      address: response.data.address,
+      username: response.data.username,
+      contact: response.data.contact,
+      stuID: response.data.stuID,
+      branch: response.data.branch,
+      nid:response.data.nid,
+      dob:response.data.dob,
+      count:response.data.count,
+      password:response.data.password,
+      
+      })
+      console.log(state)
     })
+
+  
     
    },[]);
+
+   const handleChange = (e) => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value
+    }) 
+ 
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('http://localhost:8080/drivelearn/updateStudent',state)
+    console.log(state);
+   
+  }
   
    
   return (
@@ -46,10 +94,10 @@ const AdminViewStudents = (props) => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value={getData.name}  />
+                <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value={state.name} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -57,7 +105,7 @@ const AdminViewStudents = (props) => {
             
             <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value={getData.address}  />
+                <input className="data" type="text" name="address" id="firstname" value={state.address} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -65,7 +113,7 @@ const AdminViewStudents = (props) => {
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value={getData.nid}  />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -73,7 +121,7 @@ const AdminViewStudents = (props) => {
           
             <div className="card-p">
                 <p className="text">Date of Birth</p>
-                <input className="data" type="" Value={getData.dob} name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="date" Value={state.dob} name="dob" id="firstname" placeholder="DOB" onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -81,7 +129,7 @@ const AdminViewStudents = (props) => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value={getData.contact} name="first_name" id="firstname" placeholder="DOB"   />
+                <input className="data" type="text" Value={state.contact} name="contact" id="firstname" placeholder="DOB" onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -89,24 +137,19 @@ const AdminViewStudents = (props) => {
 
             <div className="card-p">
                 <p className="text">Branch</p>
-                <input className="data" type="text" Value={getData.branch} name="first_name" id="firstname" placeholder="DOB"   />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+                <select className="data" type="text" Value={state.branch} name="branch" id="firstname" placeholder="DOB" onChange={handleChange}  required>
+                <option value ="mathugama">mathugama</option>
+                <option value ="kaluthatara">kaluthatara</option>
+                <option value ="Aluthgama">Aluthgama</option>
+                </select>
             </div>
           
-            {/* <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="abc@gmail.com" name="first_name" id="firstname" placeholder="DOB"   /> */}
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            {/* </div> */}
+            
             
             <center>
             <input type="submit" value="Update" className="update-btn" />
             &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Clear" className="reset1-btn" />
+            <input type="submit" value="Deactivate" className="reset1-btn" />
             </center>
           </form>
         </div>

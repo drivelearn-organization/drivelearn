@@ -125,7 +125,7 @@ const handleSubmit = (e) =>{
                 </div> */}
             </div>
             <div className="card-p">
-                <p className="text">Gender</p>
+                <p className="text">Branch</p>
                 <select className="option1" name="branch"  onChange={handleChange} required>
                 <option disabled="disabled" selected="selected">--Choose Option--</option>
                 <option value ="mathugama">mathugama</option>

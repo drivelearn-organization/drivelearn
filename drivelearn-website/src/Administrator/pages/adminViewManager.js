@@ -8,6 +8,18 @@ import axios from 'axios';
 const AdminViewManagers = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+
+    const[state, setState] = useState({
+      fullName:'',
+      nid: '',
+      registerDate: '',
+      moNumber: '',
+      branch: '',
+      empid: ''
+      
+      
+      
+  }); 
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -21,10 +33,34 @@ const AdminViewManagers = (props) => {
     axios.get('http://localhost:8080/drivelearn/employee/'+props.match.params.id)
     .then(response =>{
       setGetData(response.data)
-      console.log(getData);
+      setState({
+        fullName:response.data.fullName,
+        nid: response.data.nid,
+        registerDate: response.data.registerDate,
+        moNumber: response.data.moNumber,
+        branch: response.data.branch,
+        empid: response.data.empid
+       
+        
+        })
     })
     
    },[]);
+
+   const handleChange = (e) => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value
+    }) 
+ 
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('http://localhost:8080/drivelearn/updateEmployee',state)
+    console.log(state);
+   
+  }
    
   return (
     <div className="container">
@@ -45,26 +81,26 @@ const AdminViewManagers = (props) => {
             </div>
           </div>
 
-          <form className="charts__rightt__cardss">
+          <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
             <div className="card-p">
                 <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value={getData.fullName} />
+                <input className="data" type="text" name="fullName" id="firstname" placeholder="Full Name" value={state.fullName} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
             
-            <div className="card-p">
+            {/* <div className="card-p">
                 <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="No.65, Kottegoga Road, weligama."  />
+                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="No.65, Kottegoga Road, weligama."  onChange={handleChange}  required/> */}
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-            </div>
+            {/* </div> */}
            
             <div className="card-p">
                 <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value={getData.nid}  />
+                <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid}  onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -72,7 +108,7 @@ const AdminViewManagers = (props) => {
           
             <div className="card-p">
                 <p className="text">Registered Date</p>
-                <input className="data" type="" Value="15/10/1997" name="first_name" id="firstname" placeholder="DOB"  value={getData.registerDate} />
+                <input className="data" type="" name="registerDate" id="firstname" placeholder="DOB"  value={getData.registerDate} required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -80,23 +116,20 @@ const AdminViewManagers = (props) => {
          
             <div className="card-p">
                 <p className="text">Mobile</p>
-                <input className="data" type="text" Value="0767333799" name="first_name" id="firstname" placeholder="DOB"  value={getData.moNumber} />
+                <input className="data" type="text" name="moNumber" id="firstname" placeholder="DOB"  value={state.moNumber} onChange={handleChange}  required/>
                 {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
           
-            <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="abc@gmail.com" name="first_name" id="firstname" placeholder="DOB"  value={getData.branch} />
-              
-            </div>
+            
             <div className="card-p">
                 <p className="text">Branch</p>
-                <input className="data" type="text" Value="Female" name="first_name" id="firstname" placeholder="DOB"  value={getData.branch} />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+                <select className="data" type="text"  name="branch" id="firstname" placeholder="DOB"  value={state.branch} onChange={handleChange}  required >
+                <option value ="mathugama">mathugama</option>
+                <option value ="kaluthatara">kaluthatara</option>
+                <option value ="Aluthgama">Aluthgama</option>
+                </select>
             </div>
             <center>
             <input type="submit" value="Update" className="update-btn" />

@@ -18,10 +18,10 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
       </div>
 
       <div className="sidebar__menu">
-      <div className="sidebar__link active_menu_link">
+      {/* <div className="sidebar__link active_menu_link">
           <i className="fa fa-home"></i>
           <a href="./">Home</a>
-        </div>
+        </div> */}
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-tachometer"></i>
           <a href="./administrator">Dashboard</a>
@@ -29,19 +29,28 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <h2>MANAGEMENT</h2>
         <div className="sidebar__link">
           <i className="fa fa-users" aria-hidden="true"></i>
-          <a href="./adminstudent">Students</a>
+          {/* <a href="./adminstudent">Students</a> */}
+          <Link to = "/adminstudent" >Students</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-circle-o"></i>
-          <a href="./adminmanager">Branch Managers</a>
+          {/* <a href="./adminmanager">Branch Managers</a> */}
+          <Link to = "/adminmanager" >Branch Managers</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-secret"></i>
-          <a href="./admininstructor">Instructors</a>
+          {/* <a href="./admininstructor">Instructors</a> */}
+          <Link to = "/admininstructor" >Instructors</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
-          <a href="./adminvehicle">Vehicles</a>
+          {/* <a href="./adminvehicle">Vehicles</a> */}
+          <Link to = "/adminvehicle" >Vehicles</Link>
+        </div>
+        <div className="sidebar__link">
+          <i className="fa fa-bus"></i>
+          {/* <a href="./adminvehicle">Vehicles</a> */}
+          <Link to = "/adminEmployeeReaquest" >Request</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
@@ -54,7 +63,8 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <h2>PROFILE</h2>
         <div className="sidebar__link">
           <i className="fa fa-cog"></i>
-          <a href="./adminsettings">Settings</a>
+          {/* <a href="./adminsettings">Settings</a> */}
+          <Link to = "/adminsettings" >Settings</Link>
         </div>
         {/* <div className="sidebar__link">
           <i className="fa fa-user-plus"></i>
@@ -65,10 +75,10 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
           {/* <a href="../HomePa">Logout</a> */}
         <Link to = "/" onClick={ () => sessionStorage.clear()}>Logout</Link>
         </div>
-        <div className="sidebar__logout">
+        {/* <div className="sidebar__logout">
           <i className="fa fa-times-circle"></i>
           <a href="#">Deactivate</a>
-        </div>
+        </div> */}
       </div>
     </div>
 );
