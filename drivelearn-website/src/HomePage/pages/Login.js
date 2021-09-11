@@ -39,7 +39,10 @@ function Login() {
         }
         sessionStorage.setItem('username',response.data.username);
         sessionStorage.setItem('password',response.data.password);
-        sessionStorage.setItem('role',response.data.role); 
+        sessionStorage.setItem('role',response.data.role);
+        sessionStorage.setItem('branchName',response.data.branch);
+        sessionStorage.setItem('branchId',response.data.branchId);
+        //pass branch 
         // sessionStorage.clear();
       }else{
         alert('Your details are wrong. Please enter detail again!');
