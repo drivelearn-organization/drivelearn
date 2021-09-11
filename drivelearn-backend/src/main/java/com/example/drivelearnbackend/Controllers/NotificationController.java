@@ -1,14 +1,10 @@
 package com.example.drivelearnbackend.Controllers;
 
-import antlr.collections.List;
 import com.example.drivelearnbackend.Controllers.DTO.NotificationDTO;
 import com.example.drivelearnbackend.Repositories.Entity.Notification;
 import com.example.drivelearnbackend.Sevices.NontificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -59,5 +55,25 @@ public class NotificationController {
     @PostMapping(value = "/unreads")
     public int countOfUnReadMessages(@RequestBody NotificationDTO dto){
         return nontificationService.countOfUnReadMessages(dto);
+    }
+//this is used to get notification for the branch manager branchid is required test with branchid=4
+    @GetMapping(value = "getallnotificationbybranch/{branchid}")
+    public LinkedList<NotificationDTO> getAllNotificationByBranch(@PathVariable int branchid){
+        return nontificationService.getAllNotificationByBranch(branchid);
+    }
+
+//    {
+//            "notificationId":50,
+//            "receiverType":3,
+//            "receiverUserIdAtrray":[244,257,251]
+//
+//    }
+    @PostMapping(value = "addstudentlist")
+    public void addNotificationForListOfNumbers(@RequestBody NotificationDTO dto){
+        for (int i : dto.getReceiverUserIdAtrray()) {
+//            System.out.println(i);
+            nontificationService.addReceiver(new NotificationDTO(dto.getNotificationId(), i, dto.getReceiverType()));
+        }
+
     }
 }

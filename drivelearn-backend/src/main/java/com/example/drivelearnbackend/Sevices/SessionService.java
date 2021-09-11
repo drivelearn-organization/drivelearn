@@ -3,6 +3,7 @@ package com.example.drivelearnbackend.Sevices;
 import com.example.drivelearnbackend.Controllers.DTO.FeedbackDTO;
 import com.example.drivelearnbackend.Controllers.DTO.SessionDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
+import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
 import com.example.drivelearnbackend.Sevices.Support.VehiclesTypeEn;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class SessionService {
@@ -287,4 +289,7 @@ public class SessionService {
         System.out.println(session.getLadtitude()+" / "+session.getLongatitude());
         return new SessionDTO(session.getLadtitude(),session.getLongatitude());
     }
+
+
+
 }

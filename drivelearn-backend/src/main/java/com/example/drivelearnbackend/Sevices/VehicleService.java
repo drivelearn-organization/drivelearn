@@ -1,5 +1,7 @@
 package com.example.drivelearnbackend.Sevices;
 
+import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
+import com.example.drivelearnbackend.Controllers.DTO.UpdateVehicleDTO;
 import com.example.drivelearnbackend.Controllers.DTO.VehicleDTO;
 import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
@@ -103,6 +105,23 @@ public class VehicleService {
             vehicle.setChacieNumber(dto.getChacieNumber());
         }
         vehiclRepository.save(vehicle);
+    }
+
+    public UpdateVehicleDTO getVehicle(int id){
+
+        LocalDate isuranceDate=null;
+        LocalDate licensDate=null;
+        LocalDate isurancepayDate=null;
+        LocalDate licenspayDate=null;
+
+        Vehicle vehicle= vehiclRepository.findById(id).get();
+
+        isuranceDate= insuaranceRepository.findById(vehicle.getCurrentInsuranceId()).get().getExpireDate();
+        licensDate= licenseRepository.findById(vehicle.getCurrentLicenId()).get().getExpireDate();
+        isurancepayDate =insuaranceRepository.findById(vehicle.getCurrentInsuranceId()).get().getPayedDate();
+        licenspayDate = licenseRepository.findById(vehicle.getCurrentLicenId()).get().getPayedDate();
+
+        return  new UpdateVehicleDTO(vehicle.getVechicleId(),vehicle.getRegiNumner(),vehicle.getChacieNumber(),vehicle.getStartingMilage(),vehicle.getVechileType().getTypeName(),isuranceDate,licensDate,isurancepayDate,licenspayDate);
     }
 
     public void deleteVehicle(int vehicleId){

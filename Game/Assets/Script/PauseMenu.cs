@@ -51,12 +51,37 @@ public class PauseMenu : MonoBehaviour
        Application.Quit();
        Debug.Log("Game Closed");
     }
-     public void OpenMenu()
+     public void OpenMenu_E()
    { 
-       SceneManager.LoadScene("MainMenu");
+       SceneManager.LoadScene("E_MainMenu");
+   }
+    public void OpenMenu_T()
+   { 
+       SceneManager.LoadScene("T_MainMenu");
+   }
+    public void OpenMenu_S()
+   { 
+       SceneManager.LoadScene("S_MainMenu");
    }
     public void Replay()
    { 
        SceneManager.LoadScene("Level");
+   }
+   //RepalyGame
+    public void ReplayGame_S()
+   { 
+       SceneManager.LoadScene("S_Level01");
+   }
+    public void ReplayGame_E()
+   { 
+       SceneManager.LoadScene("E_Level01");
+   }
+    public void ReplayGame_T()
+   { 
+       SceneManager.LoadScene("T_Level01");
+   }
+    public void ReplayHighway()
+   { 
+       SceneManager.LoadScene("highway");
    }
 }

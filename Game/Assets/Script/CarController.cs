@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
    
 
     //for moblie 
-    /*  
+  
     public float StreewheelFormMoblie;
     public float motorWheelsFromMobile;
     private Rigidbody rB;
@@ -39,25 +39,24 @@ public class CarController : MonoBehaviour
         rB = GetComponent<Rigidbody>();
 
     }
-    */
-
+   
 
     private void FixedUpdate()
     {
    
-    
+     /*
      //pc Controller
 
      float motorT = Input.GetAxis("Vertical") * maxSpeed;
      float steerT = Input.GetAxis("Horizontal") * maxStreer;
-   
+   */
      //streer of  mobile
-    /*
+   
      float steerT = StreewheelFormMoblie * maxStreer; 
      float motorT = motorWheelsFromMobile * maxSpeed ;
      
 
-*/
+
 
   
          WheelCollider_FL.steerAngle = steerT;
@@ -100,7 +99,7 @@ public class CarController : MonoBehaviour
         RRight.transform.position = pos3;
         RRight.transform.rotation = rotationQ3;
 
-
+        /*
         //disable to can car move
       
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.01f)
@@ -116,19 +115,19 @@ public class CarController : MonoBehaviour
             WheelCollider_RR.brakeTorque = 400f;
 
         } 
-       
+       */
 
 
 
     }
     // Mobile bleack this function is not use for game 
-    /*
+    
     public void Brake()
     {
         float motorT = motorWheelsFromMobile * minSpeed ;
 
     }
-    */
+
 
 
 

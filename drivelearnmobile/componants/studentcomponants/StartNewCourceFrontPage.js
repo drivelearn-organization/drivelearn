@@ -393,7 +393,10 @@ const StartNewCourceFrontPage = ({route,navigation}) => {
                                             console.log("Payment Dismissed");
                                         }
                                     );
-
+                                    // setCoursePayment(25000);
+                                    // addPayment();
+                                    // setCource(6,2,0,7,0,0,2);
+                                    // setTimeout(()=>{checkButtonstatus();},2000);
 
                                 }}><Text>Start Course</Text></TouchableOpacity>
                             </View>

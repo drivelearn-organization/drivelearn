@@ -1,7 +1,6 @@
 package com.example.drivelearnbackend.Controllers.DTO;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class StudentDTO {
     private String name;
@@ -64,7 +63,13 @@ public class StudentDTO {
     public StudentDTO() {
     }
 
-//    public LocalDate getDto() {
+    public StudentDTO(String name, String nid, int stuID) {
+        this.name = name;
+        this.nid = nid;
+        this.stuID = stuID;
+    }
+
+    //    public LocalDate getDto() {
 //        return dto;
 //    }
 //
