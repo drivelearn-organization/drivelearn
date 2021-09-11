@@ -39,13 +39,13 @@ const ManagerNewPayment = (props) => {
     axios
       .post("http://localhost:8080/payment/addinstalmentpayment", getdrop)
       .then(d => {
-        console.log(props.data.id);
+        console.log(d);
       })
 
   }
 
-  console.log(props.data);
-  console.log(getdrop);
+  //console.log(props.data);
+  //console.log(getdrop);
 
 
 

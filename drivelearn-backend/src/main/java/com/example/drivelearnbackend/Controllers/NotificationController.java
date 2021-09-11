@@ -19,6 +19,7 @@ import java.util.LinkedList;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/notification")
 public class NotificationController {
 

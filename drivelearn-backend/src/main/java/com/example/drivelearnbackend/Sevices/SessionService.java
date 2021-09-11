@@ -178,6 +178,7 @@ public class SessionService {
         Student student=giveStudent(dto.getStudentUsername());
         Cource cource=giveCource(student);
         if(isBookedBefore(student,session)==true){
+
             return false;
         }else{
             stuSessionRepository.save(new StuSession(session.getDate(),1,session,cource,student));

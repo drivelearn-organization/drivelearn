@@ -16,7 +16,7 @@ const ManagerNewPayment = (props) => {
     threewheel: "0",
   });
 
-  
+
 
   const [show, setshow] = useState(true);
 
@@ -29,44 +29,44 @@ const ManagerNewPayment = (props) => {
      });
  } */
 
- const setdiv=()=>{
-   if(show===true){
-    setdrop({
-      car: "0",
-      bike: "0",
-      threewheel: "0"
+  const setdiv = () => {
+    if (show === true) {
+      setdrop({
+        car: "0",
+        bike: "0",
+        threewheel: "0"
 
-    });
-
-
-    setshow(false);
-   }else{
-    setdrop({
-      car: "0",
-      bike: "0",
-      threewheel: "0"
-
-    });
+      });
 
 
-    setshow(true);
-   }
- }
+      setshow(false);
+    } else {
+      setdrop({
+        car: "0",
+        bike: "0",
+        threewheel: "0"
 
-  const addpayment=()=>{
-    
+      });
+
+
+      setshow(true);
+    }
+  }
+
+  const addpayment = () => {
+
     let data = {
       userId: props.data.id,
       amount: (parseInt(getdrop.car) + parseInt(getdrop.bike) + parseInt(getdrop.threewheel)) * 1000 + 11000
-    } 
+    }
 
     console.log(data);
-      axios
-      .post("http://localhost:8080/payment/addinitialpayment",data)
-      .then(d=>{
+    axios
+      .post("http://localhost:8080/payment/addinitialpayment", data)
+      .then(d => {
         console.log(props.data.id);
       })
-    
+
   }
 
   console.log(props.data);
@@ -212,14 +212,14 @@ const ManagerNewPayment = (props) => {
 
                 <div className="table_responsive" style={{ width: "98%" }}>
                   <div style={{ borderBottom: "1px solid black" }}>
-                    <p>Light Vehicle</p>
+                    <p>Heavy Vehicle</p>
                   </div>
                   <table>
 
                     <tr >
-                      <td style={{ padding: "10px" }}>A1</td>
-                      <td style={{ padding: "10px" }}>Car</td>
-                      <td style={{ padding: "10px" }}>Auto/Maual</td>
+                      <td style={{ padding: "10px" }}>G1</td>
+                      <td style={{ padding: "10px" }}>Bus</td>
+                      <td style={{ padding: "10px" }}>Bus</td>
                       <td style={{ padding: "10px" }}>
                         <select onChange={e => {
                           setdrop({
@@ -267,7 +267,7 @@ const ManagerNewPayment = (props) => {
             }
           </div>
 
-          
+
 
 
         </div>
@@ -275,9 +275,9 @@ const ManagerNewPayment = (props) => {
 
 
         <div>
-            <button className="update-btn" onClick={addpayment}>Add</button>
-            <button className="reset-btn" onClick={props.toggleModal}>Close</button>
-          </div>
+          <button className="update-btn" onClick={addpayment}>Add</button>
+          <button className="reset-btn" onClick={props.toggleModal}>Close</button>
+        </div>
 
 
 

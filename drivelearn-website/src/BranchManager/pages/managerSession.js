@@ -11,6 +11,9 @@ const ManagerVehicle = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sessionState, setSessionState] = useState([]);
   const [getStudent, setStudent] = useState([]);
+  const [getSessionId,setSessionId] = useState();
+
+  console.log(getStudent);
 
   const openSidebar = () => {
     setSidebarOpen(true);
@@ -35,6 +38,23 @@ const ManagerVehicle = () => {
 
 
       })
+  }
+
+
+  const addsession = (username) => {
+
+    let data = {
+      sessionId: getSessionId,
+      StudentUsername: username
+    }
+
+    console.log(data);
+    axios
+      .post("http://localhost:8080/session/book", data)
+      .then(d => {
+        console.log(d.data);
+      })
+
   }
 
 
@@ -187,13 +207,18 @@ const ManagerVehicle = () => {
                       <td>{d.name}</td>
                       <td>empty</td>
                       <td>empty</td>
-                      <td> <input type="text" /> </td>
+                      <td> <input type="text" onChange={(e)=>{
+                        setSessionId(e.target.value);
+                      }} /> </td>
 
 
                       <td>
                         <span className="action_btn">
 
-                          <a href="./managerupdatesession" className="eye"><i className="fa fa-plus-circle"></i></a>
+                          <a  className="eye"><i className="fa fa-plus-circle" onClick={()=>
+                          addsession(d.username)
+
+                          }></i></a>
 
                         </span>
                       </td>
