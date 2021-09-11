@@ -149,7 +149,7 @@ const AdminViewStudents = (props) => {
             <center>
             <input type="submit" value="Update" className="update-btn" />
             &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Clear" className="reset1-btn" />
+            <input type="submit" value="Deactivate" className="reset1-btn" />
             </center>
           </form>
         </div>

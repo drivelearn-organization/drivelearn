@@ -11,6 +11,7 @@ const AdminStudents = (props) => {
     const[state, setState] = useState({
    
       name: ''
+
     
   });
 
@@ -130,7 +131,7 @@ const handleSubmit = (e) =>{
                      <td>
                      <span className="action_btn">
                      <a href={'./adminviewstudent/'+ data.stuID} className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                     {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
                      </span>
                      </td>
                 </tr>
