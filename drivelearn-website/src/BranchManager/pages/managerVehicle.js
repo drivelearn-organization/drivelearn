@@ -5,6 +5,7 @@ import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import './../dropdown.css';
 import ManagerUpdateVehicle from './managerUpdateVehicle';
 
 
@@ -74,7 +75,7 @@ console.log(dropdown);
               <div className="search_box">
 
 
-                <select id="dropdown" onChange={e=>{
+                <select id="dropdown" className="drop-down" onChange={e=>{
                   getdrop(e.target.value);
                 }}>
 
@@ -84,18 +85,6 @@ console.log(dropdown);
                 </select>
 
 
-                <div className="dropdown">
-                  <div className="default_option">All
-
-
-                  </div>
-
-                  {/* <ul>
-                         <li>All</li>
-                         <li>Recent</li>
-                         <li>Popular</li>
-                       </ul> */}
-                </div>
                 <div className="search_field">
                   <input type="text" className="input" placeholder="Search" onChange={(e)=>{
                     getSearch(e.target.value);
@@ -154,12 +143,11 @@ console.log(dropdown);
                       <td>
                         <span className="action_btn">
                           <a href={'./managerupdatevehicle/' + d.vechicleId} className="eye"><i className="fa fa-eye"></i></a>
-                          <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                          <button  onClick={() => {
-                            deleteVehicle(d.vechicleId)
-                          }
-
-                          }>Delete</button>
+                          <a href="#" className="trash" onClick={() => {
+                            deleteVehicle(d.vechicleId);
+                          }}
+                          ><i className="fa fa-trash"></i></a>
+                         
                         </span>
                       </td>
                     </tr>
