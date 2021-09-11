@@ -50,6 +50,10 @@ public class AdminService {
 
     public EmployeeDTO loginEmployee(EmployeeDTO dto) {
         String password = "";
+        String branchName = "";
+        int branchId = 0;
+        int role;
+        Branch branch = null;
         try {
             password = new HashMD5().giveHash(dto.getPassword());
         } catch (NoSuchAlgorithmException e) {
@@ -58,31 +62,11 @@ public class AdminService {
 
         LinkedList<Employee> list = repository.findByUsernameAndPassword(dto.getUsername(), password);
 
-//        int role;
-//        String isActive = "false";
-//        if (list.isEmpty()) {
-//            isActive = "false";
-//        } else {
-//            for (Employee employee : list) {
-//                if (employee.getIsActive() == 2) {
-//                    role = employee.getRole();
-//                    if (role == 1) {
-//                        isActive = "branch manager";
-//                    } else if (role == 4) {
-//                        isActive = "admin";
-//                    }
-//
-//
-//                } else {
-//                    isActive = "false";
-//                }
-//            }
-//        }
-//
-//
-//        return isActive;
+
+
         EmployeeDTO loginEmployee = null;
         if(list.isEmpty()){
+
           loginEmployee =    new EmployeeDTO(null, null, 0);
         }else{
 
@@ -91,7 +75,11 @@ public class AdminService {
                  employee = newemployee;
             }
             if(employee.getIsActive()==2){
-                  loginEmployee = new EmployeeDTO(employee.getUsername(), employee.getPassword(), employee.getRole());
+                branch = employee.getBranch();
+                branchName = branch.getBranchName();
+                branchId = branch.getBranchid();
+
+                  loginEmployee = new EmployeeDTO(employee.getUsername(), employee.getPassword(), employee.getRole(),branchName,branchId);
             } else{
                  loginEmployee =    new EmployeeDTO(null, null, 0);
             }

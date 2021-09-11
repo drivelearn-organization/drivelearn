@@ -63,7 +63,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__logout">
           <i className="fa fa-power-off"></i>
-          <a href="./">Logout</a>
+          <Link to = "/" onClick={ () => sessionStorage.clear()}>Logout</Link>
         </div>
         {/* <div className="sidebar__logout">
           <i className="fa fa-times-circle"></i>
