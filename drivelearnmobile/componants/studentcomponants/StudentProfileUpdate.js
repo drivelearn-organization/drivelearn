@@ -154,7 +154,7 @@ const StudentProfileUpdate = ({navigation,route}) => {
 
                                     {/*home navigation*/}
                                     <Text style={styles.modalHeader}>{data.name}</Text>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
                                         <Text style={styles.modelIndex}>Home</Text>
                                     </TouchableOpacity>
 
