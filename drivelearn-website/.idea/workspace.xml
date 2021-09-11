@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerProfileUpdate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/NotificationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/NotificationPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewAvailablePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewAvailablePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCourceFrontPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCourceFrontPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCustomizedCource.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StartNewCustomizedCource.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentProfileUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentProfileUpdate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSelectedSessions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSelectedSessions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSelectedSetionMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSelectedSetionMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSessions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/StudentSessions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/TutionOpenBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/TutionOpenBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/TutionPlayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/TutionPlayer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/TutionQuiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/studentcomponants/TutionQuiz.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerFrontPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerFrontPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerNotification.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerNotification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/route/mainstack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/route/mainstack.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

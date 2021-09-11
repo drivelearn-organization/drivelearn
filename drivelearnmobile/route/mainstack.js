@@ -23,6 +23,7 @@ import StudentSelectedSessions from "../componants/studentcomponants/StudentSele
 import TrainerSelectedSessionInView from "../componants/Trainer/TrainerSelectedSessionInView";
 import StudentSelectedSetionMap from "../componants/studentcomponants/StudentSelectedSetionMap";
 import StudentProfileUpdate from "../componants/studentcomponants/StudentProfileUpdate";
+import TrainerProfileUpdate from "../componants/Trainer/TrainerProfileUpdate";
 
 const Stack = createStackNavigator();
 
@@ -52,6 +53,7 @@ function Mainstack() {
         <Stack.Screen name="TrainerSelectedSessionInView" component={TrainerSelectedSessionInView} options={{headerShown:false}}/>
         <Stack.Screen name="StudentSelectedSetionMap" component={StudentSelectedSetionMap} options={{headerShown:false}}/>
         <Stack.Screen name="StudentProfileUpdate" component={StudentProfileUpdate} options={{headerShown:false}}/>
+        <Stack.Screen name="TrainerProfileUpdate" component={TrainerProfileUpdate} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
