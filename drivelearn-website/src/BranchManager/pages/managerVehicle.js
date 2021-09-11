@@ -28,6 +28,7 @@ const ManagerVehicle = () => {
 
       })
   }
+  
 
 
   const deleteVehicle = (id) => {
