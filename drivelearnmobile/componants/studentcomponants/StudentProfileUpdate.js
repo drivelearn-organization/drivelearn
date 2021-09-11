@@ -1,16 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {
     ImageBackground,
-    ScrollView,
+    Keyboard, Modal,
+    ScrollView, StyleSheet,
     Text,
-    View,
-    StyleSheet,
+    TextInput,
     TouchableOpacity,
-    TouchableWithoutFeedback, Modal
+    TouchableWithoutFeedback,
+    View
 } from "react-native";
+import {Formik} from "formik";
+import {Picker} from "@react-native-picker/picker";
 import {Base} from "../../urls/base";
 
-const Frontpage = ({route,navigation}) => {
+
+
+
+
+
+
+const StudentProfileUpdate = ({navigation,route}) => {
+
 
     const { username } = route.params;
 
@@ -110,9 +120,11 @@ const Frontpage = ({route,navigation}) => {
         }
     },[]);
 
-
     const [navModal,setNavModal]=useState(false);
+
+
     return (
+
         <TouchableWithoutFeedback >
             <ScrollView>
                 <ImageBackground source={require('../../asets/background/StudentView.png')} style={styles.imageBac}>
@@ -123,27 +135,6 @@ const Frontpage = ({route,navigation}) => {
                         {/*nav div*/}
                         <View style={styles.navbar}>
 
-                            {/*home navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('FrontPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*notification navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('NotificationPageStudent',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
-                                    {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
-                                </ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*display navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/display.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*location navigation*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('StudentSelectedSessions',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/pin.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
 
                             {/*central navigation navigation*/}
                             <TouchableOpacity onPress={()=>setNavModal(true)}>
@@ -187,11 +178,6 @@ const Frontpage = ({route,navigation}) => {
                     </Modal>
 
 
-                    <View style={styles.nameBox}>
-                        <View style={styles.nameView}><Text style={styles.textStyles}>{data.name}</Text></View>
-
-                    </View>
-
 
 
 
@@ -210,22 +196,15 @@ const Frontpage = ({route,navigation}) => {
 
 
 
-                    <View style={styles.newCourceOuterView}>
-                        <View>
-                            <Text style={styles.headerStyle}>Start a Course</Text>
-                        </View>
 
-                        <View>
-                            <Text style={styles.descStyle}>There are several packages suitable for you. Click the start for more details.</Text>
-                        </View>
-
-                        <View style={styles.courceHeaderView}><TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})} style={styles.startButton}><Text>Start</Text></TouchableOpacity></View>
-                    </View>
                 </ImageBackground>
             </ScrollView>
         </TouchableWithoutFeedback>
+
     );
 };
+
+
 const styles =StyleSheet.create({
     imageBac:{
         width:'100%',
@@ -362,4 +341,6 @@ const styles =StyleSheet.create({
 
 
 })
-export default Frontpage;
+
+
+export default StudentProfileUpdate;
