@@ -123,11 +123,7 @@ const handleChange = () => {
                      <td>{data.moNumber}</td>
                      <td>
                      <span className="action_btn">
-                     {/* <a href="#" className="eye" onClick = {handleSetActive}><i class={active ?"fas fa-toggle-on": "fas fa-toggle-off"}></i></a> */}
-                     {/* <a href="#" className="eye" onClick = {(e)=>{setState({
-                        empid:data.empid,})
-                       handleSubmit(e);  
-                        }}>Activate</a> */}
+                     
                         <a href="#" className="eye" onClick = {()=>{ setState({empid:data.empid}); handleChange(); }}>Activate</a>
                      {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
                      </span>

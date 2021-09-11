@@ -18,10 +18,10 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
       </div>
 
       <div className="sidebar__menu">
-      <div className="sidebar__link active_menu_link">
+      {/* <div className="sidebar__link active_menu_link">
           <i className="fa fa-home"></i>
           <a href="./">Home</a>
-        </div>
+        </div> */}
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-tachometer"></i>
           <a href="./administrator">Dashboard</a>
@@ -75,10 +75,10 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
           {/* <a href="../HomePa">Logout</a> */}
         <Link to = "/" onClick={ () => sessionStorage.clear()}>Logout</Link>
         </div>
-        <div className="sidebar__logout">
+        {/* <div className="sidebar__logout">
           <i className="fa fa-times-circle"></i>
           <a href="#">Deactivate</a>
-        </div>
+        </div> */}
       </div>
     </div>
 );

@@ -588,8 +588,27 @@ public class AdminService {
         if(employee.getIsActive() == 1){
             employee.setIsActive(2);
             repository.save(employee);
+            error = "Activated successfully";
         }
         return error;
+    }
+
+    public String deactiveEmployee(EmployeeDTO dto){
+
+        String error = "";
+        LinkedList<Employee> list= repository.findByEmpid(dto.getEmpid());
+
+        Employee employee=null;
+        for (Employee newemployee : list) {
+            employee = newemployee;
+        }
+        if(employee.getIsActive() == 2){
+            employee.setIsActive(3);
+            repository.save(employee);
+            error = "Deactivated successfully";
+        }
+        return error;
+
     }
 
 

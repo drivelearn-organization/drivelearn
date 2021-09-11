@@ -94,4 +94,7 @@ public class AdminController {
 
     @PostMapping(value = "/activeEmployee")
     public  String activeEmployee(@RequestBody EmployeeDTO dto){ return adminService.activeEmployee(dto);}
+
+    @PostMapping(value = "/deactiveEmployee")
+    public  String deactiveEmployee(@RequestBody EmployeeDTO dto){ return adminService.deactiveEmployee(dto);}
 }
