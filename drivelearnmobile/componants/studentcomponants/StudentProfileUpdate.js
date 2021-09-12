@@ -1,20 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import {
     ImageBackground,
-    Modal,
-    ScrollView,
-    StyleSheet,
+    Keyboard, Modal,
+    ScrollView, StyleSheet,
     Text,
+    TextInput,
     TouchableOpacity,
     TouchableWithoutFeedback,
     View
 } from "react-native";
+import {Formik} from "formik";
+import {Picker} from "@react-native-picker/picker";
 import {Base} from "../../urls/base";
-import BookPDF from "../common/BookPDF";
 
-const TutionOpenBook = ({route,navigation}) => {
+
+
+
+
+
+
+const StudentProfileUpdate = ({navigation,route}) => {
+
 
     const { username } = route.params;
+
+    // this is the count for notification count
+    const [notificCount,setNotificCount]=useState('0');
 
     // getting student
     let url1=Base+'student/getStudent';
@@ -45,22 +56,77 @@ const TutionOpenBook = ({route,navigation}) => {
 
 
 
+        // here the notification number calling at the be begining
+        let notificUrl=Base+'notification/unreads';
+        fetch(notificUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                receiverUserId:0,
+                receiverUsername: username,
+                receiverType:3
+
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                //code here
+                if(json<10){
+                    setNotificCount(json.toString());
+                }else if (json>=10){
+                    setNotificCount('9+');
+                }
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
 
 
-// load the course
 
+
+        //here is the notification updating
+        const setNotificUpdate=setInterval(()=>{
+            fetch(notificUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    receiverUserId:0,
+                    receiverUsername: username,
+                    receiverType:3
+
+                })
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    //code here
+                    if(json<10){
+                        setNotificCount(json.toString());
+                    }else if (json>=10){
+                        setNotificCount('9+');
+                    }
+                    console.log(json);
+                })
+                .catch((error) => console.error(error))
+
+        },10000);
+
+        return()=>{
+            clearInterval(setNotificUpdate);
+        }
     },[]);
-
-
-
 
     const [navModal,setNavModal]=useState(false);
 
 
-
     return (
-        <TouchableWithoutFeedback >
 
+        <TouchableWithoutFeedback >
+            <ScrollView>
                 <ImageBackground source={require('../../asets/background/StudentView.png')} style={styles.imageBac}>
                     <View style={styles.headerView}>
                         {/*logo*/}
@@ -68,27 +134,6 @@ const TutionOpenBook = ({route,navigation}) => {
 
                         {/*nav div*/}
                         <View style={styles.navbar}>
-
-                            {/*available List*/}
-                            <TouchableOpacity >
-                                <ImageBackground source={require('../../asets/icons/games.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*customize the course*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('TutionQuiz',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/quiz.png')} style={styles.iconStyle}>
-
-                                </ImageBackground>
-                            </TouchableOpacity>
-
-                            {/*Selected Courses*/}
-                            <TouchableOpacity onPress={()=>navigation.navigate('TutionPlayer',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/play-button.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity onPress={()=>navigation.navigate('TutionOpenBook',{username:username})}>
-                                <ImageBackground source={require('../../asets/icons/open-book.png')} style={styles.iconStyle}></ImageBackground>
-                            </TouchableOpacity>
 
 
                             {/*central navigation navigation*/}
@@ -132,17 +177,30 @@ const TutionOpenBook = ({route,navigation}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
-                    <ScrollView>
-                        <BookPDF></BookPDF>
-                    </ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+                    {/*space for body*/}
+
+
+
 
 
 
 
 
                 </ImageBackground>
-
+            </ScrollView>
         </TouchableWithoutFeedback>
+
     );
 };
 
@@ -279,151 +337,10 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
-    },
-    lightVehicle:{
-        margin:15,
-        padding:15,
-        width:'95%',
-        marginLeft: '2.5%',
-        marginRight: '2.5%',
-        // height:200,
-        backgroundColor:'#ffffff20',
-        borderRadius:10,
-
-
-    },
-    headerViewInCard:{
-
-        width:'100%',
-        height:45,
-        backgroundColor:'#ffffff08',
-        borderRadius:25,
-        alignItems:'center',
-        justifyContent:'center',
-    },
-    lightHeader:{
-        color:'white',
-        fontSize:18,
-        fontWeight:'bold'
-    },
-    bodyViewInCard:{
-        marginTop:20,
-        padding:15,
-        width:'100%',
-        backgroundColor:'#ffffff08',
-        borderRadius:25,
-
-
-    },
-    lightBody:{
-        color:'white'
-    },
-    buttonViewInCard:{
-        flexDirection:'row',
-        justifyContent:'flex-end'
-    },
-    courseButton:{
-        width:100,
-        height:45,
-        backgroundColor:'#32DE3B',
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:10,
-        margin:15
-    },
-    displayMainView:{
-        width:'95%',
-        minHeight:100,
-        backgroundColor:'#ffffff20',
-        marginRight:'2.5%',
-        marginLeft:'2.5%',
-        borderRadius:10,
-        padding:15,
-    },
-    headViewAvail:{
-        width:'100%',
-        height:40,
-        backgroundColor:'#ffffff15',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    headerTopic:{
-        color:'white',
-        fontSize:18,
-        fontWeight:'bold',
-    },
-    dateView:{
-        marginTop:15,
-        width:'100%',
-        height:40,
-        backgroundColor:'#ffffff08',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        borderRadius:15
-    },
-    dataViewText:{
-        color:'white',
-        padding:10,
-    },
-    buttonViewInCourse:{
-        marginTop:15,
-        width:'100%',
-        height:60,
-        // backgroundColor:'#ffffff08',
-        flexDirection:'row',
-        justifyContent:'flex-end',
-        alignItems:'center',
-        // borderRadius:15
-        padding:15
-    },
-    ednButton:{
-        backgroundColor:'red',
-        width:120,
-        height:40,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:10
-    },
-    modBackground:{
-        flex:1,
-        backgroundColor:'#ffffff20',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    innerModalView:{
-        width:300,
-        height:250,
-        backgroundColor:'#ffffff',
-        borderRadius:10,
-        borderColor:'red',
-        borderWidth:2
-    },
-    warnText:{
-        padding:10
-    },
-    warnButtonView:{
-        flexDirection:'row',
-        justifyContent:'space-around',
-    },
-    hariButton:{
-        width:100,
-        height:45,
-        backgroundColor:'red',
-        borderRadius:10,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    nathaButton:{
-        width:100,
-        height:45,
-        backgroundColor:'green',
-        borderRadius:10,
-        justifyContent:'center',
-        alignItems:'center'
     }
 
 
-
 })
-export default TutionOpenBook;
+
+
+export default StudentProfileUpdate;

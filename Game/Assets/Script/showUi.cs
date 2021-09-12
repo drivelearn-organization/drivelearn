@@ -10,7 +10,7 @@ public class showUi : MonoBehaviour
     public GameObject BockerObject;
     public GameObject BockerObject1;
     public GameObject BockerObject2;
-    public GameObject HitActiveObject;
+    //public GameObject HitActiveObject;
     
    
     
@@ -39,7 +39,7 @@ public class showUi : MonoBehaviour
        Destroy(BockerObject1);
        Destroy(BockerObject2);
        Destroy(DestroyuiObject);
-       HitActiveObject.gameObject.SetActive(true);
+       //HitActiveObject.gameObject.SetActive(true);
        
        
    }
