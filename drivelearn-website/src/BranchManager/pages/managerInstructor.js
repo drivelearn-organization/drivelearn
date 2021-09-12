@@ -10,6 +10,9 @@ import axios from 'axios';
 const ManagerInstructors = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
+  const[deactivate, setDeactivate] = useState({
+    empid: '' 
+});
 
   const openSidebar = () => {
      setSidebarOpen(true);
@@ -31,6 +34,9 @@ setState({
 }) 
 
 }
+const handleChangeActiveStatus = () => {
+  alert("Are you sure");
+}
 
  const handleSubmit = (e) =>{
   e.preventDefault()
@@ -48,8 +54,8 @@ setState({
     setGetData(response.data)
     console.log(getData);
   })
-  
- },[]);
+  axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
+ });
  
 return (
   <div className="container">
@@ -121,7 +127,7 @@ return (
                    <td>
                    <span className="action_btn">
                    <a href={'./adminviewinstructor/'+ data.empid} className="eye"><i className="fa fa-eye"></i></a>
-                   <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                   <a href="#" className="trash" onClick = {()=>{ setDeactivate({empid:data.empid}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a>
                    </span>
                    </td>
                 </tr>
