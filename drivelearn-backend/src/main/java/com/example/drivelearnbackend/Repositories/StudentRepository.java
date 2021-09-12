@@ -1,9 +1,6 @@
 package com.example.drivelearnbackend.Repositories;
 
-import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.Entity.Student;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +16,8 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     LinkedList<Student> searchByUsernam(@Param("name")String name);
     LinkedList<Student> findAll();
     LinkedList<Student> findByStuId(int id);
+
+//    @Query("SELECT s FROM  Student s WHERE s.stuId = :name")
+//   void deactiveStuId(@Param("name")int name);
+
 }

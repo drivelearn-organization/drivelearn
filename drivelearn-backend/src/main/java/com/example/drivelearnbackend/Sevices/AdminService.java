@@ -273,6 +273,36 @@ public class AdminService {
         return employeelist;
     }
 
+    public LinkedList<EmployeeDTO> getBranchTrainer(String branchName){
+        String branchId = null;
+
+        int count = 0;
+        Branch branch = null;
+        LinkedList<Employee> list = repository.findAllByRoleAndIsActive(2, 2);
+        LinkedList<EmployeeDTO> employeelist = new LinkedList<>();
+        for (Employee employee:list) {
+            branch = employee.getBranch();
+
+            if(branch == null){
+                branchId = "nan";
+            }else{
+                branchId =branch.getBranchName();
+            }
+
+            if(employee.getFullName() != null){
+                count = count+1;
+            }else{
+
+            }
+            if(branchName.equals(branchId)){
+                employeelist.add(new EmployeeDTO(employee.getEmpid(), employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,count,employee.getRegisteredDate()));
+            }
+
+
+        }
+        return employeelist;
+    }
+
     public  LinkedList<EmployeeDTO> getSearchEmployee(EmployeeDTO dto){
         String branchId = null;
         int count = 0;
@@ -598,6 +628,54 @@ public class AdminService {
         return error;
 
     }
+
+
+
+    public LinkedList<StudentDTO> getBranchStudents(String branchName) {
+        String branchId = null;
+
+        int count = 0;
+        Branch branch = null;
+        LinkedList<Student> list = studentRepository.findAll();
+        LinkedList<StudentDTO> studentlist = new LinkedList<>();
+        for (Student student:list) {
+            branch = student.getBranch();
+
+            if(branch == null){
+                branchId = "nan";
+            }else{
+                branchId =branch.getBranchName();
+            }
+
+            if(student.getName() != null){
+                count = count+1;
+            }else{
+
+            }
+
+            if(branchName.equals(branchId)){
+                studentlist.add(new StudentDTO(student.getName(),student.getAddress(),student.getIdnum(),student.getContact(),branchId,student.getUsername(),student.getDob(),student.getStuId(),count));
+            }
+
+        }
+        return studentlist;
+    }
+
+//    public String deactivatStudent(StudentDTO dto){
+//
+//        String error = "";
+//        String id = "6";
+//         studentRepository.deactiveStuId(6);
+//            error = "Deactivated successfully";
+//
+//
+//
+//
+//
+//
+//        return error;
+//
+//    }
 
 
 }
