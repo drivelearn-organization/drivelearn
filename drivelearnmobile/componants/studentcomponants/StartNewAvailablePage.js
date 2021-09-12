@@ -199,7 +199,7 @@ const StartNewAvailablePage = ({route,navigation}) => {
                                     </TouchableOpacity>
 
                                     {/*profile settings*/}
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('StudentProfileUpdate',{username:username})}>
                                         <Text style={styles.modelIndex}>Profile Settings</Text>
                                     </TouchableOpacity>
                                 </View>

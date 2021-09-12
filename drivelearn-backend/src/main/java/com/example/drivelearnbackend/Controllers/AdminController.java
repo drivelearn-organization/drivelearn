@@ -41,6 +41,10 @@ public class AdminController {
     public LinkedList<EmployeeDTO> getAllEmployee(){
         return adminService.getAllEmployee();
     }
+    @GetMapping(value = "/deactiveEmployee")
+    public LinkedList<EmployeeDTO> getdeactiveEmployee(){
+        return adminService.getdeactiveEmployee();
+    }
 
     @GetMapping(value = "/employee/{empid}")
     public EmployeeDTO getEmployee(@PathVariable("empid") int id){return adminService.getEmployee(id);}
@@ -68,4 +72,29 @@ public class AdminController {
     @PostMapping(value = "/addInstructors")
     public  String addNewInstructor(@RequestBody EmployeeDTO dto){ return adminService.addNewInstructor(dto);}
 
+//    @GetMapping(value = "/loginUser/")
+//    public LinkedList<StudentDTO> getAllStudents(){
+//        return adminService.getAllStudents();
+//    }
+
+    @GetMapping(value = "/settingProfile/{username}")
+    public EmployeeDTO getSettingProfile(@PathVariable("username") String username){return adminService.getSettingProfile(username);}
+
+    @PostMapping(value = "/updateEmployee")
+    public String updateEmployee(@RequestBody EmployeeDTO dto){return adminService.updateEmployee(dto);}
+
+    @PostMapping(value = "/updateStudent")
+    public  String updateStudent(@RequestBody StudentDTO dto){ return adminService.updateStudent(dto);}
+
+    @PostMapping(value = "/settingMyProfile")
+    public  String settingMyProfile(@RequestBody EmployeeDTO dto){ return adminService.settingMyProfile(dto);}
+
+    @PostMapping(value = "/settingMyProfilePassword")
+    public  String settingMyProfilePassword(@RequestBody EmployeeDTO dto){ return adminService.settingMyProfilePassword(dto);}
+
+    @PostMapping(value = "/activeEmployee")
+    public  String activeEmployee(@RequestBody EmployeeDTO dto){ return adminService.activeEmployee(dto);}
+
+    @PostMapping(value = "/deactiveEmployee")
+    public  String deactiveEmployee(@RequestBody EmployeeDTO dto){ return adminService.deactiveEmployee(dto);}
 }

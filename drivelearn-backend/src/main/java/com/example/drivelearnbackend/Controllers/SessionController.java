@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.LinkedList;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/session")
 public class SessionController {
 

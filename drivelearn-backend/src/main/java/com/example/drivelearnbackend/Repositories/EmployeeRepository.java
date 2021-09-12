@@ -15,8 +15,11 @@ public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
    LinkedList<Employee> findByEmpid(int id);
 
    LinkedList<Employee> findAllByRoleAndIsActive(int id, int active);
+   LinkedList<Employee> findAllByIsActive(int active);
    LinkedList<Employee> findByUsernameAndPassword(String username, String password);
    LinkedList<Employee> findAll();
+
+
 
    @Query("SELECT e FROM Employee e WHERE (e.fullName LIKE %:name% or e.empid = :name) AND e.isActive = 2 AND e.role = 1")
    LinkedList<Employee> searchByUsernam(@Param("name")String name);

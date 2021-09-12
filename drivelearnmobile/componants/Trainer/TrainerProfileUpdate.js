@@ -1,33 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import {
     ImageBackground,
-    Modal,
-    ScrollView,
-    StyleSheet,
+    Keyboard, Modal,
+    ScrollView, StyleSheet,
     Text,
+    TextInput,
     TouchableOpacity,
     TouchableWithoutFeedback,
     View
 } from "react-native";
+import {Formik} from "formik";
+import {Picker} from "@react-native-picker/picker";
 import {Base} from "../../urls/base";
-import NotificationView from "../common/NotificationView";
 
-const TrainerNotification = ({route,navigation}) => {
+
+
+
+function TrainerProfileUpdate({navigation,route}) {
+
     const { username } = route.params;
 
-    const[notifications,setNotifications]=useState([]);
+    // this is the count for notification count
+    const [notificCount,setNotificCount]=useState('0');
 
-
-
-
-    // this is for getting user dto
+    // getting student
+    let url1=Base+'student/getStudent';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+
     useEffect(()=>{
 
 
-        // student loadinig
-        // let url1=Base+'student/getStudent';
+        // this is student loading
         // fetch(url1, {
         //     method: 'POST',
         //     headers: {
@@ -45,75 +49,78 @@ const TrainerNotification = ({route,navigation}) => {
         //     })
         //     .catch((error) => console.error(error))
         //     .finally(() => setLoading(false));
-        //
 
 
-        // initial notification loading
-        let notifUrl=Base+'notification/sendallnotification';
-        fetch(notifUrl, {
+
+        // here the notification number calling at the be begining
+        let notificUrl=Base+'notification/unreads';
+        fetch(notificUrl, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                receiverUserId: 0,
+                receiverUserId:0,
                 receiverUsername: username,
                 receiverType:2
+
             })
-        }).then((response) => response.json())
+        })
+            .then((response) => response.json())
             .then((json) => {
-                setNotifications(json);
-                console.log('lets test');
+                //code here
+                if(json<10){
+                    setNotificCount(json.toString());
+                }else if (json>=10){
+                    setNotificCount('9+');
+                }
+                console.log(json);
             })
-            .catch((error) => {
-                console.error(error);
-            });
+            .catch((error) => console.error(error))
 
 
 
-        // interval loading of notification
-        const interval=setInterval(()=>{
-            fetch(notifUrl, {
+
+        //here is the notification updating
+        const setNotificUpdate=setInterval(()=>{
+            fetch(notificUrl, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    receiverUserId: 0,
+                    receiverUserId:0,
                     receiverUsername: username,
                     receiverType:2
+
                 })
-            }).then((response) => response.json())
+            })
+                .then((response) => response.json())
                 .then((json) => {
-                    setNotifications(json);
-                    console.log('lets test');
+                    //code here
+                    if(json<10){
+                        setNotificCount(json.toString());
+                    }else if (json>=10){
+                        setNotificCount('9+');
+                    }
+                    console.log(json);
                 })
-                .catch((error) => {
-                    console.error(error);
-                });
+                .catch((error) => console.error(error))
 
         },10000);
 
-
         return()=>{
-            clearInterval(interval);
+            clearInterval(setNotificUpdate);
         }
-
-
     },[]);
 
-    // this is for main nav bar controll
     const [navModal,setNavModal]=useState(false);
 
 
+    return (
 
-
-
-
-
-    return(
         <TouchableWithoutFeedback >
             <ScrollView>
                 <ImageBackground source={require('../../asets/background/StudentView.png')} style={styles.imageBac}>
@@ -124,6 +131,7 @@ const TrainerNotification = ({route,navigation}) => {
                         {/*nav div*/}
                         <View style={styles.navbar}>
 
+
                             {/*home navigation*/}
                             <TouchableOpacity onPress={()=>navigation.navigate('TrainerFrontPage',{username:username})} >
                                 <ImageBackground source={require('../../asets/icons/home.png')} style={styles.iconStyle}></ImageBackground>
@@ -132,7 +140,7 @@ const TrainerNotification = ({route,navigation}) => {
                             {/*notification navigation*/}
                             <TouchableOpacity onPress={()=>navigation.navigate('TrainerNotification',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/notification.png')} style={styles.iconStyle}>
-
+                                    {notificCount==='0'?null:<View style={styles.notificWarnView}><Text style={styles.notificWarn}>{notificCount}</Text></View>}
                                 </ImageBackground>
                             </TouchableOpacity>
 
@@ -141,6 +149,7 @@ const TrainerNotification = ({route,navigation}) => {
                             <TouchableOpacity onPress={()=>navigation.navigate('TrainerProfileUpdate',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/user.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
+
                         </View>
 
 
@@ -148,38 +157,26 @@ const TrainerNotification = ({route,navigation}) => {
 
                     {/*main nav with modal*/}
 
-                    <Modal style={styles.modalView} visible={navModal} transparent={true}>
-                        <TouchableWithoutFeedback onPress={()=>setNavModal(false)}>
-                            <View style={styles.modalMainView}>
-                                <View style={styles.modalBox}>
 
-                                    {/*home navigation*/}
-                                    <Text style={styles.modalHeader}>{data.name}</Text>
-                                    <TouchableOpacity>
-                                        <Text style={styles.modelIndex}>Home</Text>
-                                    </TouchableOpacity>
 
-                                    {/*DriveLeaarn Material*/}
-                                    <TouchableOpacity>
-                                        <Text style={styles.modelIndex}>DriveLearn Material</Text>
-                                    </TouchableOpacity>
 
-                                    {/*Start a Course*/}
-                                    <TouchableOpacity onPress={()=>navigation.navigate('StartNewCourceFrontPage',{username:username})}>
-                                        <Text style={styles.modelIndex}>Start a Course</Text>
-                                    </TouchableOpacity>
 
-                                    {/*profile settings  TrainerProfileUpdate*/}
-                                    <TouchableOpacity >
-                                        <Text style={styles.modelIndex}>Profile Settings</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </Modal>
 
-                    {notifications.length===0 ? null : notifications.map((notification)=><NotificationView key={notification.notificationId.toString()} status={notification.status} headerd={notification.header}  message={notification.message}  id={notification.notificationId}></NotificationView>)}
-                    {/*notification content*/}
+
+
+
+
+
+
+
+
+                    {/*space for body*/}
+
+
+
+
+
+
 
 
                 </ImageBackground>
@@ -188,6 +185,7 @@ const TrainerNotification = ({route,navigation}) => {
 
     );
 };
+
 
 const styles =StyleSheet.create({
     imageBac:{
@@ -215,10 +213,12 @@ const styles =StyleSheet.create({
         paddingEnd:10
     },
     iconStyle:{
-        width:20,
-        height:20,
+        width:21,
+        height:21,
         padding:10,
-        margin: 5
+        margin: 5,
+        justifyContent:'center',
+        alignItems:'center'
     },
     modalMainView:{
         flex:1,
@@ -274,7 +274,55 @@ const styles =StyleSheet.create({
         paddingLeft:15,
         // paddingTop:10,
         paddingBottom:15,
+    },
+    notificWarn:{
+        color:'red',
+        fontSize:10,
+        fontWeight:'bold'
+    },
+    notificWarnView:{
+        width:12,
+        height:12,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#00ff49',
+        borderRadius:10
+
+    },
+    newCourceOuterView:{
+        width:'95%',
+        height:150,
+        backgroundColor:'#ffffff20',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        borderRadius:12,
+        marginTop: 20,
+        padding:15,
+    },
+    courceHeaderView:{
+        paddingTop:10,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+    },
+    headerStyle:{
+        color:'white',
+        fontSize:19,
+    },
+    descStyle:{
+        color:'white',
+        paddingTop: 12,
+    },
+    startButton:{
+        backgroundColor:'#32DE3B',
+        width:75,
+        height:35,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:7
     }
 
+
 })
-export default TrainerNotification;
+
+
+export default TrainerProfileUpdate;

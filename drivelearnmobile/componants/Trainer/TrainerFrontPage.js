@@ -173,7 +173,7 @@ const TrainerFrontPage = ({route,navigation}) => {
 
 
                             {/*location navigation*/}
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>navigation.navigate('TrainerProfileUpdate',{username:username})}>
                                 <ImageBackground source={require('../../asets/icons/user.png')} style={styles.iconStyle}></ImageBackground>
                             </TouchableOpacity>
                         </View>
