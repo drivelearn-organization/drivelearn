@@ -8,6 +8,11 @@ const AdminStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
     const [searchStudent, setSearchStudent] = useState(false);
+    const[deactivate, setDeactivate] = useState({
+   
+      stuID: ''
+    
+  });
     const[state, setState] = useState({
    
       name: ''
@@ -17,6 +22,10 @@ const AdminStudents = (props) => {
 
   const handleSearchStudent = () => {
     setSearchStudent(!searchStudent);
+  }
+
+  const handleChangeActiveStatus = () => {
+    alert("Are you sure");
   }
 
   const handleChange = (e) => {
@@ -54,7 +63,7 @@ const handleSubmit = (e) =>{
       setGetData(response.data)
       console.log(getData);
     })
-    
+    // axios.post('http://192.168.56.1:8080/drivelearn/deactiveStudent',deactivate) 
    },[]);
 
   
@@ -131,7 +140,7 @@ const handleSubmit = (e) =>{
                      <td>
                      <span className="action_btn">
                      <a href={'./adminviewstudent/'+ data.stuID} className="eye"><i className="fa fa-eye"></i></a>
-                     {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
+                     <a href="#" className="trash" onClick = {()=>{ setDeactivate({stuID:data.stuID}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a>
                      </span>
                      </td>
                 </tr>

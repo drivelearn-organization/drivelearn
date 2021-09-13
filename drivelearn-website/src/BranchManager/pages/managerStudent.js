@@ -50,7 +50,7 @@ const ManagerStudents = () => {
 
   const Student = () => {
     axios
-      .get("http://localhost:8080/drivelearn/students")
+      .get("http://localhost:8080/drivelearn/branchstudents/"+sessionStorage.getItem('branchName'))
       .then(d => {
         setStudent(d.data);
       })
@@ -76,7 +76,7 @@ const ManagerStudents = () => {
           <div className="main__title">
             <div className="main__greeting">
               <h1>Manage Students</h1>
-              <p> Kalutara Branch</p>
+              <p>{sessionStorage.getItem('branchName')} Branch</p>
             </div>
           </div>
           <br /><br />

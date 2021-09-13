@@ -97,4 +97,13 @@ public class AdminController {
 
     @PostMapping(value = "/deactiveEmployee")
     public  String deactiveEmployee(@RequestBody EmployeeDTO dto){ return adminService.deactiveEmployee(dto);}
+
+//    @PostMapping(value = "/deactiveStudent")
+//    public  String deactivateStudent(@RequestBody StudentDTO dto){ return adminService.deactivatStudent(dto);}
+
+    @GetMapping(value = "/branchtrainer/{branchName}")
+    public LinkedList<EmployeeDTO> getBranchTrainer(@PathVariable("branchName") String branchName){ return adminService.getBranchTrainer(branchName); }
+
+    @GetMapping(value = "/branchstudents/{branchName}")
+    public LinkedList<StudentDTO> getBranchStudents(@PathVariable("branchName") String branchName){ return adminService.getBranchStudents(branchName); }
 }

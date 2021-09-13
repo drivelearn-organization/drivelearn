@@ -15,8 +15,9 @@ public class StudentDTO {
     private String year;
     private int count;
     private  String sdob;
+    private int stuID;
 
-       private LocalDate Dob;
+    private LocalDate Dob;
     public StudentDTO(String name, String address, String nid, String contact, String branch, String username, LocalDate dob, int stuID, int count) {
         this.name = name;
         this.address = address;
@@ -31,7 +32,7 @@ public class StudentDTO {
 
 
 
-    private int stuID;
+
 
     public StudentDTO(String name, String address, String nid, String contact, String branch, String username, String password, String day, String month, String year) {
         this.name = name;
