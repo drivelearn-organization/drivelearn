@@ -14,10 +14,14 @@ const ManagerVehicle = () => {
   const [vehicleState, setVehicleState] = useState([]);
   const [search, getSearch] = useState("");
   const [dropdown, getdrop] = useState("Reg No");
+ 
 
   useEffect(() => {
     getVehicle();
+   
   }, []);
+
+  
 
   const getVehicle = () => {
     axios
@@ -42,7 +46,7 @@ const ManagerVehicle = () => {
 
 
 
-  console.log(vehicleState);
+ 
 
 
 
@@ -55,7 +59,7 @@ const ManagerVehicle = () => {
   };
 
 
-console.log(dropdown);
+
 
 
   return (
@@ -66,27 +70,27 @@ console.log(dropdown);
           <div className="main__title">
             <div className="main__greeting">
               <h1>Manage Vehicles</h1>
-              <p> Kalutara Branch</p>
+              <p>{sessionStorage.getItem('branchName')} Branch</p>
             </div>
           </div>
 
           <br /><br />
           <div className="table_responsive">
             <div className="search">
-              <div className="search_box">
+              <div className="search_box ">
 
 
                 <select id="dropdown" className="drop-down" onChange={e=>{
                   getdrop(e.target.value);
                 }}>
 
-                  <option value="Reg No">Reg No</option>
-                  <option value="Chessi No">Chessi No</option>
+                  <option className="option-style" value="Reg No">Reg No</option>
+                  <option className="option-style" value="Chessi No">Chassis No</option>
 
                 </select>
 
 
-                <div className="search_field">
+                <div className="search_field search-drop">
                   <input type="text" className="input" placeholder="Search" onChange={(e)=>{
                     getSearch(e.target.value);
                   }} />

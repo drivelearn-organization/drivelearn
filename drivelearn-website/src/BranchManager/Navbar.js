@@ -13,9 +13,9 @@ const Navbar = ({sidebarOpen, openSidebar}) => {
           <a href="#">
           <img width="30" src="images/avatar.png" alt="" />
           </a>
-          <a href="#">
+          {/* <a href="#">
           <i className="fa fa-bell"></i>
-          </a>
+          </a> */}
         </div>
       </nav>
 

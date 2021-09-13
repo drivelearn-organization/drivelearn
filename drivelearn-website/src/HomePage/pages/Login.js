@@ -42,6 +42,7 @@ function Login() {
         sessionStorage.setItem('role',response.data.role);
         sessionStorage.setItem('branchName',response.data.branch);
         sessionStorage.setItem('branchId',response.data.branchId);
+        sessionStorage.setItem('empId',response.data.empid);
         //pass branch 
         // sessionStorage.clear();
       }else{

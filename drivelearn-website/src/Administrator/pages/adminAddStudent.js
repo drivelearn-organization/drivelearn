@@ -3,7 +3,7 @@ import '../../App.css';
 import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
-
+import axios from 'axios';
 const AdminAddStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -31,7 +31,7 @@ const handleSubmit = (e) =>{
     
 
     
-
+    axios.post('http://localhost:8080/drivelearn/addStudent',state)
     
 
     console.log(state);

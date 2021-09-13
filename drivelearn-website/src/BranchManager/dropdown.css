@@ -1,0 +1,23 @@
+.drop-down {
+    padding: 10px;
+    margin-right: 8px;
+    color: gray;
+    font-size: 14px;
+}
+
+option{
+    color: gray;
+    font-size: 14px;
+   
+}
+
+.option-style{
+    padding: 10px;
+    margin: 10px;
+}
+
+.search-drop{
+    border: 1px solid gray;
+    width: 100px;
+   
+}

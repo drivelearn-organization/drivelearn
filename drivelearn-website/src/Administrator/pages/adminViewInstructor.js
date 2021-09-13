@@ -8,6 +8,8 @@ import axios from 'axios';
 const AdminViewInstructors = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+    
+
 
     const[state, setState] = useState({
       fullName:'',
@@ -20,6 +22,8 @@ const AdminViewInstructors = (props) => {
       
       
   });
+
+ 
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -45,6 +49,7 @@ const AdminViewInstructors = (props) => {
         })
       console.log(getData);
     })
+    
     
    },[]);
 

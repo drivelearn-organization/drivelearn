@@ -7,144 +7,149 @@ import axios from 'axios';
 
 
 const ManagerAddStudents = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const[state, setState] = useState({
+    name:'',
+    password: '',
+    address: '',
+    username: '',
+    contact: '',
+    sdob: '',
+    branch: '',
+    nid:''
+});
+
+const handleChange = (e) => {
+  setState({
+      ...state,
+      [e.target.name]: e.target.value
+  }) 
+
+}
+
+const handleSubmit = (e) =>{
+  e.preventDefault()
   
-    const openSidebar = () => {
-       setSidebarOpen(true);
-    };
+
   
-    const closeSidebar = () => {
-      setSidebarOpen(false);
-   };
-
-
-   const submit = e =>{
-    
-    let name = e.target[0].value;
-    let address = e.target[1].value;
-    let nid = e.target[2].value;
-    let Dob = e.target[3].value;
-    let contact = e.target[4].value;
-    let email = e.target[5].value;
-    let gender = e.target[6].value;
-    
-    
-
-    let data= {
-      name,
-      address,
-      nid,
-      Dob,
-      contact,
-      email,
-      gender
-
-    };
+  axios.post('http://localhost:8080/drivelearn/addStudent',state)
   
-  console.log(data);
-  postStudent(data);
 
-   }
+  console.log(state);
+ 
+}
 
-   const postStudent=(data)=>{
-    axios
-    .post("http://localhost:8080/vehicle/",data)
-    .then(d=>{
-      console.log(d);
-    })
-  }
-  return (
-    <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <main>
-         <div className="main__container">
-            <div className="main__title">
-                <div className="main__greeting">
-                <h1>Add Student</h1>
-                <p> Kalutara Branch</p>
-                </div>
-            </div>
-          <center>
-          <div className="charts__rightt">
-          <div className="charts__right__title">
-            <div>
-              <p>Basic Details</p>
-            </div>
+  const openSidebar = () => {
+     setSidebarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+ };
+
+
+
+ 
+return (
+  <div className="container">
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+    <main>
+       <div className="main__container">
+          <div className="main__title">
+              <div className="main__greeting">
+              <h1>Add Student</h1>
+              <p>DriveLEARN</p>
+              </div>
+          </div>
+        <center>
+        <div className="charts__rightt">
+        <div className="charts__right__title">
+          <div>
+            <p>Basic Details</p>
+          </div>
+        </div>
+
+        <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
+          <div className="card-p">
+              <p className="text">Full Name</p>
+              <input className="data" type="text" name="name" id="firstname" placeholder="Full Name" value={state.name}  onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+          
+          <div className="card-p">
+              <p className="text">Address</p>
+              <input className="data" type="text" name="address" id="firstname" placeholder="Address" value={state.address}  onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+         
+          <div className="card-p">
+              <p className="text">NIC</p>
+              <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid}  onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+        
+          <div className="card-p">
+              <p className="text">Date of Birth</p>
+              <input className="data" type="date" name="sdob" value={state.sdob} id="firstname" placeholder="Date of Birth" onChange={handleChange} required  />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+       
+          <div className="card-p">
+              <p className="text">Mobile</p>
+              <input className="data" type="text" value={state.contact} name="contact" id="firstname" placeholder="Mobile"  onChange={handleChange} required  />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
           </div>
 
-          <form className="charts__rightt__cardss" 
-          onSubmit={e=>{
-            e.preventDefault();
-            submit(e);
-          }}>
-            <div className="card-p">
-                <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name"  required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            
-            <div className="card-p">
-                <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address"  required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-           
-            <div className="card-p">
-                <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC"  required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
+          <div className="card-p">
+              <p className="text">User Name</p>
+              <input className="data" type="text" name="username" id="firstname" placeholder="Full Name" value={state.username}  onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+        
+          <div className="card-p">
+              <p className="text">password</p>
+              <input className="data" type="password" value={state.password} name="password" id="firstname" placeholder="*********"  onChange={handleChange}  required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+          <div className="card-p">
+              <p className="text">Branch</p>
+              <select className="option1" name="branch"  onChange={handleChange} required>
+              <option disabled="disabled" selected="selected">--Choose Option--</option>
+              <option value ="mathugama">mathugama</option>
+              <option value ="kaluthatara">kaluthatara</option>
+              <option value ="Aluthgama">Aluthgama</option>
+              </select>
+          </div>
+
           
-            <div className="card-p">
-                <p className="text">Date of Birth</p>
-                <input className="data" type="date"  name="first_name" id="firstname" placeholder="Date of Birth" required  />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-         
-            <div className="card-p">
-                <p className="text">Mobile</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Mobile" required  />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-          
-            <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email"  name="first_name" id="firstname" placeholder="Email"  required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            <div className="card-p">
-                <p className="text">Gender</p>
-                <select className="option1" name="Register_as" required>
-                <option disabled="disabled" selected="selected">--Choose Option--</option>
-                <option>Male</option>
-                <option>Female</option>
-               </select>
-            </div>
-            <center>
-            <input type="submit" value="Add" className="update-btn" />
-            &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Clear" className="reset1-btn" />
-            </center>
-          </form>
-        </div>
-        </center>
-        </div>
-      </main>
-        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-    </div>
-  );
+          <center>
+          <input type="submit" value="Update" className="update-btn" />
+          &nbsp;&nbsp;&nbsp;
+          <input type="Reset" value="Clear" className="reset1-btn" />
+          </center>
+        </form>
+      </div>
+      </center>
+      </div>
+    </main>
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+  </div>
+);
   
   }
   
