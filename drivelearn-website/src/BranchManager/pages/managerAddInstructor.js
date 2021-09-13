@@ -7,149 +7,130 @@ import axios from 'axios';
 
 
 const ManagerAddInstructors = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-
-    
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
-    const openSidebar = () => {
-       setSidebarOpen(true);
-    };
-  
-    const closeSidebar = () => {
-      setSidebarOpen(false);
-   };
-  
-   const submit = e =>{
-    
-    let name = e.target[0].value;
-    let address = e.target[1].value;
-    let nid = e.target[2].value;
-    let Dob = e.target[3].value;
-    let contact = e.target[4].value;
-    let email = e.target[5].value;
-    let gender = e.target[6].value;
-    
-    
+  const openSidebar = () => {
+     setSidebarOpen(true);
+  };
 
-    let data= {
-      name,
-      address,
-      nid,
-      Dob,
-      contact,
-      email,
-      gender
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+ };
 
-    };
-  
-  console.log(data);
- // postInstructor(data);
+ const[state, setState] = useState({
+  moNumber:'',
+  fullName: '',
+  username: '',
+  password: '',
+  branch: '',
+  nid: '',
+  role: 2
+});
 
-   }
+const handleChange = (e) => {
+setState({
+    ...state,
+    [e.target.name]: e.target.value
+}) 
 
-   /*const postInstructor=(data)=>{
-    axios
-    .post("http://localhost:8080/vehicle/",data)
-    .then(d=>{
-      console.log(d);
-    })
-  } */
-   
-  return (
-    <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <main>
-         <div className="main__container">
-            <div className="main__title">
-                <div className="main__greeting">
-                <h1>Add Instructor</h1>
-                <p> Kalutara Branch</p>
-                </div>
-            </div>
-          <center>
-          <div className="charts__rightt">
-          <div className="charts__right__title">
-            <div>
-              <p>Basic Details</p>
-            </div>
+}
+
+const handleSubmit = (e) =>{
+e.preventDefault()
+axios.post('http://localhost:8080/drivelearn/addInstructors',state)
+
+console.log(state);
+
+}
+
+ 
+return (
+  <div className="container">
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+    <main>
+       <div className="main__container">
+          <div className="main__title">
+              <div className="main__greeting">
+              <h1>Add Instructor</h1>
+              <p>DriveLEARN</p>
+              </div>
+          </div>
+        <center>
+        <div className="charts__rightt">
+        <div className="charts__right__title">
+          <div>
+            <p>Basic Details</p>
+          </div>
+        </div>
+
+        <form className="charts__rightt__cardss" onSubmit={handleSubmit}>
+          <div className="card-p">
+              <p className="text">Full Name</p>
+              <input className="data" type="text" name="fullName" id="firstname" placeholder="Full Name" value={state.fullName} onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+          
+         
+         
+          <div className="card-p">
+              <p className="text">NIC</p>
+              <input className="data" type="text" name="nid" id="firstname" placeholder="NIC" value={state.nid} onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+        
+         
+       
+          <div className="card-p">
+              <p className="text">Mobile</p>
+              <input className="data" type="text" name="moNumber" id="firstname" placeholder="Mobile" value={state.moNumber} onChange={handleChange} required  />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
           </div>
 
-          <form className="charts__rightt__cardss" 
-          
-          onSubmit={e=>{
-            e.preventDefault();
-            submit(e);
-          }}
 
-          >
-            <div className="card-p">
-                <p className="text">Full Name</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Full Name" value="" required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            
-            <div className="card-p">
-                <p className="text">Address</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="Address" value="" required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-           
-            <div className="card-p">
-                <p className="text">NIC</p>
-                <input className="data" type="text" name="first_name" id="firstname" placeholder="NIC" value="" required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-          
-            <div className="card-p">
-                <p className="text">Date of Birth</p>
-                <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Date of Birth" required  />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
+          <div className="card-p">
+              <p className="text">Username</p>
+              <input className="data" type="text" id="firstname" placeholder="Username" name="username" value={state.username} onChange={handleChange}  required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
+          <div className="card-p">
+              <p className="text">Password</p>
+              <input className="data" type="password"  name="password" id="firstname" placeholder="******" value={state.password} onChange={handleChange} required />
+              {/* <div class="alert-danger" id="firstNameError">
+                 * First name can't be empty and must contain only letters
+              </div> */}
+          </div>
          
-            <div className="card-p">
-                <p className="text">Mobile</p>
-                <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Mobile" required  />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-          
-            <div className="card-p">
-                <p className="text">Email</p>
-                <input className="data" type="Email" Value="" name="first_name" id="firstname" placeholder="Email"  required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-            </div>
-            <div className="card-p">
-                <p className="text">Gender</p>
-                <select className="option1" name="Register_as" required>
-                <option disabled="disabled" selected="selected">--Choose Option--</option>
-                <option>Male</option>
-                <option>Female</option>
-               </select>
-            </div>
-            <center>
-            <input type="submit" value="Add" className="update-btn" />
-            &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Clear" className="reset1-btn" />
-            </center>
-          </form>
-        </div>
-        </center>
-        </div>
-      </main>
-        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-    </div>
-  );
+
+          <div className="card-p">
+              <p className="text">Branch</p>
+              <select className="option1" name="branch" onChange={handleChange} required>
+              <option disabled="disabled" selected="selected">--Choose Option--</option>
+              <option value ="mathugama">mathugama</option>
+              <option value ="kaluthatara">kaluthatara</option>
+              <option value ="Aluthgama">Aluthgama</option>
+             </select>
+          </div>
+          <center>
+          <input type="submit" value="Update" className="update-btn" />
+          &nbsp;&nbsp;&nbsp;
+          <input type="Reset" value="Clear" className="reset1-btn" />
+          </center>
+        </form>
+      </div>
+      </center>
+      </div>
+    </main>
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+  </div>
+);
   
   }
   

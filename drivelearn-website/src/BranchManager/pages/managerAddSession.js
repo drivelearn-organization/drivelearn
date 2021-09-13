@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import axios from 'axios';
 
 
 const ManagerAddStudents = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [getVehicleType, setVehicleType] = useState([]);
+  const [getEmployeeType,setEmployeeType] = useState([]);
+  const [getEmpName,setEmpName]= useState();
 
   const openSidebar = () => {
     setSidebarOpen(true);
@@ -16,6 +20,89 @@ const ManagerAddStudents = () => {
     setSidebarOpen(false);
   };
 
+  useEffect(() => {
+    getVehicleTypeState();
+    getEmployeeTypeState();
+
+  }, []);
+
+
+  const getVehicleTypeState = () => {
+    axios
+      .get("http://localhost:8080/vehicletype/showtype")
+      .then(data => {
+        setVehicleType(data.data);
+
+
+      })
+  }
+
+  const getEmployeeTypeState = () => {
+    let id=sessionStorage.getItem('branchId');
+    console.log(id);
+    axios
+      .get("http://localhost:8080/vehicletype/getemployeetype/"+ id)
+      .then(data => {
+        setEmployeeType(data.data);
+
+
+      })
+  }
+
+
+  
+
+  const submit = e => {
+
+  
+
+    for (let i = 0; i < getEmployeeType.length; i++) {
+      if(getEmployeeType[i].empid == e.target[0].value){
+         console.log(getEmployeeType[i].username);
+         setEmpName(getEmployeeType[i].username);
+         
+      }
+     
+    }
+
+    let trainerId = e.target[0].value;
+    let date = e.target[1].value;
+    let startTime = e.target[2].value;
+    let status = 1;
+    let branchName = sessionStorage.getItem('branchName');
+    let numOfStudent = e.target[3].value;
+    let vehicleType = e.target[4].value;
+    let managerId = sessionStorage.getItem('empId');
+    let trainerUsername = getEmpName;
+
+
+    let data = {
+      trainerId,
+      date,
+      startTime,
+      numOfStudent,
+      branchName,
+      vehicleType,
+      status,
+      managerId,
+      trainerUsername
+     
+
+    };
+    console.log(data);
+   
+
+    postSession(data);
+
+  }
+
+  const postSession = (data) => {
+    axios
+      .post("http://localhost:8080/session/addSession", data)
+      .then(d => {
+        console.log(d);
+      })
+  }
 
   return (
     <div className="container">
@@ -36,18 +123,35 @@ const ManagerAddStudents = () => {
                 </div>
               </div>
 
-              <form className="charts__rightt__cardss">
+              <form className="charts__rightt__cardss"
+              
+              onSubmit={e => {
+                e.preventDefault();
+                submit(e);
+              }}
+>
                 <div className="card-p">
                   <p className="text">Instructor Name</p>
-                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Instructor Name" value="" required />
-                  {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+                  <select>
+                    <option value="0"> Select Instructor</option>
+                    {
+                      getEmployeeType.map(d => (
+
+                        <option key={d.empid} value={d.empid}> {d.fullName} </option>
+
+                      ))}
+
+
+
+
+                  </select>
                 </div>
+
+                
 
                 <div className="card-p">
                   <p className="text">Date</p>
-                  <input className="data" type="date" name="first_name" id="firstname" placeholder="Date" value="" required />
+                  <input className="data" type="date" name="first_name" id="firstname" placeholder="Date"  required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -55,7 +159,7 @@ const ManagerAddStudents = () => {
 
                 <div className="card-p">
                   <p className="text">Time</p>
-                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Time" value="" required />
+                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Time" required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -63,26 +167,30 @@ const ManagerAddStudents = () => {
 
                 <div className="card-p">
                   <p className="text">Number Of Student</p>
-                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Number Of Student" value="" required />
+                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Number Of Student"  required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
                 </div>
 
-                <div className="card-p">
-                  <p className="text">Vehical Number</p>
-                  <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Vehical Number" required />
-                  {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-                </div>
-
+                
                 <div className="card-p">
                   <p className="text">Vehical type</p>
-                  <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Vehical type" required />
-                  {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+
+                  <select>
+                    <option value="0"> Select Vehicle Type </option>
+                    {
+                      getVehicleType.map(d => (
+
+                        <option key={d.typeId} value={d.typeName}> {d.typeName} </option>
+
+                      ))}
+
+
+
+
+                  </select>
+
                 </div>
 
                 <center>

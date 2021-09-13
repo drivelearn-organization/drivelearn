@@ -79,7 +79,7 @@ public class AdminService {
                 branchName = branch.getBranchName();
                 branchId = branch.getBranchid();
 
-                  loginEmployee = new EmployeeDTO(employee.getUsername(), employee.getPassword(), employee.getRole(),branchName,branchId);
+                  loginEmployee = new EmployeeDTO(employee.getUsername(), employee.getPassword(), employee.getRole(),branchName,branchId,employee.getEmpid());
             } else{
                  loginEmployee =    new EmployeeDTO(null, null, 0);
             }
@@ -273,6 +273,36 @@ public class AdminService {
         return employeelist;
     }
 
+    public LinkedList<EmployeeDTO> getBranchTrainer(String branchName){
+        String branchId = null;
+
+        int count = 0;
+        Branch branch = null;
+        LinkedList<Employee> list = repository.findAllByRoleAndIsActive(2, 2);
+        LinkedList<EmployeeDTO> employeelist = new LinkedList<>();
+        for (Employee employee:list) {
+            branch = employee.getBranch();
+
+            if(branch == null){
+                branchId = "nan";
+            }else{
+                branchId =branch.getBranchName();
+            }
+
+            if(employee.getFullName() != null){
+                count = count+1;
+            }else{
+
+            }
+            if(branchName.equals(branchId)){
+                employeelist.add(new EmployeeDTO(employee.getEmpid(), employee.getMoNumber(),employee.getFullName(),employee.getNid(), branchId,count,employee.getRegisteredDate()));
+            }
+
+
+        }
+        return employeelist;
+    }
+
     public  LinkedList<EmployeeDTO> getSearchEmployee(EmployeeDTO dto){
         String branchId = null;
         int count = 0;
@@ -384,7 +414,9 @@ public class AdminService {
         String pass="";
         int roleType;
         int role;
-
+        String error = "";
+        LinkedList<Employee> username = new LinkedList<>();
+        LinkedList<Employee> password = new LinkedList<>();
         try {
             pass=new HashMD5().giveHash(dto.getPassword());
         } catch (NoSuchAlgorithmException e) {
@@ -406,11 +438,22 @@ public class AdminService {
         List<Session> assinersSessionList=new ArrayList<>();
         LocalDate todayregisterDate = LocalDate.now();
         Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+        username = repository.findByUsername(dto.getUsername());
+        password = repository.findByPassword(pass);
 
 
-        repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
 
-        return "hello";
+        if(username.isEmpty() && password.isEmpty()){
+            repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+            error = "Register Successfully";
+        }else if(username.isEmpty()){
+            error = "Invalid Password";
+        }else if(password.isEmpty()){
+            error = "Invalid Username";
+        }else{
+            error = "Invalid Username and Password";
+        }
+        return  error;
     }
 
     public EmployeeDTO getSettingProfile(String username){
@@ -598,6 +641,54 @@ public class AdminService {
         return error;
 
     }
+
+
+
+    public LinkedList<StudentDTO> getBranchStudents(String branchName) {
+        String branchId = null;
+
+        int count = 0;
+        Branch branch = null;
+        LinkedList<Student> list = studentRepository.findAll();
+        LinkedList<StudentDTO> studentlist = new LinkedList<>();
+        for (Student student:list) {
+            branch = student.getBranch();
+
+            if(branch == null){
+                branchId = "nan";
+            }else{
+                branchId =branch.getBranchName();
+            }
+
+            if(student.getName() != null){
+                count = count+1;
+            }else{
+
+            }
+
+            if(branchName.equals(branchId)){
+                studentlist.add(new StudentDTO(student.getName(),student.getAddress(),student.getIdnum(),student.getContact(),branchId,student.getUsername(),student.getDob(),student.getStuId(),count));
+            }
+
+        }
+        return studentlist;
+    }
+
+//    public String deactivatStudent(StudentDTO dto){
+//
+//        String error = "";
+//        String id = "6";
+//         studentRepository.deactiveStuId(6);
+//            error = "Deactivated successfully";
+//
+//
+//
+//
+//
+//
+//        return error;
+//
+//    }
 
 
 }

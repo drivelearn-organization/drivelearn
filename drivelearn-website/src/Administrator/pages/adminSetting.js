@@ -104,7 +104,7 @@ return (
       <div className="main__title">
         <div className="main__greeting">
           <h1>PROFILE</h1>
-          <p>Ifra15</p>
+          <p>{sessionStorage.getItem('username')}</p>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ return (
               <img src="images/avatar.png" alt=""  width="250" height="255"/>
               </div>
               <br/>
-              <p>Ifra15</p>
+              <p>{sessionStorage.getItem('username')}</p>
             </center>
          </div>
          <br/><br/>

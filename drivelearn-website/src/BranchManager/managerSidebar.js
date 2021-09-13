@@ -24,28 +24,34 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div> */}
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-tachometer"></i>
-          <a href="./branchmanager">Dashboard</a>
+          {/* <a href="./branchmanager">Dashboard</a> */}
+          <Link to = "/branchmanager" >Dashboard</Link>
         </div>
         <h2>MANAGEMENT</h2>
         <div className="sidebar__link">
           <i className="fa fa-users" aria-hidden="true"></i>
-          <a href="./managerstudent">Students</a>
+          {/* <a href="./managerstudent">Students</a> */}
+          <Link to = "/managerstudent" >Students</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-user-secret"></i>
-          <a href="./managerinstructor">Instructors</a>
+          {/* <a href="./managerinstructor">Instructors</a> */}
+          <Link to = "/managerinstructor" >Instructors</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
-          <a href="./adminvehicle">Vehicles</a>
+          {/* <a href="./adminvehicle">Vehicles</a> */}
+          <Link to = "/adminvehicle" >Vehicles</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
-          <a href="./managerpayment">Payments</a>
+          {/* <a href="./managerpayment">Payments</a> */}
+          <Link to = "/managerpayment" >Payments</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-clock-o"></i>
-          <a href="./managersession">Training Sessions</a>
+          {/* <a href="./managersession">Training Sessions</a> */}
+          <Link to = "/managersession" >Training Sessions</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-clock-o"></i>
@@ -59,7 +65,8 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <h2>PROFILE</h2>
         <div className="sidebar__link">
           <i className="fa fa-cog"></i>
-          <a href="./managersettings">Settings</a>
+          {/* <a href="./managersettings">Settings</a> */}
+          <Link to = "/managersettings" >Settings</Link>
         </div>
         <div className="sidebar__logout">
           <i className="fa fa-power-off"></i>
