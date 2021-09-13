@@ -156,6 +156,48 @@ function TrainerProfileUpdate({navigation,route}) {
 
                     </View>
 
+                    <View style={styles.middleVIew}>
+
+                        <TextInput
+                            placeholder={'Full Name'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            // value={name}
+                            // onChangeText={(text)=>{
+                            //     setName(text);
+                            // }}
+
+                        />
+                        
+
+                        <TextInput
+                            placeholder={'Contact'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            // value={contact}
+                            // onChangeText={(text)=>{
+                            //     setContact(text);
+                            // }}
+                            //
+                        />
+                        <TextInput
+                            placeholder={'Id Number'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            // value={id}
+                            // onChangeText={(text)=>{
+                            //     setId(text);
+                            // }}
+
+                        />
+                        <View style={styles.fillerMiddle}></View>
+                        <TouchableOpacity style={styles.submitBtn}>
+                            <Text style={styles.middleButtonText}>Update</Text>
+                        </TouchableOpacity>
+                        <View style={styles.fillerMiddle}></View>
+                    </View>
+
+
 
 
 
@@ -319,7 +361,44 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
+    },
+    inputone: {
+        color: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        width: 300,
+        paddingBottom: 3,
+        marginBottom:10,
+        marginTop:20,
+    },
+    middleVIew:{
+        width:'95%',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        alignItems:'center',
+        marginTop:50,
+        marginBottom:10,
+        paddingBottom:10,
+        backgroundColor:'#ffffff20',
+        borderRadius:20
+
+    },
+    fillerMiddle:{
+        height:30
+    },
+    submitBtn:{
+        width:120,
+        height:50,
+        backgroundColor:'red',
+        borderRadius:10,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    middleButtonText:{
+        color:'green',
+        fontSize:18
     }
+
 
 
 })
