@@ -24,31 +24,32 @@ function TrainerProfileUpdate({navigation,route}) {
     const [notificCount,setNotificCount]=useState('0');
 
     // getting student
-    let url1=Base+'student/getStudent';
+    // let url1=Base+'student/getStudent';
+    let url1=Base+'employee/getemployee';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
     useEffect(()=>{
 
 
-        // this is student loading
-        // fetch(url1, {
-        //     method: 'POST',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         username: username
-        //     })
-        // })
-        //     .then((response) => response.json())
-        //     .then((json) => {
-        //         setData(json)
-        //         console.log(json);
-        //     })
-        //     .catch((error) => console.error(error))
-        //     .finally(() => setLoading(false));
+        // this is employ loading
+        fetch(url1, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setData(json)
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
 
 
@@ -155,7 +156,6 @@ function TrainerProfileUpdate({navigation,route}) {
 
                     </View>
 
-                    {/*main nav with modal*/}
 
 
 

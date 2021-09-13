@@ -31,7 +31,7 @@ public class StudentController {
     @PostMapping(value = "/getStudent")
     public StudentDTO findStudent(@RequestBody StudentDTO dto){
         Student student= studentServices.findStudent(dto);
-        return new StudentDTO(student.getName(),student.getAddress(),null,student.getContact(),null,null,null,null,null,null);
+        return new StudentDTO(student.getName(),student.getAddress(), student.getIdnum(), student.getContact(),null,null,null,null,null,null);
     }
 
     @PostMapping(value = "/isavalacc")
