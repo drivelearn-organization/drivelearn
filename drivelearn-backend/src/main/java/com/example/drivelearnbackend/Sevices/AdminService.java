@@ -79,7 +79,7 @@ public class AdminService {
                 branchName = branch.getBranchName();
                 branchId = branch.getBranchid();
 
-                  loginEmployee = new EmployeeDTO(employee.getUsername(), employee.getPassword(), employee.getRole(),branchName,branchId);
+                  loginEmployee = new EmployeeDTO(employee.getUsername(), employee.getPassword(), employee.getRole(),branchName,branchId,employee.getEmpid());
             } else{
                  loginEmployee =    new EmployeeDTO(null, null, 0);
             }
