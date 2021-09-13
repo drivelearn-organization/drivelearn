@@ -33,6 +33,25 @@ function TrainerProfileUpdate({navigation,route}) {
     const[id,setId]=useState("");
     const[contact,setContact]=useState("");
 
+    const updateDetails=()=>{
+        fetch(Base+"employee/updateemploy", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                moNumber:contact,
+                fullName:name,
+                nid:id
+            })
+        });
+        setId("");
+        setContact("");
+        setName("");
+    }
+
     useEffect(()=>{
 
 
@@ -198,7 +217,7 @@ function TrainerProfileUpdate({navigation,route}) {
 
                         />
                         <View style={styles.fillerMiddle}></View>
-                        <TouchableOpacity style={styles.submitBtn}>
+                        <TouchableOpacity style={styles.submitBtn} onPress={()=>updateDetails()}>
                             <Text style={styles.middleButtonText}>Update</Text>
                         </TouchableOpacity>
                         <View style={styles.fillerMiddle}></View>
