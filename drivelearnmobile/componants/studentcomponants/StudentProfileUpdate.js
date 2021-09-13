@@ -36,6 +36,27 @@ const StudentProfileUpdate = ({navigation,route}) => {
     const[id,setId]=useState("");
     const[contact,setContact]=useState("");
 
+    const updateFunction=()=>{
+        fetch(Base+"student/updatestudent", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                contact:contact,
+                address:address,
+                name:name,
+                nid:id
+            })
+        });
+        setId("");
+        setContact("");
+        setAddress("");
+        setName("");
+    }
+
     useEffect(()=>{
 
 
@@ -233,7 +254,7 @@ const StudentProfileUpdate = ({navigation,route}) => {
                             // placeholderStyle={{color:'red'}}
                         />
                         <View style={styles.fillerMiddle}></View>
-                        <TouchableOpacity style={styles.submitBtn}>
+                        <TouchableOpacity style={styles.submitBtn} onPress={()=>updateFunction()}>
                             <Text style={styles.middleButtonText}>Update</Text>
                         </TouchableOpacity>
                         <View style={styles.fillerMiddle}></View>
