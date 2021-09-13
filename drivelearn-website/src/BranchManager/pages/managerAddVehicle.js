@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
@@ -8,22 +8,41 @@ import axios from 'axios';
 
 const ManagerAddStudents = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [getVehicleType, setVehicleType] = useState([]);
 
-  const submit = e =>{
-    
+
+  useEffect(() => {
+    getVehicleTypeState();
+
+  }, []);
+
+  const getVehicleTypeState = () => {
+    axios
+      .get("http://localhost:8080/vehicletype/showtype")
+      .then(data => {
+        setVehicleType(data.data);
+
+
+      })
+  }
+
+  console.log(getVehicleType);
+
+  const submit = e => {
+
     let regiNumner = e.target[0].value;
     let chacieNumber = e.target[4].value;
     let startingMilage = e.target[1].value;
     let status = 1;
-    let branchName = "kaluthatara";
+    let branchName = sessionStorage.getItem('branchName');
     let vehicleType = e.target[3].value;
     let payedDate = e.target[6].value;
     let expireDate = e.target[7].value;
     let licencePayedDate = e.target[8].value;
     let licenceExpireDate = e.target[5].value;
-    
 
-    let data= {
+
+    let data = {
       regiNumner,
       chacieNumber,
       startingMilage,
@@ -39,15 +58,17 @@ const ManagerAddStudents = () => {
     console.log(data);
 
     postVehicle(data);
-    
+
   }
 
-  const postVehicle=(data)=>{
+
+
+  const postVehicle = (data) => {
     axios
-    .post("http://localhost:8080/vehicle/addvehicle",data)
-    .then(d=>{
-      console.log(d);
-    })
+      .post("http://localhost:8080/vehicle/addvehicle", data)
+      .then(d => {
+        console.log(d);
+      })
   }
 
   const openSidebar = () => {
@@ -67,7 +88,7 @@ const ManagerAddStudents = () => {
           <div className="main__title">
             <div className="main__greeting">
               <h1>Add Vehicle</h1>
-              <p> Kalutara Branch</p>
+              <p>{sessionStorage.getItem('branchName')} Branch</p>
             </div>
           </div>
           <center>
@@ -78,9 +99,9 @@ const ManagerAddStudents = () => {
                 </div>
               </div>
 
-              <form className="charts__rightt__cardss" 
+              <form className="charts__rightt__cardss"
 
-                onSubmit={e=>{
+                onSubmit={e => {
                   e.preventDefault();
                   submit(e);
                 }}
@@ -110,13 +131,27 @@ const ManagerAddStudents = () => {
                 </div> */}
                 </div>
 
+
+
                 <div className="card-p">
                   <p className="text">Vehical type</p>
-                  <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Vehical type" required />
-                  {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
+
+                  <select>
+                    <option value="0"> Select Vehicle Type </option>
+                    {
+                      getVehicleType.map(d => (
+
+                        <option key={d.typeId} value={d.typeName}> {d.typeName} </option>
+
+                      ))}
+
+
+
+
+                  </select>
+
                 </div>
+
 
                 <div className="card-p">
                   <p className="text">Chessis No</p>
@@ -126,7 +161,7 @@ const ManagerAddStudents = () => {
                 </div> */}
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: "1fr 1fr" }}>
-                  <div className="card-p" style={{marginRight: "10px"}}>
+                  <div className="card-p" style={{ marginRight: "10px" }}>
                     <p className="text">License starting date</p>
                     <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="License starting date" required />
                     {/* <div class="alert-danger" id="firstNameError">
@@ -134,7 +169,7 @@ const ManagerAddStudents = () => {
                 </div> */}
                   </div>
 
-                  <div className="card-p" style={{marginLeft: "0px"}}>
+                  <div className="card-p" style={{ marginLeft: "0px" }}>
                     <p className="text">License expire date</p>
                     <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="License expire date" required />
                     {/* <div class="alert-danger" id="firstNameError">
@@ -146,7 +181,7 @@ const ManagerAddStudents = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: "1fr 1fr" }}>
 
-                  <div className="card-p" style={{marginRight: "10px"}}>
+                  <div className="card-p" style={{ marginRight: "10px" }}>
                     <p className="text">Insurance starting date</p>
                     <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Insurance starting date" required />
                     {/* <div class="alert-danger" id="firstNameError">
@@ -154,7 +189,7 @@ const ManagerAddStudents = () => {
                 </div> */}
                   </div>
 
-                  <div className="card-p" style={{marginLeft: "0px"}}>
+                  <div className="card-p" style={{ marginLeft: "0px" }}>
                     <p className="text">Insurance expire date</p>
                     <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Insurance expire date" required />
                     {/* <div class="alert-danger" id="firstNameError">

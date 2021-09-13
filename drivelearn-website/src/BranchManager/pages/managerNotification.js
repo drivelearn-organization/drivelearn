@@ -13,6 +13,9 @@ const ManagerNotifications = () => {
     const [getNotification, setNotification] = useState([]);
     const [viewNotification, setViewNotification] = useState([]);
     const [stateCustomer, setCustomerState] = useState([]);
+    const [getNotoficationId,setNotificationId] = useState([]);
+
+    console.log(getNotoficationId.notificationId);
 
     const openSidebar = () => {
         setSidebarOpen(true);
@@ -32,6 +35,7 @@ const ManagerNotifications = () => {
 
 
     const Student = () => {
+
         axios
             .get("http://localhost:8080/drivelearn/students")
             .then(d => {
@@ -42,7 +46,7 @@ const ManagerNotifications = () => {
 
     const sendNotification = () => {
         let receiverUserIdAtrray = [];
-        let notificationId = 1;
+        let notificationId = getNotoficationId.notificationId;
         let reciverType = 3;
         getStudent.forEach(d => {
             if (d.select) {
@@ -73,7 +77,7 @@ const ManagerNotifications = () => {
 
     const viewGetNotification=()=>{
         axios
-        .get("http://localhost:8080/notification/getallnotificationbybranch/1")
+        .get("http://localhost:8080/notification/getallnotificationbybranch/"+sessionStorage.getItem('branchId'))
         .then(data =>{
             setViewNotification(data.data);
           
@@ -111,9 +115,12 @@ console.log(getNotification);
             .post(`http://localhost:8080/notification/addNotification`, data)
             .then(data => {
                 console.log(data);
+                setNotificationId(data.data);
 
             })
             .catch(err => alert(err));
+            
+            sendNotification();
     }
 
     console.log(viewNotification);
@@ -126,14 +133,14 @@ console.log(getNotification);
                     <div className="main__title">
                         <div className="main__greeting">
                             <h1>Manage Notifications</h1>
-                            <p> Kalutara Branch</p>
+                            <p> {sessionStorage.getItem('branchName')} Branch</p>
                         </div>
                     </div>
                     <br /><br />
                     <div className="table_responsive">
                         <form
                         onSubmit={e => {
-                            
+                            e.preventDefault();
                             submit(e);
                           }}
                         >
@@ -144,12 +151,12 @@ console.log(getNotification);
                                 <br />
                                 <textarea placeholder="Description" className="description"></textarea>
                                 <br />
-                                <input type="submit" value="Add" className="add-btn" />
+                                
                                 <br /><br />
 
 
                             </div>
-                        </form>
+                       
                         <div className="search">
                             <div className="search_box">
                                 <div className="dropdown">
@@ -186,7 +193,7 @@ console.log(getNotification);
                                                 return d;
                                             })
                                         );
-                                    }} /></th>
+                                    }}  /></th>
                                     <th>Reg No</th>
                                     <th>Full Name</th>
                                     <th>NIC</th>
@@ -225,12 +232,13 @@ console.log(getNotification);
                             </tbody>
                         </table>
                         <br />
-                        <input type="submit" className="add-btn" onClick={() => {
+                        {/*<input type="submit" className="add-btn" onClick={() => {
                             sendNotification();
 
-                        }} />
+                        }} />*/}
+                        <input type="submit" value="Add" className="add-btn" />
 
-
+</form>
                         <br /><br />
                         <hr />
                         <p>Sent Notifications</p>
