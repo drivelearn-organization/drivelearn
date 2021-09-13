@@ -4,10 +4,13 @@ import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import Errorbox from './errorbox';
 
 const AdminViewStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+    const [toggle, setToggle] = useState(true);
+    const [modal, setModal] = useState(false);
 
     const[state, setState] = useState({
       name:'',
@@ -24,6 +27,8 @@ const AdminViewStudents = (props) => {
   }); 
 
   
+
+   
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -53,10 +58,10 @@ const AdminViewStudents = (props) => {
       
       })
       console.log(state)
-    })
+    },[])
 
   
-    
+  
    },[]);
 
    const handleChange = (e) => {
@@ -70,7 +75,18 @@ const AdminViewStudents = (props) => {
   const handleSubmit = (e) =>{
     e.preventDefault()
     axios.post('http://localhost:8080/drivelearn/updateStudent',state)
-    console.log(state);
+    .then(response => {
+      
+      if(response.data === "update successfully")
+      {
+        console.log(response.data);
+        setModal(true);
+      }else{
+       
+       
+      }
+    })
+   
    
   }
   
@@ -79,6 +95,10 @@ const AdminViewStudents = (props) => {
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      
+        {modal && <Errorbox closeModal={setModal}/>}
+      
+      
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
@@ -147,7 +167,7 @@ const AdminViewStudents = (props) => {
             
             
             <center>
-            <input type="submit" value="Update" className="update-btn" />
+            <input type="submit" value="Update" className="update-btn"/>
             &nbsp;&nbsp;&nbsp;
             <input type="submit" value="Deactivate" className="reset1-btn" />
             </center>

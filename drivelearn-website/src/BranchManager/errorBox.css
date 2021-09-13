@@ -1,0 +1,52 @@
+.errorbox{
+    position: fixed;
+    top:120px;
+    right:-1px;
+    width: 30%;
+    background-color: rgb(160, 52, 49);
+    /* float: right; */
+    /* display: block; */
+    transition: all 2s ease-in-out;
+    /* display: none; */
+    border-radius: 5px;
+    padding: 15px;
+    align-items: center;
+    text-align: center;
+    margin-right: 15px;
+    /* display:flex; */
+    
+}
+
+.close__button{
+    border-style:none;
+   color: rgb(0, 0, 0);
+   float: right;
+     font-size: 1em;
+     font-weight: bolder;
+  /*padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none; */
+  cursor: pointer;
+}
+
+.errorbox p{
+    color: rgb(255, 255, 255);
+}
+
+.errorboxClose{
+    position: fixed;
+    top:60px;
+    width: 35%;
+    background-color: rgb(160, 52, 49);
+    float: right;
+    /* display: block; */
+    transition: all 4s ease-in-out;
+    display: none;
+    border-radius: 5px;
+    padding: 15px;
+    align-items: center;
+    text-align: center;
+    /* display:flex; */
+}

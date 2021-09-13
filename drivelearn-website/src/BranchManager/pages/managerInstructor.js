@@ -90,7 +90,7 @@ return (
              
                <div className="create-button">
                  <div className="create_btn">
-                   <a href="./adminaddinstructor"><i className="fa fa-plus-circle"></i></a>
+                   <a href="./manageraddinstructor"><i className="fa fa-plus-circle"></i></a>
                    <br/>
                    <p>Add instructors</p>
                  </div>
@@ -126,7 +126,7 @@ return (
                    <td>{data.moNumber}</td>
                    <td>
                    <span className="action_btn">
-                   <a href={'./adminviewinstructor/'+ data.empid} className="eye"><i className="fa fa-eye"></i></a>
+                   <a href={'./managerviewinstructor/'+ data.empid} className="eye"><i className="fa fa-eye"></i></a>
                    <a href="#" className="trash" onClick = {()=>{ setDeactivate({empid:data.empid}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a>
                    </span>
                    </td>

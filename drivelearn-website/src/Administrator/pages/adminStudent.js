@@ -3,6 +3,7 @@ import '../../App.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import Errorbox from './errorbox';
 
 const AdminStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -72,7 +73,9 @@ const handleSubmit = (e) =>{
     
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      
       <main>
+      <Errorbox/>
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">

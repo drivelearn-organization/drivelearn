@@ -1,5 +1,6 @@
 import "./Navbar.css";
 
+
 const Navbar = ({sidebarOpen, openSidebar}) => {
     return(
         <nav className="navbar">
@@ -17,6 +18,7 @@ const Navbar = ({sidebarOpen, openSidebar}) => {
           <i className="fa fa-bell"></i>
           </a> */}
         </div>
+      
       </nav>
 
     )
