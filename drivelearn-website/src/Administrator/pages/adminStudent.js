@@ -75,7 +75,7 @@ const handleSubmit = (e) =>{
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       
       <main>
-      <Errorbox/>
+    
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">

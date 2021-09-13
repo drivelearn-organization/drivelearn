@@ -50,3 +50,21 @@
     text-align: center;
     /* display:flex; */
 }
+
+.sucsesebox{
+    position: fixed;
+    top:120px;
+    right:-1px;
+    width: 30%;
+    background-color: rgb(9, 197, 119);
+    /* float: right; */
+    /* display: block; */
+    transition: all 2s ease-in-out;
+    /* display: none; */
+    border-radius: 5px;
+    padding: 15px;
+    align-items: center;
+    text-align: center;
+    margin-right: 15px;
+    /* display:flex; */  
+}

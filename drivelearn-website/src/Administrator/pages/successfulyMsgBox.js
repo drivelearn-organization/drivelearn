@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './../../BranchManager/errorBox.css';
 
-const Errorbox = ({closeModal,errorMsg}) => {
-    const[toggle, setToggle] = useState(true);
-   
+const SuccessfulyMsgBox = ({closeModal,errorMsg}) => {
     return (
-        <div className="errorbox">
+        <div className="sucsesebox">
         <a className="close__button" onClick = {()=>closeModal(false)}>X</a>
         <p>{errorMsg.errorMsg}</p>
             
@@ -13,4 +11,4 @@ const Errorbox = ({closeModal,errorMsg}) => {
     )
 }
 
-export default Errorbox
+export default SuccessfulyMsgBox

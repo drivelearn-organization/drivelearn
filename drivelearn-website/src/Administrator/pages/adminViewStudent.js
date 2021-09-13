@@ -80,10 +80,10 @@ const AdminViewStudents = (props) => {
       if(response.data === "update successfully")
       {
         console.log(response.data);
-        setModal(true);
+        
       }else{
        
-       
+        setModal(true);
       }
     })
    
