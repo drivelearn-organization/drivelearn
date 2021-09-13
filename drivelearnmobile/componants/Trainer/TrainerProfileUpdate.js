@@ -29,6 +29,10 @@ function TrainerProfileUpdate({navigation,route}) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    const [name,setName]=useState("");
+    const[id,setId]=useState("");
+    const[contact,setContact]=useState("");
+
     useEffect(()=>{
 
 
@@ -45,7 +49,10 @@ function TrainerProfileUpdate({navigation,route}) {
         })
             .then((response) => response.json())
             .then((json) => {
-                setData(json)
+                setData(json);
+                setName(json.fullName);
+                setId(json.nid);
+                setContact(json.moNumber);
                 console.log(json);
             })
             .catch((error) => console.error(error))
@@ -162,32 +169,32 @@ function TrainerProfileUpdate({navigation,route}) {
                             placeholder={'Full Name'}
                             style={styles.inputone}
                             placeholderTextColor={'white'}
-                            // value={name}
-                            // onChangeText={(text)=>{
-                            //     setName(text);
-                            // }}
+                            value={name}
+                            onChangeText={(text)=>{
+                                setName(text);
+                            }}
 
                         />
-                        
+
 
                         <TextInput
                             placeholder={'Contact'}
                             style={styles.inputone}
                             placeholderTextColor={'white'}
-                            // value={contact}
-                            // onChangeText={(text)=>{
-                            //     setContact(text);
-                            // }}
-                            //
+                            value={contact}
+                            onChangeText={(text)=>{
+                                setContact(text);
+                            }}
+
                         />
                         <TextInput
                             placeholder={'Id Number'}
                             style={styles.inputone}
                             placeholderTextColor={'white'}
-                            // value={id}
-                            // onChangeText={(text)=>{
-                            //     setId(text);
-                            // }}
+                            value={id}
+                            onChangeText={(text)=>{
+                                setId(text);
+                            }}
 
                         />
                         <View style={styles.fillerMiddle}></View>
