@@ -114,8 +114,6 @@ const ManagerVehicle = () => {
                   <th>Date</th>
                   <th>Time</th>
                   <th>No of Student</th>
-                  <th>Vehicle No</th>
-                  <th>Current On</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -131,8 +129,8 @@ const ManagerVehicle = () => {
                       <td>{d.date}</td>
                       <td>{d.startTime}</td>
                       <td>{d.numOfStudent}</td>
-                      <td>{d.vehicleType}</td>
-                      <td>Empty</td>
+                    
+                      
                       <td>{d.status}</td>
 
                       <td>

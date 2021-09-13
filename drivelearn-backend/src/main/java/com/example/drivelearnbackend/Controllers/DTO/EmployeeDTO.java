@@ -27,13 +27,14 @@ public class EmployeeDTO {
         this.branchId = branchId;
     }
 
-    public EmployeeDTO(String username, String password, int role, String branch, int branchId) {
+    public EmployeeDTO(String username, String password, int role, String branch, int branchId,int empid) {
 
         this.username = username;
         this.password = password;
         this.role = role;
         this.branch = branch;
         this.branchId = branchId;
+        this.empid=empid;
     }
 
     public EmployeeDTO(String username, String password, int role) {
