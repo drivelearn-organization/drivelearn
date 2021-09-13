@@ -47,4 +47,9 @@ public class StudentController {
         return studentServices.getStudenutBybranch(branchid);
     }
 
+    @PostMapping(value = "updatestudent")
+    public void updateStudent(@RequestBody StudentDTO dto){
+        studentServices.updateStudent(dto);
+    }
+
 }
