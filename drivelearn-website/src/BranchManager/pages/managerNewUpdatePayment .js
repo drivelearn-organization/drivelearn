@@ -30,12 +30,12 @@ const ManagerNewPayment = (props) => {
      });
  } */
 
-  
+
 
   const addpayment = () => {
 
 
-   
+
     axios
       .post("http://localhost:8080/payment/addinstalmentpayment", getdrop)
       .then(d => {
@@ -50,68 +50,101 @@ const ManagerNewPayment = (props) => {
 
 
   return (
-    <div className="container" style={{ height: "80vh", width: "100%" }}>
-
-      <main>
-        <div className="main__container">
-          <div className="main__title">
-
-          </div>
-          <br /><br />
-          <div className="table_responsive">
+    <div style={{ height: "80vh", width: "100%" }}>
 
 
-            <div>
-              <p>Payement ID : {props.data.paymentId}</p>
-              <p>Student ID : {props.data.id}</p>
-              <p>Student Name : {props.data.name}</p>
-              <p>National ID : {props.data.nic}</p>
+      <div className="main__container">
+        <div className="main__title">
 
-            </div>
-
-            <br />
+        </div>
+        <br /><br />
+        <div className="table_responsive">
 
 
+          <div>
+            <table>
+              <thead>
 
-          </div>
+                <tr>
+                  <th > Payement ID : </th>
+                  <th style={{ background: "white", color: "black" }}> {props.data.paymentId}</th>
+                </tr>
+                <tr>
+                  <th>Student ID :</th>
+                  <th style={{ background: "white", color: "black" }}>{props.data.id}</th>
+                </tr>
+                <tr>
+                  <th>Student Name :</th>
+                  <th style={{ background: "white", color: "black" }}>{props.data.name}</th>
+                </tr>
+
+                <tr>
+                  <th>National ID : </th>
+                  <th style={{ background: "white", color: "black" }}>{props.data.nic}</th>
+                </tr>
 
 
 
-          <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" }}>
+              </thead>
+            </table>
 
-            <p>Course Amount : {props.data.amount}</p>
-            <p>Paid Amount : {parseInt(props.data.amount) - parseInt(props.data.rest)}</p>
-            <p>Rest Amount : {props.data.rest}</p>
-          </div>
-
-          <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" }}>
-            <p>Pay amount</p>
-            <input type="text" placeholder="Amount" onChange={(e) =>
-              setdrop({
-                paymentId: props.data.paymentId,
-                amount: e.target.value,
-                userId: props.data.id,
-              })
-
-            } />
 
           </div>
-
 
 
         </div>
 
 
 
-        <div>
+        <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" }}>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Course Amount</th>
+                <th>Paid Amount</th>
+                <th>Rest Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{props.data.amount}</td>
+                <td>{parseInt(props.data.amount) - parseInt(props.data.rest)}</td>
+                <td>{props.data.rest}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" }}>
+          <table>
+            <thead>
+              <tr>
+                <th > Amount : </th>
+                <th style={{ background: "white", color: "black" }}><input type="text" placeholder="Amount" onChange={(e) =>
+                  setdrop({
+                    paymentId: props.data.paymentId,
+                    amount: e.target.value,
+                    userId: props.data.id,
+                  })
+
+                } /></th>
+
+              </tr>
+            </thead>
+          </table>
+
+
+        </div>
+
+        <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" }}>
+
           <button className="update-btn" onClick={addpayment}>Add</button>
           <button className="reset-btn" onClick={props.toggleModal}>Close</button>
         </div>
 
-
-
-      </main>
-
+      </div>
 
 
     </div>
