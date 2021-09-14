@@ -61,7 +61,7 @@ const handleSubmit = (e) =>{
         })
       }
     })
-   
+   console.log(state)
 }
   
     const openSidebar = () => {
