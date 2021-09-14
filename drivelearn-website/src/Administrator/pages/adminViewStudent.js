@@ -5,13 +5,20 @@ import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import Errorbox from './errorbox';
+import SuccessfulyMsgBox from './successfulyMsgBox';
 
 const AdminViewStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [getData, setGetData] = useState([]);
-    const [toggle, setToggle] = useState(true);
+    const [toggle, settoggle] = useState(false);
     const [modal, setModal] = useState(false);
-
+    const [disabled, setDisabled] = useState(true);
+    const [Msg, setMsg] = useState({
+      errorMsg: ''
+    });
+  
+    const [errMsg, seterrMsg] = useState({
+      errorMsg: ''
+    });
     const[state, setState] = useState({
       name:'',
       address: '',
@@ -69,7 +76,7 @@ const AdminViewStudents = (props) => {
         ...state,
         [e.target.name]: e.target.value
     });
-    setToggle(false);
+    setDisabled(false);
   }
 
   const handleSubmit = (e) =>{
@@ -80,10 +87,18 @@ const AdminViewStudents = (props) => {
       if(response.data === "update successfully")
       {
         console.log(response.data);
+        settoggle(true);
+        setMsg({
+          errorMsg: response.data
+        })
+        window.location = '/adminstudent';
         
       }else{
        
         setModal(true);
+        seterrMsg({
+          errorMsg: response.data
+        })
       }
     })
    
@@ -96,7 +111,8 @@ const AdminViewStudents = (props) => {
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
       
-        {modal && <Errorbox closeModal={setModal}/>}
+      {modal && <Errorbox closeModal={setModal} errorMsg={errMsg}/>}
+      {toggle && <SuccessfulyMsgBox closeModal={settoggle} errorMsg={Msg}/>}
       
       
          <div className="main__container">
@@ -167,7 +183,7 @@ const AdminViewStudents = (props) => {
             
             
             <center>
-            <input type="submit" value="Update" className="update-btn" disabled={toggle} style = {{ opacity: toggle ? "0.7":"1"}}/>
+            <input type="submit" value="Update" className="update-btn" disabled={disabled} style = {{ opacity: disabled ? "0.7":"1"}}/>
             &nbsp;&nbsp;&nbsp;
             {/* <input type="submit" value="Deactivate" className="reset1-btn" /> */}
             </center>
