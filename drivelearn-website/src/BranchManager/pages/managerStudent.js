@@ -50,7 +50,7 @@ const ManagerStudents = () => {
 
   const Student = () => {
     axios
-      .get("http://localhost:8080/drivelearn/branchstudents/"+sessionStorage.getItem('branchName'))
+      .get("http://localhost:8080/drivelearn/branchstudents/" + sessionStorage.getItem('branchName'))
       .then(d => {
         setStudent(d.data);
       })
@@ -108,10 +108,11 @@ const ManagerStudents = () => {
 
             {modal && (
               <div className="modal">
-                <div onClick={toggleModal} className="overlay"></div>
-                <div className="modal-content">
-                  <ManagerNewPayment data={data} toggleModal={toggleModal} />
+                <div className="overlay">
+                  <div className="modal-content">
+                    <ManagerNewPayment data={data} toggleModal={toggleModal} />
 
+                  </div>
                 </div>
               </div>
             )}

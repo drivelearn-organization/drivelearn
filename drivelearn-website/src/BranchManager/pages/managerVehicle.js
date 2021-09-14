@@ -7,6 +7,7 @@ import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import './../dropdown.css';
 import ManagerUpdateVehicle from './managerUpdateVehicle';
+import ManagerNewUpdateVehicle from './managerNewUpdateVehicle';
 
 
 const ManagerVehicle = () => {
@@ -14,6 +15,8 @@ const ManagerVehicle = () => {
   const [vehicleState, setVehicleState] = useState([]);
   const [search, getSearch] = useState("");
   const [dropdown, getdrop] = useState("Reg No");
+  const [modal,setModal] = useState(false);
+  const [getUpdateVehicle,setUpdateVehicle] = useState([]);
  
 
   useEffect(() => {
@@ -21,11 +24,24 @@ const ManagerVehicle = () => {
    
   }, []);
 
+
+  const togglemodal=(regiNumber,chacieNumber,startingMileage,vehicleType,licenceExpireDate,licencePayedDate)=>{
+    setUpdateVehicle({
+      regiNumber:regiNumber,
+      chacieNumber:chacieNumber,
+      startingMileage:startingMileage,
+      vehicleType:vehicleType,
+      licenceExpireDate:licenceExpireDate,
+      licencePayedDate:licencePayedDate
+    });
+    setModal(!modal);
+  }
+
   
 
   const getVehicle = () => {
     axios
-      .get("http://localhost:8080/vehicle/getvehicle/1/1")
+      .get("http://localhost:8080/vehicle/getvehicle/1/"+ sessionStorage.getItem('branchId'))
       .then(data => {
         setVehicleState(data.data);
 
@@ -60,7 +76,7 @@ const ManagerVehicle = () => {
 
 
 
-
+console.log(getUpdateVehicle);
 
   return (
     <div className="container">
@@ -74,10 +90,26 @@ const ManagerVehicle = () => {
             </div>
           </div>
 
+
+          {modal && (
+                  <div className="modal" >
+                    <div className="overlay" >
+                      <div className="modal-content" style={{
+                        background: "white"
+                      
+                      }}>
+                        <ManagerNewUpdateVehicle togglemodal={togglemodal} getUpdateVehicle={getUpdateVehicle} />
+
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+
           <br /><br />
           <div className="table_responsive">
-            <div className="search">
-              <div className="search_box ">
+            <div className="search" >
+              <div className="search_box " style={{zIndex: "-1"}}>
 
 
                 <select id="dropdown" className="drop-down" onChange={e=>{
@@ -147,7 +179,7 @@ const ManagerVehicle = () => {
 
                       <td>
                         <span className="action_btn">
-                          <a href={'./managerupdatevehicle/' + d.vechicleId} className="eye"><i className="fa fa-eye"></i></a>
+                          <a onClick={()=>togglemodal(d.regiNumner,d.chacieNumber,d.startingMilage,d.vehicleType,d.licenceExpireDate,d.expireDate)}  className="eye"><i className="fa fa-eye"></i></a>
                           <a href="#" className="trash" onClick={() => {
                             deleteVehicle(d.vechicleId);
                           }}

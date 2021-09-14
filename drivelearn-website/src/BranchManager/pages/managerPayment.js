@@ -46,7 +46,7 @@ const ManagerVehicle = () => {
 
     const getPayment=()=>{
       axios
-      .get("http://localhost:8080/payment/getallpayment/1/2")
+      .get("http://localhost:8080/payment/getallpayment/1/"+ sessionStorage.getItem('branchId'))
       .then(data =>{
         setPayementState(data.data);
         
@@ -73,7 +73,7 @@ const ManagerVehicle = () => {
             <div className="main__title">
                 <div className="main__greeting">
                 <h1>Manage Payment</h1>
-                <p> Kalutara Branch</p>
+                <p> {sessionStorage.getItem('branchName')} Branch</p>
                 </div>
             </div>
             <br/><br/>
