@@ -4,11 +4,24 @@ import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import Errorbox from './errorbox';
+import SuccessfulyMsgBox from './successfulyMsgBox'
 
 const AdminViewManagers = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
+    const [toggle, settoggle] = useState(false);
+    const [disabled, setDisabled] = useState(true);
+    const [modal, setModal] = useState(false);
+    const [Msg, setMsg] = useState({
+      errorMsg: ''
+    });
 
+    const [errMsg, seterrMsg] = useState({
+      errorMsg: ''
+    });
+
+    
     const[state, setState] = useState({
       fullName:'',
       nid: '',
@@ -52,13 +65,31 @@ const AdminViewManagers = (props) => {
         ...state,
         [e.target.name]: e.target.value
     }) 
- 
+    setDisabled(false);
   }
 
   const handleSubmit = (e) =>{
     e.preventDefault()
     axios.post('http://localhost:8080/drivelearn/updateEmployee',state)
-    console.log(state);
+    .then(response => {
+      
+      if(response.data === "Update successfully")
+      {
+        console.log(response.data);
+        settoggle(true);
+        setMsg({
+          errorMsg: response.data
+        })
+        window.location = '/adminmanager';
+        
+      }else{
+       
+        setModal(true);
+        seterrMsg({
+          errorMsg: response.data
+        })
+      }
+    })
    
   }
    
@@ -66,6 +97,8 @@ const AdminViewManagers = (props) => {
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      {modal && <Errorbox closeModal={setModal} errorMsg={errMsg}/>}
+      {toggle && <SuccessfulyMsgBox closeModal={settoggle} errorMsg={Msg}/>}
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
@@ -132,7 +165,7 @@ const AdminViewManagers = (props) => {
                 </select>
             </div>
             <center>
-            <input type="submit" value="Update" className="update-btn" />
+            <input type="submit" value="Update" className="update-btn" disabled={disabled} style = {{ opacity: disabled ? "0.7":"1"}}/>
             &nbsp;&nbsp;&nbsp;
             <input type="Reset" value="Clear" className="reset1-btn" />
             </center>
