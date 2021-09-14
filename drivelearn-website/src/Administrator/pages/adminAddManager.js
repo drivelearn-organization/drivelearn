@@ -56,7 +56,7 @@ axios.post('http://localhost:8080/drivelearn/addInstructors',state)
     setMsg({
       errorMsg: response.data
     })
-    window.location = '/adminstudent';
+    window.location = '/adminmanager';
   }else{
    
     setModal(true);

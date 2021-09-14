@@ -4,9 +4,19 @@ import './../../BranchManager/managerViewStudent.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import Errorbox from './errorbox';
+import SuccessfulyMsgBox from './successfulyMsgBox'
 
 const AdminAddInstructors = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [errMsg, seterrMsg] = useState({
+      errorMsg: ''
+    });
+    const [toggle, settoggle] = useState(false);
+    const [Msg, setMsg] = useState({
+      errorMsg: ''
+    });
   
     const openSidebar = () => {
        setSidebarOpen(true);
@@ -37,8 +47,25 @@ const handleChange = (e) => {
 const handleSubmit = (e) =>{
   e.preventDefault()
   axios.post('http://localhost:8080/drivelearn/addInstructors',state)
-
- console.log(state);
+  .then(response => {
+      
+    if(response.data === "Added Successfully")
+    {
+      console.log(response.data);
+      settoggle(true);
+      setMsg({
+        errorMsg: response.data
+      })
+      window.location = '/adminmanager';
+    }else{
+     
+      setModal(true);
+      seterrMsg({
+        errorMsg: response.data
+      })
+    }
+  })
+  console.log(state);
  
 }
   
@@ -47,6 +74,8 @@ const handleSubmit = (e) =>{
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      {modal && <Errorbox closeModal={setModal} errorMsg={errMsg}/>}
+      {toggle && <SuccessfulyMsgBox closeModal={settoggle} errorMsg={Msg}/>}
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
