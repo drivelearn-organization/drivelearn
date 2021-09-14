@@ -68,8 +68,8 @@ const AdminViewStudents = (props) => {
     setState({
         ...state,
         [e.target.name]: e.target.value
-    }) 
- 
+    });
+    setToggle(false);
   }
 
   const handleSubmit = (e) =>{
@@ -167,9 +167,9 @@ const AdminViewStudents = (props) => {
             
             
             <center>
-            <input type="submit" value="Update" className="update-btn"/>
+            <input type="submit" value="Update" className="update-btn" disabled={toggle} style = {{ opacity: toggle ? "0.7":"1"}}/>
             &nbsp;&nbsp;&nbsp;
-            <input type="submit" value="Deactivate" className="reset1-btn" />
+            {/* <input type="submit" value="Deactivate" className="reset1-btn" /> */}
             </center>
           </form>
         </div>

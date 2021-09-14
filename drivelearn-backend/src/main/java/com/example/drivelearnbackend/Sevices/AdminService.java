@@ -387,7 +387,7 @@ public class AdminService {
         username = studentRepository.findByUsername(dto.getUsername());
         password = studentRepository.findByPassword(pass);
 
-        if(username.isEmpty() && password.isEmpty()){
+        if(username.isEmpty() && !dto.getBranch().isEmpty()){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String date = dto.getSdob();
             LocalDate localDate = LocalDate.parse(date, formatter);
@@ -395,14 +395,10 @@ public class AdminService {
             studentRepository.save(new Student(dto.getName(), todayregisterDate, dto.getNid(), dto.getAddress(), localDate, dto.getUsername(),pass, dto.getContact(), feedbacks, branch, stuSessionList, courceList, paymentList, vechileTypes));
 
             error = "Added Successfully";
-        }else if(username.isEmpty()){
-            error = "Invalid Password";
-        }else if(password.isEmpty()){
 
-            error = "Invalid Username";
         }else{
 
-            error = "Invalid Username and Password";
+            error = "Invalid Username";
         }
 
 
