@@ -37,7 +37,17 @@ const TrainerForgetPassword = ({navigation}) => {
 
 
   const setOtpFunction=()=>{
-    
+    if(username===""){
+      setErrUsername("username field is empty");
+      return;
+    }
+    if(email===""){
+      setErrEmail("email field is empty");
+      return;
+    }
+
+
+
   }
 
   return (
@@ -121,7 +131,9 @@ const TrainerForgetPassword = ({navigation}) => {
                   <View style={styles.touchableView}>
                     <TouchableOpacity
                       style={styles.buttonSubmit}
-                      // onPress={props.handleSubmit}
+                      onPress={()=>{
+                        setOtpFunction();
+                      }}
                     >
                       <Text>Send OTP</Text>
                     </TouchableOpacity>

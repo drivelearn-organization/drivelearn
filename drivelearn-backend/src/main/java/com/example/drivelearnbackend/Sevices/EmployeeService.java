@@ -171,4 +171,13 @@ public class EmployeeService {
         repository.save(employee1);
 
     }
+
+    public boolean getTrainer(EmployeeDTO dto){
+        int count=0;
+        for (Employee employee : repository.findByUsernameAndRole(dto.getUsername(), 2)) {
+            count++;
+        }
+        return count==0?false:true;
+
+    }
 }

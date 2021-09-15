@@ -41,4 +41,9 @@ public class EmployeeController {
     public void employUpdate(@RequestBody EmployeeDTO dto){
         employeeService.updateEmploy(dto);
     }
+
+    @PostMapping(value = "getTrainer")
+    public boolean isTrainerAvailable(@RequestBody EmployeeDTO dto){
+        return employeeService.getTrainer(dto);
+    }
 }
