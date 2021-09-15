@@ -63,7 +63,6 @@ public class AdminService {
         LinkedList<Employee> list = repository.findByUsernameAndPassword(dto.getUsername(), password);
 
 
-
         EmployeeDTO loginEmployee = null;
         if(list.isEmpty()){
 
@@ -387,7 +386,7 @@ public class AdminService {
         username = studentRepository.findByUsername(dto.getUsername());
         password = studentRepository.findByPassword(pass);
 
-        if(username.isEmpty() && password.isEmpty()){
+        if(username.isEmpty() && !dto.getBranch().isEmpty()){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String date = dto.getSdob();
             LocalDate localDate = LocalDate.parse(date, formatter);
@@ -395,14 +394,10 @@ public class AdminService {
             studentRepository.save(new Student(dto.getName(), todayregisterDate, dto.getNid(), dto.getAddress(), localDate, dto.getUsername(),pass, dto.getContact(), feedbacks, branch, stuSessionList, courceList, paymentList, vechileTypes));
 
             error = "Added Successfully";
-        }else if(username.isEmpty()){
-            error = "Invalid Password";
-        }else if(password.isEmpty()){
 
-            error = "Invalid Username";
         }else{
 
-            error = "Invalid Username and Password";
+            error = "Invalid Username";
         }
 
 
@@ -431,7 +426,7 @@ public class AdminService {
         }
 
 
-        String isActive = "1";
+        String isActive = "2";
 
         List<Installment> installmentList=new ArrayList<>();
         List<Session> trainersSessionList=new ArrayList<>();
@@ -443,15 +438,13 @@ public class AdminService {
 
 
 
-        if(username.isEmpty() && password.isEmpty()){
+        if(username.isEmpty() && !dto.getBranch().isEmpty()){
             repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
-            error = "Register Successfully";
-        }else if(username.isEmpty()){
-            error = "Invalid Password";
-        }else if(password.isEmpty()){
-            error = "Invalid Username";
+            error = "Added Successfully";
+
         }else{
-            error = "Invalid Username and Password";
+
+            error = "Invalid Username";
         }
         return  error;
     }
@@ -529,11 +522,11 @@ public class AdminService {
             employee.setNid(dto.getNid());
             employee.setBranch(branch);
             employee.setMoNumber(dto.getMoNumber());
-            error = "update successfully";
+            error = "Updated successfully";
 
             repository.save(employee);
         }else{
-            error = "has empty field";
+            error = "Has empty field";
         }
 
 
@@ -559,11 +552,11 @@ public class AdminService {
             employee.setNid(dto.getNid());
             employee.setBranch(branch);
             employee.setMoNumber(dto.getMoNumber());
-            error = "update successfully";
+            error = "Update successfully";
 
             repository.save(employee);
         }else{
-            error = "has empty field";
+            error = "Has empty field";
         }
 
 
@@ -586,7 +579,7 @@ public class AdminService {
             employee = newemployee;
         }
 
-
+        if(!dto.getPassword().isEmpty() && !dto.getPassword2().isEmpty() && !dto.getPassword3().isEmpty()){
             if(pass.equals(employee.getPassword())){
                 if(dto.getPassword2().equals(dto.getPassword3())){
                     try {
@@ -599,12 +592,15 @@ public class AdminService {
                     repository.save(employee);
                     error = "Updated successfully";
                 }else{
-                    error = "password mistmach";
+                    error = "password mismatch";
                 }
 
             }else{
                 error = "password incorrect";
             }
+
+        }
+
         return error;
     }
 

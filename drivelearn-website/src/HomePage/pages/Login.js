@@ -8,6 +8,7 @@ import axios from 'axios';
 function Login() {
 
   const[resstate, setRestate] = useState([]);
+  const[modal, setModal] = useState(false);
 
   const[state, setState] = useState({
    
@@ -21,7 +22,7 @@ function Login() {
         ...state,
         [e.target.name]: e.target.value
     }) 
- 
+    setModal(false)
 }
 
   const handleSubmit = (e) =>{
@@ -46,7 +47,8 @@ function Login() {
         //pass branch 
         // sessionStorage.clear();
       }else{
-        alert('Your details are wrong. Please enter detail again!');
+        setModal(true)
+        
         setState({
             username: '',
             password: '',
@@ -65,7 +67,13 @@ function Login() {
           <div className="login-wrapper">
             <form action="" className="form" method='POST' onSubmit={handleSubmit}>
                <img src="images/avatar.png" alt="Logo" />
+               
                <h2>Login</h2>
+               <div className="loginErrorBox" style={{display: modal ? "flex":"none"}}>
+              
+                 <p>Incorrect Password or Username</p>
+                 <button onClick = {() => {setModal(false)}}>X</button>
+               </div>
                <div className="input-group">
                <input type="text" name="username" id="loginUser" value={state.username} onChange={handleChange} required />
                <label for="loginUser">User Name</label>

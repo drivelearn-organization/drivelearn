@@ -3,6 +3,8 @@ import '../../App.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import Errorbox from './errorbox';
+import Popup from './Popup';
 
 const AdminStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -72,7 +74,9 @@ const handleSubmit = (e) =>{
     
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+        
       <main>
+      
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
@@ -112,6 +116,7 @@ const handleSubmit = (e) =>{
             <br/>
             <table>
               <thead>
+              
                   <tr>
                   <th>Reg No</th>
                   <th>Full Name</th>
@@ -132,7 +137,7 @@ const handleSubmit = (e) =>{
                   
                   <tr>
                     
-                     <td>{data.count}</td>
+                     <td>{data.stuID}</td>
                      <td>{data.name}</td>
                      <td>{data.address}</td>
                      <td>{data.nid}</td>
@@ -140,7 +145,7 @@ const handleSubmit = (e) =>{
                      <td>
                      <span className="action_btn">
                      <a href={'./adminviewstudent/'+ data.stuID} className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash" onClick = {()=>{ setDeactivate({stuID:data.stuID}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a>
+                     {/* <a href="#" className="trash" onClick = {()=>{ setDeactivate({stuID:data.stuID}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a> */}
                      </span>
                      </td>
                 </tr>

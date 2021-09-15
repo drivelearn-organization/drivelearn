@@ -137,17 +137,17 @@ public class EmployeeService {
         Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
         username = repository.findByUsername(dto.getUsername());
         password = repository.findByPassword(pass);
-
-        if(username.isEmpty() && password.isEmpty()){
-            repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
-            error = "Register Successfully";
-        }else if(username.isEmpty()){
-            error = "Invalid Password";
-        }else if(password.isEmpty()){
-            error = "Invalid Username";
+        if(dto.getPassword2().equals(dto.getPassword())){
+            if(username.isEmpty()){
+                repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+                error = "Register Successfully";
+            }else{
+                error = "Invalid Username";
+            }
         }else{
-            error = "Invalid Username and Password";
+            error = "Password Mismatch";
         }
+
 
 
         return error;

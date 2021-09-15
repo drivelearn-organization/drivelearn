@@ -131,4 +131,35 @@
     text-decoration: none;
     color: inherit;
   }
+
+  .loginErrorBox{
+    margin: 30px 10px;   
+    background: rgb(201, 42, 42);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    padding: 10px;
+  }
+
+  .loginErrorBox p{
+     font-weight: bolder;
+  }
+
+  .loginErrorBox button{
+    margin-left: 15px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+  }
+  .loginErrorBox button:hover{
+    color: rgb(255, 255, 255);
+  }
+
+  /* .loginErrorBox p{
+
+  } */
   
