@@ -8,6 +8,9 @@ import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
 import Home from './components/pages/Home';
 import AboutUs from './components/pages/AboutUs';
 import ContactUs from './components/pages/ContactUs';
+import Home from './components/pages/Home';
+import AboutUs from './components/pages/AboutUs';
+import ContactUs from './components/pages/ContactUs';
 
 function App() {
   const [showNav, setShownav] = useState(false);
