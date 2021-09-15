@@ -5,11 +5,12 @@ import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
-
+import Popup from './../../Administrator/pages/Popup';
 
 const ManagerInstructors = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
+  const [modal, setModal] = useState(false);
   const[deactivate, setDeactivate] = useState({
     empid: '' 
 });
@@ -35,7 +36,7 @@ setState({
 
 }
 const handleChangeActiveStatus = () => {
-  alert("Are you sure");
+  setModal(true);
 }
 
  const handleSubmit = (e) =>{
@@ -55,12 +56,13 @@ const handleChangeActiveStatus = () => {
     console.log(getData);
   })
   axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
- });
+ },[]);
  
 return (
   <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
     <main>
+    {modal && <Popup closeModal={setModal} empid={deactivate} location='/managerinstructor'/>}
        <div className="main__container">
           <div className="main__title">
               <div className="main__greeting">
@@ -90,7 +92,7 @@ return (
              
                <div className="create-button">
                  <div className="create_btn">
-                   <a href="./adminaddinstructor"><i className="fa fa-plus-circle"></i></a>
+                   <a href="./manageraddinstructor"><i className="fa fa-plus-circle"></i></a>
                    <br/>
                    <p>Add instructors</p>
                  </div>
@@ -119,14 +121,14 @@ return (
                 
                 <tr>
                   
-                   <td>{data.count}</td>
+                   <td>{data.empid}</td>
                    <td>{data.fullName}</td>
                    <td>No.65, Kottegoda, Weligama.</td>
                    <td>{data.nid}</td>
                    <td>{data.moNumber}</td>
                    <td>
                    <span className="action_btn">
-                   <a href={'./adminviewinstructor/'+ data.empid} className="eye"><i className="fa fa-eye"></i></a>
+                   <a href={'./managerviewinstructor/'+ data.empid} className="eye"><i className="fa fa-eye"></i></a>
                    <a href="#" className="trash" onClick = {()=>{ setDeactivate({empid:data.empid}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a>
                    </span>
                    </td>

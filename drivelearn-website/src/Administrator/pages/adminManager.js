@@ -3,9 +3,11 @@ import '../../App.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import Popup from './Popup';
 
 const AdminStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [modal, setModal] = useState(false);
     const [getData, setGetData] = useState([]);
     const[deactivate, setDeactivate] = useState({
       empid: '' 
@@ -25,7 +27,8 @@ const AdminStudents = () => {
 });
 
 const handleChangeActiveStatus = () => {
-  alert("Are you sure");
+  
+  setModal(true);
 }
 
 const handleChange = (e) => {
@@ -52,14 +55,15 @@ const handleChange = (e) => {
       setGetData(response.data)
       console.log(getData);
     })
-    axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
-   });
+    // axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
+   },[]);
   
    
   return (
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      {modal && <Popup closeModal={setModal} empid={deactivate} location='/adminmanager'/>}
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
@@ -120,7 +124,7 @@ const handleChange = (e) => {
                   
                   <tr>
                     
-                     <td>{data.count}</td>
+                     <td>{data.empid}</td>
                      <td>{data.fullName}</td>
                      <td>No.65, Kottegoda, Weligama.</td>
                      <td>{data.nid}</td>

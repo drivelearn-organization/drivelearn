@@ -3,11 +3,20 @@ import '../../App.css';
 import '../Signup.css';
 import Nav from '../Nav';
 import axios from 'axios';
+import Errorbox from './../../Administrator/pages/errorbox';
+import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
 import { getRoles } from '@testing-library/react';
 
 function Signup() {
 
-   
+    const [modal, setModal] = useState(false);
+    const [errMsg, seterrMsg] = useState({
+      errorMsg: ''
+    });
+    const [toggle, settoggle] = useState(false);
+    const [Msg, setMsg] = useState({
+      errorMsg: ''
+    });
     const[state, setState] = useState({
         moNumber:'',
         fullName: '',
@@ -15,7 +24,8 @@ function Signup() {
         password: '',
         branch: '',
         nid: '',
-        role: ''
+        role: '',
+        password2: ''
     });
 
     const handleChange = (e) => {
@@ -29,9 +39,24 @@ function Signup() {
     const handleSubmit = (e) =>{
         e.preventDefault()
         axios.post('http://192.168.56.1:8080/employee/register',state)
+        .then(response => {
+      
+            if(response.data === "Register Successfully")
+            {
+                settoggle(true);
+                setMsg({
+                errorMsg: response.data
+                })
+                window.location = '/';
+            }else{
+                setModal(true);
+                seterrMsg({
+                 errorMsg: response.data
+                })
+            }
+          })
 
-
-        console.log(state);
+        
        
     }
 
@@ -39,7 +64,8 @@ function Signup() {
  
          <div className="background">
             <Nav />
-            
+            {modal && <Errorbox closeModal={setModal} errorMsg={errMsg}/>}
+            {toggle && <SuccessfulyMsgBox closeModal={settoggle} errorMsg={Msg}/>}
             <div className="registration-wrapper">
             <form action="" className="Regform" onSubmit={handleSubmit}>
                <h2>Sign Up</h2>
@@ -85,19 +111,19 @@ function Signup() {
                </div>
 
                <div className="reg-group">
-               <input className="content" type="password" name="loginPassword" id="loginPassword"  required />
+               <input className="content" type="password" name="password2" id="loginPassword" value={state.password2} onChange={handleChange}  required />
                <label for="regPassword">Confirm <br/>Password</label>
                </div>
 
-               <div className="reg-group">
+               {/* <div className="reg-group">
                <label for="regType">Gender</label>
                <select className="option" name="Register_as" required>
                <option disabled="disabled" selected="selected">--Choose Option--</option>
                <option>Male</option>
                <option>Female</option>
                </select>
-               </div>
-               <br/><br/>
+               </div> */}
+               {/* <br/><br/> */}
 
                <div className="reg-group">
                <label for="regType">Branch</label>
