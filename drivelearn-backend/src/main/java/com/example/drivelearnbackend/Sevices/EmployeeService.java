@@ -142,7 +142,7 @@ public class EmployeeService {
                 repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
                 error = "Register Successfully";
             }else{
-                error = "Invalid Username and Password";
+                error = "Invalid Username";
             }
         }else{
             error = "Password Mismatch";
