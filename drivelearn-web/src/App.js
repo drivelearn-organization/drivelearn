@@ -19,14 +19,6 @@ function App() {
     
   }
   
- const [showNav, setShownav] = useState(false);
-  
-  const handlesetShownav = () => {
-    setShownav(!showNav);
-  
-    
-  }
-  
  
   return (
     <>
