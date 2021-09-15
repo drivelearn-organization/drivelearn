@@ -137,7 +137,7 @@ const handleSubmit = (e) =>{
                   
                   <tr>
                     
-                     <td>{data.count}</td>
+                     <td>{data.stuID}</td>
                      <td>{data.name}</td>
                      <td>{data.address}</td>
                      <td>{data.nid}</td>

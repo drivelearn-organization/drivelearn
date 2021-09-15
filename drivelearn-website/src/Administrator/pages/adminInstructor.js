@@ -121,7 +121,7 @@ const handleChangeActiveStatus = () => {
                   
                   <tr>
                     
-                     <td>{data.count}</td>
+                     <td>{data.empid}</td>
                      <td>{data.fullName}</td>
                      <td>No.65, Kottegoda, Weligama.</td>
                      <td>{data.nid}</td>
