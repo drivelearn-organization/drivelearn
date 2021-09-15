@@ -3,7 +3,7 @@ import './../../App.css';
 import './../../BranchManager/Popup.css';
 import Nav from './../../HomePage/Nav';
 import axios from 'axios';
-const Popup = ({closeModal,empid}) => {
+const Popup = ({closeModal,empid,location}) => {
 
   
 
@@ -19,11 +19,11 @@ const Popup = ({closeModal,empid}) => {
         X
       </button>
     </div>
-    <div className="title">
-      <h1>Are You Sure You Want to Continue?</h1>
-    </div>
+    {/* <div className="title">
+      <h1>Are You Sure You Want to Delete?</h1>
+    </div> */}
     <div className="body">
-      <p>The next page looks amazing. Hope you want to go there!</p>
+      <p>Are You Sure You Want to Deactivate this Branch Manager?</p>
     </div>
     <div className="footer">
       <button
@@ -35,7 +35,10 @@ const Popup = ({closeModal,empid}) => {
         Cancel
       </button>
       <button onClick={() => {
-        axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',empid);
+        axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',empid)
+        .then(response =>{
+          window.location = location;
+          })
         closeModal(false);
       }}>Delete</button>
     </div>

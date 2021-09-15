@@ -56,14 +56,14 @@ const handleChange = (e) => {
       console.log(getData);
     })
     // axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
-   });
+   },[]);
   
    
   return (
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-      {modal && <Popup closeModal={setModal} empid={deactivate}/>}
+      {modal && <Popup closeModal={setModal} empid={deactivate} location='/adminmanager'/>}
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
