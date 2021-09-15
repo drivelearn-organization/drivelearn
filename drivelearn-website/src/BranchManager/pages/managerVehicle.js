@@ -25,19 +25,39 @@ const ManagerVehicle = () => {
   }, []);
 
 
-  const togglemodal=(regiNumber,chacieNumber,startingMileage,vehicleType,licenceExpireDate,licencePayedDate)=>{
+  const togglemodal=(regiNumber,chacieNumber,startingMileage,vehicleType,licenceExpireDate,licencePayedDate,addedDate,payedDate,expireDate,vechicleId)=>{
     setUpdateVehicle({
-      regiNumber:regiNumber,
+      regiNumner:regiNumber,
       chacieNumber:chacieNumber,
-      startingMileage:startingMileage,
+      startingMilage:startingMileage,
       vehicleType:vehicleType,
       licenceExpireDate:licenceExpireDate,
-      licencePayedDate:licencePayedDate
+      licencePayedDate:licencePayedDate,
+      addedDate:addedDate,
+      payedDate:payedDate,
+      expireDate:expireDate,
+      vechicleId:vechicleId,
+      branchName:sessionStorage.getItem('branchName')
+
     });
     setModal(!modal);
   }
 
-  
+  const addpayment = () => {
+
+    axios
+    .put("http://localhost:8080/vehicle/updatevehicle",getUpdateVehicle)
+    .then(d=>{
+     
+    })
+
+    setModal(!modal);
+    
+
+   window.location.reload();
+
+
+  }
 
   const getVehicle = () => {
     axios
@@ -98,7 +118,7 @@ console.log(getUpdateVehicle);
                         background: "white"
                       
                       }}>
-                        <ManagerNewUpdateVehicle togglemodal={togglemodal} getUpdateVehicle={getUpdateVehicle} />
+                        <ManagerNewUpdateVehicle addpayment={addpayment} togglemodal={togglemodal} setUpdateVehicle={setUpdateVehicle} getUpdateVehicle={getUpdateVehicle} />
 
                       </div>
                     </div>
@@ -109,7 +129,7 @@ console.log(getUpdateVehicle);
           <br /><br />
           <div className="table_responsive">
             <div className="search" >
-              <div className="search_box " style={{zIndex: "-1"}}>
+              <div className="search_box " >
 
 
                 <select id="dropdown" className="drop-down" onChange={e=>{
@@ -179,7 +199,7 @@ console.log(getUpdateVehicle);
 
                       <td>
                         <span className="action_btn">
-                          <a onClick={()=>togglemodal(d.regiNumner,d.chacieNumber,d.startingMilage,d.vehicleType,d.licenceExpireDate,d.expireDate)}  className="eye"><i className="fa fa-eye"></i></a>
+                          <a onClick={()=>togglemodal(d.regiNumner,d.chacieNumber,d.startingMilage,d.vehicleType,d.licenceExpireDate,d.expireDate,d.addedDate,d.payedDate,d.expireDate,d.vechicleId)}  className="eye"><i className="fa fa-eye"></i></a>
                           <a href="#" className="trash" onClick={() => {
                             deleteVehicle(d.vechicleId);
                           }}

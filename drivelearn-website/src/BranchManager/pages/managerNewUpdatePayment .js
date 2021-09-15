@@ -50,7 +50,7 @@ const ManagerNewPayment = (props) => {
 
 
   return (
-    <div style={{ height: "80vh", width: "100%" }}>
+    <div style={{ height: "80vh", width: "100%",overflow: "auto" }}>
 
 
       <div className="main__container">
@@ -64,16 +64,7 @@ const ManagerNewPayment = (props) => {
           <div>
             <table>
               <thead>
-
-                <tr>
-                  <th > Payement ID : </th>
-                  <th style={{ background: "white", color: "black" }}> {props.data.paymentId}</th>
-                </tr>
-                <tr>
-                  <th>Student ID :</th>
-                  <th style={{ background: "white", color: "black" }}>{props.data.id}</th>
-                </tr>
-                <tr>
+              <tr>
                   <th>Student Name :</th>
                   <th style={{ background: "white", color: "black" }}>{props.data.name}</th>
                 </tr>
@@ -82,6 +73,13 @@ const ManagerNewPayment = (props) => {
                   <th>National ID : </th>
                   <th style={{ background: "white", color: "black" }}>{props.data.nic}</th>
                 </tr>
+                
+               
+                <tr>
+                  <th>Student ID :</th>
+                  <th style={{ background: "white", color: "black" }}>{props.data.id}</th>
+                </tr>
+               
 
 
 
@@ -101,6 +99,7 @@ const ManagerNewPayment = (props) => {
           <table>
             <thead>
               <tr>
+                <th>Payment Id</th>
                 <th>Course Amount</th>
                 <th>Paid Amount</th>
                 <th>Rest Amount</th>
@@ -108,6 +107,7 @@ const ManagerNewPayment = (props) => {
             </thead>
             <tbody>
               <tr>
+                <td>{props.data.paymentId}</td>
                 <td>{props.data.amount}</td>
                 <td>{parseInt(props.data.amount) - parseInt(props.data.rest)}</td>
                 <td>{props.data.rest}</td>

@@ -20,6 +20,7 @@ const ManagerSession = () => {
   const [getSessionId, setSessionId] = useState();
   const [getmodalupdate, setmodalupdate] = useState(false);
   const [updateDetails, setUpdateDetails] = useState([]);
+  const [getdata, setdata] = useState([]);
   const [state, setState] = useState({
     sessionId: "",
     trainerName: "",
@@ -42,7 +43,7 @@ const ManagerSession = () => {
     setSidebarOpen(false);
   };
 
-  const toggleupdate = (sessionId, trainerName, date, startTime, numOfStudent, empid, vehicleType) => {
+  const toggleupdate = (sessionId, trainerName, date, startTime, numOfStudent, trainerId, vehicleType) => {
 
 
     setUpdateDetails(
@@ -52,206 +53,235 @@ const ManagerSession = () => {
         date: date,
         startTime: startTime,
         numOfStudent: numOfStudent,
-        empid: empid,
+        trainerId: trainerId,
         vehicleType: vehicleType
 
       }
     );
 
-  
-      setmodalupdate(!getmodalupdate);
-    }
-
-    console.log(updateDetails);
-
-
-    const handleChange = (e) => {
-      setState({
-        ...state,
-        [e.target.name]: e.target.value
-      })
-    }
-
-
-    //console.log(state);
-
-
-    const toggleSessionId = (sessioId) => {
-      setSessionId(sessioId);
-      setmodal(!modal);
-    }
-
-    const toggle = (username) => {
-
-      let data = {
-        studentUsername: username,
-        sessionId: getSessionId
+    setdata(
+      {
+        sessionId: sessionId,
+        trainerId: trainerId,
+        date: date
       }
-      setmodal(!modal);
-      booksession(data);
+    )
+
+    setmodalupdate(!getmodalupdate);
+  }
+
+  console.log(updateDetails);
 
 
+  const handleChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+  //console.log(state);
+
+
+  const toggleSessionId = (sessioId) => {
+    setSessionId(sessioId);
+    setmodal(!modal);
+  }
+
+  const toggle = (username) => {
+
+    let data = {
+      studentUsername: username,
+      sessionId: getSessionId
     }
-
-    useEffect(() => {
-      getSession();
-      Student();
-    }, []);
-
-    const getSession = () => {
-      axios
-        .get("http://localhost:8080/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
-        .then(data => {
-          setSessionState(data.data);
+    setmodal(!modal);
+    booksession(data);
 
 
+  }
 
-        })
-    }
+  useEffect(() => {
+    getSession();
+    Student();
+  }, []);
 
-
-    const booksession = (data) => {
-
-      console.log(data);
-      axios
-        .post("http://localhost:8080/session/book", data)
-        .then(d => {
-          console.log(d.data);
-        })
-
-      window.location.reload();
-
-    }
+  const getSession = () => {
+    axios
+      .get("http://localhost:8080/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
+      .then(data => {
+        setSessionState(data.data);
 
 
-    const Student = () => {
-      axios
-        .get("http://localhost:8080/drivelearn/students")
-        .then(d => {
-          setStudent(d.data);
-        })
-    }
 
-    console.log(sessionState)
+      })
+  }
 
-    return (
-      <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-        <main>
-          <div className="main__container">
-            <div className="main__title">
-              <div className="main__greeting">
-                <h1>Manage Session</h1>
-                <p> {sessionStorage.getItem('branchName')} Branch</p>
-              </div>
+
+  const booksession = (data) => {
+
+    console.log(data);
+    axios
+      .post("http://localhost:8080/session/book", data)
+      .then(d => {
+        console.log(d.data);
+      })
+
+    window.location.reload();
+
+  }
+
+
+  const putSession = () => {
+
+    //console.log(updateDetails.sessionId);
+    // let data = {
+    //   sessionId:updateDetails.sessionId,
+    //   trainerId:updateDetails.empid,
+    //   date:updateDetails.date
+
+    // }
+
+    console.log(getdata);
+    axios
+      .put("http://localhost:8080/staffsessioncontroller/updatesession", updateDetails)
+      .then(d => {
+
+      })
+
+    window.location.reload();
+    setmodalupdate(!getmodalupdate);
+  }
+
+
+  const Student = () => {
+    axios
+      .get("http://localhost:8080/drivelearn/students")
+      .then(d => {
+        setStudent(d.data);
+      })
+  }
+
+  console.log(sessionState)
+
+  return (
+    <div className="container">
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      <main>
+        <div className="main__container">
+          <div className="main__title">
+            <div className="main__greeting">
+              <h1>Manage Session</h1>
+              <p> {sessionStorage.getItem('branchName')} Branch</p>
             </div>
-            <br /><br />
-            <div className="table_responsive">
-              <div className="search">
-                <div className="search_box">
-                  <div className="dropdown">
-                    <div className="default_option">All</div>
-                    {/* <ul>
+          </div>
+          <br /><br />
+          <div className="table_responsive">
+            <div className="search">
+              <div className="search_box">
+                <div className="dropdown">
+                  <div className="default_option">All</div>
+                  {/* <ul>
                          <li>All</li>
                          <li>Recent</li>
                          <li>Popular</li>
                        </ul> */}
-                  </div>
-                  <div className="search_field">
-                    <input type="text" className="input" placeholder="Search" />
-                    <i className="fas fa-search"></i>
-                  </div>
                 </div>
-
-                {modal && (
-                  <div className="modal">
-                    <div className="overlay">
-                      <div className="modal-content" style={{
-                        background: "white",
-                        zIndex: "0"
-                      }}>
-                        <ManagerSessionSelectStudent toggle={toggle} />
-
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {getmodalupdate && (
-                  <div className="modal">
-                    <div className="overlay">
-                      <div className="modal-content" style={{
-                        background: "white",
-                        zIndex: "0"
-                      }}>
-                        <ManagerSessionUpdate setUpdateDetails={setUpdateDetails} toggleupdate={toggleupdate} updateDetails={updateDetails} setState={setState} handleChange={handleChange} />
-
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-
-                <div className="create-button">
-                  <div className="create_btn">
-                    <a href="./manageraddsession"><i className="fa fa-plus-circle"></i></a>
-                    <br />
-                    <p>Add Session</p>
-                  </div>
+                <div className="search_field">
+                  <input type="text" className="input" placeholder="Search" />
+                  <i className="fas fa-search"></i>
                 </div>
               </div>
 
-              <br />
-              <table>
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Instructor Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>No of Student</th>
-                    <th>Add Student</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
+              {modal && (
+                <div className="modal">
+                  <div className="overlay">
+                    <div className="modal-content" style={{
+                      background: "white",
+                      zIndex: "0"
+                    }}>
+                      <ManagerSessionSelectStudent toggle={toggle} />
 
-                <tbody>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-                  {
-                    sessionState.map(d => (
-                      <tr>
-                        <td>{d.sessionId}</td>
-                        <td>{d.trainerUsername}</td>
-                        <td>{d.date}</td>
-                        <td>{d.startTime}</td>
-                        <td>{d.numOfStudent}</td>
+              {getmodalupdate && (
+                <div className="modal">
+                  <div className="overlay">
+                    <div className="modal-content" style={{
+                      background: "white",
+                      zIndex: "0"
+                    }}>
+                      <ManagerSessionUpdate putSession={putSession} setUpdateDetails={setUpdateDetails} toggleupdate={toggleupdate} updateDetails={updateDetails} setState={setState} handleChange={handleChange} />
+
+                    </div>
+                  </div>
+                </div>
+              )}
 
 
-                        <td>
-
-                          <span className="action_btn">
-
-                            <a className="eye"><i className="fa fa-plus-circle" onClick={() =>
-                              toggleSessionId(d.sessionId)
-
-                            }></i></a>
-
-                          </span>
-                        </td>
-
-                        <td>
-                          <span className="action_btn">
-                            <a className="eye"><i className="fa fa-eye" onClick={() => toggleupdate(d.sessionId, d.trainerUsername, d.date, d.startTime, d.numOfStudent, d.empid, d.vehicleType)}></i></a>
-                            <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                          </span>
-                        </td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
+              <div className="create-button">
+                <div className="create_btn">
+                  <a href="./manageraddsession"><i className="fa fa-plus-circle"></i></a>
+                  <br />
+                  <p>Add Session</p>
+                </div>
+              </div>
             </div>
+
+            <br />
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Instructor Name</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>No of Student</th>
+                  <th>Add Student</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {
+                  sessionState.map(d => (
+                    <tr>
+                      <td>{d.sessionId}</td>
+                      <td>{d.trainerUsername}</td>
+                      <td>{d.date}</td>
+                      <td>{d.startTime}</td>
+                      <td>{d.numOfStudent}</td>
+
+
+                      <td>
+
+                        <span className="action_btn">
+
+                          <a className="eye"><i className="fa fa-plus-circle" onClick={() =>
+                            toggleSessionId(d.sessionId)
+
+                          }></i></a>
+
+                        </span>
+                      </td>
+
+                      <td>
+                        <span className="action_btn">
+                          <a className="eye"><i className="fa fa-eye" onClick={() => toggleupdate(d.sessionId, d.trainerUsername, d.date, d.startTime, d.numOfStudent, d.trainerId, d.vehicleType)}></i></a>
+                          <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
           </div>
+        </div>
 
 
 
@@ -260,14 +290,14 @@ const ManagerSession = () => {
 
 
 
-        </main>
-        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-      </div>
+      </main>
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+    </div>
 
 
 
-    );
+  );
 
-  }
+}
 
-  export default ManagerSession;
+export default ManagerSession;

@@ -34,6 +34,7 @@ const ManagerAddStudents = () => {
     let chacieNumber = e.target[4].value;
     let startingMilage = e.target[1].value;
     let status = 1;
+    let addedDate= e.target[2].value;
     let branchName = sessionStorage.getItem('branchName');
     let vehicleType = e.target[3].value;
     let payedDate = e.target[6].value;
@@ -46,6 +47,7 @@ const ManagerAddStudents = () => {
       regiNumner,
       chacieNumber,
       startingMilage,
+      addedDate,
       status,
       branchName,
       vehicleType,

@@ -77,6 +77,7 @@ public class VehicleService {
     }
 
     public void updateVehicle(VehicleDTO dto){
+        System.out.println(dto.getLicenseId());
         Vehicle vehicle=vehiclRepository.findById(dto.getVechicleId()).get();
         License license=null;
         Insuarance insuarance=null;

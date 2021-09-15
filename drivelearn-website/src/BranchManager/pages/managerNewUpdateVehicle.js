@@ -76,7 +76,7 @@ const ManagerUpdateVehicle = (props) => {
       <div className="main__title">
         <div className="main__greeting">
           <h1>Update Vehicle</h1>
-          <p> Kalutara Branch</p>
+          <p> {sessionStorage.getItem('branchName')} Branch</p>
         </div>
       </div>
       <center>
@@ -87,21 +87,24 @@ const ManagerUpdateVehicle = (props) => {
 
           <div className="card-p">
             <p className="text">Vehical No</p>
-            <input className="data" type="text" value={props.getUpdateVehicle.regiNumner} onChange={e => {
+            <input className="data" type="text" value={props.getUpdateVehicle.regiNumner} onChange={(e) => {
               value = e.target.value;
 
-              setVehicleState({
-                vechicleId: vehicleState.vechicleId,
+              props.setUpdateVehicle({
+                vechicleId:props.getUpdateVehicle.vechicleId,
                 regiNumner: e.target.value,
-                startingMilage: vehicleState.startingMilage,
-                vehicleType: vehicleState.vehicleType,
-                chacieNumber: vehicleState.chacieNumber,
-                licencePayedDate: vehicleState.licencePayedDate,
-                licenceExpireDate: vehicleState.licenceExpireDate,
-                payedDate: vehicleState.payedDate,
-                expireDate: vehicleState.expireDate
-
+                chacieNumber: props.getUpdateVehicle.chacieNumber,
+                addedDate: props.getUpdateVehicle.addedDate,
+                startingMilage: props.getUpdateVehicle.startingMilage,
+                vehicleType: props.getUpdateVehicle.vehicleType,
+                licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                payedDate: props.getUpdateVehicle.payedDate,
+                expireDate: props.getUpdateVehicle.expireDate,
+                branchName:props.getUpdateVehicle.branchName
               });
+
+
             }} />
             {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
@@ -114,18 +117,20 @@ const ManagerUpdateVehicle = (props) => {
               <input className="data" type="text" name="first_name" id="firstname" placeholder="Starting Mileage" value={props.getUpdateVehicle.startingMilage} onChange={e => {
                 value = e.target.value;
 
-                setVehicleState({
-                  vechicleId: vehicleState.vechicleId,
-                  regiNumner: vehicleState.regiNumner,
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: props.getUpdateVehicle.addedDate,
                   startingMilage: e.target.value,
-                  vehicleType: vehicleState.vehicleType,
-                  chacieNumber: vehicleState.chacieNumber,
-                  licencePayedDate: vehicleState.licencePayedDate,
-                  licenceExpireDate: vehicleState.licenceExpireDate,
-                  payedDate: vehicleState.payedDate,
-                  expireDate: vehicleState.expireDate
-
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
                 });
+
               }} required />
               {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
@@ -137,7 +142,25 @@ const ManagerUpdateVehicle = (props) => {
 
             <div className="card-p">
               <p className="text">Register Date</p>
-              <input className="data" type="date" name="first_name" id="firstname" placeholder="Register Date" />
+              <input className="data" type="date" name="first_name" id="firstname" placeholder="Register Date" value={props.getUpdateVehicle.addedDate} onChange={e => {
+                value = e.target.value;
+
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: e.target.value,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
+
+                });
+
+              }} />
               {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
@@ -149,7 +172,20 @@ const ManagerUpdateVehicle = (props) => {
               <p className="text">Vehical type</p>
               <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Vehical type" value={props.getUpdateVehicle.vehicleType} onChange={e => {
                 value = e.target.value;
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: props.getUpdateVehicle.addedDate,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: e.target.value,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
 
+                });
                 setVehicleState({
                   vechicleId: vehicleState.vechicleId,
                   regiNumner: vehicleState.regiNumner,
@@ -175,7 +211,20 @@ const ManagerUpdateVehicle = (props) => {
               <p className="text">Chessis No</p>
               <input className="data" type="text" Value="" name="first_name" id="firstname" placeholder="Chessis No" value={props.getUpdateVehicle.chacieNumber} onChange={e => {
                 value = e.target.value;
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: e.target.value,
+                  addedDate: props.getUpdateVehicle.addedDate,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
 
+                });
                 setVehicleState({
                   vechicleId: vehicleState.vechicleId,
                   regiNumner: vehicleState.regiNumner,
@@ -201,7 +250,20 @@ const ManagerUpdateVehicle = (props) => {
               <p className="text">License starting date</p>
               <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="License starting date" value={props.getUpdateVehicle.licencePayedDate} onChange={e => {
                 value = e.target.value;
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: props.getUpdateVehicle.addedDate,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: e.target.value,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
 
+                });
                 setVehicleState({
                   vechicleId: vehicleState.vechicleId,
                   regiNumner: vehicleState.regiNumner,
@@ -225,7 +287,20 @@ const ManagerUpdateVehicle = (props) => {
               <p className="text">License expire date</p>
               <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="License expire date" value={props.getUpdateVehicle.licenceExpireDate} onChange={e => {
                 value = e.target.value;
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: props.getUpdateVehicle.addedDate,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: e.target.value,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
 
+                });
                 setVehicleState({
                   vechicleId: vehicleState.vechicleId,
                   regiNumner: vehicleState.regiNumner,
@@ -250,9 +325,22 @@ const ManagerUpdateVehicle = (props) => {
 
             <div className="card-p" style={{ marginRight: "10px" }}>
               <p className="text">Insurance payed date</p>
-              <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Insurance starting date" value={props.getUpdateVehicle.payedDate} onChange={e => {
+              <input className="data" type="date" name="first_name" id="firstname" placeholder="Insurance starting date" value={props.getUpdateVehicle.payedDate} onChange={e => {
                 value = e.target.value;
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: props.getUpdateVehicle.addedDate,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: e.target.value,
+                  expireDate: props.getUpdateVehicle.expireDate,
+                  branchName:props.getUpdateVehicle.branchName
 
+                });
                 setVehicleState({
                   vechicleId: vehicleState.vechicleId,
                   regiNumner: vehicleState.regiNumner,
@@ -273,21 +361,23 @@ const ManagerUpdateVehicle = (props) => {
 
             <div className="card-p" style={{ marginLeft: "0px" }}>
               <p className="text">Insurance expire date</p>
-              <input className="data" type="date" Value="" name="first_name" id="firstname" placeholder="Insurance expire date" value={props.getUpdateVehicle.expireDate} onChange={e => {
+              <input className="data" type="date"  name="first_name" id="firstname" placeholder="Insurance expire date" value={props.getUpdateVehicle.expireDate} onChange={e => {
                 value = e.target.value;
-
-                setVehicleState({
-                  vechicleId: vehicleState.vechicleId,
-                  regiNumner: vehicleState.regiNumner,
-                  startingMilage: vehicleState.startingMilage,
-                  vehicleType: vehicleState.vehicleType,
-                  chacieNumber: vehicleState.chacieNumber,
-                  licencePayedDate: vehicleState.licencePayedDate,
-                  licenceExpireDate: vehicleState.licenceExpireDate,
-                  payedDate: vehicleState.payedDate,
-                  expireDate: e.target.value
+                props.setUpdateVehicle({
+                  vechicleId:props.getUpdateVehicle.vechicleId,
+                  regiNumner: props.getUpdateVehicle.regiNumner,
+                  chacieNumber: props.getUpdateVehicle.chacieNumber,
+                  addedDate: props.getUpdateVehicle.addedDate,
+                  startingMilage: props.getUpdateVehicle.startingMilage,
+                  vehicleType: props.getUpdateVehicle.vehicleType,
+                  licenceExpireDate: props.getUpdateVehicle.licenceExpireDate,
+                  licencePayedDate: props.getUpdateVehicle.licencePayedDate,
+                  payedDate: props.getUpdateVehicle.payedDate,
+                  expireDate: e.target.value,
+                  branchName:props.getUpdateVehicle.branchName
 
                 });
+
               }} required />
               {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
@@ -298,7 +388,7 @@ const ManagerUpdateVehicle = (props) => {
 
 
           <center>
-            <input type="submit" value="Update" className="update-btn" />
+            <input type="submit" value="Update" onClick={(e=>props.addpayment(e))} className="update-btn" />
             &nbsp;&nbsp;&nbsp;
             <input type="Reset" value="Cancle" onClick={props.togglemodal} className="reset1-btn" />
           </center>
