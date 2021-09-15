@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import {Base} from '../../urls/base';
 const reviewSchema = yup.object().shape({
   newpassword: yup.string().required().min(6),
   otp: yup.string().required(),
@@ -45,7 +46,30 @@ const TrainerForgetPassword = ({navigation}) => {
       setErrEmail("email field is empty");
       return;
     }
-
+    fetch(Base+"employee/gettrainer", {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username
+        })
+    })
+        .then((response) => response.json())
+        .then((json) => {
+            if(!json){
+              setErrUsername("wrong username");
+              return;
+            }
+            console.log(json);
+        })
+        .catch((error) => console.error(error));
+        setErrUsername("");
+        setErrEmail("");
+        var val = Math.floor(1000 + Math.random() * 9000);
+        setOtp(val);
+        console.log(val);
 
 
   }
