@@ -63,7 +63,6 @@ public class AdminService {
         LinkedList<Employee> list = repository.findByUsernameAndPassword(dto.getUsername(), password);
 
 
-
         EmployeeDTO loginEmployee = null;
         if(list.isEmpty()){
 
@@ -427,7 +426,7 @@ public class AdminService {
         }
 
 
-        String isActive = "1";
+        String isActive = "2";
 
         List<Installment> installmentList=new ArrayList<>();
         List<Session> trainersSessionList=new ArrayList<>();
