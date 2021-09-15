@@ -130,18 +130,18 @@ const [successShow,setsuccessShow] = useState(false);
 
 
 //setModal(!modal); 
-        // axios
-        //     .post(`http://localhost:8080/listnotification/addnotification`, data)
-        //     .then(data => {
-        //         console.log(data);
-        //         setNotification(data.data);
+        axios
+            .post(`http://localhost:8080/listnotification/addnotification`, data)
+            .then(data => {
+                console.log(data);
+                setNotification(data.data);
 
-        //     })
-        //     .catch(err => alert(err));
+            })
+            .catch(err => alert(err));
       
         // setModelError(true);
       // e.preventDefault();
-     // window.location.reload();
+      window.location.reload();
        seterrorShow(false);
        //setsuccessShow(true);
       
