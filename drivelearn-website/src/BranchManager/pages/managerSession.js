@@ -2,16 +2,34 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import './../Table.css';
 import './../filterButton.css';
+import './../modal.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import ManagerSessionSelectStudent from './managerSessionSelectStudent';
+
+import ManagerSessionUpdate from './manageSessionUpdate';
 
 
-const ManagerVehicle = () => {
+const ManagerSession = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sessionState, setSessionState] = useState([]);
   const [getStudent, setStudent] = useState([]);
-  const [getSessionId,setSessionId] = useState();
+  //const [getSessionId, setSessionId] = useState();
+  const [modal, setmodal] = useState(false);
+  const [getSessionId, setSessionId] = useState();
+  const [getmodalupdate, setmodalupdate] = useState(false);
+  const [updateDetails, setUpdateDetails] = useState([]);
+  const [state, setState] = useState({
+    sessionId: "",
+    trainerName: "",
+    date: "",
+    startTime: "",
+    numOfStudent: "",
+    empid: "",
+    vehicleType: ""
+  });
+
 
   console.log(getStudent);
 
@@ -20,224 +38,236 @@ const ManagerVehicle = () => {
   };
 
   const closeSidebar = () => {
+
     setSidebarOpen(false);
   };
 
-
-  useEffect(() => {
-    getSession();
-    Student();
-  }, []);
-
-  const getSession = () => {
-    axios
-      .get("http://localhost:8080/staffsessioncontroller/getallsession/1")
-      .then(data => {
-        setSessionState(data.data);
+  const toggleupdate = (sessionId, trainerName, date, startTime, numOfStudent, empid, vehicleType) => {
 
 
+    setUpdateDetails(
+      {
+        sessionId: sessionId,
+        trainerName: trainerName,
+        date: date,
+        startTime: startTime,
+        numOfStudent: numOfStudent,
+        empid: empid,
+        vehicleType: vehicleType
 
-      })
-  }
+      }
+    );
 
-
-  const addsession = (username) => {
-
-    let data = {
-      sessionId: getSessionId,
-      StudentUsername: username
+  
+      setmodalupdate(!getmodalupdate);
     }
 
-    console.log(data);
-    axios
-      .post("http://localhost:8080/session/book", data)
-      .then(d => {
-        console.log(d.data);
+    console.log(updateDetails);
+
+
+    const handleChange = (e) => {
+      setState({
+        ...state,
+        [e.target.name]: e.target.value
       })
+    }
 
-  }
+
+    //console.log(state);
 
 
-  const Student = () => {
-    axios
-      .get("http://localhost:8080/drivelearn/students")
-      .then(d => {
-        setStudent(d.data);
-      })
-  }
+    const toggleSessionId = (sessioId) => {
+      setSessionId(sessioId);
+      setmodal(!modal);
+    }
 
-  console.log(sessionState)
+    const toggle = (username) => {
 
-  return (
-    <div className="container">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <main>
-        <div className="main__container">
-          <div className="main__title">
-            <div className="main__greeting">
-              <h1>Manage Session</h1>
-              <p> Kalutara Branch</p>
+      let data = {
+        studentUsername: username,
+        sessionId: getSessionId
+      }
+      setmodal(!modal);
+      booksession(data);
+
+
+    }
+
+    useEffect(() => {
+      getSession();
+      Student();
+    }, []);
+
+    const getSession = () => {
+      axios
+        .get("http://localhost:8080/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
+        .then(data => {
+          setSessionState(data.data);
+
+
+
+        })
+    }
+
+
+    const booksession = (data) => {
+
+      console.log(data);
+      axios
+        .post("http://localhost:8080/session/book", data)
+        .then(d => {
+          console.log(d.data);
+        })
+
+      window.location.reload();
+
+    }
+
+
+    const Student = () => {
+      axios
+        .get("http://localhost:8080/drivelearn/students")
+        .then(d => {
+          setStudent(d.data);
+        })
+    }
+
+    console.log(sessionState)
+
+    return (
+      <div className="container">
+        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+        <main>
+          <div className="main__container">
+            <div className="main__title">
+              <div className="main__greeting">
+                <h1>Manage Session</h1>
+                <p> {sessionStorage.getItem('branchName')} Branch</p>
+              </div>
             </div>
-          </div>
-          <br /><br />
-          <div className="table_responsive">
-            <div className="search">
-              <div className="search_box">
-                <div className="dropdown">
-                  <div className="default_option">All</div>
-                  {/* <ul>
+            <br /><br />
+            <div className="table_responsive">
+              <div className="search">
+                <div className="search_box">
+                  <div className="dropdown">
+                    <div className="default_option">All</div>
+                    {/* <ul>
                          <li>All</li>
                          <li>Recent</li>
                          <li>Popular</li>
                        </ul> */}
+                  </div>
+                  <div className="search_field">
+                    <input type="text" className="input" placeholder="Search" />
+                    <i className="fas fa-search"></i>
+                  </div>
                 </div>
-                <div className="search_field">
-                  <input type="text" className="input" placeholder="Search" />
-                  <i className="fas fa-search"></i>
+
+                {modal && (
+                  <div className="modal">
+                    <div className="overlay">
+                      <div className="modal-content" style={{
+                        background: "white",
+                        zIndex: "0"
+                      }}>
+                        <ManagerSessionSelectStudent toggle={toggle} />
+
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {getmodalupdate && (
+                  <div className="modal">
+                    <div className="overlay">
+                      <div className="modal-content" style={{
+                        background: "white",
+                        zIndex: "0"
+                      }}>
+                        <ManagerSessionUpdate setUpdateDetails={setUpdateDetails} toggleupdate={toggleupdate} updateDetails={updateDetails} setState={setState} handleChange={handleChange} />
+
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+
+                <div className="create-button">
+                  <div className="create_btn">
+                    <a href="./manageraddsession"><i className="fa fa-plus-circle"></i></a>
+                    <br />
+                    <p>Add Session</p>
+                  </div>
                 </div>
               </div>
-              <div className="create-button">
-                <div className="create_btn">
-                  <a href="./manageraddsession"><i className="fa fa-plus-circle"></i></a>
-                  <br />
-                  <p>Add Session</p>
-                </div>
-              </div>
+
+              <br />
+              <table>
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Instructor Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>No of Student</th>
+                    <th>Add Student</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  {
+                    sessionState.map(d => (
+                      <tr>
+                        <td>{d.sessionId}</td>
+                        <td>{d.trainerUsername}</td>
+                        <td>{d.date}</td>
+                        <td>{d.startTime}</td>
+                        <td>{d.numOfStudent}</td>
+
+
+                        <td>
+
+                          <span className="action_btn">
+
+                            <a className="eye"><i className="fa fa-plus-circle" onClick={() =>
+                              toggleSessionId(d.sessionId)
+
+                            }></i></a>
+
+                          </span>
+                        </td>
+
+                        <td>
+                          <span className="action_btn">
+                            <a className="eye"><i className="fa fa-eye" onClick={() => toggleupdate(d.sessionId, d.trainerUsername, d.date, d.startTime, d.numOfStudent, d.empid, d.vehicleType)}></i></a>
+                            <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
             </div>
-
-            <br />
-            <table>
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Instructor Name</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>No of Student</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-
-                {
-                  sessionState.map(d => (
-                    <tr>
-                      <td>{d.sessionId}</td>
-                      <td>{d.trainerUsername}</td>
-                      <td>{d.date}</td>
-                      <td>{d.startTime}</td>
-                      <td>{d.numOfStudent}</td>
-                    
-                      
-                      <td>{d.status}</td>
-
-                      <td>
-                        <span className="action_btn">
-                          <a href="./managerupdatesession" className="eye"><i className="fa fa-eye"></i></a>
-                          <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                        </span>
-                      </td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
           </div>
-        </div>
 
 
 
 
 
-        <div className="main__container">
-          <div className="main__title">
-            <div className="main__greeting">
-              <h1>Add Student</h1>
-              <p> Kalutara Branch</p>
-            </div>
-          </div>
-          <br /><br />
-          <div className="table_responsive">
-            <div className="search">
-              <div className="search_box">
-                <div className="dropdown">
-                  <div className="default_option">All</div>
-                  {/* <ul>
-                         <li>All</li>
-                         <li>Recent</li>
-                         <li>Popular</li>
-                       </ul> */}
-                </div>
-                <div className="search_field">
-                  <input type="text" className="input" placeholder="Search" />
-                  <i className="fas fa-search"></i>
-                </div>
-              </div>
-              <div className="create-button">
-
-              </div>
-            </div>
-
-            <br />
-            <table>
-              <thead>
-
-                <tr>
-                  <th>StudentId</th>
-                  <th>NIC</th>
-                  <th>Name</th>
-                  <th>Total Hour</th>
-                  <th>Completed</th>
-                  <th>Session id</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {
-
-                  getStudent.map(d => (
-                    <tr>
-                      <td>{d.stuID}</td>
-                      <td>{d.nid}</td>
-                      <td>{d.name}</td>
-                      <td>empty</td>
-                      <td>empty</td>
-                      <td> <input type="text" onChange={(e)=>{
-                        setSessionId(e.target.value);
-                      }} /> </td>
-
-
-                      <td>
-                        <span className="action_btn">
-
-                          <a  className="eye"><i className="fa fa-plus-circle" onClick={()=>
-                          addsession(d.username)
-
-                          }></i></a>
-
-                        </span>
-                      </td>
-                    </tr>
-                  ))
-                }
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-
-      </main>
-      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-    </div>
 
 
 
-  );
+        </main>
+        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+      </div>
 
-}
 
-export default ManagerVehicle;
+
+    );
+
+  }
+
+  export default ManagerSession;

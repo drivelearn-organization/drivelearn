@@ -29,4 +29,5 @@ public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
    LinkedList<Employee> searchByTrainerUsernam(@Param("name")String name);
 
    LinkedList<Employee> findAllByBranchAndRole(Branch branch,int role);
+   LinkedList<Employee> findByUsernameAndRole(String username,int role);
 }

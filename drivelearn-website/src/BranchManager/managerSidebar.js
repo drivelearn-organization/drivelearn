@@ -54,7 +54,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
           <Link to = "/managersession" >Training Sessions</Link>
         </div>
         <div className="sidebar__link">
-          <i className="fa fa-clock-o"></i>
+        <i class="fas fa-envelope"></i>
           {/* <a href="#">Notifications</a> */}
           <Link to = "/managernotification" >Notifications</Link>
         </div>

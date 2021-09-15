@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @Service
@@ -113,6 +115,27 @@ public class StudentServices {
             }
         }
         return studentDTOS;
+    }
+
+    public void updateStudent(StudentDTO dto){
+        Student student1=null;
+        for (Student student : repository.findByUsername(dto.getUsername())) {
+            student1=student;
+        }
+        if(dto.getAddress()!="" && dto.getAddress()!=null){
+            student1.setAddress(dto.getAddress());
+        }
+        if(dto.getName()!="" && dto.getName()!=null){
+            student1.setName(dto.getName());
+        }
+        if(dto.getContact()!="" && dto.getContact()!=null){
+            student1.setContact(dto.getContact());
+        }
+        if(dto.getNid()!="" && dto.getNid()!=null){
+            student1.setIdnum(dto.getNid());
+        }
+        repository.save(student1);
+
     }
 
     public void addStudent(){

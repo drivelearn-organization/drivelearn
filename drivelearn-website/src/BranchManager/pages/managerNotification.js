@@ -2,20 +2,30 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import './../managerNotification.css';
 import './../filterButton.css';
+import './../modal.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import ManagerNotificationsSelectStudent from './managerNotificationSelectStudent';
 
 
 const ManagerNotifications = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getStudent, setStudent] = useState([]);
-    const [getNotification, setNotification] = useState([]);
+    const [getNotification, setNotification] = useState({
+        header: "",
+        message: ""
+    });
     const [viewNotification, setViewNotification] = useState([]);
     const [stateCustomer, setCustomerState] = useState([]);
-    const [getNotoficationId,setNotificationId] = useState([]);
-
-    console.log(getNotoficationId.notificationId);
+    const [getNotoficationId, setNotificationId] = useState([]);
+    const [modal, setModal] = useState(false);
+    const [getMetaData, setMetaData] = useState([]);
+    const [show,setshow] = useState(false);
+    //const [showModelError,setModelError] = useState(true);
+const [errorShow,seterrorShow] = useState(false);
+const [successShow,setsuccessShow] = useState(false);
+    //console.log(getNotoficationId);
 
     const openSidebar = () => {
         setSidebarOpen(true);
@@ -26,11 +36,34 @@ const ManagerNotifications = () => {
     };
 
 
+    const toggleModal = () => {
+        if(getNotification.header !== "" && getNotification.message !==""){
+           console.log("open test");
+            setModal(!modal);
+            setshow(false);
+        }else{
+            setshow(true);
+        }
+
+        
+    };
+
+    const toggleModal1=() =>{
+        // if(sendNotification()){
+        //       setModal(modal);
+        // }else{
+        //     setModal(!modal);
+        // }
+        setModal(!modal);
+    }
+
+
 
     useEffect(() => {
 
         Student();
         viewGetNotification();
+        console.log(getMetaData);
     }, []);
 
 
@@ -44,10 +77,15 @@ const ManagerNotifications = () => {
     }
 
 
-    const sendNotification = () => {
+    const sendNotification = (e) => {
         let receiverUserIdAtrray = [];
-        let notificationId = getNotoficationId.notificationId;
+        let notificationId = "";
         let reciverType = 3;
+        let senderUsername = sessionStorage.getItem('username');
+        let senderUserId = sessionStorage.getItem('empId');
+        let senderType = sessionStorage.getItem('role');
+        let header = getNotification.header;
+        let message = getNotification.message;
         getStudent.forEach(d => {
             if (d.select) {
                 receiverUserIdAtrray.push(d.stuID);
@@ -59,42 +97,79 @@ const ManagerNotifications = () => {
         let data = {
             notificationId,
             reciverType,
-            receiverUserIdAtrray
+            receiverUserIdAtrray,
+            senderUsername,
+            senderUserId,
+            senderType,
+            header,
+            message
         }
 
+        setModal(!modal); 
+        console.log(receiverUserIdAtrray.length);
         console.log(data);
 
+        if(receiverUserIdAtrray.length == 0){
+        //    setModelError(true);
+        //    console.log("uptest");
+        //setModelError(false);
+        seterrorShow(true);
+      //  setsuccessShow(false);
+       // return true;
+       
+          
+        
+     }else{
+       
+       
+       // setModal(!modal); 
+            
+           // event.preventDefault();
+
+
+//setModal(!modal); 
         axios
-            .post(`http://localhost:8080/notification/addstudentlist`, data)
+            .post(`http://localhost:8080/listnotification/addnotification`, data)
             .then(data => {
                 console.log(data);
                 setNotification(data.data);
 
             })
             .catch(err => alert(err));
+       // setModelError(true);
+      // e.preventDefault();
+      window.location.reload();
+       seterrorShow(false);
+       //setsuccessShow(true);
+      
+       }
+        
 
-    };
+       
 
-    const viewGetNotification=()=>{
+    }
+
+    const viewGetNotification = () => {
         axios
-        .get("http://localhost:8080/notification/getallnotificationbybranch/"+sessionStorage.getItem('branchId'))
-        .then(data =>{
-            setViewNotification(data.data);
-          
-  
-        })
-      }
+            .get("http://localhost:8080/notification/getallnotificationbybranch/" + sessionStorage.getItem('branchId'))
+            .then(data => {
+                setViewNotification(data.data);
 
-console.log(getNotification);
+
+            })
+    }
+
+    console.log(getNotification);
+    console.log(getStudent);
 
     const submit = e => {
-        let senderUsername = "Nimal";
-        let senderUserId = 1;
-        let senderType = 1;
+        let senderUsername = sessionStorage.getItem('username');
+        let senderUserId = sessionStorage.getItem('empId');
+        let senderType = sessionStorage.getItem('role');
         let header = e.target[0].value;
         let message = e.target[1].value;
-       
-        
+
+
         let data = {
             senderUsername,
             senderUserId,
@@ -103,14 +178,17 @@ console.log(getNotification);
             message
 
         }
-        notification(data);
-      };
+
+        setNotification(data);
+
+        // notification(data);
+    };
 
 
     const notification = (data) => {
-       
 
-        
+
+
         axios
             .post(`http://localhost:8080/notification/addNotification`, data)
             .then(data => {
@@ -119,8 +197,8 @@ console.log(getNotification);
 
             })
             .catch(err => alert(err));
-            
-            sendNotification();
+
+        sendNotification();
     }
 
     console.log(viewNotification);
@@ -139,106 +217,73 @@ console.log(getNotification);
                     <br /><br />
                     <div className="table_responsive">
                         <form
-                        onSubmit={e => {
-                            e.preventDefault();
-                            submit(e);
-                          }}
+                        //onSubmit={e => {
+                        //  e.preventDefault();
+                        //submit(e);
+                        //}}
                         >
                             <div className="message">
                                 <p>Message</p>
                                 <br />
-                                <input placeholder="Title" className="title"></input>
+                                <input placeholder="Title" className="title" onChange={(e) => {
+                                    setNotification({
+                                        header: e.target.value,
+                                        message: getNotification.message
+                                    });
+                                }}></input>
                                 <br />
-                                <textarea placeholder="Description" className="description"></textarea>
-                                <br />
-                                
-                                <br /><br />
+                                <textarea placeholder="Description" className="description" onChange={
+                                    (e) => {
+                                        setNotification({
+                                            header: getNotification.header,
+                                            message: e.target.value
+                                        });
+                                    }
+                                }></textarea>
 
+                            
+
+                                <div  style={{background: "red",marginTop: "5px",display: show ? "block" : "none"}}>
+                                    <p style={{color: "white",padding: "10px",margin: "5px",border: "5px solid white"}}>Title Feild OR Message Feild is Empty.</p>
+                                </div> 
+
+                                <div  style={{background: "red",marginTop: "5px",display: errorShow ? "block" : "none"}}>
+                                    <p style={{color: "white",padding: "10px",margin: "5px",border: "5px solid white"}}>Message Send Fail . You Have Not Selected Student </p>
+                                </div> 
+                                <div  style={{background: "Green",marginTop: "5px",display: successShow ? "block" : "none"}}>
+                                    <p style={{color: "white",padding: "10px",margin: "5px",border: "5px solid white"}}>Message is Sent Successfull </p>
+                                </div> 
 
                             </div>
-                       
-                        <div className="search">
-                            <div className="search_box">
-                                <div className="dropdown">
-                                    <div className="default_option">All</div>
-                                    {/* <ul>
-                                    <li>All</li>
-                                    <li>Recent</li>
-                                    <li>Popular</li>
-                                   </ul> */}
+
+                            
+
+                            {modal && (
+                                <div className="modal">
+                                    <div className="overlay">
+                                        <div className="modal-content" style={{
+                                            background: "white",
+                                            zIndex: "0"
+                                        }}>
+                                            <ManagerNotificationsSelectStudent toggleModal1={toggleModal1} /*showModelError={showModelError}*/ setMetaData={setMetaData} sendNotification={sendNotification} getStudent={getStudent} setStudent={setStudent} toggleModal={toggleModal} />
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="search_field">
-                                    <input type="text" className="input" placeholder="Search" />
-                                    <i className="fas fa-search"></i>
-                                </div>
-                            </div>
-                            <label className="select-all"><p>Select all</p>
-                                <input type="checkbox" checked="checked" />
-                                <span className="checkmark"></span>
-                            </label>
-                        </div>
-                        <br /><br />
-                        <p>Students</p>
+                            )}
 
-                        <br />
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th><input type="checkbox" onChange={e => {
-                                        let value = e.target.checked;
-                                        setStudent(
-                                            getStudent.map(d => {
-                                                d.select = value;
-                                                console.log(d);
-                                                return d;
-                                            })
-                                        );
-                                    }}  /></th>
-                                    <th>Reg No</th>
-                                    <th>Full Name</th>
-                                    <th>NIC</th>
-                                </tr>
-                            </thead>
+                            
 
-                            <tbody>
-                                {
+                            <br />
 
-                                    getStudent.map(d => (
-                                        <tr key={d.stuID}>
-
-                                            <td>
-                                                <input type="checkbox" checked={d.select}
-                                                    onChange={e => {
-                                                        let value = e.target.checked;
-                                                        setStudent(
-                                                            getStudent.map(sd => {
-                                                                console.log(sd);
-                                                                if (sd.stuID === d.stuID) {
-                                                                    sd.select = value;
-                                                                    console.log(sd.select);
-                                                                }
-                                                                return sd;
-                                                            })
-                                                        );
-                                                    }} />
-                                                <span className="checkmarks"></span>
-                                            </td>
-                                            <td>{d.stuID}</td>
-                                            <td>{d.name}</td>
-                                            <td>{d.nid}</td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
-                        <br />
-                        {/*<input type="submit" className="add-btn" onClick={() => {
+                            <br />
+                            {/*<input type="submit" className="add-btn" onClick={() => {
                             sendNotification();
 
                         }} />*/}
-                        <input type="submit" value="Add" className="add-btn" />
-
-</form>
+                           
+                        </form>
+                        <button className="add-btn" onClick={toggleModal}>add student</button>
                         <br /><br />
                         <hr />
                         <p>Sent Notifications</p>
@@ -255,23 +300,23 @@ console.log(getNotification);
                             </thead>
 
                             <tbody>
-                                { viewNotification.map(d => (
-                                <tr>
-                                    <td>{d.notificationId}</td>
-                                    <td>{d.senderUsername}</td>
-                                    <td>{d.header}</td>
-                                    <td>{d.message}</td>
-                                    <td>
-                                        <span className="action_btn">
-                                            <a href="./managerviewnotification" className="eye"><i className="fa fa-eye"></i></a>
-                                            <a href="#" className="trash"><i className="fa fa-trash"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
+                                {viewNotification.map(d => (
+                                    <tr>
+                                        <td>{d.notificationId}</td>
+                                        <td>{d.senderUsername}</td>
+                                        <td>{d.header}</td>
+                                        <td>{d.message}</td>
+                                        <td>
+                                            <span className="action_btn">
+                                                <a href="./managerviewnotification" className="eye"><i className="fa fa-eye"></i></a>
+                                                
+                                            </span>
+                                        </td>
+                                    </tr>
                                 ))
-}
-                        
-                               
+                                }
+
+
                             </tbody>
                         </table>
                     </div>

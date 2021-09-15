@@ -75,214 +75,223 @@ const ManagerNewPayment = (props) => {
 
 
   return (
-    <div className="container" style={{ height: "80vh", width: "100%" }}>
-
-      <main>
-        <div className="main__container">
-          <div className="main__title">
-
-          </div>
-          <br /><br />
-          <div className="table_responsive">
+    <div style={{ height: "80vh", width: "100%", overflow: "scroll" }}>
 
 
-            <div>
-              <p>Name : {props.data.name}</p>
-              <p>National ID : {props.data.nid}</p>
-              <p>Address : {props.data.address}</p>
+      <div className="main__container">
+        <div className="main__title">
 
-            </div>
+        </div>
+        <br /><br />
+        <div className="table_responsive">
 
-            <br />
+          <table>
+            <thead>
 
-
-
-          </div>
-
-          <div className="table_responsive" style={{ marginTop: "1%" }}>
-            <button onClick={() => setdiv()}>Light weight</button>
-            <button onClick={() => setdiv()}>High weight</button>
-          </div>
-
-          <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" }}>
-            {
-              show ?
-                <div className="table_responsive" style={{ width: "98%" }}>
-                  <div style={{ borderBottom: "1px solid black" }}>
-                    <p>Light Vehicle</p>
-                  </div>
-                  <table>
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>A1</td>
-                      <td style={{ padding: "10px" }}>Car</td>
-                      <td style={{ padding: "10px" }}>Auto/Maual</td>
-                      <td style={{ padding: "10px" }}>
-                        <select onChange={e => {
-                          setdrop({
-                            car: e.target.value,
-                            bike: getdrop.bike,
-                            threewheel: getdrop.threewheel
-                          });
-                        }}>
-                          <option value="1">1h</option>
-                          <option value="2">2h</option>
-                          <option value="3">3h</option>
-                          <option value="4">4h</option>
-                        </select></td>
-                      <td>RS {getdrop.car * 1000}</td>
-                    </tr>
+              <tr>
+                <th >Name : </th>
+                <th style={{ background: "white", color: "black" }}>{props.data.name}</th>
+              </tr>
+              <tr>
+                <th>National ID : </th>
+                <th style={{ background: "white", color: "black" }}> {props.data.nid}</th>
+              </tr>
+              <tr>
+                <th>Address : </th>
+                <th style={{ background: "white", color: "black" }}>{props.data.address}</th>
+              </tr>
 
 
 
 
 
-                    <tr >
-                      <td style={{ padding: "10px" }}>B</td>
-                      <td style={{ padding: "10px" }}>M</td>
-                      <td style={{ padding: "10px" }}>Motocycle</td>
-                      <td style={{ padding: "10px" }}>
-                        <select onChange={e => {
-                          setdrop({
-                            car: getdrop.car,
-                            bike: e.target.value,
-                            threewheel: getdrop.threewheel
-
-                          });
-                        }}>
-                          <option value="1">1h</option>
-                          <option value="2">2h</option>
-                          <option value="3">3h</option>
-                          <option value="4">4h</option>
-                        </select>
-                      </td>
-                      <td>RS {getdrop.bike * 1000}</td>
-                    </tr>
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>G1</td>
-                      <td style={{ padding: "10px" }}>T</td>
-                      <td style={{ padding: "10px" }}>ThreeWheel</td>
-                      <td style={{ padding: "10px" }}>
-                        <select onChange={e => {
-                          setdrop({
-                            car: getdrop.car,
-                            bike: getdrop.bike,
-                            threewheel: e.target.value
-                          });
-                        }}>
-                          <option value="1">1h</option>
-                          <option value="2">2h</option>
-                          <option value="3">3h</option>
-                          <option value="4">4h</option>
-                        </select>
-
-                      </td>
-                      <td>RS {getdrop.threewheel * 1000}</td>
-                    </tr>
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>Exam Fee</td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}>
-
-                      </td>
-                      <td>RS 11000</td>
-                    </tr>
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>Total Fee</td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}>
-
-                      </td>
-                      <td>RS {(parseInt(getdrop.car) + parseInt(getdrop.bike) + parseInt(getdrop.threewheel)) * 1000 + 11000}</td>
-                    </tr>
-
-                  </table>
-
-
-
-
-                </div>
-                :
-
-
-                <div className="table_responsive" style={{ width: "98%" }}>
-                  <div style={{ borderBottom: "1px solid black" }}>
-                    <p>Heavy Vehicle</p>
-                  </div>
-                  <table>
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>G1</td>
-                      <td style={{ padding: "10px" }}>Bus</td>
-                      <td style={{ padding: "10px" }}>Bus</td>
-                      <td style={{ padding: "10px" }}>
-                        <select onChange={e => {
-                          setdrop({
-                            car: e.target.value,
-                            bike: getdrop.bike,
-                            threewheel: getdrop.threewheel
-                          });
-                        }}>
-                          <option value="1">1h</option>
-                          <option value="2">2h</option>
-                          <option value="3">3h</option>
-                          <option value="4">4h</option>
-                        </select></td>
-                      <td>RS {getdrop.car * 1000}</td>
-                    </tr>
-
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>Exam Fee</td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}>
-
-                      </td>
-                      <td>RS 11000</td>
-                    </tr>
-
-                    <tr >
-                      <td style={{ padding: "10px" }}>Total Fee</td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}></td>
-                      <td style={{ padding: "10px" }}>
-
-                      </td>
-                      <td>RS {(parseInt(getdrop.car)) * 1000 + 11000}</td>
-                    </tr>
-
-                  </table>
-
-
-
-
-                </div>
-
-            }
-          </div>
-
-
+            </thead>
+          </table>
 
 
         </div>
 
+        <div className="table_responsive" style={{ marginTop: "1%" }}>
+          <button className="update-btn" style={{ width: "50%" }} onClick={() => setdiv()}>Light weight</button>
+          <button className="update-btn" style={{ width: "50%" }} onClick={() => setdiv()}>High weight</button>
+        </div>
+
+        <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" ,background: "white"}}>
+          {
+            show ?
+              <div className="table_responsive" style={{ width: "98%" }}>
+                <div style={{ borderBottom: "1px solid black" }}>
+                  <p>Light Vehicle</p>
+                </div>
+                <table>
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>A1</td>
+                    <td style={{ padding: "10px" }}><i class="fas fa-car"></i></td>
+                    <td style={{ padding: "10px" }}>Auto/Maual</td>
+                    <td style={{ padding: "10px" }}>
+                      <select onChange={e => {
+                        setdrop({
+                          car: e.target.value,
+                          bike: getdrop.bike,
+                          threewheel: getdrop.threewheel
+                        });
+                      }}>
+                        <option value="0">0h</option>
+                        <option value="1">1h</option>
+                        <option value="2">2h</option>
+                        <option value="3">3h</option>
+                        <option value="4">4h</option>
+                      </select></td>
+                    <td>RS {getdrop.car * 1000}</td>
+                  </tr>
 
 
-        <div>
-          <button className="update-btn" onClick={addpayment}>Add</button>
-          <button className="reset-btn" onClick={props.toggleModal}>Close</button>
+
+
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>B</td>
+                    <td style={{ padding: "10px" }}><i class="fas fa-motorcycle"></i></td>
+                    <td style={{ padding: "10px" }}>Motocycle</td>
+                    <td style={{ padding: "10px" }}>
+                      <select onChange={e => {
+                        setdrop({
+                          car: getdrop.car,
+                          bike: e.target.value,
+                          threewheel: getdrop.threewheel
+
+                        });
+                      }}>
+                        <option value="0">0h</option>
+                        <option value="1">1h</option>
+                        <option value="2">2h</option>
+                        <option value="3">3h</option>
+                        <option value="4">4h</option>
+                      </select>
+                    </td>
+                    <td>RS {getdrop.bike * 1000}</td>
+                  </tr>
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>G1</td>
+                    <td style={{ padding: "10px" }}><i class="fa fa-subway" aria-hidden="true"></i>
+                    </td>
+                    <td style={{ padding: "10px" }}>ThreeWheel</td>
+                    <td style={{ padding: "10px" }}>
+                      <select onChange={e => {
+                        setdrop({
+                          car: getdrop.car,
+                          bike: getdrop.bike,
+                          threewheel: e.target.value
+                        });
+                      }}>
+                        <option value="0">0h</option>
+                        <option value="1">1h</option>
+                        <option value="2">2h</option>
+                        <option value="3">3h</option>
+                        <option value="4">4h</option>
+                      </select>
+
+                    </td>
+                    <td>RS {getdrop.threewheel * 1000}</td>
+                  </tr>
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>Exam Fee</td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}>
+
+                    </td>
+                    <td>RS 11000</td>
+                  </tr>
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>Total Fee</td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}>
+
+                    </td>
+                    <td>RS {(parseInt(getdrop.car) + parseInt(getdrop.bike) + parseInt(getdrop.threewheel)) * 1000 + 11000}</td>
+                  </tr>
+
+                </table>
+
+
+
+
+              </div>
+              :
+
+
+              <div className="table_responsive" style={{ width: "98%" }}>
+                <div style={{ borderBottom: "1px solid black" }}>
+                  <p>Heavy Vehicle</p>
+                </div>
+                <table>
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>H</td>
+                    <td style={{ padding: "10px" }}><i class="fas fa-truck"></i></td>
+                    <td style={{ padding: "10px" }}>Lorry</td>
+                    <td style={{ padding: "10px" }}>
+                      <select onChange={e => {
+                        setdrop({
+                          car: e.target.value,
+                          bike: getdrop.bike,
+                          threewheel: getdrop.threewheel
+                        });
+                      }}>
+                        <option value="0">0h</option>
+                        <option value="1">1h</option>
+                        <option value="2">2h</option>
+                        <option value="3">3h</option>
+                        <option value="4">4h</option>
+                      </select></td>
+                    <td>RS {getdrop.car * 1000}</td>
+                  </tr>
+
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>Exam Fee</td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}>
+
+                    </td>
+                    <td>RS 11000</td>
+                  </tr>
+
+                  <tr >
+                    <td style={{ padding: "10px" }}>Total Fee</td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}></td>
+                    <td style={{ padding: "10px" }}>
+
+                    </td>
+                    <td>RS {(parseInt(getdrop.car)) * 1000 + 11000}</td>
+                  </tr>
+
+                </table>
+
+
+
+
+              </div>
+
+          }
         </div>
 
 
 
-      </main>
 
+      </div>
+      <div className="table_responsive">
+        <button className="update-btn" onClick={addpayment}>Add</button>
+        <button className="reset-btn" onClick={props.toggleModal}>Close</button>
+      </div>
 
 
     </div>

@@ -1,8 +1,6 @@
 package com.example.drivelearnbackend.Controllers;
 
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
-import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
-import com.example.drivelearnbackend.Repositories.Entity.Employee;
 import com.example.drivelearnbackend.Sevices.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,4 +36,9 @@ public class EmployeeController {
 //  sign up branch
     @PostMapping(value = "/register")
     public String registerEmployee(@RequestBody EmployeeDTO dto){ return employeeService.registerEmployee(dto);}
+
+    @PostMapping(value = "updateemploy")
+    public void employUpdate(@RequestBody EmployeeDTO dto){
+        employeeService.updateEmploy(dto);
+    }
 }

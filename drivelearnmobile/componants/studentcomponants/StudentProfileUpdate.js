@@ -31,6 +31,31 @@ const StudentProfileUpdate = ({navigation,route}) => {
     let url1=Base+'student/getStudent';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [name,setName]=useState("");
+    const[address,setAddress]=useState("");
+    const[id,setId]=useState("");
+    const[contact,setContact]=useState("");
+
+    const updateFunction=()=>{
+        fetch(Base+"student/updatestudent", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                contact:contact,
+                address:address,
+                name:name,
+                nid:id
+            })
+        });
+        setId("");
+        setContact("");
+        setAddress("");
+        setName("");
+    }
 
     useEffect(()=>{
 
@@ -48,7 +73,11 @@ const StudentProfileUpdate = ({navigation,route}) => {
         })
             .then((response) => response.json())
             .then((json) => {
-                setData(json)
+                setData(json);
+                setName(json.name);
+                setAddress(json.address);
+                setId(json.nid);
+                setContact(json.contact);
                 console.log(json);
             })
             .catch((error) => console.error(error))
@@ -177,6 +206,59 @@ const StudentProfileUpdate = ({navigation,route}) => {
                         </TouchableWithoutFeedback>
                     </Modal>
 
+                    <View style={styles.middleVIew}>
+
+                        <TextInput
+                            placeholder={'Full Name'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={name}
+                            onChangeText={(text)=>{
+                                setName(text);
+                            }}
+                            // onBlur={props.handleChange('username')}
+                            // placeholderStyle={{color:'red'}}
+                        />
+                        <TextInput
+                            placeholder={'Address'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={address}
+                            onChangeText={(text)=>{
+                                setAddress(text);
+                            }}
+                            // onBlur={props.handleChange('username')}
+                            // placeholderStyle={{color:'red'}}
+                        />
+
+                        <TextInput
+                            placeholder={'Contact'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={contact}
+                            onChangeText={(text)=>{
+                                setContact(text);
+                            }}
+                            // onBlur={props.handleChange('username')}
+                            // placeholderStyle={{color:'red'}}
+                        />
+                        <TextInput
+                            placeholder={'Id Number'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={id}
+                            onChangeText={(text)=>{
+                                setId(text);
+                            }}
+                            // onBlur={props.handleChange('username')}
+                            // placeholderStyle={{color:'red'}}
+                        />
+                        <View style={styles.fillerMiddle}></View>
+                        <TouchableOpacity style={styles.submitBtn} onPress={()=>updateFunction()}>
+                            <Text style={styles.middleButtonText}>Update</Text>
+                        </TouchableOpacity>
+                        <View style={styles.fillerMiddle}></View>
+                    </View>
 
 
 
@@ -337,6 +419,42 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
+    },
+    inputone: {
+        color: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        width: 300,
+        paddingBottom: 3,
+        marginBottom:10,
+        marginTop:20,
+    },
+    middleVIew:{
+        width:'95%',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        alignItems:'center',
+        marginTop:50,
+        marginBottom:10,
+        paddingBottom:10,
+        backgroundColor:'#ffffff20',
+        borderRadius:20
+
+    },
+    fillerMiddle:{
+        height:30
+    },
+    submitBtn:{
+        width:120,
+        height:50,
+        backgroundColor:'red',
+        borderRadius:10,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    middleButtonText:{
+        color:'green',
+        fontSize:18
     }
 
 

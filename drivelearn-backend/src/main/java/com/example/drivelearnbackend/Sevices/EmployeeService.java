@@ -153,4 +153,22 @@ public class EmployeeService {
         return error;
 
     }
+
+    public void updateEmploy(EmployeeDTO dto){
+        Employee employee1=null;
+        for (Employee employee : repository.findByUsernameAndRole(dto.getUsername(), 2)) {
+            employee1=employee;
+        }
+        if(dto.getFullName()!="" && dto.getFullName()!=null){
+            employee1.setFullName(dto.getFullName());
+        }
+        if(dto.getMoNumber()!="" && dto.getMoNumber()!=null){
+            employee1.setMoNumber(dto.getMoNumber());
+        }
+        if(dto.getNid()!="" && dto.getNid()!=null){
+            employee1.setNid(dto.getNid());
+        }
+        repository.save(employee1);
+
+    }
 }

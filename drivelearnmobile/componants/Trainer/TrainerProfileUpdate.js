@@ -24,31 +24,58 @@ function TrainerProfileUpdate({navigation,route}) {
     const [notificCount,setNotificCount]=useState('0');
 
     // getting student
-    let url1=Base+'student/getStudent';
+    // let url1=Base+'student/getStudent';
+    let url1=Base+'employee/getemployee';
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+
+    const [name,setName]=useState("");
+    const[id,setId]=useState("");
+    const[contact,setContact]=useState("");
+
+    const updateDetails=()=>{
+        fetch(Base+"employee/updateemploy", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                moNumber:contact,
+                fullName:name,
+                nid:id
+            })
+        });
+        setId("");
+        setContact("");
+        setName("");
+    }
 
     useEffect(()=>{
 
 
-        // this is student loading
-        // fetch(url1, {
-        //     method: 'POST',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         username: username
-        //     })
-        // })
-        //     .then((response) => response.json())
-        //     .then((json) => {
-        //         setData(json)
-        //         console.log(json);
-        //     })
-        //     .catch((error) => console.error(error))
-        //     .finally(() => setLoading(false));
+        // this is employ loading
+        fetch(url1, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setData(json);
+                setName(json.fullName);
+                setId(json.nid);
+                setContact(json.moNumber);
+                console.log(json);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
 
 
@@ -155,7 +182,48 @@ function TrainerProfileUpdate({navigation,route}) {
 
                     </View>
 
-                    {/*main nav with modal*/}
+                    <View style={styles.middleVIew}>
+
+                        <TextInput
+                            placeholder={'Full Name'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={name}
+                            onChangeText={(text)=>{
+                                setName(text);
+                            }}
+
+                        />
+
+
+                        <TextInput
+                            placeholder={'Contact'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={contact}
+                            onChangeText={(text)=>{
+                                setContact(text);
+                            }}
+
+                        />
+                        <TextInput
+                            placeholder={'Id Number'}
+                            style={styles.inputone}
+                            placeholderTextColor={'white'}
+                            value={id}
+                            onChangeText={(text)=>{
+                                setId(text);
+                            }}
+
+                        />
+                        <View style={styles.fillerMiddle}></View>
+                        <TouchableOpacity style={styles.submitBtn} onPress={()=>updateDetails()}>
+                            <Text style={styles.middleButtonText}>Update</Text>
+                        </TouchableOpacity>
+                        <View style={styles.fillerMiddle}></View>
+                    </View>
+
+
 
 
 
@@ -319,7 +387,44 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7
+    },
+    inputone: {
+        color: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        width: 300,
+        paddingBottom: 3,
+        marginBottom:10,
+        marginTop:20,
+    },
+    middleVIew:{
+        width:'95%',
+        marginLeft:'2.5%',
+        marginRight:'2.5%',
+        alignItems:'center',
+        marginTop:50,
+        marginBottom:10,
+        paddingBottom:10,
+        backgroundColor:'#ffffff20',
+        borderRadius:20
+
+    },
+    fillerMiddle:{
+        height:30
+    },
+    submitBtn:{
+        width:120,
+        height:50,
+        backgroundColor:'red',
+        borderRadius:10,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    middleButtonText:{
+        color:'green',
+        fontSize:18
     }
+
 
 
 })
