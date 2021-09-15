@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="424265f7-383f-4c2f-85ad-0755fdf9a653" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/ListNotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearn-backend/src/main/java/com/example/drivelearnbackend/Sevices/ListNotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerForgetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/componants/Trainer/TrainerForgetPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../drivelearnmobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drivelearnmobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../drivelearnmobile/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +32,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager" selected="npm.start">
@@ -110,6 +118,7 @@
       <workItem from="1631426645783" duration="980000" />
       <workItem from="1631447438021" duration="674000" />
       <workItem from="1631635071188" duration="762000" />
+      <workItem from="1631713534341" duration="1293000" />
     </task>
     <servers />
   </component>
