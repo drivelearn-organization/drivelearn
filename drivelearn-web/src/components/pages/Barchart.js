@@ -1,6 +1,9 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 import '../css/Barchart.css';
+mport React from 'react';
+import {Bar} from 'react-chartjs-2';
+import '../css/Barchart.css';
 
 const Barchart = () => {
     return (
