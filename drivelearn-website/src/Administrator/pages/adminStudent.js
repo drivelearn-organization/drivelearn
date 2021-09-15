@@ -145,7 +145,7 @@ const handleSubmit = (e) =>{
                      <td>
                      <span className="action_btn">
                      <a href={'./adminviewstudent/'+ data.stuID} className="eye"><i className="fa fa-eye"></i></a>
-                     <a href="#" className="trash" onClick = {()=>{ setDeactivate({stuID:data.stuID}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a>
+                     {/* <a href="#" className="trash" onClick = {()=>{ setDeactivate({stuID:data.stuID}); handleChangeActiveStatus(); }}><i className="fa fa-trash"></i></a> */}
                      </span>
                      </td>
                 </tr>

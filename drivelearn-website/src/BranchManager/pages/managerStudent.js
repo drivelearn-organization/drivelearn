@@ -151,7 +151,7 @@ const ManagerStudents = () => {
                       <td>
                         <span className="action_btn">
                           <a href={'./managerviewstudent/' + data.stuID} className="eye"><i className="fa fa-eye"></i></a>
-                          <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                          {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
                         </span>
                       </td>
                     </tr>
