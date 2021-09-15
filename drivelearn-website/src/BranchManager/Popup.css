@@ -166,4 +166,12 @@
   background-color: rgb(31, 121, 13);
 }
 
+#close_popupBox{
+  background-color: rgb(13, 96, 121);
+}
+
+#active_popupBox {
+  background-color: rgb(31, 121, 13);
+
+}
   
