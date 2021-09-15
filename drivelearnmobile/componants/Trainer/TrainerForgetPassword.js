@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ImageBackground,
   Keyboard,
@@ -25,6 +25,21 @@ const reviewSchema1 = yup.object().shape({
   username: yup.string().required(),
 });
 const TrainerForgetPassword = ({navigation}) => {
+
+  const [otp,setOtp]=useState(0);
+
+  const [errUsername, setErrUsername]=useState("");
+  const [errEmail, setErrEmail]=useState("");
+
+
+  const[email,setEmail]=useState("");
+  const[username,setUsername]=useState("");
+
+
+  const setOtpFunction=()=>{
+    
+  }
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -65,39 +80,54 @@ const TrainerForgetPassword = ({navigation}) => {
                 <Text style={styles.secondtext}>password</Text>
               </View>
             </View>
-            <Formik
-              initialValues={{username: ''}}
-              validationSchema={reviewSchema1}
-              onSubmit={() => {
-                // eslint-disable-next-line no-undef
-                actions.resetForm();
-              }}>
-              {props => (
+
                 <View style={styles.firstInputView}>
                   <TextInput
                     placeholder={'Username'}
                     style={styles.inputone}
                     placeholderTextColor={'white'}
-                    value={props.values.username}
-                    onChangeText={props.handleChange('username')}
-                    onBlur={props.handleChange('username')}
+                    value={username}
+                    onChangeText={(text)=>{
+                      setUsername(text);
+                    }}
+                    // onBlur={props.handleChange('username')}
                     // placeholderStyle={{color:'red'}}
                   />
 
+
+
                   <Text style={styles.warn}>
-                    {props.touched.username && props.errors.username}
+                    {errUsername!==""?errUsername:null}
+                  </Text>
+
+                  <TextInput
+                      placeholder={'Email'}
+                      style={styles.inputone}
+                      placeholderTextColor={'white'}
+                      value={email}
+                      onChangeText={(text)=>{
+                        setEmail(text);
+                      }}
+                      // onBlur={props.handleChange('username')}
+                      // placeholderStyle={{color:'red'}}
+                  />
+
+
+
+                  <Text style={styles.warn}>
+                    {errEmail!==""?errEmail:null}
                   </Text>
 
                   <View style={styles.touchableView}>
                     <TouchableOpacity
                       style={styles.buttonSubmit}
-                      onPress={props.handleSubmit}>
+                      // onPress={props.handleSubmit}
+                    >
                       <Text>Send OTP</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
-              )}
-            </Formik>
+
 
             <Formik
               initialValues={{
