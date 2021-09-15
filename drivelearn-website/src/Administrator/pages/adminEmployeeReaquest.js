@@ -3,12 +3,16 @@ import '../../App.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
+import ActiveBox from './ActiveBox';
 
 const AdminEmployeeReaquest = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
     const [active, setActive] = useState(false);
-  
+    const [modal, setModal] = useState(false);
+    const[activate, setActivate] = useState({
+      empid: '' 
+  });
     const openSidebar = () => {
        setSidebarOpen(true);
     };
@@ -23,13 +27,13 @@ const AdminEmployeeReaquest = () => {
   
 });
 
-// const handleSetActive = (e) => {
-//     setActive(!active) 
+const handleSetActive = (e) => {
+  // setModal(true);
   
-//   }
+  }
 
 const handleChange = () => {
-  alert("Are you sure");
+  setModal(true);
 }
 
 //    const handleSubmit = (state) =>{
@@ -48,7 +52,7 @@ const handleChange = () => {
       setGetData(response.data)
       console.log(getData);
     })
-    axios.post('http://192.168.56.1:8080/drivelearn/activeEmployee',state)  
+    // axios.post('http://192.168.56.1:8080/drivelearn/activeEmployee',state)  
     console.log(state);
    });
   
@@ -57,6 +61,7 @@ const handleChange = () => {
     <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      {modal && <ActiveBox closeModal={setModal} empid={activate} location='/adminEmployeeReaquest'/>}
          <div className="main__container">
             <div className="main__title">
                 <div className="main__greeting">
@@ -100,7 +105,7 @@ const handleChange = () => {
                   <tr>
                   <th>Reg No</th>
                   <th>Full Name</th>
-                  <th>Address</th>
+                  {/* <th>Address</th> */}
                   <th>NIC</th>
                   <th>Mobile</th>
                   <th>Action</th>
@@ -116,15 +121,17 @@ const handleChange = () => {
                   
                   <tr>
                     
-                     <td>{data.count}</td>
+                     <td>{data.empid}</td>
                      <td>{data.fullName}</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
+                     {/* <td>No.65, Kottegoda, Weligama.</td> */}
                      <td>{data.nid}</td>
                      <td>{data.moNumber}</td>
                      <td>
                      <span className="action_btn">
                      
-                        <a href="#" className="eye" onClick = {()=>{ setState({empid:data.empid}); handleChange(); }}>Activate</a>
+                        <button id = "active_new_employee" href="#" className="eye" onClick = {()=>{ setActivate({empid:data.empid}); handleChange(); }}
+                        
+                        >Activate</button>
                      {/* <a href="#" className="trash"><i className="fa fa-trash"></i></a> */}
                      </span>
                      </td>

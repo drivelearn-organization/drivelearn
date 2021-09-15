@@ -6,3 +6,23 @@
     padding: 0;
     font-family: 'PT Sans', sans-serif;
   }
+
+
+  #active_new_employee{
+    color: rgb(9, 71, 122);
+    background-color: transparent;
+    border-color: rgb(11, 20, 146);
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  #active_new_employee:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 71, 122);
+    border-color: rgb(11, 20, 146);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
