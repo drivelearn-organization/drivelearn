@@ -25,6 +25,10 @@ const reviewSchema = yup.object().shape({
 const reviewSchema1 = yup.object().shape({
   username: yup.string().required(),
 });
+
+
+
+
 const TrainerForgetPassword = ({navigation}) => {
 
   const [otp,setOtp]=useState(0);
@@ -70,7 +74,6 @@ const TrainerForgetPassword = ({navigation}) => {
         var val = Math.floor(1000 + Math.random() * 9000);
         setOtp(val);
         console.log(val);
-
 
   }
 

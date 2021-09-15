@@ -25,6 +25,8 @@
     "@turf/points-within-polygon": "^6.5.0",
     "@turf/turf": "^6.5.0",
     "formik": "^2.2.9",
+    "qs": "^6.10.1",
+    "qs-stringify": "^1.2.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-native": "0.64.1",
