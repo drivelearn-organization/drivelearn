@@ -118,6 +118,18 @@ const ManagerSession = () => {
   }
 
 
+  const deleteSession = (id) => {
+    //console.log(id);
+    axios
+      .put('http://localhost:8080/staffsessioncontroller/makeclose/' + id)
+      .then(d => {
+        console.log(d);
+      })
+
+      window.location.reload();
+  }
+
+
   const booksession = (data) => {
 
     console.log(data);
@@ -272,7 +284,7 @@ const ManagerSession = () => {
                       <td>
                         <span className="action_btn">
                           <a className="eye"><i className="fa fa-eye" onClick={() => toggleupdate(d.sessionId, d.trainerUsername, d.date, d.startTime, d.numOfStudent, d.trainerId, d.vehicleType)}></i></a>
-                          <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                          <a className="trash" onClick={()=>deleteSession(d.sessionId)}><i className="fa fa-trash"></i></a>
                         </span>
                       </td>
                     </tr>
