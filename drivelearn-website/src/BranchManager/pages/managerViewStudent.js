@@ -4,12 +4,22 @@ import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
-
+import Errorbox from './../../Administrator/pages/errorbox';
+import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
 
 const ManagerViewStudents = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
-
+  const [toggle, settoggle] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [Msg, setMsg] = useState({
+      errorMsg: ''
+  });
+  
+  const [errMsg, seterrMsg] = useState({
+      errorMsg: ''
+  });
   const[state, setState] = useState({
     name:'',
     address: '',
@@ -65,13 +75,31 @@ const ManagerViewStudents = (props) => {
       ...state,
       [e.target.name]: e.target.value
   }) 
-
+  setDisabled(false);
 }
 
 const handleSubmit = (e) =>{
   e.preventDefault()
   axios.post('http://localhost:8080/drivelearn/updateStudent',state)
-  console.log(state);
+  .then(response => {
+      
+    if(response.data === "update successfully")
+    {
+      console.log(response.data);
+      settoggle(true);
+      setMsg({
+        errorMsg: response.data
+      })
+      window.location = '/managerstudent';
+      
+    }else{
+     
+      setModal(true);
+      seterrMsg({
+        errorMsg: response.data
+      })
+    }
+  })
  
 }
 
@@ -80,6 +108,8 @@ return (
   <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
     <main>
+    {modal && <Errorbox closeModal={setModal} errorMsg={errMsg}/>}
+    {toggle && <SuccessfulyMsgBox closeModal={settoggle} errorMsg={Msg}/>}
        <div className="main__container">
           <div className="main__title">
               <div className="main__greeting">
@@ -148,7 +178,7 @@ return (
           
           
           <center>
-          <input type="submit" value="Update" className="update-btn" />
+          <input type="submit" value="Update" className="update-btn" disabled={disabled} style = {{ opacity: disabled ? "0.7":"1"}}/>
           &nbsp;&nbsp;&nbsp;
           <input type="submit" value="Deactivate" className="reset1-btn" />
           </center>
