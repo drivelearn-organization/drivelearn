@@ -48,6 +48,8 @@ public class ListNotificationService {
         System.out.println("for testing"+dto.getHeader());
         notification = notificationrepository.save(new Notification(dto.getHeader(), dto.getMessage(), LocalDate.now(),1,usersReceivedotificaction,user));
 
+        System.out.println(dto.getReceiverUserIdAtrray());
+
         for (int i : dto.getReceiverUserIdAtrray()) {
             System.out.println(i);
             addReceiver(new NotificationDTO(notification.getNotificationId(), i, dto.getReceiverType()));
