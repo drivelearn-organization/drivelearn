@@ -21,7 +21,7 @@ const ManagerStudents = () => {
     threewheel: "0",
   });
   const [enrol, setenrol] = useState();
-  const [getdropmenu,setgetdropmenu] = useState();
+  const [getdropmenu, setgetdropmenu] = useState();
   const [search, getSearch] = useState("");
 
 
@@ -34,7 +34,7 @@ const ManagerStudents = () => {
         name: name,
         address: address,
         nid: nid,
-        username:username
+        username: username
 
       }
 
@@ -118,7 +118,7 @@ const ManagerStudents = () => {
 
 
 
-  
+
 
 
 
@@ -144,8 +144,8 @@ const ManagerStudents = () => {
                 }}>
 
                   <option className="option-style" value="Reg No">Reg No</option>
-                  <option className="option-style" value="Chessi No">Full Name</option>
-                  <option className="option-style" value="Chessi No">NIC</option>
+                  <option className="option-style" value="Full Name">Full Name</option>
+                  <option className="option-style" value="NIC">NIC</option>
 
                 </select>
 
@@ -196,17 +196,17 @@ const ManagerStudents = () => {
               <tbody>
                 {
 
-                  getStudent.filter((value)=>{
+                  getStudent.filter((value) => {
 
                     console.log(value.stuID.toString().toLowerCase());
                     console.log(value.name.toString().toLowerCase());
-                    if(search===""){
+                    if (search === "") {
                       return value;
-                    }else if(value.stuID.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Reg No")){
+                    } else if (value.stuID.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Reg No")) {
                       return value;
-                    }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Full Name")){
+                    } else if (value.name.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Full Name")) {
                       return value;
-                    }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("NIC")){
+                    } else if (value.nid.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("NIC")) {
                       return value;
                     }
                   }).map(data => (
@@ -221,10 +221,18 @@ const ManagerStudents = () => {
                       <td>{data.contact}</td>
                       <td>
 
+                        <span className="action_btn">
 
-                        <button onClick={() => {
+                          <a className="eye"><i className="fa fa-plus-circle" onClick={() =>
+                            toggleModal(data.stuID, data.name, data.address, data.nid, data.username)
+
+                          }></i></a>
+
+                        </span>
+
+                        {/* <button onClick={() => {
                           toggleModal(data.stuID, data.name, data.address, data.nid, data.username)
-                        }}><i className="fa fa-trash"></i></button>
+                        }}><i className="fa fa-trash"></i></button> */}
 
                       </td>
 

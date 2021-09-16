@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import './../Table.css';
 import './../filterButton.css';
@@ -6,99 +6,113 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import ManagerNewUpdatePayment from "./managerNewUpdatePayment ";
-import {Base} from './../../base';
+import { Base } from './../../base';
 
 
 const ManagerVehicle = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [paymentState , setPayementState] = useState([]);
-    const [modal, setModal] = useState(false);
-    const [data, setData] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [paymentState, setPayementState] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [data, setData] = useState([]);
+  const [search, getSearch] = useState("");
+  const [dropdown, getdrop] = useState("Student Id");
 
-    const toggleModal = (id, name, nic, amount,rest,paymentId) => {
-      setData(
-        {
-          id: id,
-          name: name,
-          nic: nic,
-          amount: amount,
-          rest:rest,
-          paymentId:paymentId
-  
-        }
-      );
-  
-      setModal(!modal);
-    };
-  
-    console.log(data);
-  
-  
-  
-    if (modal) {
-      document.body.classList.add('active-modal')
-    } else {
-      document.body.classList.remove('active-modal')
-    }
+  const toggleModal = (id, name, nic, amount, rest, paymentId) => {
+    setData(
+      {
+        id: id,
+        name: name,
+        nic: nic,
+        amount: amount,
+        rest: rest,
+        paymentId: paymentId
 
-    useEffect(()=>{
-      getPayment();
-    }, []);
+      }
+    );
 
-    const getPayment=()=>{
-      axios
-      .get(Base+"/payment/getallpayment/1/"+ sessionStorage.getItem('branchId'))
-      .then(data =>{
+    setModal(!modal);
+  };
+
+  console.log(data);
+
+
+
+  if (modal) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
+
+  useEffect(() => {
+    getPayment();
+  }, []);
+
+  const getPayment = () => {
+    axios
+      .get(Base + "/payment/getallpayment/1/" + sessionStorage.getItem('branchId'))
+      .then(data => {
         setPayementState(data.data.reverse());
-        
+
 
       })
-    }
+  }
 
-    
-  
-    const openSidebar = () => {
-       setSidebarOpen(true);
-    };
-  
-    const closeSidebar = () => {
-      setSidebarOpen(false);
-   };
+
+
+  const openSidebar = () => {
+    setSidebarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
   console.log(paymentState);
-   
+
   return (
     <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-         <div className="main__container">
-            <div className="main__title">
-                <div className="main__greeting">
-                <h1>Manage Payment</h1>
-                <p> {sessionStorage.getItem('branchName')} Branch</p>
-                </div>
+        <div className="main__container">
+          <div className="main__title">
+            <div className="main__greeting">
+              <h1>Manage Payment</h1>
+              <p> {sessionStorage.getItem('branchName')} Branch</p>
             </div>
-            <br/><br/>
-            <div className="table_responsive">
-              <div className="search"> 
-               <div className="search_box">
-                 <div className="dropdown">
-                   <div className="default_option">All</div>  
-                   {/* <ul>
-                         <li>All</li>
-                         <li>Recent</li>
-                         <li>Popular</li>
-                       </ul> */}
-                   </div>
-                 <div className="search_field">
-                 <input type="text" className="input" placeholder="Search" />
-                 <i className="fas fa-search"></i>
-                </div>
-                </div>
-                
-               </div>
-              
+          </div>
+          <br /><br />
+          <div className="table_responsive">
+            <div className="search" >
+              <div className="search_box " >
 
-               {modal && (
+
+                <select id="dropdown" className="drop-down" onChange={e => {
+                  getdrop(e.target.value);
+                }}>
+
+                  <option className="option-style" value="Student Id">Student Id</option>
+                  <option className="option-style" value="Name">Name</option>
+
+                </select>
+
+
+                <div className="search_field search-drop">
+                  <input type="text" className="input" placeholder="Search" onChange={(e) => {
+                    getSearch(e.target.value);
+                  }} />
+                  <i className="fas fa-search"></i>
+                </div>
+              </div>
+              <div className="create-button">
+                <div className="create_btn">
+                  <a href="./manageraddvehicle"><i className="fa fa-plus-circle"></i></a>
+                  <br />
+                  <p>Add vehicle</p>
+                </div>
+              </div>
+            </div>
+
+
+            {modal && (
               <div className="modal">
                 <div onClick={toggleModal} className="overlay"></div>
                 <div className="modal-content">
@@ -109,10 +123,10 @@ const ManagerVehicle = () => {
             )}
 
 
-            <br/>
+            <br />
             <table>
               <thead>
-                  <tr>
+                <tr>
                   <th>Student Id</th>
                   <th>NIC</th>
                   <th>Name</th>
@@ -121,53 +135,62 @@ const ManagerVehicle = () => {
                   <th>Paid Amount</th>
                   <th>Rest Amount</th>
                   <th>Update</th>
-                  
-                 </tr>
-             </thead>
 
-             <tbody>
-             {
-              
-              paymentState.map(d =>(
-               
-                
-                  
-                  
-                  <tr>
-                    
-                     <td>{d.userId}</td>
-                     <td>{d.nic}</td>
-                     <td>{d.name}</td>
-                     <td>{d.date}</td>
-                     <td>{d.amount}</td>
-                     <td>{d.amount-d.rest}</td>
-                     <td>{d.rest}</td>
-                     <td>
-                   <div className="create_btn">
-                     <a  onClick={() => {
-                        toggleModal(d.userId, d.name, d.nic, d.amount,d.rest,d.paymentId)
-                      }}><i className="fa fa-plus-circle"></i></a>
-                    
-                
-                   </div>
-                     </td>
                 </tr>
+              </thead>
 
-                
-                
-                
-  ))
-             }
+              <tbody>
+                {
 
-</tbody>
+                  paymentState.filter((value)=>{
+                    console.log(dropdown);
+                    if(search===""){
+                      return value;
+                    }else if(value.userId.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Student Id")){
+                      return value;
+                    }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Name")){
+                      return value;
+                    }
+                  }).map(d => (
+
+
+
+
+                    <tr>
+
+                      <td>{d.userId}</td>
+                      <td>{d.nic}</td>
+                      <td>{d.name}</td>
+                      <td>{d.date}</td>
+                      <td>{d.amount}</td>
+                      <td>{d.amount - d.rest}</td>
+                      <td>{d.rest}</td>
+                      <td>
+                        <div className="create_btn">
+                          <a onClick={() => {
+                            toggleModal(d.userId, d.name, d.nic, d.amount, d.rest, d.paymentId)
+                          }}><i className="fa fa-plus-circle"></i></a>
+
+
+                        </div>
+                      </td>
+                    </tr>
+
+
+
+
+                  ))
+                }
+
+              </tbody>
             </table>
-            </div> 
+          </div>
         </div>
       </main>
-        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
   );
-  
-  }
-  
-  export default ManagerVehicle;
+
+}
+
+export default ManagerVehicle;
