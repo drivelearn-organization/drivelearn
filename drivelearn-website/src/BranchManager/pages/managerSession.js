@@ -9,6 +9,7 @@ import axios from 'axios';
 import ManagerSessionSelectStudent from './managerSessionSelectStudent';
 
 import ManagerSessionUpdate from './manageSessionUpdate';
+import {Base} from './../../base';
 
 
 const ManagerSession = () => {
@@ -108,7 +109,7 @@ const ManagerSession = () => {
 
   const getSession = () => {
     axios
-      .get("http://localhost:8080/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
+      .get(Base+"/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
       .then(data => {
         setSessionState(data.data);
 
@@ -121,7 +122,7 @@ const ManagerSession = () => {
   const deleteSession = (id) => {
     //console.log(id);
     axios
-      .put('http://localhost:8080/staffsessioncontroller/makeclose/' + id)
+      .put(Base+'/staffsessioncontroller/makeclose/' + id)
       .then(d => {
         console.log(d);
       })
@@ -134,7 +135,7 @@ const ManagerSession = () => {
 
     console.log(data);
     axios
-      .post("http://localhost:8080/session/book", data)
+      .post(Base+"/session/book", data)
       .then(d => {
         console.log(d.data);
       })
@@ -156,7 +157,7 @@ const ManagerSession = () => {
 
     console.log(getdata);
     axios
-      .put("http://localhost:8080/staffsessioncontroller/updatesession", updateDetails)
+      .put(Base+"/staffsessioncontroller/updatesession", updateDetails)
       .then(d => {
 
       })
@@ -168,7 +169,7 @@ const ManagerSession = () => {
 
   const Student = () => {
     axios
-      .get("http://localhost:8080/drivelearn/students")
+      .get(Base+"/drivelearn/students")
       .then(d => {
         setStudent(d.data);
       })

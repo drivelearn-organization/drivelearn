@@ -4,6 +4,7 @@ import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 const ManagerAddStudents = () => {
@@ -18,7 +19,7 @@ const ManagerAddStudents = () => {
 
   const getVehicleTypeState = () => {
     axios
-      .get("http://localhost:8080/vehicletype/showtype")
+      .get(Base+"/vehicletype/showtype")
       .then(data => {
         setVehicleType(data.data);
 
@@ -67,7 +68,7 @@ const ManagerAddStudents = () => {
 
   const postVehicle = (data) => {
     axios
-      .post("http://localhost:8080/vehicle/addvehicle", data)
+      .post(Base+"/vehicle/addvehicle", data)
       .then(d => {
         console.log(d);
       })

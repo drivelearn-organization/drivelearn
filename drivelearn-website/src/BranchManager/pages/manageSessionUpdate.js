@@ -4,6 +4,7 @@ import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 const ManagerAddStudents = (props) => {
@@ -29,7 +30,7 @@ const ManagerAddStudents = (props) => {
 
   const getVehicleTypeState = () => {
     axios
-      .get("http://localhost:8080/vehicletype/showtype")
+      .get(Base+"/vehicletype/showtype")
       .then(data => {
         setVehicleType(data.data);
 
@@ -41,7 +42,7 @@ const ManagerAddStudents = (props) => {
     let id = sessionStorage.getItem('branchId');
     console.log(id);
     axios
-      .get("http://localhost:8080/vehicletype/getemployeetype/" + id)
+      .get(Base+"/vehicletype/getemployeetype/" + id)
       .then(data => {
         setEmployeeType(data.data);
 
@@ -98,7 +99,7 @@ const ManagerAddStudents = (props) => {
 
   const postSession = (data) => {
     axios
-      .post("http://localhost:8080/session/addSession", data)
+      .post(Base+"/session/addSession", data)
       .then(d => {
         console.log(d);
       })

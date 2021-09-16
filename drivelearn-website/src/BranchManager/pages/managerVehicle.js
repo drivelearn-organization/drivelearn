@@ -8,6 +8,7 @@ import axios from 'axios';
 import './../dropdown.css';
 import ManagerUpdateVehicle from './managerUpdateVehicle';
 import ManagerNewUpdateVehicle from './managerNewUpdateVehicle';
+import {Base} from './../../base';
 
 
 const ManagerVehicle = () => {
@@ -46,7 +47,7 @@ const ManagerVehicle = () => {
   const addpayment = () => {
 
     axios
-    .put("http://localhost:8080/vehicle/updatevehicle",getUpdateVehicle)
+    .put(Base+"/vehicle/updatevehicle",getUpdateVehicle)
     .then(d=>{
      
     })
@@ -61,7 +62,7 @@ const ManagerVehicle = () => {
 
   const getVehicle = () => {
     axios
-      .get("http://localhost:8080/vehicle/getvehicle/1/"+ sessionStorage.getItem('branchId'))
+      .get(Base+"/vehicle/getvehicle/1/"+ sessionStorage.getItem('branchId'))
       .then(data => {
         setVehicleState(data.data);
 
@@ -74,7 +75,7 @@ const ManagerVehicle = () => {
   const deleteVehicle = (id) => {
     console.log(id);
     axios
-      .delete('http://localhost:8080/vehicle/deletevehicle/' + id)
+      .delete(Base+'/vehicle/deletevehicle/' + id)
       .then(d => {
         console.log(d);
       })

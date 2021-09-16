@@ -5,6 +5,7 @@ import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 
@@ -71,7 +72,7 @@ const ManagerNotificationsSelectStudent = (props) => {
         console.log(data);
 
         axios
-            .post(`http://localhost:8080/notification/addstudentlist`, data)
+            .post(Base+`/notification/addstudentlist`, data)
             .then(data => {
                 console.log(data);
                 setNotification(data.data);
@@ -83,7 +84,7 @@ const ManagerNotificationsSelectStudent = (props) => {
 
     const viewGetNotification = (props) => {
         axios
-            .get("http://localhost:8080/notification/getallnotificationbybranch/" + sessionStorage.getItem('branchId'))
+            .get(Base+"/notification/getallnotificationbybranch/" + sessionStorage.getItem('branchId'))
             .then(data => {
                 setViewNotification(data.data);
 
@@ -119,7 +120,7 @@ const ManagerNotificationsSelectStudent = (props) => {
 
 
         axios
-            .post(`http://localhost:8080/notification/addNotification`, data)
+            .post(Base+`/notification/addNotification`, data)
             .then(data => {
                 console.log(data);
                 setNotificationId(data.data);
