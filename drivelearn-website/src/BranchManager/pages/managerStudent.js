@@ -202,9 +202,11 @@ me
                     console.log(value.name.toString().toLowerCase());
                     if(search===""){
                       return value;
-                    }else if(value.stuID.toString().toLowerCase().includes(search.toLowerCase()) /*&& getdropmenu.includes("Reg No")*/){
+                    }else if(value.stuID.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Reg No")){
                       return value;
-                    }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) /*&& getdropmenu.includes("Full Name")*/){
+                    }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Full Name")){
+                      return value;
+                    }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("NIC")){
                       return value;
                     }
                   }).map(data => (
