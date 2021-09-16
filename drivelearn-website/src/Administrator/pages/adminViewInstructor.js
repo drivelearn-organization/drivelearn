@@ -6,7 +6,7 @@ import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import Errorbox from './errorbox';
 import SuccessfulyMsgBox from './successfulyMsgBox'
-
+import {Base} from './../../base';
 const AdminViewInstructors = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
@@ -46,7 +46,7 @@ const AdminViewInstructors = (props) => {
    };
 
    useEffect(()=>{
-    axios.get('http://localhost:8080/drivelearn/trainer/'+props.match.params.id)
+    axios.get(Base+'/drivelearn/trainer/'+props.match.params.id)
     .then(response =>{
       setGetData(response.data)
       setState({
@@ -75,7 +75,7 @@ const AdminViewInstructors = (props) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('http://localhost:8080/drivelearn/updateEmployee',state)
+    axios.post(Base+'/drivelearn/updateEmployee',state)
     .then(response => {
       
       if(response.data === "Update successfully")

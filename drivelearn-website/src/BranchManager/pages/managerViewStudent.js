@@ -6,7 +6,7 @@ import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import Errorbox from './../../Administrator/pages/errorbox';
 import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
-
+import {Base} from './../../base';
 const ManagerViewStudents = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
@@ -45,7 +45,7 @@ const ManagerViewStudents = (props) => {
  };
 
  useEffect(()=>{
-  axios.get('http://localhost:8080/drivelearn/student/'+props.match.params.id)
+  axios.get(Base+'/drivelearn/student/'+props.match.params.id)
   .then(response =>{
     // setGetData(response.data)
     

@@ -4,6 +4,7 @@ import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import ActiveBox from './ActiveBox';
+import {Base} from './../../base';
 
 const AdminEmployeeReaquest = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,7 +48,7 @@ const handleChange = () => {
 // }
 
    useEffect(()=>{
-    axios.get('http://localhost:8080/drivelearn/deactiveEmployee')
+    axios.get(Base+'/drivelearn/deactiveEmployee')
     .then(response =>{
       setGetData(response.data)
       console.log(getData);

@@ -4,18 +4,18 @@ import {XYPlot, LineSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines
 const Chart = () => {
 
     const data = [
-      {x:0, y:8},
-      {x:1, y:5},
-      {x:2, y:4},
-      {x:3, y:9},
-      {x:4, y:1},
-      {x:5, y:3},
-      {x:6, y:2},
-      {x:7, y:1},
-      {x:8, y:8},
+      {x:1, y:8},
+      {x:2, y:5},
+      {x:3, y:4},
+      {x:4, y:9},
+      {x:5, y:1},
+      {x:6, y:3},
+      {x:7, y:2},
+      {x:8, y:1},
       {x:9, y:8},
-      {x:10, y:3},
-    
+      {x:10, y:8},
+      {x:11, y:0},
+      {x:12, y:0},
     ]
 
     return(

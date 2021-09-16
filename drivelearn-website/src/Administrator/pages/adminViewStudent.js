@@ -6,7 +6,7 @@ import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import Errorbox from './errorbox';
 import SuccessfulyMsgBox from './successfulyMsgBox';
-
+import {Base} from './../../base';
 const AdminViewStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [toggle, settoggle] = useState(false);
@@ -46,7 +46,7 @@ const AdminViewStudents = (props) => {
    };
 
    useEffect(()=>{
-    axios.get('http://localhost:8080/drivelearn/student/'+props.match.params.id)
+    axios.get(Base+'/drivelearn/student/'+props.match.params.id)
     .then(response =>{
       // setGetData(response.data)
       
