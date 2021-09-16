@@ -1,4 +1,4 @@
-import "./../../node_modules/react-vis/dist/style.css";
+// import "./../../node_modules/react-vis/dist/style.css";
 import {XYPlot, LineSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines} from 'react-vis';
 
 const Chart = () => {
@@ -19,7 +19,7 @@ const Chart = () => {
     ]
 
     return(
-        <div styley={{marginTop: '15px'}}>
+        <div style={{marginTop: '15px'}}>
             <XYPlot height={400} width={500}>
                 <VerticalGridLines/>
                 <HorizontalGridLines/>

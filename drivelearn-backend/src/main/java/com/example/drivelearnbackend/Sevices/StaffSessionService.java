@@ -43,7 +43,10 @@ public class StaffSessionService {
     public LinkedList<StaffSessionDTO> getAllSession(int branchId){
         LinkedList<StaffSessionDTO> sessionDTOS=new LinkedList<>();
         for (Session session : sessionRepository.findAllByBranch(branchRepository.findById(branchId).get())) {
-            sessionDTOS.add(new StaffSessionDTO(session.getSessionId(), session.getTrainer().getFullName(),session.getDate(),session.getStatus(),session.getNumOfStudent(),session.getStartTime(),session.getStuSessions().size()));
+            if(session.getStatus()==1){
+                sessionDTOS.add(new StaffSessionDTO(session.getSessionId(), session.getTrainer().getFullName(),session.getDate(),session.getStatus(),session.getNumOfStudent(),session.getStartTime(),session.getStuSessions().size()));
+            }
+
         }
         return sessionDTOS;
     }

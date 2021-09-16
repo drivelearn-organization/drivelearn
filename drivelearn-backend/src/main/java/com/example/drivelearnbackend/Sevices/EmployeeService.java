@@ -139,7 +139,15 @@ public class EmployeeService {
         password = repository.findByPassword(pass);
         if(dto.getPassword2().equals(dto.getPassword())){
             if(username.isEmpty()){
-                repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+                Employee employee=repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+
+                LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
+                LinkedList<Notification> sentMessage=new LinkedList<>();
+
+
+                User user=userRepository.save(new User(employee.getEmpid(), 1, dto.getUsername(), userReceiveNotifications,sentMessage));
+
+
                 error = "Register Successfully";
             }else{
                 error = "Invalid Username";

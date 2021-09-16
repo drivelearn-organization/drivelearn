@@ -3,6 +3,7 @@ import Barchart from './Barchart';
 import Card from './card';
 import '../css/Home.css';
 
+
 function Home() {
     return (
         <div>
@@ -31,3 +32,4 @@ function Home() {
 }
 
 export default Home;
+

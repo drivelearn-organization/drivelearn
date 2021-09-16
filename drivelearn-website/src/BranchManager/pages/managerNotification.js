@@ -82,8 +82,8 @@ const [successShow,setsuccessShow] = useState(false);
         let notificationId = "";
         let reciverType = 3;
         let senderUsername = sessionStorage.getItem('username');
-        let senderUserId = sessionStorage.getItem('empId');
-        let senderType = sessionStorage.getItem('role');
+        let senderUserId = parseInt(sessionStorage.getItem('empId'));
+        let senderType = parseInt(sessionStorage.getItem('role'));
         let header = getNotification.header;
         let message = getNotification.message;
         getStudent.forEach(d => {
@@ -93,6 +93,8 @@ const [successShow,setsuccessShow] = useState(false);
 
 
         });
+
+        console.log(receiverUserIdAtrray.push(0));
 
         let data = {
             notificationId,
@@ -136,7 +138,8 @@ const [successShow,setsuccessShow] = useState(false);
 
             })
             .catch(err => alert(err));
-       // setModelError(true);
+      
+        // setModelError(true);
       // e.preventDefault();
       window.location.reload();
        seterrorShow(false);
@@ -148,6 +151,9 @@ const [successShow,setsuccessShow] = useState(false);
        
 
     }
+
+
+    
 
     const viewGetNotification = () => {
         axios

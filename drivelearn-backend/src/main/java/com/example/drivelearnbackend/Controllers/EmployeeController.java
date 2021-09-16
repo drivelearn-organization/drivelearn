@@ -42,7 +42,7 @@ public class EmployeeController {
         employeeService.updateEmploy(dto);
     }
 
-    @PostMapping(value = "getTrainer")
+    @PostMapping(value = "gettrainer")
     public boolean isTrainerAvailable(@RequestBody EmployeeDTO dto){
         return employeeService.getTrainer(dto);
     }

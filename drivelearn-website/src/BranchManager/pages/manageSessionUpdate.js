@@ -146,7 +146,7 @@ const ManagerAddStudents = (props) => {
                   date: e.target.value,
                   startTime: props.updateDetails.startTime,
                   numOfStudent: props.updateDetails.numOfStudent,
-                  empid: props.updateDetails.empid,
+                  empid: sessionStorage.getItem('empId'),
                   vehicleType: props.updateDetails.vehicleType
                 });
                 }
@@ -166,7 +166,7 @@ const ManagerAddStudents = (props) => {
                   date: props.updateDetails.date,
                   startTime: e.target.value,
                   numOfStudent: props.updateDetails.numOfStudent,
-                  empid: props.updateDetails.empid,
+                  empid: sessionStorage.getItem('empId'),
                   vehicleType: props.updateDetails.vehicleType
                 });
                 }
@@ -186,7 +186,7 @@ const ManagerAddStudents = (props) => {
                   date: props.updateDetails.date,
                   startTime: props.updateDetails.startTime,
                   numOfStudent: e.target.value,
-                  empid: props.updateDetails.empid,
+                  empid: sessionStorage.getItem('empId'),
                   vehicleType: props.updateDetails.vehicleType
                 });
               }
@@ -202,11 +202,35 @@ const ManagerAddStudents = (props) => {
               <p className="text">Vehical type</p>
 
               <select>
-                <option value={props.updateDetails.vehicleType}> {props.updateDetails.vehicleType} </option>
+                <option value={props.updateDetails.vehicleType} onChange={(e)=>{
+                props.setUpdateDetails({
+                  sessionId: props.updateDetails.sessionId,
+                  trainerName: props.updateDetails.trainerName,
+                  date: props.updateDetails.date,
+                  startTime: props.updateDetails.startTime,
+                  numOfStudent: props.updateDetails.numOfStudent,
+                  empid: sessionStorage.getItem('empId'),
+                  vehicleType:e.target.value
+                });
+              }
+                
+              }> {props.updateDetails.vehicleType} </option>
                 {
                   getVehicleType.map(d => (
 
-                    <option key={d.typeId} value={d.typeName}> {d.typeName} </option>
+                    <option key={d.typeId} value={d.typeName} onChange={(e)=>{
+                      props.setUpdateDetails({
+                        sessionId: props.updateDetails.sessionId,
+                        trainerName: props.updateDetails.trainerName,
+                        date: props.updateDetails.date,
+                        startTime: props.updateDetails.startTime,
+                        numOfStudent: props.updateDetails.numOfStudent,
+                        empid: sessionStorage.getItem('empId'),
+                        vehicleType:e.target.value
+                      });
+                    }
+                      
+                    }> {d.typeName} </option>
 
                   ))}
 
@@ -218,7 +242,7 @@ const ManagerAddStudents = (props) => {
             </div>
 
             <center style={{padding: "10px"}}>
-              <input type="submit" value="Update" className="update-btn" />
+              <input type="submit" value="Update" onClick={()=>props.putSession()} className="update-btn" />
               &nbsp;&nbsp;&nbsp;
               <input type="Reset" value="Cancle" className="reset1-btn" onClick={props.toggleupdate}/>
               

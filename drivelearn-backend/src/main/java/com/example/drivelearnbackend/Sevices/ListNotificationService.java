@@ -48,8 +48,10 @@ public class ListNotificationService {
         System.out.println("for testing"+dto.getHeader());
         notification = notificationrepository.save(new Notification(dto.getHeader(), dto.getMessage(), LocalDate.now(),1,usersReceivedotificaction,user));
 
+        System.out.println(dto.getReceiverUserIdAtrray());
+
         for (int i : dto.getReceiverUserIdAtrray()) {
-//            System.out.println(i);
+            System.out.println(i);
             addReceiver(new NotificationDTO(notification.getNotificationId(), i, dto.getReceiverType()));
         }
 
@@ -67,9 +69,10 @@ public class ListNotificationService {
                 user = user1;
             }
         }else{
-            userList=userRepository.findByExternalIdAndUserType(dto.getReceiverUserId(),dto.getReceiverType());
+            userList=userRepository.findByExternalIdAndUserType(dto.getReceiverUserId(),3);
             for (User user1 : userList) {
                 user = user1;
+                System.out.println(user.getUsername());
             }
         }
         userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));

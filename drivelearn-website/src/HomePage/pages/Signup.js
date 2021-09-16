@@ -32,15 +32,15 @@ function Signup() {
         setState({
             ...state,
             [e.target.name]: e.target.value
-        }) 
-     
+        })
+
     }
-    
+
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('http://192.168.56.1:8080/employee/register',state)
+        axios.post('http://localhost:8080/employee/register',state)
         .then(response => {
-      
+
             if(response.data === "Register Successfully")
             {
                 settoggle(true);
@@ -56,12 +56,12 @@ function Signup() {
             }
           })
 
-        
-       
+
+
     }
 
     return (
- 
+
          <div className="background">
             <Nav />
             {modal && <Errorbox closeModal={setModal} errorMsg={errMsg}/>}
@@ -144,7 +144,7 @@ function Signup() {
                <option value ="1">Branch Manager</option>
                </select>
                </div>
-               
+
                <div className="regButton">
                <input type="reset" value="Clear" className="reset-btn" />
                <input type="submit" value="Submit" className="submit1-btn" />
@@ -152,7 +152,7 @@ function Signup() {
                <br/><br/>
                <a href="./login" className="forgot-pw">Already have an account?</a>
               </form>
-              </div> 
+              </div>
         </div>
 
     );

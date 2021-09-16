@@ -77,7 +77,7 @@ const changeMile=(e)=>{
           <div className="main__title">
             <div className="main__greeting">
               <h1>Update Vehicle</h1>
-              <p> Kalutara Branch</p>
+              <p> {sessionStorage.getItem('branchName')} Branch</p>
             </div>
           </div>
           <center>
