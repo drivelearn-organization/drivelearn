@@ -145,7 +145,9 @@ const ManagerStudents = () => {
                       <td>{data.address}</td>
                       <td>{data.nid}</td>
                       <td>{data.contact}</td>
-                      <td><button onClick={() => {
+                      <td>
+                      <a href="#" className="trash"><i className="fa fa-trash"></i></a>
+                        <button onClick={() => {
                         toggleModal(data.stuID, data.name, data.address, data.nid)
                       }}><i className="fa fa-trash"></i></button></td>
                       <td>

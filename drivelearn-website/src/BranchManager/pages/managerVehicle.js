@@ -63,7 +63,7 @@ const ManagerVehicle = () => {
     axios
       .get("http://localhost:8080/vehicle/getvehicle/1/"+ sessionStorage.getItem('branchId'))
       .then(data => {
-        setVehicleState(data.data);
+        setVehicleState(data.data.reverse());
 
 
       })

@@ -48,7 +48,7 @@ const ManagerVehicle = () => {
       axios
       .get("http://localhost:8080/payment/getallpayment/1/"+ sessionStorage.getItem('branchId'))
       .then(data =>{
-        setPayementState(data.data);
+        setPayementState(data.data.reverse());
         
 
       })

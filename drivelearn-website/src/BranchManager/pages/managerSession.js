@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import ManagerSessionSelectStudent from './managerSessionSelectStudent';
+import ManagerSessionDeactive from './managerPopUpDeactivateSession';
 
 import ManagerSessionUpdate from './manageSessionUpdate';
 
@@ -21,6 +22,8 @@ const ManagerSession = () => {
   const [getmodalupdate, setmodalupdate] = useState(false);
   const [updateDetails, setUpdateDetails] = useState([]);
   const [getdata, setdata] = useState([]);
+  const [deactive,setDeactive] = useState(false);
+  const [deactiveId,setDeactiveState]=useState();
   const [state, setState] = useState({
     sessionId: "",
     trainerName: "",
@@ -42,6 +45,14 @@ const ManagerSession = () => {
 
     setSidebarOpen(false);
   };
+
+
+const deactivepopup = (sessionId) =>{
+
+  setDeactiveState(sessionId);
+  setDeactive(!deactive);
+}
+
 
   const toggleupdate = (sessionId, trainerName, date, startTime, numOfStudent, trainerId, vehicleType) => {
 
@@ -110,7 +121,7 @@ const ManagerSession = () => {
     axios
       .get("http://localhost:8080/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
       .then(data => {
-        setSessionState(data.data);
+        setSessionState(data.data.reverse());
 
 
 
@@ -118,15 +129,16 @@ const ManagerSession = () => {
   }
 
 
-  const deleteSession = (id) => {
+  const deleteSession = () => {
     //console.log(id);
     axios
-      .put('http://localhost:8080/staffsessioncontroller/makeclose/' + id)
+      .put('http://localhost:8080/staffsessioncontroller/makeclose/' +deactiveId )
       .then(d => {
         console.log(d);
       })
 
       window.location.reload();
+      setDeactive(!deactive);
   }
 
 
@@ -234,6 +246,23 @@ const ManagerSession = () => {
               )}
 
 
+
+{deactive && (
+                <div className="modal">
+                  <div className="overlay">
+                    <div className="modal-content" style={{
+                      background: "white",
+                      width: "10%",
+                      height: "60vh"
+                    }}>
+                      <ManagerSessionDeactive setDeactive={setDeactive} deleteSession={deleteSession} />
+
+                    </div>
+                  </div>
+                </div>
+              )}
+
+
               <div className="create-button">
                 <div className="create_btn">
                   <a href="./manageraddsession"><i className="fa fa-plus-circle"></i></a>
@@ -284,7 +313,7 @@ const ManagerSession = () => {
                       <td>
                         <span className="action_btn">
                           <a className="eye"><i className="fa fa-eye" onClick={() => toggleupdate(d.sessionId, d.trainerUsername, d.date, d.startTime, d.numOfStudent, d.trainerId, d.vehicleType)}></i></a>
-                          <a className="trash" onClick={()=>deleteSession(d.sessionId)}><i className="fa fa-trash"></i></a>
+                          <a className="trash" onClick={()=>deactivepopup(d.sessionId)}><i className="fa fa-trash"></i></a>
                         </span>
                       </td>
                     </tr>
