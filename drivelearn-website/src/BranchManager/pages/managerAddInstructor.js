@@ -6,7 +6,7 @@ import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import Errorbox from './../../Administrator/pages/errorbox';
 import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
-
+import {Base} from './../../base';
 const ManagerAddInstructors = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [modal, setModal] = useState(false);
@@ -45,7 +45,7 @@ setState({
 
 const handleSubmit = (e) =>{
 e.preventDefault()
-axios.post('http://localhost:8080/drivelearn/addInstructors',state)
+axios.post(Base+'/drivelearn/addInstructors',state)
 .then(response => {
       
   if(response.data === "Added Successfully")

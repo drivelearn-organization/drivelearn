@@ -3,6 +3,7 @@ import './../../App.css';
 import './../../BranchManager/Popup.css';
 import Nav from './../../HomePage/Nav';
 import axios from 'axios';
+import {Base} from './../../base';
 const Popup = ({closeModal,empid,location}) => {
 
   
@@ -35,7 +36,7 @@ const Popup = ({closeModal,empid,location}) => {
         Cancel
       </button>
       <button onClick={() => {
-        axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',empid)
+        axios.post(Base+'/drivelearn/deactiveEmployee',empid)
         .then(response =>{
           window.location = location;
           })

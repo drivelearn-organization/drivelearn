@@ -6,7 +6,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import Popup from './../../Administrator/pages/Popup';
-
+import {Base} from './../../base';
 const ManagerInstructors = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
@@ -41,7 +41,7 @@ const handleChangeActiveStatus = () => {
 
  const handleSubmit = (e) =>{
   e.preventDefault()
-  axios.post('http://192.168.56.1:8080/drivelearn/serchTrainer',state)    
+  axios.post(Base+'/drivelearn/serchTrainer',state)    
   .then(response =>{
     setGetData(response.data)
     
@@ -50,12 +50,12 @@ const handleChangeActiveStatus = () => {
 }
 
  useEffect(()=>{
-  axios.get('http://localhost:8080/drivelearn/branchtrainer/'+sessionStorage.getItem('branchName'))
+  axios.get(Base+'/drivelearn/branchtrainer/'+sessionStorage.getItem('branchName'))
   .then(response =>{
     setGetData(response.data)
     console.log(getData);
   })
-  axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
+  axios.post(Base+'/drivelearn/deactiveEmployee',deactivate)
  },[]);
  
 return (

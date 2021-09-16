@@ -6,7 +6,7 @@ import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import Errorbox from './errorbox';
 import SuccessfulyMsgBox from './successfulyMsgBox'
-
+import {Base} from './../../base';
 const AdminAddStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [modal, setModal] = useState(false);
@@ -42,7 +42,7 @@ const handleSubmit = (e) =>{
     
 
     
-    axios.post('http://localhost:8080/drivelearn/addStudent',state)
+    axios.post(Base+'/drivelearn/addStudent',state)
     .then(response => {
       
       if(response.data === "Added Successfully")

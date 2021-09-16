@@ -7,7 +7,7 @@ import ManagerProfile from '../managerProfile';
 import axios from 'axios';
 import Errorbox from './../../Administrator/pages/errorbox';
 import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
-
+import {Base} from './../../base';
 const ManagerSettings = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
@@ -56,7 +56,7 @@ const[newPassword, setNewPassword] = useState({
  };
 
  useEffect(()=>{
-  axios.get('http://localhost:8080/drivelearn/settingProfile/'+sessionStorage.getItem('username'))
+  axios.get(Base+'/drivelearn/settingProfile/'+sessionStorage.getItem('username'))
   .then(response =>{
     setGetData(response.data)
     console.log(response.data);
@@ -87,7 +87,7 @@ const[newPassword, setNewPassword] = useState({
 
 const handleSubmit = (e) =>{
   e.preventDefault()
-  axios.post('http://localhost:8080/drivelearn/settingMyProfile',state)
+  axios.post(Base+'/drivelearn/settingMyProfile',state)
   .then(response => {
       
     if(response.data === "Updated successfully")

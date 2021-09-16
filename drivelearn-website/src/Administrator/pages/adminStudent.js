@@ -5,7 +5,7 @@ import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import Errorbox from './errorbox';
 import Popup from './Popup';
-
+import {Base} from './../../base';
 const AdminStudents = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [getData, setGetData] = useState([]);
@@ -40,7 +40,7 @@ const AdminStudents = (props) => {
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('http://192.168.56.1:8080/drivelearn/serchStudent',state)    
+    axios.post(Base+'/drivelearn/serchStudent',state)    
     .then(response =>{
       setGetData(response.data)
       console.log(getData);

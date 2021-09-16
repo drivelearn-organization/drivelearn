@@ -4,7 +4,7 @@ import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import axios from 'axios';
 import Popup from './Popup';
-
+import {Base} from './../../base';
 const AdminStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [modal, setModal] = useState(false);
@@ -41,7 +41,7 @@ const handleChange = (e) => {
 
    const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('http://192.168.56.1:8080/drivelearn/serchEmployee',state)    
+    axios.post(Base+'/drivelearn/serchEmployee',state)    
     .then(response =>{
       setGetData(response.data)
       
@@ -50,7 +50,7 @@ const handleChange = (e) => {
 }
 
    useEffect(()=>{
-    axios.get('http://localhost:8080/drivelearn/employee')
+    axios.get(Base+'/drivelearn/employee')
     .then(response =>{
       setGetData(response.data)
       console.log(getData);

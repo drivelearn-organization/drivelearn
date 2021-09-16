@@ -4,7 +4,7 @@ import './../../BranchManager/Dashboard.css';
 import Navbar from './../../BranchManager/Navbar';
 import Sidebar from './../adminSidebar';
 import AdminMain from './../adminMain';
-
+import {Base} from './../../base';
 const Administrator = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
