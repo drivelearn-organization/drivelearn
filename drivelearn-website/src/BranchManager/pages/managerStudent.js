@@ -33,7 +33,8 @@ const ManagerStudents = () => {
         id: id,
         name: name,
         address: address,
-        nid: nid
+        nid: nid,
+        username:username
 
       }
 

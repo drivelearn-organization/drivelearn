@@ -129,6 +129,7 @@ const ManagerNewPayment = (props) => {
 
   console.log(props.data);
   console.log(getdrop);
+  console.log("testing",props.enroll);
 
 
 
@@ -359,7 +360,7 @@ const ManagerNewPayment = (props) => {
 
       </div>
       <div className="table_responsive">
-        <button className="update-btn" disabled={props.enroll} style={{ background: props.enroll ? "white" : "blue" }} onClick={addpayment}>Add</button>
+        <button className="update-btn" disabled={props.enrol} style={!props.enrol?{ background: "blue" }:{ background: "yellow" }} onClick={addpayment}>Add</button>
         <button className="reset-btn" onClick={props.toggleModal}>Close</button>
       </div>
 
