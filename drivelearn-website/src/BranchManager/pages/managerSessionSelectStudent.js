@@ -135,9 +135,9 @@ const ManagerSessionSelectStudent = (props) => {
                 getStudent.filter((value)=>{
                   if(search===""){
                     return value;
-                  }else if(value.name.toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Name")){
+                  }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Name")){
                     return value;
-                  }else if(value.nid.toLowerCase().includes(search.toLowerCase()) && dropdown.includes("NIC")){
+                  }else if(value.nid.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("NIC")){
                     return value;
                   }
                 }).map(d => (
