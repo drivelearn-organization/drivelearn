@@ -5,6 +5,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import { withRouter } from 'react-router';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 const ManagerUpdateVehicle = (props) => {
@@ -21,7 +22,7 @@ const ManagerUpdateVehicle = (props) => {
 
   const getVehicle = () => {
     axios
-      .get("http://localhost:8080/vehicle/getvehicles/"+props.match.params.id)
+      .get(Base+"/vehicle/getvehicles/"+props.match.params.id)
       .then(data => {
         setVehicleState(data.data);
         
@@ -52,7 +53,7 @@ const ManagerUpdateVehicle = (props) => {
 
 const putVehicle=e=>{
   axios
-  .put("http://localhost:8080/vehicle/updatevehicle",vehicleState)
+  .put(Base+"/vehicle/updatevehicle",vehicleState)
   .then(d=>{
     props.history.push("/");
   })

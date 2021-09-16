@@ -5,6 +5,7 @@ import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 const ManagerSessionSelectStudent = (props) => {
@@ -31,7 +32,7 @@ const ManagerSessionSelectStudent = (props) => {
 
   const getSession = () => {
     axios
-      .get("http://localhost:8080/staffsessioncontroller/getallsession/1")
+      .get(Base+"/staffsessioncontroller/getallsession/1")
       .then(data => {
         setSessionState(data.data);
 
@@ -50,7 +51,7 @@ const ManagerSessionSelectStudent = (props) => {
 
     console.log(data);
     axios
-      .post("http://localhost:8080/session/book", data)
+      .post(Base+"/session/book", data)
       .then(d => {
         console.log(d.data);
       })
@@ -60,7 +61,7 @@ const ManagerSessionSelectStudent = (props) => {
 
   const Student = () => {
     axios
-      .get("http://localhost:8080/drivelearn/students")
+      .get(Base+"/drivelearn/students")
       .then(d => {
         setStudent(d.data);
       })

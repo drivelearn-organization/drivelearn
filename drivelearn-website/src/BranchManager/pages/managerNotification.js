@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import ManagerNotificationsSelectStudent from './managerNotificationSelectStudent';
+import {Base} from './../../base';
 
 
 const ManagerNotifications = () => {
@@ -70,7 +71,7 @@ const [successShow,setsuccessShow] = useState(false);
     const Student = () => {
 
         axios
-            .get("http://localhost:8080/drivelearn/students")
+            .get(Base+"/drivelearn/students")
             .then(d => {
                 setStudent(d.data);
             })
@@ -131,7 +132,7 @@ const [successShow,setsuccessShow] = useState(false);
 
 //setModal(!modal); 
         axios
-            .post(`http://localhost:8080/listnotification/addnotification`, data)
+            .post(Base+`/listnotification/addnotification`, data)
             .then(data => {
                 console.log(data);
                 setNotification(data.data);
@@ -157,7 +158,7 @@ const [successShow,setsuccessShow] = useState(false);
 
     const viewGetNotification = () => {
         axios
-            .get("http://localhost:8080/notification/getallnotificationbybranch/" + sessionStorage.getItem('branchId'))
+            .get(Base+"/notification/getallnotificationbybranch/" + sessionStorage.getItem('branchId'))
             .then(data => {
                 setViewNotification(data.data);
 
@@ -196,7 +197,7 @@ const [successShow,setsuccessShow] = useState(false);
 
 
         axios
-            .post(`http://localhost:8080/notification/addNotification`, data)
+            .post(Base+`/notification/addNotification`, data)
             .then(data => {
                 console.log(data);
                 setNotificationId(data.data);

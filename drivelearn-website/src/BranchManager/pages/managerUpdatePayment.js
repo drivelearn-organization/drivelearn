@@ -3,6 +3,7 @@ import '../../App.css';
 import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
+import {Base} from './../../base';
 
 
 const ManagerAddStudents = () => {
