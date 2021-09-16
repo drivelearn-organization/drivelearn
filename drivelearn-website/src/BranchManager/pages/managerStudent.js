@@ -66,7 +66,7 @@ const ManagerStudents = () => {
     axios
       .get(Base + "/drivelearn/branchstudents/" + sessionStorage.getItem('branchName'))
       .then(d => {
-        setStudent(d.data);
+        setStudent(d.data.reverse());
       })
   }
 
@@ -146,7 +146,7 @@ const ManagerStudents = () => {
                   <option className="option-style" value="Reg No">Reg No</option>
                   <option className="option-style" value="Chessi No">Full Name</option>
                   <option className="option-style" value="Chessi No">NIC</option>
-me
+
                 </select>
 
 
