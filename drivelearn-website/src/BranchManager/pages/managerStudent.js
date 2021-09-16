@@ -21,7 +21,7 @@ const ManagerStudents = () => {
     threewheel: "0",
   });
   const [enrol, setenrol] = useState();
-  const [getdropmenu, setgetdropmenu] = useState();
+  const [getdropmenu, setgetdropmenu] = useState("Reg No");
   const [search, getSearch] = useState("");
 
 
