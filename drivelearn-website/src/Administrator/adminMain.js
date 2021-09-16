@@ -1,7 +1,12 @@
+import React, {useEffect, useState} from 'react';
 import './../BranchManager/managerMain.css';
 import Chart from './adminChart';
+import {Base} from './../base';
+import axios from 'axios';
 
-const AdminMain = () => {
+const AdminMain = ({getData}) => {
+
+  
    return(
     <main>
     <div className="main__container">
@@ -26,7 +31,7 @@ const AdminMain = () => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Students</p>
-            <span className="font-bold text-title">578</span>
+            <span className="font-bold text-title">{getData.studentCount}</span>
           </div>
         </div>
         <div className="card">
@@ -36,14 +41,14 @@ const AdminMain = () => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Branch Managers</p>
-            <span className="font-bold text-title">5</span>
+            <span className="font-bold text-title">{getData.branchManagerCount}</span>
           </div>
         </div>
         <div className="card">
           <i className="fa fa-user-secret fa-2x text-black" aria-hidden="true"></i>
           <div className="card_inner">
             <p className="text-primary-p">Instructors</p>
-            <span className="font-bold text-title">7</span>
+            <span className="font-bold text-title">{getData.insructorCount}</span>
           </div>
         </div>
 
@@ -54,7 +59,7 @@ const AdminMain = () => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Vehicles</p>
-            <span className="font-bold text-title">15</span>
+            <span className="font-bold text-title">{getData.vehiclelistCount}</span>
           </div>
         </div>
       </div>
