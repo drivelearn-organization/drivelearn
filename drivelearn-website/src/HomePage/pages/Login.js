@@ -4,6 +4,7 @@ import '../Login.css';
 import Nav from '../Nav';
 import axios from 'axios';
 // import Footer from './../../homePage/Footer';
+import {Base} from './../../base';
 
 function Login() {
 
@@ -27,7 +28,7 @@ function Login() {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('http://localhost:8080/drivelearn/login',state)
+    axios.post(Base+'/drivelearn/login',state)
     .then(response => {
       console.log(response.data);
       if(response.data.username != null){

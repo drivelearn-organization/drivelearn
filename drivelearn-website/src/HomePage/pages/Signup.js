@@ -6,6 +6,7 @@ import axios from 'axios';
 import Errorbox from './../../Administrator/pages/errorbox';
 import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
 import { getRoles } from '@testing-library/react';
+import {Base} from './../../base';
 
 function Signup() {
 
@@ -38,7 +39,7 @@ function Signup() {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('http://localhost:8080/employee/register',state)
+        axios.post(Base+'/employee/register',state)
         .then(response => {
 
             if(response.data === "Register Successfully")

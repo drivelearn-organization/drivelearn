@@ -6,6 +6,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import { width } from 'dom-helpers';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 const ManagerNewPayment = (props) => {
@@ -37,7 +38,7 @@ const ManagerNewPayment = (props) => {
 
 
     axios
-      .post("http://localhost:8080/payment/addinstalmentpayment", getdrop)
+      .post(Base+"/payment/addinstalmentpayment", getdrop)
       .then(d => {
         console.log(d);
       })

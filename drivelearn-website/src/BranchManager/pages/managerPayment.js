@@ -6,6 +6,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import ManagerNewUpdatePayment from "./managerNewUpdatePayment ";
+import {Base} from './../../base';
 
 
 const ManagerVehicle = () => {
@@ -46,7 +47,7 @@ const ManagerVehicle = () => {
 
     const getPayment=()=>{
       axios
-      .get("http://localhost:8080/payment/getallpayment/1/"+ sessionStorage.getItem('branchId'))
+      .get(Base+"/payment/getallpayment/1/"+ sessionStorage.getItem('branchId'))
       .then(data =>{
         setPayementState(data.data.reverse());
         

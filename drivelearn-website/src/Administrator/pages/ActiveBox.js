@@ -2,6 +2,7 @@ import React from 'react'
 import './../../App.css';
 import './../../BranchManager/Popup.css';
 import axios from 'axios';
+import {Base} from './../../base';
 const activeBox = ({closeModal,empid,location}) => {
     return (
         <div className="modalBackground">
@@ -31,7 +32,7 @@ const activeBox = ({closeModal,empid,location}) => {
               Cancel
             </button>
             <button id = "active_popupBox" onClick={() => {
-               axios.post('http://192.168.56.1:8080/drivelearn/activeEmployee',empid) 
+               axios.post(Base+'/drivelearn/activeEmployee',empid) 
               .then(response =>{
                 window.location = location;
                 })

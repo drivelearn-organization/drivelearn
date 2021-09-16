@@ -4,6 +4,7 @@ import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
+import {Base} from './../../base';
 
 
 const ManagerAddStudents = () => {
@@ -33,7 +34,7 @@ const handleSubmit = (e) =>{
     
 
     
-    axios.post('http://localhost:8080/drivelearn/addStudent',state)
+    axios.post(Base+'/drivelearn/addStudent',state)
     
 
     console.log(state);

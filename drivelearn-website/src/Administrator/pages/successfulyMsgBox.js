@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './../../BranchManager/errorBox.css';
-
+import {Base} from './../../base';
 const SuccessfulyMsgBox = ({closeModal,errorMsg}) => {
     return (
         <div className="sucsesebox">

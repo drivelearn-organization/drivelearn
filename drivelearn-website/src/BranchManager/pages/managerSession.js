@@ -10,6 +10,7 @@ import ManagerSessionSelectStudent from './managerSessionSelectStudent';
 import ManagerSessionDeactive from './managerPopUpDeactivateSession';
 
 import ManagerSessionUpdate from './manageSessionUpdate';
+import {Base} from './../../base';
 
 
 const ManagerSession = () => {
@@ -119,7 +120,7 @@ const deactivepopup = (sessionId) =>{
 
   const getSession = () => {
     axios
-      .get("http://localhost:8080/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
+      .get(Base+"/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
       .then(data => {
         setSessionState(data.data.reverse());
 
@@ -132,7 +133,8 @@ const deactivepopup = (sessionId) =>{
   const deleteSession = () => {
     //console.log(id);
     axios
-      .put('http://localhost:8080/staffsessioncontroller/makeclose/' +deactiveId )
+      .put(Base+'/staffsessioncontroller/makeclose/' + deactiveId )
+
       .then(d => {
         console.log(d);
       })
@@ -146,7 +148,7 @@ const deactivepopup = (sessionId) =>{
 
     console.log(data);
     axios
-      .post("http://localhost:8080/session/book", data)
+      .post(Base+"/session/book", data)
       .then(d => {
         console.log(d.data);
       })
@@ -168,7 +170,7 @@ const deactivepopup = (sessionId) =>{
 
     console.log(getdata);
     axios
-      .put("http://localhost:8080/staffsessioncontroller/updatesession", updateDetails)
+      .put(Base+"/staffsessioncontroller/updatesession", updateDetails)
       .then(d => {
 
       })
@@ -180,7 +182,7 @@ const deactivepopup = (sessionId) =>{
 
   const Student = () => {
     axios
-      .get("http://localhost:8080/drivelearn/students")
+      .get(Base+"/drivelearn/students")
       .then(d => {
         setStudent(d.data);
       })

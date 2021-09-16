@@ -8,7 +8,7 @@ import Sidebar from '../managerSidebar';
 import axios from 'axios';
 
 import ManagerNewPayment from './managerNewPayment';
-
+import {Base} from './../../base';
 
 const ManagerStudents = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -50,7 +50,7 @@ const ManagerStudents = () => {
 
   const Student = () => {
     axios
-      .get("http://localhost:8080/drivelearn/branchstudents/" + sessionStorage.getItem('branchName'))
+      .get(Base+"/drivelearn/branchstudents/" + sessionStorage.getItem('branchName'))
       .then(d => {
         setStudent(d.data);
       })
