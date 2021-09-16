@@ -63,7 +63,7 @@ const ManagerSessionSelectStudent = (props) => {
 
   const Student = () => {
     axios
-      .get(Base + "/drivelearn/students")
+      .get(Base + "/drivelearn/branchstudents/" + sessionStorage.getItem('branchName'))
       .then(d => {
         setStudent(d.data.reverse());
       })
