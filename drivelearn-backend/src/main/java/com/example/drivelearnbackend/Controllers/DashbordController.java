@@ -26,6 +26,11 @@ public class DashbordController {
         return dashboardService.getAllDetails();
     }
 
+    @GetMapping(value = "/monthDetails")
+    public DashboardDTO getmonthDetails(){
+        return dashboardService.getmonthDetails();
+    }
+
     @GetMapping(value = "/Income")
     public LinkedList<Payment> getIncomeDetails(){
         return dashboardService.getIncomeDetails();

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 @Service
@@ -97,5 +99,166 @@ public class DashboardService {
         LinkedList<Payment> todayPaymentDetails = paymentRepository.findAllByDateGreaterThanEqual(oldDate);
 //        DashboardDTO employee = null;
        return todayPaymentDetails;
+    }
+
+    public DashboardDTO getmonthDetails(){
+
+        double jan = 0;
+        double feb = 0;
+        double march = 0;
+        double apr = 0;
+        double may = 0;
+        double jun = 0;
+        double jul = 0;
+        double aug = 0;
+        double sep = 0;
+        double oct = 0;
+        double nov = 0;
+        double dec = 0;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        String yearInString = String.valueOf(year);
+
+        String date =yearInString+"-01-01";
+        LocalDate jan1 = LocalDate.parse(date, formatter);
+
+        String enddate =yearInString+"-01-31";
+        LocalDate jan2 = LocalDate.parse(enddate, formatter);
+        LinkedList<Payment> janDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan1,jan2);
+
+        for (Payment payment:janDetails){
+            jan = jan+payment.getAmount();
+        }
+
+        String date1 =yearInString+"-02-01";
+        LocalDate jan3 = LocalDate.parse(date1, formatter);
+
+        String enddate1 =yearInString+"-02-28";
+        LocalDate jan4 = LocalDate.parse(enddate1, formatter);
+        LinkedList<Payment> FebDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan3,jan4);
+
+        for (Payment payment:FebDetails){
+            feb = feb+payment.getAmount();
+        }
+
+        String date2 =yearInString+"-03-01";;
+        LocalDate jan5 = LocalDate.parse(date2, formatter);
+
+        String enddate2 =yearInString+"-03-31";
+        LocalDate jan6 = LocalDate.parse(enddate2, formatter);
+        LinkedList<Payment> marchDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan5,jan6);
+
+        for (Payment payment:marchDetails){
+            march = march+payment.getAmount();
+        }
+
+
+        String date3 =yearInString+"-04-01";;
+        LocalDate jan7 = LocalDate.parse(date3, formatter);
+
+        String enddate3 =yearInString+"-04-30";
+        LocalDate jan8 = LocalDate.parse(enddate3, formatter);
+        LinkedList<Payment> aprDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan7,jan8);
+
+        for (Payment payment:aprDetails){
+            apr = apr+payment.getAmount();
+        }
+
+        String date4 =yearInString+"-05-01";;
+        LocalDate jan9 = LocalDate.parse(date4, formatter);
+
+        String enddate4 =yearInString+"-05-31";
+        LocalDate jan10 = LocalDate.parse(enddate4, formatter);
+        LinkedList<Payment> mayDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan9,jan10);
+
+        for (Payment payment:mayDetails){
+            may = may+payment.getAmount();
+        }
+
+        String date5 =yearInString+"-06-01";;
+        LocalDate jan11 = LocalDate.parse(date5, formatter);
+
+        String enddate5 =yearInString+"-06-30";
+        LocalDate jan12 = LocalDate.parse(enddate5, formatter);
+        LinkedList<Payment> junDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan11,jan12);
+
+        for (Payment payment:junDetails){
+            jun = jun+payment.getAmount();
+        }
+
+        String date6 =yearInString+"-07-01";;
+        LocalDate jan13 = LocalDate.parse(date6, formatter);
+
+        String enddate6 =yearInString+"-07-31";
+        LocalDate jan14 = LocalDate.parse(enddate6, formatter);
+        LinkedList<Payment> julyDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan13,jan14);
+
+        for (Payment payment:julyDetails){
+            jul = jul+payment.getAmount();
+        }
+
+        String date7 =yearInString+"-08-01";;
+        LocalDate jan15 = LocalDate.parse(date7, formatter);
+
+        String enddate7 =yearInString+"-08-31";
+        LocalDate jan16 = LocalDate.parse(enddate7, formatter);
+        LinkedList<Payment> AugDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan15,jan16);
+
+        for (Payment payment:AugDetails){
+            aug = aug+payment.getAmount();
+        }
+
+
+        String date8 =yearInString+"-09-01";
+        LocalDate jan17 = LocalDate.parse(date8, formatter);
+
+        String enddate8 =yearInString+"-09-30";
+        LocalDate jan18 = LocalDate.parse(enddate8, formatter);
+        LinkedList<Payment> sepDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan17,jan18);
+
+        for (Payment payment:sepDetails){
+            sep = sep+payment.getAmount();
+        }
+
+        String date9 =yearInString+"-10-01";
+        LocalDate jan19 = LocalDate.parse(date9, formatter);
+
+        String enddate9 =yearInString+"-10-31";
+        LocalDate jan20 = LocalDate.parse(enddate9, formatter);
+        LinkedList<Payment> octDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan19,jan20);
+
+        for (Payment payment:octDetails){
+            oct = oct+payment.getAmount();
+        }
+
+        String date10 =yearInString+"-11-01";
+        LocalDate jan21 = LocalDate.parse(date10, formatter);
+
+        String enddate10 =yearInString+"-11-30";
+        LocalDate jan22 = LocalDate.parse(enddate10, formatter);
+        LinkedList<Payment> novDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan21,jan22);
+
+        for (Payment payment:novDetails){
+            nov = nov+payment.getAmount();
+        }
+
+        String date11 =yearInString+"-12-01";
+        LocalDate jan23 = LocalDate.parse(date11, formatter);
+
+        String enddate11 =yearInString+"-12-31";
+        LocalDate jan24 = LocalDate.parse(enddate11, formatter);
+        LinkedList<Payment> decDetails = paymentRepository.findAllByDateGreaterThanEqualAndDateLessThanEqual(jan23,jan24);
+
+        for (Payment payment:decDetails){
+            dec = dec+payment.getAmount();
+        }
+
+
+        return  new DashboardDTO(jan, feb, march, apr, may, jun, jul, aug, sep, oct, nov, dec);
+
+
     }
 }
