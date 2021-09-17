@@ -18,13 +18,19 @@ const Administrator = () => {
  };
 
  const [getData, setGetData] = useState([]);
-
+ const [getMonthData, setGetMonthData] = useState([]);
 
   useEffect(()=>{
     axios.get(Base+'/drivelearn/branchDetails')
     .then(response =>{
       setGetData(response.data)
       console.log(getData);
+    })
+
+    axios.get(Base+'/drivelearn/monthDetails')
+    .then(response =>{
+      setGetMonthData(response.data)
+      
     })
     
    },[]);
@@ -33,7 +39,7 @@ return (
   <div className="container">
      
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <AdminMain getData ={getData}/>
+      <AdminMain getData ={getData} getMonthData={getMonthData}/>
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
 
   </div>

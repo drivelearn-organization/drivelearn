@@ -4,7 +4,7 @@ import Chart from './adminChart';
 import {Base} from './../base';
 import axios from 'axios';
 
-const AdminMain = ({getData}) => {
+const AdminMain = ({getData,getMonthData}) => {
 
   
    return(
@@ -74,7 +74,7 @@ const AdminMain = ({getData}) => {
               <p>DriveLEARN</p>
             </div>
           </div>
-          <Chart />
+          <Chart getData={getMonthData}/>
         </div>
 
         <div className="charts__right">
