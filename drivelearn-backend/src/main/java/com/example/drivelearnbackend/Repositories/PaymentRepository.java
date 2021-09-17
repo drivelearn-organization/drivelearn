@@ -15,5 +15,6 @@ public interface PaymentRepository extends CrudRepository<Payment,Integer> {
 //    LinkedList<Payment> searchByDate(@Param("date")LocalDate date);
 
     LinkedList<Payment> findAllByDate(LocalDate date);
+    LinkedList<Payment> findAllByDateGreaterThanEqual(LocalDate date);
     LinkedList<Payment> findByDateBetween(LocalDate date, LocalDate date2);
 }

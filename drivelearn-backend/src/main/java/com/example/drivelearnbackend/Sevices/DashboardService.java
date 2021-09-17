@@ -41,11 +41,23 @@ public class DashboardService {
         int instructorlistCount = 0;
         int studentlistCount = 0;
         int vehiclelistCount = 0;
+        double paymentDetailsCount = 0;
+        double paymentDetailsCount1 = 0;
+        double paymentDetailsCount2 = 0;
+        double paymentDetailsCount3 = 0;
 
         LinkedList<Employee> branchManagerlist = repository.findAllByRoleAndIsActive(1, 2);
         LinkedList<Employee> instructorlist = repository.findAllByRoleAndIsActive(2, 2);
         LinkedList<Student> studentlist = studentRepository.findAll();
         LinkedList<Vehicle> vehiclelist = vehicleRepository.findAll();
+        LocalDate todayDate = LocalDate.now();
+        LocalDate oldDate = todayDate.minusDays(7);
+        LocalDate oldDate1 = todayDate.minusDays(30);
+        LocalDate oldDate2 = todayDate.minusDays(365);
+        LinkedList<Payment> todayPaymentDetails3 = paymentRepository.findAllByDate(todayDate);
+        LinkedList<Payment> todayPaymentDetails = paymentRepository.findAllByDateGreaterThanEqual(oldDate);
+        LinkedList<Payment> todayPaymentDetails1 = paymentRepository.findAllByDateGreaterThanEqual(oldDate1);
+        LinkedList<Payment> todayPaymentDetails2 = paymentRepository.findAllByDateGreaterThanEqual(oldDate2);
         for (Employee employee:branchManagerlist){
             branchManagerCount++;
         }
@@ -59,17 +71,30 @@ public class DashboardService {
         for (Vehicle vehicle:vehiclelist){
             vehiclelistCount++;
         }
+        for (Payment payment:todayPaymentDetails){
+            paymentDetailsCount = paymentDetailsCount+payment.getAmount();
+        }
+        for (Payment payment1:todayPaymentDetails1){
+            paymentDetailsCount1 = paymentDetailsCount1+payment1.getAmount();
+        }
+        for (Payment payment2:todayPaymentDetails2){
+            paymentDetailsCount2 = paymentDetailsCount2+payment2.getAmount();
+        }
+        for (Payment payment3:todayPaymentDetails3){
+            paymentDetailsCount3 = paymentDetailsCount3+payment3.getAmount();
+        }
 //        DashboardDTO employee = null;
 //        return employee;
 
-        return  new DashboardDTO(branchManagerCount,instructorlistCount,studentlistCount,vehiclelistCount);
+        return  new DashboardDTO(branchManagerCount,instructorlistCount,studentlistCount,vehiclelistCount,paymentDetailsCount,paymentDetailsCount2, paymentDetailsCount2, paymentDetailsCount3);
     }
 
     public LinkedList<Payment> getIncomeDetails(){
 
         LocalDate todayDate = LocalDate.now();
         LocalDate oldDate = todayDate.minusDays(7);
-        LinkedList<Payment> todayPaymentDetails = paymentRepository.findAllByDate(todayDate);
+
+        LinkedList<Payment> todayPaymentDetails = paymentRepository.findAllByDateGreaterThanEqual(oldDate);
 //        DashboardDTO employee = null;
        return todayPaymentDetails;
     }

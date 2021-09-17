@@ -89,22 +89,22 @@ const AdminMain = ({getData}) => {
           <div className="charts__right__cards">
             <div className="card1">
               <h1>Today</h1>
-              <p>$75,300</p>
+              <p>LKR {getData.paymentDetailsCount3}</p>
             </div>
 
             <div className="card2">
               <h1>Last 7 days</h1>
-              <p>$124,200</p>
+              <p>LKR {getData.paymentDetailsCount}</p>
             </div>
 
             <div className="card3">
               <h1>Last 30 days</h1>
-              <p>$124,200</p>
+              <p>LKR {getData.paymentDetailsCount1}</p>
             </div>
 
             <div className="card4">
               <h1>Last 365 days</h1>
-              <p>$124,200</p>
+              <p>LKR {getData.paymentDetailsCount2}</p>
             </div>
           </div>
         </div>
