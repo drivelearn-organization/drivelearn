@@ -3,6 +3,7 @@ package com.example.drivelearnbackend.Controllers;
 import com.example.drivelearnbackend.Controllers.DTO.DashboardDTO;
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
+import com.example.drivelearnbackend.Repositories.Entity.Payment;
 import com.example.drivelearnbackend.Sevices.AdminService;
 import com.example.drivelearnbackend.Sevices.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class DashbordController {
     @GetMapping(value = "/branchDetails")
     public DashboardDTO getAllDetails(){
         return dashboardService.getAllDetails();
+    }
+
+    @GetMapping(value = "/Income")
+    public LinkedList<Payment> getIncomeDetails(){
+        return dashboardService.getIncomeDetails();
     }
 }

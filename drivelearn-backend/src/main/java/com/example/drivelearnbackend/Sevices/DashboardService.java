@@ -6,11 +6,13 @@ import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
 import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.Employee;
+import com.example.drivelearnbackend.Repositories.Entity.Payment;
 import com.example.drivelearnbackend.Repositories.Entity.Student;
 import com.example.drivelearnbackend.Repositories.Entity.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 @Service
@@ -30,6 +32,9 @@ public class DashboardService {
 
     @Autowired
     private VehicleRepository vehicleRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     public DashboardDTO getAllDetails(){
         int branchManagerCount = 0;
@@ -58,5 +63,14 @@ public class DashboardService {
 //        return employee;
 
         return  new DashboardDTO(branchManagerCount,instructorlistCount,studentlistCount,vehiclelistCount);
+    }
+
+    public LinkedList<Payment> getIncomeDetails(){
+
+        LocalDate todayDate = LocalDate.now();
+        LocalDate oldDate = todayDate.minusDays(7);
+        LinkedList<Payment> todayPaymentDetails = paymentRepository.findAllByDate(todayDate);
+//        DashboardDTO employee = null;
+       return todayPaymentDetails;
     }
 }
