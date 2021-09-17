@@ -74,7 +74,7 @@ const AdminMain = ({getData,getMonthData}) => {
               <p>DriveLEARN</p>
             </div>
           </div>
-          <Chart getData={getMonthData}/>
+          <Chart getMonthData ={getMonthData}/>
         </div>
 
         <div className="charts__right">

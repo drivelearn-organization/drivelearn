@@ -1,6 +1,8 @@
 import './managerMain.css';
+import Chart from './managerBar';
+import {Bar} from 'react-chartjs-2';
 
-const ManagerMain = () => {
+const ManagerMain = ({getData,getMonthData}) => {
    return(
     <main>
     <div className="main__container">
@@ -10,7 +12,7 @@ const ManagerMain = () => {
         <img src="images/hello.png" alt="" />
         <div className="main__greeting">
           <h1>DriveLEARN</h1>
-          <p> Kalutara Branch</p>
+          <p> {sessionStorage.getItem('branchName')} Branch</p>
         </div>
       </div>
 
@@ -25,7 +27,7 @@ const ManagerMain = () => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Students</p>
-            <span className="font-bold text-title">578</span>
+            <span className="font-bold text-title">{getData.studentCoun}</span>
           </div>
         </div>
 
@@ -33,7 +35,7 @@ const ManagerMain = () => {
           <i className="fa fa-user-secret fa-2x text-black" aria-hidden="true"></i>
           <div className="card_inner">
             <p className="text-primary-p">Instructors</p>
-            <span className="font-bold text-title">7</span>
+            <span className="font-bold text-title">{getData.insructorCount}</span>
           </div>
         </div>
 
@@ -44,11 +46,11 @@ const ManagerMain = () => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Vehicles</p>
-            <span className="font-bold text-title">340</span>
+            <span className="font-bold text-title">{getData.vehiclelistCount}</span>
           </div>
         </div>
 
-        <div className="card">
+        {/* <div className="card">
           <i
             className="fa fa-bell fa-2x text-black"
             aria-hidden="true"
@@ -57,7 +59,7 @@ const ManagerMain = () => {
             <p className="text-primary-p">Notifications</p>
             <span className="font-bold text-title">645</span>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* <!-- MAIN CARDS ENDS HERE -->
 
@@ -67,32 +69,12 @@ const ManagerMain = () => {
           <div className="charts__left__title">
             <div>
               <h1>Available Training Sessions</h1>
-              <p>DriveLEARN, Kalutara</p>
+              <p>DriveLEARN, {sessionStorage.getItem('branchName')}</p>
             </div>
             {/* <i className="fa fa-usd" aria-hidden="true"></i> */}
           </div>
-          {/* <div id="apex1"></div> */}
-          {/* <div className="charts__right__cards">
-            <div className="card1">
-              <h1>Income</h1>
-              <p>$75,300</p>
-            </div>
 
-            <div className="card2">
-              <h1>Sales</h1>
-              <p>$124,200</p>
-            </div>
-
-            <div className="card3">
-              <h1>Users</h1>
-              <p>3900</p>
-            </div>
-
-            <div className="card4">
-              <h1>Orders</h1>
-              <p>1881</p>
-            </div>
-          </div> */}
+          <Chart getMonthData={getMonthData}/>
         </div>
 
         <div className="charts__right">
@@ -107,22 +89,22 @@ const ManagerMain = () => {
           <div className="charts__right__cards">
             <div className="card1">
               <h1>Today</h1>
-              <p>$75,300</p>
+              <p>LKR {getData.paymentDetailsCount3}</p>
             </div>
 
             <div className="card2">
               <h1>Last 7 days</h1>
-              <p>$124,200</p>
+              <p>LKR {getData.paymentDetailsCount}</p>
             </div>
 
             <div className="card3">
               <h1>Last 30 days</h1>
-              <p>$124,200</p>
+              <p>LKR {getData.paymentDetailsCount1}</p>
             </div>
 
             <div className="card4">
               <h1>Last 365 days</h1>
-              <p>$124,200</p>
+              <p>LKR {getData.paymentDetailsCount2}</p>
             </div>
           </div>
         </div>
@@ -130,6 +112,9 @@ const ManagerMain = () => {
       {/* <!-- CHARTS ENDS HERE --> */}
     </div>
   </main>
+
+
+
    )
 
 }
