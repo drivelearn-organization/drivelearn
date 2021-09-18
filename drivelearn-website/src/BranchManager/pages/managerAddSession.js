@@ -50,19 +50,19 @@ const ManagerAddStudents = () => {
   }
 
 
-  
+
 
   const submit = e => {
 
-  
+
 
     for (let i = 0; i < getEmployeeType.length; i++) {
       if(getEmployeeType[i].empid == e.target[0].value){
          console.log(getEmployeeType[i].username);
          setEmpName(getEmployeeType[i].username);
-         
+
       }
-     
+
     }
 
     let trainerId = parseInt(e.target[0].value);
@@ -86,11 +86,11 @@ const ManagerAddStudents = () => {
       status,
       managerId,
       trainerUsername
-     
+
 
     };
     console.log(data);
-   
+
 
     postSession(data);
 
@@ -100,10 +100,10 @@ const ManagerAddStudents = () => {
     axios
       .post(Base+"/session/addSession", data)
       .then(response=> {
-        console.log(response.data);
-        // if(response.data === "Added Successfully"){
-        //   window.location = '/managersession';
-        // }
+        console.log( "check",response.data);
+        if(response.data === "Added Successfully"){
+          window.location = '/managersession';
+        }
       })
   }
 
@@ -127,7 +127,7 @@ const ManagerAddStudents = () => {
               </div>
 
               <form className="charts__rightt__cardss"
-              
+
               onSubmit={e => {
                 e.preventDefault();
                 submit(e);
@@ -150,7 +150,7 @@ const ManagerAddStudents = () => {
                   </select>
                 </div>
 
-                
+
 
                 <div className="card-p">
                   <p className="text">Date</p>
@@ -176,7 +176,7 @@ const ManagerAddStudents = () => {
                 </div> */}
                 </div>
 
-                
+
                 <div className="card-p">
                   <p className="text">Vehical type</p>
 

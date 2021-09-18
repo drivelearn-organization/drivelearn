@@ -46,7 +46,7 @@ const [successShow,setsuccessShow] = useState(false);
             setshow(true);
         }
 
-        
+
     };
 
     const toggleModal1=() =>{
@@ -108,7 +108,7 @@ const [successShow,setsuccessShow] = useState(false);
             message
         }
 
-        setModal(!modal); 
+        setModal(!modal);
         console.log(receiverUserIdAtrray.length);
         console.log(data);
 
@@ -119,18 +119,18 @@ const [successShow,setsuccessShow] = useState(false);
         seterrorShow(true);
       //  setsuccessShow(false);
        // return true;
-       
-          
-        
+
+
+
      }else{
-       
-       
-       // setModal(!modal); 
-            
+
+
+       // setModal(!modal);
+
            // event.preventDefault();
 
 
-//setModal(!modal); 
+//setModal(!modal);
         axios
             .post(Base+`/listnotification/addnotification`, data)
             .then(data => {
@@ -139,22 +139,22 @@ const [successShow,setsuccessShow] = useState(false);
 
             })
             .catch(err => alert(err));
-      
+
         // setModelError(true);
       // e.preventDefault();
       window.location.reload();
        seterrorShow(false);
        //setsuccessShow(true);
-      
-       }
-        
 
-       
+       }
+
+
+
 
     }
 
 
-    
+
 
     const viewGetNotification = () => {
         axios
@@ -248,22 +248,22 @@ const [successShow,setsuccessShow] = useState(false);
                                     }
                                 }></textarea>
 
-                            
+
 
                                 <div  style={{background: "red",marginTop: "5px",display: show ? "block" : "none"}}>
                                     <p style={{color: "white",padding: "10px",margin: "5px",border: "5px solid white"}}>Title Feild OR Message Feild is Empty.</p>
-                                </div> 
+                                </div>
 
                                 <div  style={{background: "red",marginTop: "5px",display: errorShow ? "block" : "none"}}>
                                     <p style={{color: "white",padding: "10px",margin: "5px",border: "5px solid white"}}>Message Send Fail . You Have Not Selected Student </p>
-                                </div> 
+                                </div>
                                 <div  style={{background: "Green",marginTop: "5px",display: successShow ? "block" : "none"}}>
                                     <p style={{color: "white",padding: "10px",margin: "5px",border: "5px solid white"}}>Message is Sent Successfull </p>
-                                </div> 
+                                </div>
 
                             </div>
 
-                            
+
 
                             {modal && (
                                 <div className="modal">
@@ -279,7 +279,7 @@ const [successShow,setsuccessShow] = useState(false);
                                 </div>
                             )}
 
-                            
+
 
                             <br />
 
@@ -288,7 +288,7 @@ const [successShow,setsuccessShow] = useState(false);
                             sendNotification();
 
                         }} />*/}
-                           
+
                         </form>
                         <button className="add-btn" onClick={toggleModal}>add student</button>
                         <br /><br />
@@ -316,7 +316,7 @@ const [successShow,setsuccessShow] = useState(false);
                                         <td>
                                             <span className="action_btn">
                                                 <a href="./managerviewnotification" className="eye"><i className="fa fa-eye"></i></a>
-                                                
+
                                             </span>
                                         </td>
                                     </tr>
