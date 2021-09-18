@@ -141,8 +141,7 @@ const AdminStudents = (props) => {
 
                   getData.filter((value) => {
 
-                    console.log(value.stuID.toString().toLowerCase());
-                    console.log(value.name.toString().toLowerCase());
+                   
                     if (search === "") {
                       return value;
                     } else if (value.stuID.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Reg No")) {
