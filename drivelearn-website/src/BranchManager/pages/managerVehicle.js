@@ -201,10 +201,10 @@ console.log(getUpdateVehicle);
                       <td>
                         <span className="action_btn">
                           <a onClick={()=>togglemodal(d.regiNumner,d.chacieNumber,d.startingMilage,d.vehicleType,d.licenceExpireDate,d.expireDate,d.addedDate,d.payedDate,d.expireDate,d.vechicleId)}  className="eye"><i className="fa fa-eye"></i></a>
-                          <a href="#" className="trash" onClick={() => {
+                          {/* <a href="#" className="trash" onClick={() => {
                             deleteVehicle(d.vechicleId);
                           }}
-                          ><i className="fa fa-trash"></i></a>
+                          ><i className="fa fa-trash"></i></a> */}
                          
                         </span>
                       </td>

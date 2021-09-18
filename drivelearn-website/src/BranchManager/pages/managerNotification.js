@@ -138,13 +138,13 @@ const [successShow,setsuccessShow] = useState(false);
                 setNotification(data.data);
 
             })
-            .catch(err => alert(err));
+            //.catch(err => alert(err));
 
         // setModelError(true);
       // e.preventDefault();
      window.location.reload();
-       seterrorShow(false);
-       //setsuccessShow(true);
+     //  seterrorShow(false);
+       setsuccessShow(true);
 
        }
 
