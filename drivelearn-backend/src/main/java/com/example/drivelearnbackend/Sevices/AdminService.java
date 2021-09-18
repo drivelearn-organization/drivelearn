@@ -449,6 +449,50 @@ public class AdminService {
         return  error;
     }
 
+    public String addNewInstructorByManager(EmployeeDTO dto){
+        String pass="";
+        int roleType;
+        int role;
+        String error = "";
+        LinkedList<Employee> username = new LinkedList<>();
+        LinkedList<Employee> password = new LinkedList<>();
+        try {
+            pass=new HashMD5().giveHash(dto.getPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        roleType = dto.getRole();
+        if(roleType == 4){
+            role = 4;
+        }else{
+            role = dto.getRole();
+        }
+
+
+        String isActive = "1";
+
+        List<Installment> installmentList=new ArrayList<>();
+        List<Session> trainersSessionList=new ArrayList<>();
+        List<Session> assinersSessionList=new ArrayList<>();
+        LocalDate todayregisterDate = LocalDate.now();
+        Branch branch = branchRepository.findBranchByBranchName(dto.getBranch());
+        username = repository.findByUsername(dto.getUsername());
+        password = repository.findByPassword(pass);
+
+
+
+        if(username.isEmpty() && !dto.getBranch().isEmpty()){
+            repository.save(new Employee(dto.getMoNumber(),null, role, dto.getFullName(), dto.getNid(), 1, dto.getUsername(), pass, todayregisterDate, null, branch, installmentList, trainersSessionList, assinersSessionList ));
+            error = "Added Successfully";
+
+        }else{
+
+            error = "Invalid Username";
+        }
+        return  error;
+    }
+
     public EmployeeDTO getSettingProfile(String username){
         String branchId = null;
         Branch branch = null;

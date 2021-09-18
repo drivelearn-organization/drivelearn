@@ -8,4 +8,6 @@ import java.util.LinkedList;
 
 public interface VehicleRepository extends CrudRepository<Vehicle,Integer> {
     LinkedList<Vehicle> findVehicleByBranch(Branch branch);
+    LinkedList<Vehicle> findAll();
+    LinkedList<Vehicle> findAllByBranch(Branch branch);
 }

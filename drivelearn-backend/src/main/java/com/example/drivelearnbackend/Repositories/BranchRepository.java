@@ -8,4 +8,5 @@ import java.util.LinkedList;
 
 public interface BranchRepository extends CrudRepository<Branch,Integer> {
    Branch findBranchByBranchName(String branchName);
+   Branch findBranchByBranchid(int id);
 }

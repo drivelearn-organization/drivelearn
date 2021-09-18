@@ -45,7 +45,7 @@ setState({
 
 const handleSubmit = (e) =>{
 e.preventDefault()
-axios.post(Base+'/drivelearn/addInstructors',state)
+axios.post(Base+'/drivelearn/addInstructorsByManager',state)
 .then(response => {
       
   if(response.data === "Added Successfully")
@@ -149,7 +149,7 @@ return (
           <center>
           <input type="submit" value="Add" className="update-btn" />
           &nbsp;&nbsp;&nbsp;
-          <input type="Reset" value="Clear" className="reset1-btn" />
+          <input type="Reset" value="RESET" className="reset1-btn" />
           </center>
         </form>
       </div>
