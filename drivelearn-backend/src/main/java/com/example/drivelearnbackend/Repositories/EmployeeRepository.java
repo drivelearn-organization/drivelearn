@@ -19,6 +19,7 @@ public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
    LinkedList<Employee> findAllByIsActive(int active);
    LinkedList<Employee> findByUsernameAndPassword(String username, String password);
    LinkedList<Employee> findAll();
+   Employee findEmployeeByBranch(Branch branch);
 
 
 

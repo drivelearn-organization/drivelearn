@@ -2,6 +2,7 @@ package com.example.drivelearnbackend.Sevices;
 
 import com.example.drivelearnbackend.Controllers.DTO.NotificationDTO;
 import com.example.drivelearnbackend.Repositories.*;
+import com.example.drivelearnbackend.Repositories.Entity.Employee;
 import com.example.drivelearnbackend.Repositories.Entity.Notification;
 import com.example.drivelearnbackend.Repositories.Entity.User;
 import com.example.drivelearnbackend.Repositories.Entity.UserReceiveNotification;
@@ -160,10 +161,31 @@ public class NontificationService {
         LinkedList<NotificationDTO> notificationDTOS=new LinkedList<>();
         for (Notification notification : repository.findAll()) {
             if(notification.getSender()!=null){
-//                if(branchRepository.findById(employeeRepository.findById(notification.getSender().getExternalId()).get().getBranch().getBranchid()).get()!=null){
-                    if(employeeRepository.findById(notification.getSender().getExternalId()).get().getBranch().getBranchid()==branchId){
-                        notificationDTOS.add(new NotificationDTO(notification.getNotificationId(), notification.getHeader(), notification.getMessage()));
+
+                User user=notification.getSender();
+                int id=0;
+                id=user.getExternalId();
+
+                if(id!=0){
+                    System.out.println("print id"+id);
+                    Employee employee=null;
+                    try{
+                        employee =employeeRepository.findById(id).get();
+                    }catch (Exception e){
+
                     }
+                    if(employee!=null){
+                        if(employee.getBranch().getBranchid()==branchId){
+                            notificationDTOS.add(new NotificationDTO(notification.getNotificationId(), notification.getHeader(), notification.getMessage()));
+                        }
+
+                    }
+                }
+
+//                if(branchRepository.findById(employeeRepository.findById(notification.getSender().getExternalId()).get().getBranch().getBranchid()).get()!=null){
+//                    if(employeeRepository.findById(notification.getSender().getExternalId()).get().getBranch().getBranchid()==branchId){
+//                        notificationDTOS.add(new NotificationDTO(notification.getNotificationId(), notification.getHeader(), notification.getMessage()));
+//                    }
 //                }
             }
         }
