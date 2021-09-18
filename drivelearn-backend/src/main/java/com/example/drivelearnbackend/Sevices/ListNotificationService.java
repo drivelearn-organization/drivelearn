@@ -50,7 +50,7 @@ public class ListNotificationService {
 
         int[] array=dto.getReceiverUserIdAtrray();
         System.out.println("array"+array[0]);
-        for (int i=0;i> array.length;i++){
+        for (int i=0;i< array.length;i++){
             addReceiver(new NotificationDTO(notification.getNotificationId(), array[i], dto.getReceiverType()));
         }
 
@@ -76,9 +76,10 @@ public class ListNotificationService {
             userList=userRepository.findByExternalIdAndUserType(dto.getReceiverUserId(),3);
             for (User user1 : userList) {
                 user = user1;
-                System.out.println(user.getUsername());
+               // System.out.println("for test"+user.getUsername());
             }
         }
+        //System.out.println("for test->"+user.getUsername());
         userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),user,notification));
     }
 

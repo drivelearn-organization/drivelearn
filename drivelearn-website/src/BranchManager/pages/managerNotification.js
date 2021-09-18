@@ -98,7 +98,7 @@ const [successShow,setsuccessShow] = useState(false);
         console.log(receiverUserIdAtrray);
 
         let data = {
-            notificationId,
+           // notificationId,
             reciverType,
             receiverUserIdAtrray,
             senderUsername,
@@ -142,7 +142,7 @@ const [successShow,setsuccessShow] = useState(false);
 
         // setModelError(true);
       // e.preventDefault();
-      window.location.reload();
+     window.location.reload();
        seterrorShow(false);
        //setsuccessShow(true);
 
@@ -299,10 +299,10 @@ const [successShow,setsuccessShow] = useState(false);
                             <thead>
                                 <tr>
                                     <th>Notification No</th>
-                                    <th>Full Name</th>
+                                   
                                     <th>Header</th>
                                     <th>Message</th>
-                                    <th>Action</th>
+                                    {/* <th>Action</th> */}
                                 </tr>
                             </thead>
 
@@ -310,15 +310,15 @@ const [successShow,setsuccessShow] = useState(false);
                                 {viewNotification.map(d => (
                                     <tr>
                                         <td>{d.notificationId}</td>
-                                        <td>{d.senderUsername}</td>
+                                      
                                         <td>{d.header}</td>
                                         <td>{d.message}</td>
-                                        <td>
+                                        {/* <td>
                                             <span className="action_btn">
                                                 <a href="./managerviewnotification" className="eye"><i className="fa fa-eye"></i></a>
 
                                             </span>
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 ))
                                 }
