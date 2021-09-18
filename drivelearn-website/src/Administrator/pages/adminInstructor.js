@@ -105,7 +105,7 @@ const handleChangeActiveStatus = () => {
                   <tr>
                   <th>Reg No</th>
                   <th>Full Name</th>
-                  <th>Address</th>
+                  {/* <th>Address</th> */}
                   <th>NIC</th>
                   <th>Mobile</th>
                   <th>Action</th>
@@ -123,7 +123,7 @@ const handleChangeActiveStatus = () => {
                     
                      <td>{data.empid}</td>
                      <td>{data.fullName}</td>
-                     <td>No.65, Kottegoda, Weligama.</td>
+                     {/* <td>No.65, Kottegoda, Weligama.</td> */}
                      <td>{data.nid}</td>
                      <td>{data.moNumber}</td>
                      <td>

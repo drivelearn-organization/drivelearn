@@ -45,7 +45,7 @@ setState({
 
 const handleSubmit = (e) =>{
 e.preventDefault()
-axios.post(Base+'/drivelearn/addInstructors',state)
+axios.post(Base+'/drivelearn/addInstructorsByManager',state)
 .then(response => {
       
   if(response.data === "Added Successfully")
