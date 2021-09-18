@@ -80,7 +80,7 @@ const ManagerViewStudents = (props) => {
 
 const handleSubmit = (e) =>{
   e.preventDefault()
-  axios.post('http://localhost:8080/drivelearn/updateStudent',state)
+  axios.post(Base+'/drivelearn/updateStudent',state)
   .then(response => {
       
     if(response.data === "update successfully")
