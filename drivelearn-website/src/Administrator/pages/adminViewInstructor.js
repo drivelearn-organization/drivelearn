@@ -165,8 +165,8 @@ const AdminViewInstructors = (props) => {
             </div>
             <center>
             <input type="submit" value="Update" className="update-btn" disabled={disabled} style = {{ opacity: disabled ? "0.7":"1"}}/>
-            &nbsp;&nbsp;&nbsp;
-            <input type="Reset" value="Clear" className="reset1-btn" />
+            
+            
             </center>
           </form>
         </div>

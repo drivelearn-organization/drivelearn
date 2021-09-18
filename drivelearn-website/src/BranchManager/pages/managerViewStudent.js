@@ -179,8 +179,7 @@ return (
           
           <center>
           <input type="submit" value="Update" className="update-btn" disabled={disabled} style = {{ opacity: disabled ? "0.7":"1"}}/>
-          &nbsp;&nbsp;&nbsp;
-          <input type="submit" value="Deactivate" className="reset1-btn" />
+         
           </center>
         </form>
       </div>
