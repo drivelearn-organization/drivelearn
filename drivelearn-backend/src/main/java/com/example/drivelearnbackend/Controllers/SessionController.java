@@ -36,8 +36,8 @@ public class SessionController {
 //        "trainerId":291
 //}
     @PostMapping(value = "/addSession")
-    public void addSession(@RequestBody SessionDTO dto){
-        sessionService.addSession(dto);
+    public String addSession(@RequestBody SessionDTO dto){
+        return sessionService.addSession(dto);
     }
 
 

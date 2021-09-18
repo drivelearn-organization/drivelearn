@@ -85,7 +85,8 @@ public class SessionService {
         }
     }
 
-    public void addSession(SessionDTO dto){
+    public String addSession(SessionDTO dto){
+        String msg = "Added Successfully";
         Employee manager=employeeRepository.findById(dto.getManagerId()).get();
         Employee trainer=employeeRepository.findById(dto.getTrainerId()).get();
 
@@ -96,6 +97,8 @@ public class SessionService {
         List<UserReceiveNotification> usersReceivedotificaction=new ArrayList<>();
         Notification notification=notificationRepository.save(new Notification("Assigned for a session", "you are assigned as the the instructor for a training session at "+dto.getDate()+" from "+dto.getStartTime()+" to "+dto.getEndTime(), LocalDate.now(),1,usersReceivedotificaction,null));
         userReceiveNotificationRepository.save(new UserReceiveNotification(1, LocalDateTime.now(),TrainerUser,notification));
+
+        return msg;
 
     }
 

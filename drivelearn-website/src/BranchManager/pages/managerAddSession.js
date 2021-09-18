@@ -65,14 +65,14 @@ const ManagerAddStudents = () => {
      
     }
 
-    let trainerId = e.target[0].value;
+    let trainerId = parseInt(e.target[0].value);
     let date = e.target[1].value;
     let startTime = e.target[2].value;
     let status = 1;
     let branchName = sessionStorage.getItem('branchName');
-    let numOfStudent = e.target[3].value;
+    let numOfStudent = parseInt(e.target[3].value);
     let vehicleType = e.target[4].value;
-    let managerId = sessionStorage.getItem('empId');
+    let managerId = parseInt(sessionStorage.getItem('empId'));
     let trainerUsername = getEmpName;
 
 
@@ -99,8 +99,11 @@ const ManagerAddStudents = () => {
   const postSession = (data) => {
     axios
       .post(Base+"/session/addSession", data)
-      .then(d => {
-        console.log(d);
+      .then(response=> {
+        console.log(response.data);
+        // if(response.data === "Added Successfully"){
+        //   window.location = '/managersession';
+        // }
       })
   }
 
@@ -159,7 +162,7 @@ const ManagerAddStudents = () => {
 
                 <div className="card-p">
                   <p className="text">Time</p>
-                  <input className="data" type="text" name="first_name" id="firstname" placeholder="Time" required />
+                  <input className="data" type="time" name="first_name" id="firstname" placeholder="Time" required />
                   {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}

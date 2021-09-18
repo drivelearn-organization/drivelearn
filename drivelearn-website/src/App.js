@@ -24,7 +24,7 @@ import ManagerAddInstructors from './BranchManager/pages/managerAddInstructor';
 import AdminAddStudents from './Administrator/pages/adminAddStudent';
 import AdminAddInstructors from './Administrator/pages/adminAddInstructor';
 import AdminAddManagers from './Administrator/pages/adminAddManager';
-import AdminVehicle from './BranchManager/pages/managerVehicle';
+import ManagerVehicle from './BranchManager/pages/managerVehicle';
 import ManagerAddVehicle from './BranchManager/pages/managerAddVehicle';
 import ManagerUpdateVehicle from './BranchManager/pages/managerUpdateVehicle';
 import ManagerSession from './BranchManager/pages/managerSession';
@@ -34,6 +34,7 @@ import ManagerPayment from './BranchManager/pages/managerPayment';
 import ManagerAddPayment from './BranchManager/pages/managerAddPayment';
 import ManagerUpdatePayment from './BranchManager/pages/managerUpdatePayment';
 import AdminEmployeeReaquest from './Administrator/pages/adminEmployeeReaquest';
+import AdminVehicle from './Administrator/pages/adminVehicle';
 
 function App() {
   return (
@@ -64,7 +65,7 @@ function App() {
           <Route path='/adminaddstudent' exact component={AdminAddStudents} />
           <Route path='/adminaddinstructor' exact component={AdminAddInstructors} />
           <Route path='/adminaddmanager' exact component={AdminAddManagers} />
-          <Route path='/adminvehicle' exact component={AdminVehicle} />
+          <Route path='/managervehicle' exact component={ManagerVehicle} />
           <Route path='/manageraddvehicle' exact component={ManagerAddVehicle} />
           <Route path='/managerupdatevehicle' exact component={ManagerUpdateVehicle} />
           <Route path='/managersession' exact component={ManagerSession} />
@@ -74,6 +75,7 @@ function App() {
           <Route path='/manageraddpayment' exact component={ManagerAddPayment} />
           <Route path='/managerupdatepayment' exact component={ManagerUpdatePayment} />    
           <Route path='/adminEmployeeReaquest' exact component={AdminEmployeeReaquest} />
+          <Route path='/adminvehicle' exact component={AdminVehicle} />
 
           
           
