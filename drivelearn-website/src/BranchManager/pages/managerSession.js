@@ -7,9 +7,10 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import ManagerSessionSelectStudent from './managerSessionSelectStudent';
+import ManagerSessionDeactive from './managerPopUpDeactivateSession';
 
 import ManagerSessionUpdate from './manageSessionUpdate';
-import {Base} from './../../base';
+import { Base } from './../../base';
 
 
 const ManagerSession = () => {
@@ -22,6 +23,8 @@ const ManagerSession = () => {
   const [getmodalupdate, setmodalupdate] = useState(false);
   const [updateDetails, setUpdateDetails] = useState([]);
   const [getdata, setdata] = useState([]);
+  const [deactive, setDeactive] = useState(false);
+  const [deactiveId, setDeactiveState] = useState();
   const [state, setState] = useState({
     sessionId: "",
     trainerName: "",
@@ -31,7 +34,8 @@ const ManagerSession = () => {
     empid: "",
     vehicleType: ""
   });
-
+  const [search, getSearch] = useState("");
+  const [dropdown, getdrop] = useState("Id");
 
   console.log(getStudent);
 
@@ -43,6 +47,14 @@ const ManagerSession = () => {
 
     setSidebarOpen(false);
   };
+
+
+  const deactivepopup = (sessionId) => {
+
+    setDeactiveState(sessionId);
+    setDeactive(!deactive);
+  }
+
 
   const toggleupdate = (sessionId, trainerName, date, startTime, numOfStudent, trainerId, vehicleType) => {
 
@@ -109,9 +121,9 @@ const ManagerSession = () => {
 
   const getSession = () => {
     axios
-      .get(Base+"/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
+      .get(Base + "/staffsessioncontroller/getallsession/" + sessionStorage.getItem('branchId'))
       .then(data => {
-        setSessionState(data.data);
+        setSessionState(data.data.reverse());
 
 
 
@@ -119,15 +131,17 @@ const ManagerSession = () => {
   }
 
 
-  const deleteSession = (id) => {
+  const deleteSession = () => {
     //console.log(id);
     axios
-      .put(Base+'/staffsessioncontroller/makeclose/' + id)
+      .put(Base + '/staffsessioncontroller/makeclose/' + deactiveId)
+
       .then(d => {
         console.log(d);
       })
 
-      window.location.reload();
+    window.location.reload();
+    setDeactive(!deactive);
   }
 
 
@@ -135,7 +149,7 @@ const ManagerSession = () => {
 
     console.log(data);
     axios
-      .post(Base+"/session/book", data)
+      .post(Base + "/session/book", data)
       .then(d => {
         console.log(d.data);
       })
@@ -157,7 +171,7 @@ const ManagerSession = () => {
 
     console.log(getdata);
     axios
-      .put(Base+"/staffsessioncontroller/updatesession", updateDetails)
+      .put(Base + "/staffsessioncontroller/updatesession", updateDetails)
       .then(d => {
 
       })
@@ -169,7 +183,7 @@ const ManagerSession = () => {
 
   const Student = () => {
     axios
-      .get(Base+"/drivelearn/students")
+      .get(Base + "/drivelearn/students")
       .then(d => {
         setStudent(d.data);
       })
@@ -191,17 +205,23 @@ const ManagerSession = () => {
           <br /><br />
           <div className="table_responsive">
             <div className="search">
-              <div className="search_box">
-                <div className="dropdown">
-                  <div className="default_option">All</div>
-                  {/* <ul>
-                         <li>All</li>
-                         <li>Recent</li>
-                         <li>Popular</li>
-                       </ul> */}
-                </div>
-                <div className="search_field">
-                  <input type="text" className="input" placeholder="Search" />
+              <div className="search_box " >
+
+
+                <select id="dropdown" className="drop-down" onChange={e => {
+                  getdrop(e.target.value);
+                }}>
+
+                  <option className="option-style" value="Id">Id</option>
+                  <option className="option-style" value="Instructor Name">Instructor Name</option>
+
+                </select>
+
+
+                <div className="search_field search-drop">
+                  <input type="text" className="input" placeholder="Search" onChange={(e) => {
+                    getSearch(e.target.value);
+                  }} />
                   <i className="fas fa-search"></i>
                 </div>
               </div>
@@ -235,6 +255,23 @@ const ManagerSession = () => {
               )}
 
 
+
+              {deactive && (
+                <div className="modal">
+                  <div className="overlay">
+                    <div className="modal-content" style={{
+                      background: "white",
+                      width: "10%",
+                      height: "60vh"
+                    }}>
+                      <ManagerSessionDeactive setDeactive={setDeactive} deleteSession={deleteSession} />
+
+                    </div>
+                  </div>
+                </div>
+              )}
+
+
               <div className="create-button">
                 <div className="create_btn">
                   <a href="./manageraddsession"><i className="fa fa-plus-circle"></i></a>
@@ -261,7 +298,15 @@ const ManagerSession = () => {
               <tbody>
 
                 {
-                  sessionState.map(d => (
+                  sessionState.filter((value)=>{
+                    if(search===""){
+                      return value;
+                    }else if(value.sessionId.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Id")){
+                      return value;
+                    }else if(value.trainerUsername.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Instructor Name")){
+                      return value;
+                    }
+                  }).map(d => (
                     <tr>
                       <td>{d.sessionId}</td>
                       <td>{d.trainerUsername}</td>
@@ -285,7 +330,7 @@ const ManagerSession = () => {
                       <td>
                         <span className="action_btn">
                           <a className="eye"><i className="fa fa-eye" onClick={() => toggleupdate(d.sessionId, d.trainerUsername, d.date, d.startTime, d.numOfStudent, d.trainerId, d.vehicleType)}></i></a>
-                          <a className="trash" onClick={()=>deleteSession(d.sessionId)}><i className="fa fa-trash"></i></a>
+                          <a className="trash" onClick={() => deactivepopup(d.sessionId)}><i className="fa fa-trash"></i></a>
                         </span>
                       </td>
                     </tr>

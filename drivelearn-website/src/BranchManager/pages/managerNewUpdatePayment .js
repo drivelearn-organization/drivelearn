@@ -43,6 +43,9 @@ const ManagerNewPayment = (props) => {
         console.log(d);
       })
 
+      props.toggleModal();
+      window.location.reload();
+
   }
 
   //console.log(props.data);

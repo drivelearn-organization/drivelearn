@@ -95,7 +95,7 @@ const [successShow,setsuccessShow] = useState(false);
 
         });
 
-        console.log(receiverUserIdAtrray.push(0));
+        console.log(receiverUserIdAtrray);
 
         let data = {
             notificationId,
@@ -160,7 +160,7 @@ const [successShow,setsuccessShow] = useState(false);
         axios
             .get(Base+"/notification/getallnotificationbybranch/" + sessionStorage.getItem('branchId'))
             .then(data => {
-                setViewNotification(data.data);
+                setViewNotification(data.data.reverse());
 
 
             })

@@ -64,7 +64,7 @@ const ManagerVehicle = () => {
     axios
       .get(Base+"/vehicle/getvehicle/1/"+ sessionStorage.getItem('branchId'))
       .then(data => {
-        setVehicleState(data.data);
+        setVehicleState(data.data.reverse());
 
 
       })

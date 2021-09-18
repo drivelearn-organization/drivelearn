@@ -6,15 +6,18 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import { width } from 'dom-helpers';
 import axios from 'axios';
-import {Base} from './../../base';
+import { Base } from './../../base';
 
 
 const ManagerNewPayment = (props) => {
 
   const [getdrop, setdrop] = useState({
-    car: "0",
-    bike: "0",
-    threewheel: "0",
+    car: 0,
+    bike: 0,
+    threewheel: 0,
+    carAuto: 0,
+    exam: 0,
+    heavyV: 0
   });
 
 
@@ -63,15 +66,70 @@ const ManagerNewPayment = (props) => {
 
     console.log(data);
     axios
-      .post(Base+"/payment/addinitialpayment", data)
+      .post(Base + "/payment/addinitialpayment", data)
       .then(d => {
         console.log(props.data.id);
       })
 
+
+    setCource(parseInt(getdrop.threewheel), parseInt(getdrop.bike), 0, parseInt(getdrop.car), parseInt(getdrop.heavyV), 0);
+
+    props.toggleModal();
+    //window.location.reload();
+
   }
+
+
+  //console.log(props.data.name);
+
+  const setCource = (wheeler, bikes, carAuto, carMan, heavyV, exam) => {
+
+    let traPos = 1;
+
+    if (wheeler === 0 && bikes === 0 && carAuto === 0 && carMan === 0 && heavyV === 0) {
+      traPos = 1;
+    } else if (wheeler === 0 && bikes === 0 && carAuto === 0 && carMan === 0) {
+      traPos = 3;
+    } else if (wheeler === 0 && bikes === 0 && carAuto === 0 && heavyV === 0) {
+      traPos = 5;
+    } else if (wheeler === 0 && carAuto === 0 && carMan === 0 && heavyV === 0) {
+      traPos = 7;
+    } else if (bikes === 0 && carAuto === 0 && carMan === 0 && heavyV === 0) {
+      traPos = 6;
+    } else if (bikes === 0 && wheeler === 0 && carMan === 0 && heavyV === 0) {
+      traPos = 4;
+    } else {
+      traPos = 2;
+    }
+
+    let data = {
+      username: props.data.username,
+      transportState: traPos,
+      exam: exam,
+      bike: bikes,
+      carManual: carMan,
+      carAuto: carAuto,
+      wheeler: wheeler,
+      heavy: heavyV
+    }
+
+
+    console.log(data);
+
+    axios
+      .post(Base + "/course/addcource", data)
+      .then(d => {
+        // console.log(props.data.id);
+      })
+
+
+    console.log("for testing");
+  }
+
 
   console.log(props.data);
   console.log(getdrop);
+  console.log("testing",props.enroll);
 
 
 
@@ -117,7 +175,7 @@ const ManagerNewPayment = (props) => {
           <button className="update-btn" style={{ width: "50%" }} onClick={() => setdiv()}>High weight</button>
         </div>
 
-        <div className="table_responsive" style={{ marginTop: "1%", padding: "1%" ,background: "white"}}>
+        <div className="table_responsive" style={{ marginTop: "1%", padding: "1%", background: "white" }}>
           {
             show ?
               <div className="table_responsive" style={{ width: "98%" }}>
@@ -135,7 +193,10 @@ const ManagerNewPayment = (props) => {
                         setdrop({
                           car: e.target.value,
                           bike: getdrop.bike,
-                          threewheel: getdrop.threewheel
+                          threewheel: getdrop.threewheel,
+                          carAuto: 0,
+                          exam: 0,
+                          heavyV: 0
                         });
                       }}>
                         <option value="0">0h</option>
@@ -160,7 +221,10 @@ const ManagerNewPayment = (props) => {
                         setdrop({
                           car: getdrop.car,
                           bike: e.target.value,
-                          threewheel: getdrop.threewheel
+                          threewheel: getdrop.threewheel,
+                          carAuto: 0,
+                          exam: 0,
+                          heavyV: 0
 
                         });
                       }}>
@@ -184,7 +248,10 @@ const ManagerNewPayment = (props) => {
                         setdrop({
                           car: getdrop.car,
                           bike: getdrop.bike,
-                          threewheel: e.target.value
+                          threewheel: e.target.value,
+                          carAuto: 0,
+                          exam: 0,
+                          heavyV: 0
                         });
                       }}>
                         <option value="0">0h</option>
@@ -240,9 +307,12 @@ const ManagerNewPayment = (props) => {
                     <td style={{ padding: "10px" }}>
                       <select onChange={e => {
                         setdrop({
-                          car: e.target.value,
+                          car: getdrop.car,
                           bike: getdrop.bike,
-                          threewheel: getdrop.threewheel
+                          threewheel: getdrop.threewheel,
+                          carAuto: 0,
+                          exam: 0,
+                          heavyV: e.target.value
                         });
                       }}>
                         <option value="0">0h</option>
@@ -290,7 +360,7 @@ const ManagerNewPayment = (props) => {
 
       </div>
       <div className="table_responsive">
-        <button className="update-btn" onClick={addpayment}>Add</button>
+        <button className="update-btn" disabled={props.enrol} style={!props.enrol?{ background: "blue" }:{ background: "yellow" }} onClick={addpayment}>Add</button>
         <button className="reset-btn" onClick={props.toggleModal}>Close</button>
       </div>
 

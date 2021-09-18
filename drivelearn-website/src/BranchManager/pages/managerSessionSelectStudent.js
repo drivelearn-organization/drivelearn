@@ -5,7 +5,7 @@ import './../filterButton.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
-import {Base} from './../../base';
+import { Base } from './../../base';
 
 
 const ManagerSessionSelectStudent = (props) => {
@@ -13,6 +13,8 @@ const ManagerSessionSelectStudent = (props) => {
   const [sessionState, setSessionState] = useState([]);
   const [getStudent, setStudent] = useState([]);
   const [getSessionId, setSessionId] = useState();
+  const [search, getSearch] = useState("");
+  const [dropdown, getdrop] = useState("Name");
 
   console.log(getStudent);
 
@@ -32,7 +34,7 @@ const ManagerSessionSelectStudent = (props) => {
 
   const getSession = () => {
     axios
-      .get(Base+"/staffsessioncontroller/getallsession/1")
+      .get(Base + "/staffsessioncontroller/getallsession/1")
       .then(data => {
         setSessionState(data.data);
 
@@ -51,7 +53,7 @@ const ManagerSessionSelectStudent = (props) => {
 
     console.log(data);
     axios
-      .post(Base+"/session/book", data)
+      .post(Base + "/session/book", data)
       .then(d => {
         console.log(d.data);
       })
@@ -61,9 +63,9 @@ const ManagerSessionSelectStudent = (props) => {
 
   const Student = () => {
     axios
-      .get(Base+"/drivelearn/students")
+      .get(Base + "/drivelearn/branchstudents/" + sessionStorage.getItem('branchName'))
       .then(d => {
-        setStudent(d.data);
+        setStudent(d.data.reverse());
       })
   }
 
@@ -90,21 +92,26 @@ const ManagerSessionSelectStudent = (props) => {
 
 
         <div className="search">
-          <div className="search_box">
-            <div className="dropdown">
-              <div className="default_option">All</div>
-              {/* <ul>
-                            <li>All</li>
-                            <li>Recent</li>
-                            <li>Popular</li>
-                           </ul> */}
-            </div>
-            <div className="search_field">
-              <input type="text" className="input" placeholder="Search" />
+          <div className="search_box " >
+
+
+            <select id="dropdown" className="drop-down" onChange={e => {
+              getdrop(e.target.value);
+            }}>
+
+              <option className="option-style" value="Name">Name</option>
+              <option className="option-style" value="NIC">NIC</option>
+
+            </select>
+
+
+            <div className="search_field search-drop">
+              <input type="text" className="input" placeholder="Search" onChange={(e) => {
+                getSearch(e.target.value);
+              }} />
               <i className="fas fa-search"></i>
             </div>
           </div>
-
         </div>
 
 
@@ -113,10 +120,10 @@ const ManagerSessionSelectStudent = (props) => {
           <table>
             <thead>
               <tr>
-                <th>StudentId</th>
+                <th>Student Id</th>
                 <th>NIC</th>
                 <th>Name</th>
-                
+
 
                 <th>Action</th>
               </tr>
@@ -125,13 +132,21 @@ const ManagerSessionSelectStudent = (props) => {
             <tbody>
               {
 
-                getStudent.map(d => (
+                getStudent.filter((value)=>{
+                  if(search===""){
+                    return value;
+                  }else if(value.name.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("Name")){
+                    return value;
+                  }else if(value.nid.toString().toLowerCase().includes(search.toLowerCase()) && dropdown.includes("NIC")){
+                    return value;
+                  }
+                }).map(d => (
                   <tr>
                     <td>{d.stuID}</td>
                     <td>{d.nid}</td>
                     <td>{d.name}</td>
-                    
-                  
+
+
 
 
 
@@ -172,8 +187,8 @@ const ManagerSessionSelectStudent = (props) => {
 
 
       <div className="table_responsive" style={{ marginTop: "2%", overflow: "hidden" }}>
-        <div style={{ position: "relative"}}>
-        
+        <div style={{ position: "relative" }}>
+
           <button style={{ position: "relative", right: "0px" }} className="reset-btn" onClick={props.toggle}>Close</button>
         </div>
       </div>
