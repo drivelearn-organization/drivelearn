@@ -120,8 +120,10 @@ const ManagerAddStudents = (props) => {
 
         
             <div className="card-p">
-              <p className="text">Instructor Name</p>
-              <select>
+              {/* <p className="text">Instructor Name</p> */}
+
+              <h2 >{props.updateDetails.trainerName}</h2>
+              {/* <select>
                 <option value={props.updateDetails.empid}>{props.updateDetails.trainerName}</option>
                 {
                   getEmployeeType.map(d => (
@@ -133,7 +135,7 @@ const ManagerAddStudents = (props) => {
 
 
 
-              </select>
+              </select> */}
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
@@ -199,8 +201,9 @@ const ManagerAddStudents = (props) => {
             </div>
 
 
-            <div className="card-p">
+            {/* <div className="card-p">
               <p className="text">Vehical type</p>
+              <p>{props.updateDetails.vehicleType}</p>
 
               <select>
                 <option value={props.updateDetails.vehicleType} onChange={(e)=>{
@@ -240,7 +243,7 @@ const ManagerAddStudents = (props) => {
 
               </select>
 
-            </div>
+            </div> */}
 
             <center style={{padding: "10px"}}>
               <input type="submit" value="Update" onClick={()=>props.putSession()} className="update-btn" />

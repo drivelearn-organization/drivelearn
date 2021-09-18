@@ -64,7 +64,7 @@ public class SessionService {
             for (User user1 : userList) {
                 user = user1;
             }
-            System.out.println(user.getUsername());
+            //System.out.println(user.getUsername());
         }
         return user;
     }
