@@ -101,9 +101,9 @@ const ManagerAddStudents = () => {
       .post(Base+"/session/addSession", data)
       .then(response=> {
         console.log(response.data);
-        // if(response.data === "Added Successfully"){
-        //   window.location = '/managersession';
-        // }
+        if(response.data === "Added Successfully"){
+          window.location = '/managersession';
+        }
       })
   }
 

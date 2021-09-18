@@ -45,7 +45,7 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         <div className="sidebar__link">
           <i className="fa fa-bus"></i>
           {/* <a href="./adminvehicle">Vehicles</a> */}
-          <Link to = "/adminvehicles" >Vehicles</Link>
+          <Link to = "/adminvehicle" >Vehicles</Link>
         </div>
         <div className="sidebar__link">
         <i class="fas fa-bell"></i>
@@ -54,7 +54,8 @@ const Sidebar = ({sidebarOpen, closeSidebar}) => {
         </div>
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
-          <a href="#">Payments</a>
+          {/* <a href="#">Payments</a> */}
+          <Link to = "/adminpayment" >Payments</Link>
         </div>
         {/* <div className="sidebar__link">
           <i className="fa fa-clock-o"></i>

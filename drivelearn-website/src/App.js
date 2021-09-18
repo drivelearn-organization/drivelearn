@@ -35,6 +35,8 @@ import ManagerAddPayment from './BranchManager/pages/managerAddPayment';
 import ManagerUpdatePayment from './BranchManager/pages/managerUpdatePayment';
 import AdminEmployeeReaquest from './Administrator/pages/adminEmployeeReaquest';
 import AdminVehicle from './Administrator/pages/adminVehicle';
+import AdminAddVehicle from './Administrator/pages/adminAddVehicle';
+import AdminPayment from './Administrator/pages/adminPayment';
 
 function App() {
   return (
@@ -76,6 +78,9 @@ function App() {
           <Route path='/managerupdatepayment' exact component={ManagerUpdatePayment} />    
           <Route path='/adminEmployeeReaquest' exact component={AdminEmployeeReaquest} />
           <Route path='/adminvehicle' exact component={AdminVehicle} />
+          <Route path='/adminaddvehicle' exact component={AdminAddVehicle} />
+          <Route path='/adminpayment' exact component={AdminPayment} />
+
 
           
           

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
-// import '../../BranchManager/Table.css';
+import '../../BranchManager/Table.css';
 import '../../BranchManager/filterButton.css';
 import Navbar from '../../BranchManager/Navbar';
 import Sidebar from '../adminSidebar';
@@ -152,7 +152,7 @@ console.log(getUpdateVehicle);
               </div>
               <div className="create-button">
                 <div className="create_btn">
-                  <a href="./manageraddvehicle"><i className="fa fa-plus-circle"></i></a>
+                  <a href="./adminaddvehicle"><i className="fa fa-plus-circle"></i></a>
                   <br />
                   <p>Add vehicle</p>
                 </div>

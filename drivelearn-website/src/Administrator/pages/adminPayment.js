@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
-import './../Table.css';
-import './../filterButton.css';
-import Navbar from '../Navbar';
-import Sidebar from '../managerSidebar';
+import '../../BranchManager/Table.css';
+import '../../BranchManager/filterButton.css';
+import Navbar from '../../BranchManager/Navbar';
+import Sidebar from '../adminSidebar';
 import axios from 'axios';
-import ManagerNewUpdatePayment from "./managerNewUpdatePayment ";
+import ManagerNewUpdatePayment from "../../BranchManager/pages/managerNewUpdatePayment ";
 import { Base } from './../../base';
 
 
-const ManagerVehicle = () => {
+const AdminPayment = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [paymentState, setPayementState] = useState([]);
   const [modal, setModal] = useState(false);
@@ -193,4 +193,4 @@ const ManagerVehicle = () => {
 
 }
 
-export default ManagerVehicle;
+export default AdminPayment;
