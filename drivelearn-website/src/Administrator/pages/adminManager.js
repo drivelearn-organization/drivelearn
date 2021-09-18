@@ -9,6 +9,8 @@ const AdminStudents = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [modal, setModal] = useState(false);
     const [getData, setGetData] = useState([]);
+    const [getdropmenu, setgetdropmenu] = useState("Reg No");
+  const [search, getSearch] = useState("");
     const[deactivate, setDeactivate] = useState({
       empid: '' 
   });
@@ -52,7 +54,7 @@ const handleChange = (e) => {
    useEffect(()=>{
     axios.get(Base+'/drivelearn/employee')
     .then(response =>{
-      setGetData(response.data)
+      setGetData(response.data.reverse())
       console.log(getData);
     })
     // axios.post('http://192.168.56.1:8080/drivelearn/deactiveEmployee',deactivate)
@@ -76,20 +78,27 @@ const handleChange = (e) => {
             
             <div className="search"> 
             <form action="" onSubmit={handleSubmit}>
-               <div className="search_box">
-                 <div className="dropdown">
-                   <div className="default_option">All</div>  
-                   {/* <ul>
-                         <li>All</li>
-                         <li>Recent</li>
-                         <li>Popular</li>
-                       </ul> */}
-                   </div>
-                 <div className="search_field">
-                 <input type="text" className="input" placeholder="Search" name="fullName"  onChange={handleChange}/>
-                 <i className="fas fa-search" onSubmit={handleSubmit}></i>
-                </div>
-                </div>
+            <div className="search_box " >
+
+
+<select id="dropdown" className="drop-down" onChange={e => {
+  setgetdropmenu(e.target.value);
+}}>
+
+  <option className="option-style" value="Reg No">Reg No</option>
+  <option className="option-style" value="Full Name">Full Name</option>
+  <option className="option-style" value="NIC">NIC</option>
+
+</select>
+
+
+<div className="search_field search-drop">
+  <input type="text" className="input" placeholder="Search" onChange={(e) => {
+    getSearch(e.target.value);
+  }} />
+  <i className="fas fa-search"></i>
+</div>
+</div>
                 </form>
                  <div className="create-button">
                    <div className="create_btn">
@@ -117,7 +126,19 @@ const handleChange = (e) => {
 
              <tbody>
              {
-              getData.map(data =>{
+              getData.filter((value) => {
+
+              
+                if (search === "") {
+                  return value;
+                } else if (value.empid.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Reg No")) {
+                  return value;
+                } else if (value.fullName.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Full Name")) {
+                  return value;
+                } else if (value.nid.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("NIC")) {
+                  return value;
+                }
+              }).map(data =>{
                 
                  
                   return(

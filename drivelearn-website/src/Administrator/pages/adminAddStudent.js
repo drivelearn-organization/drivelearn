@@ -165,7 +165,7 @@ const handleSubmit = (e) =>{
 
             
             <center>
-            <input type="submit" value="Update" className="update-btn" />
+            <input type="submit" value="Add" className="update-btn" />
             &nbsp;&nbsp;&nbsp;
             <input type="Reset" value="RESET" className="reset1-btn" />
             </center>
