@@ -102,13 +102,7 @@ const ManagerVehicle = () => {
                   <i className="fas fa-search"></i>
                 </div>
               </div>
-              {/* <div className="create-button">
-                <div className="create_btn">
-                  <a href="./manageraddvehicle"><i className="fa fa-plus-circle"></i></a>
-                  <br />
-                  <p>Add vehicle</p>
-                </div>
-              </div> */}
+            
             </div>
 
 
