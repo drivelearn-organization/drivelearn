@@ -214,7 +214,7 @@ const [successShow,setsuccessShow] = useState(false);
         <div className="container">
             <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
             <main>
-                <div className="main__container">
+                <div className="main__container" style={{zIndex: "2"}}>
                     <div className="main__title">
                         <div className="main__greeting">
                             <h1>Manage Notifications</h1>
@@ -266,7 +266,7 @@ const [successShow,setsuccessShow] = useState(false);
 
 
                             {modal && (
-                                <div className="modal">
+                                <div className="modal" style={{zIndex: "3"}}>
                                     <div className="overlay">
                                         <div className="modal-content" style={{
                                             background: "white",

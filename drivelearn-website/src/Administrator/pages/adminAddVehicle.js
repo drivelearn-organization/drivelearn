@@ -206,7 +206,7 @@ const AdminAddVehicle = () => {
                 <center>
                   <input type="submit" value="Add" className="update-btn" />
                   &nbsp;&nbsp;&nbsp;
-                  <input type="Reset" value="Cancle" className="reset1-btn" />
+                  <input type="Reset" value="Reset" className="reset1-btn" />
                 </center>
               </form>
             </div>

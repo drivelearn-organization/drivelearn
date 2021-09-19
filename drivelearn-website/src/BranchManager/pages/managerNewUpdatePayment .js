@@ -125,8 +125,8 @@ const ManagerNewPayment = (props) => {
           <table>
             <thead>
               <tr>
-                <th > Amount : </th>
-                <th style={{ background: "white", color: "black" }}><input type="text" placeholder="Amount" onChange={(e) =>
+                <th > Amount (RS) : </th>
+                <th style={{ background: "white", color: "black" }}><input style={{border: "none",borderBottom: "2px solid red"}} type="text" placeholder="Amount" onChange={(e) =>
                   setdrop({
                     paymentId: props.data.paymentId,
                     amount: e.target.value,
