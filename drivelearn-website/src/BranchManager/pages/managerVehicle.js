@@ -6,6 +6,7 @@ import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
 import './../dropdown.css';
+import './../Popup.css';
 import ManagerUpdateVehicle from './managerUpdateVehicle';
 import ManagerNewUpdateVehicle from './managerNewUpdateVehicle';
 import {Base} from './../../base';
@@ -103,7 +104,7 @@ console.log(getUpdateVehicle);
     <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-        <div className="main__container">
+        <div className="main__container" style={{zIndex:"2"}}>
           <div className="main__title">
             <div className="main__greeting">
               <h1>Manage Vehicles</h1>
@@ -113,7 +114,7 @@ console.log(getUpdateVehicle);
 
 
           {modal && (
-                  <div className="modal" >
+                  <div className="modal" style={{zIndex: "4"}} >
                     <div className="overlay" >
                       <div className="modal-content" style={{
                         background: "white"
@@ -130,7 +131,7 @@ console.log(getUpdateVehicle);
           <br /><br />
           <div className="table_responsive">
             <div className="search" >
-              <div className="search_box " >
+              <div className="search_box " style={{zIndex: "3"}}>
 
 
                 <select id="dropdown" className="drop-down" onChange={e=>{
@@ -143,7 +144,7 @@ console.log(getUpdateVehicle);
                 </select>
 
 
-                <div className="search_field search-drop">
+                <div className="search_field search-drop" style={{zIndex: "1"}}>
                   <input type="text" className="input" placeholder="Search" onChange={(e)=>{
                     getSearch(e.target.value);
                   }} />
