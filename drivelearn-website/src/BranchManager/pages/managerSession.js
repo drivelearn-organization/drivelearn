@@ -262,7 +262,7 @@ const ManagerSession = () => {
                     <div className="modal-content" style={{
                       background: "white",
                       width: "10%",
-                      height: "60vh"
+                      height: "55vh"
                     }}>
                       <ManagerSessionDeactive setDeactive={setDeactive} deleteSession={deleteSession} />
 

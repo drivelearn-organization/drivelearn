@@ -6,6 +6,7 @@ import Sidebar from '../managerSidebar';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 import {Base} from './../../base';
+import './../../BranchManager/Popup.css';
 
 
 const ManagerUpdateVehicle = (props) => {
@@ -73,7 +74,7 @@ const ManagerUpdateVehicle = (props) => {
   return (
 
 
-    <div className="main__container" >
+    <div className="main__container">
       <div className="main__title">
         <div className="main__greeting">
           <h1>Update Vehicle</h1>
@@ -397,6 +398,7 @@ const ManagerUpdateVehicle = (props) => {
         </div>
       </center>
     </div>
+   
 
 
   );
