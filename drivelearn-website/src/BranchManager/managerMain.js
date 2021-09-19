@@ -27,7 +27,7 @@ const ManagerMain = ({getData,getMonthData}) => {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Students</p>
-            <span className="font-bold text-title">{getData.studentCoun}</span>
+            <span className="font-bold text-title">{getData.studentCount}</span>
           </div>
         </div>
 
