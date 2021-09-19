@@ -4,7 +4,7 @@ import './../managerViewStudent.css';
 import Navbar from '../Navbar';
 import Sidebar from '../managerSidebar';
 import axios from 'axios';
-import {Base} from './../../base';
+import { Base } from './../../base';
 
 
 const ManagerAddStudents = (props) => {
@@ -30,7 +30,7 @@ const ManagerAddStudents = (props) => {
 
   const getVehicleTypeState = () => {
     axios
-      .get(Base+"/vehicletype/showtype")
+      .get(Base + "/vehicletype/showtype")
       .then(data => {
         setVehicleType(data.data);
 
@@ -42,7 +42,7 @@ const ManagerAddStudents = (props) => {
     let id = sessionStorage.getItem('branchId');
     console.log(id);
     axios
-      .get(Base+"/vehicletype/getemployeetype/" + id)
+      .get(Base + "/vehicletype/getemployeetype/" + id)
       .then(data => {
         setEmployeeType(data.data);
 
@@ -50,7 +50,7 @@ const ManagerAddStudents = (props) => {
       })
   }
 
-  
+
 
 
   const submit = e => {
@@ -99,7 +99,7 @@ const ManagerAddStudents = (props) => {
 
   const postSession = (data) => {
     axios
-      .post(Base+"/session/addSession", data)
+      .post(Base + "/session/addSession", data)
       .then(d => {
         console.log(d);
       })
@@ -115,15 +115,31 @@ const ManagerAddStudents = (props) => {
         </div>
       </div>
       <center>
-        <div className="charts__rightt" style={{width: "100%",height: "70vh"}}>
-        
+        <div className="charts__rightt" style={{ width: "100%", height: "70vh" }}>
 
-        
-            <div className="card-p">
-              {/* <p className="text">Instructor Name</p> */}
 
-              <h2 >{props.updateDetails.trainerName}</h2>
-              {/* <select>
+
+          <div >
+            {/* <p className="text">Instructor Name</p> */}
+
+            {/* <h2 >{props.updateDetails.trainerName}</h2> */}
+
+
+            <div className="table_responsive" style={{marginBottom: "20px"}}>
+
+              <table>
+                <thead>
+
+                  <tr>
+                    <th >Name: </th>
+                    <th style={{ background: "white", color: "black" }}>{props.updateDetails.trainerName}</th>
+                  </tr>
+
+                </thead>
+              </table>
+            </div>
+
+            {/* <select>
                 <option value={props.updateDetails.empid}>{props.updateDetails.trainerName}</option>
                 {
                   getEmployeeType.map(d => (
@@ -136,14 +152,14 @@ const ManagerAddStudents = (props) => {
 
 
               </select> */}
-            </div>
+          </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+          {/* <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}> */}
 
-              <div className="card-p">
-                <p className="text">Date</p>
-                <input className="data" type="date" name="first_name" id="firstname" value={props.updateDetails.date} onChange={props.handleChange} onChange={(e)=>{
-                    props.setUpdateDetails({
+            <div className="card-p">
+              <p className="text">Date</p>
+              <input className="data" type="date" name="first_name" id="firstname" value={props.updateDetails.date} onChange={props.handleChange} onChange={(e) => {
+                props.setUpdateDetails({
                   sessionId: props.updateDetails.sessionId,
                   trainerName: props.updateDetails.trainerName,
                   date: e.target.value,
@@ -152,18 +168,18 @@ const ManagerAddStudents = (props) => {
                   empid: sessionStorage.getItem('empId'),
                   vehicleType: props.updateDetails.vehicleType
                 });
-                }
-              
+              }
+
               } placeholder="Date" required />
-                {/* <div class="alert-danger" id="firstNameError">
+              {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
-              </div>
+            </div>
 
-              <div className="card-p">
-                <p className="text">Time</p>
-                <input className="data" type="text" name="first_name" id="firstname" value={props.updateDetails.startTime} onChange={(e)=>{
-                    props.setUpdateDetails({
+            <div className="card-p">
+              <p className="text">Time</p>
+              <input className="data" type="text" name="first_name" id="firstname" value={props.updateDetails.startTime} onChange={(e) => {
+                props.setUpdateDetails({
                   sessionId: props.updateDetails.sessionId,
                   trainerName: props.updateDetails.trainerName,
                   date: props.updateDetails.date,
@@ -172,36 +188,36 @@ const ManagerAddStudents = (props) => {
                   empid: sessionStorage.getItem('empId'),
                   vehicleType: props.updateDetails.vehicleType
                 });
-                }
-              
-              } placeholder="Time" required />
-                {/* <div class="alert-danger" id="firstNameError">
-                   * First name can't be empty and must contain only letters
-                </div> */}
-              </div>
-            </div>
-            <div className="card-p">
-              <p className="text">Number Of Student</p>
-              <input className="data" type="text" name="first_name" id="firstname" value={props.updateDetails.numOfStudent} onChange={(e)=>{
-                props.setUpdateDetails({
-                  sessionId: props.updateDetails.sessionId,
-                  trainerName: props.updateDetails.trainerName,
-                  date: props.updateDetails.date,
-                  startTime: props.updateDetails.startTime,
-                  numOfStudent: e.target.value,
-                  empid: sessionStorage.getItem('empId'),
-                  vehicleType: props.updateDetails.vehicleType
-                });
               }
-                
-              } placeholder="Number Of Student" required />
+
+              } placeholder="Time" required />
               {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
                 </div> */}
             </div>
+          {/* </div> */}
+          <div className="card-p">
+            <p className="text">Number Of Student</p>
+            <input className="data" type="text" name="first_name" id="firstname" value={props.updateDetails.numOfStudent} onChange={(e) => {
+              props.setUpdateDetails({
+                sessionId: props.updateDetails.sessionId,
+                trainerName: props.updateDetails.trainerName,
+                date: props.updateDetails.date,
+                startTime: props.updateDetails.startTime,
+                numOfStudent: e.target.value,
+                empid: sessionStorage.getItem('empId'),
+                vehicleType: props.updateDetails.vehicleType
+              });
+            }
+
+            } placeholder="Number Of Student" required />
+            {/* <div class="alert-danger" id="firstNameError">
+                   * First name can't be empty and must contain only letters
+                </div> */}
+          </div>
 
 
-            {/* <div className="card-p">
+          {/* <div className="card-p">
               <p className="text">Vehical type</p>
               <p>{props.updateDetails.vehicleType}</p>
 
@@ -245,13 +261,13 @@ const ManagerAddStudents = (props) => {
 
             </div> */}
 
-            <center style={{padding: "10px"}}>
-              <input type="submit" value="Update" onClick={()=>props.putSession()} className="update-btn" />
-              &nbsp;&nbsp;&nbsp;
-              <input type="Reset" value="Cancle" className="reset1-btn" onClick={props.toggleupdate}/>
-              
-            </center>
-   
+          <center style={{ padding: "10px" }}>
+            <input type="submit" value="Update" onClick={() => props.putSession()} className="update-btn" />
+            &nbsp; &nbsp; &nbsp;
+            <input type="Reset" value="Cancle" className="reset1-btn" onClick={props.toggleupdate} />
+
+          </center>
+
         </div>
       </center>
     </div>

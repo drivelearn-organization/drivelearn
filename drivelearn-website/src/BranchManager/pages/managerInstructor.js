@@ -11,6 +11,8 @@ const ManagerInstructors = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [getData, setGetData] = useState([]);
   const [modal, setModal] = useState(false);
+  const [getdropmenu, setgetdropmenu] = useState("Reg No");
+  const [search, getSearch] = useState("");
   const [deactivate, setDeactivate] = useState({
     empid: ''
   });
@@ -74,9 +76,26 @@ const ManagerInstructors = () => {
           <div className="table_responsive">
             <div className="search">
               <form action="" onSubmit={handleSubmit}>
-                <div className="search_box" style={{width: '520px'}}>
-                  <h1>Active Instructor List</h1>
-                 
+                <div className="search_box " >
+
+
+                  <select id="dropdown" className="drop-down" onChange={e => {
+                    setgetdropmenu(e.target.value);
+                  }}>
+
+                    <option className="option-style" value="Reg No">Reg No</option>
+                    <option className="option-style" value="Full Name">Full Name</option>
+                    <option className="option-style" value="NIC">NIC</option>
+
+                  </select>
+
+
+                  <div className="search_field search-drop">
+                    <input type="text" className="input" placeholder="Search" onChange={(e) => {
+                      getSearch(e.target.value);
+                    }} />
+                    <i className="fas fa-search"></i>
+                  </div>
                 </div>
               </form>
 
@@ -103,7 +122,19 @@ const ManagerInstructors = () => {
 
               <tbody>
                 {
-                  getData.map(data => {
+                  getData.filter((value) => {
+
+
+                    if (search === "") {
+                      return value;
+                    } else if (value.empid.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Reg No")) {
+                      return value;
+                    } else if (value.fullName.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("Full Name")) {
+                      return value;
+                    } else if (value.nid.toString().toLowerCase().includes(search.toLowerCase()) && getdropmenu.includes("NIC")) {
+                      return value;
+                    }
+                  }).map(data => {
 
 
                     return (
@@ -112,7 +143,7 @@ const ManagerInstructors = () => {
 
                         <td>{data.empid}</td>
                         <td>{data.fullName}</td>
-                      
+
                         <td>{data.nid}</td>
                         <td>{data.moNumber}</td>
                         <td>

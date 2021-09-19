@@ -72,7 +72,7 @@ const ManagerVehicle = () => {
     <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-        <div className="main__container">
+        <div className="main__container" style={{zIndex: "2"}}>
           <div className="main__title">
             <div className="main__greeting">
               <h1>Manage Payment</h1>
@@ -82,7 +82,7 @@ const ManagerVehicle = () => {
           <br /><br />
           <div className="table_responsive">
             <div className="search" >
-              <div className="search_box " >
+              <div className="search_box " style={{zIndex: "3"}}>
 
 
                 <select id="dropdown" className="drop-down" onChange={e => {
@@ -107,7 +107,7 @@ const ManagerVehicle = () => {
 
 
             {modal && (
-              <div className="modal">
+              <div className="modal" style={{zIndex: "4"}}>
                 <div onClick={toggleModal} className="overlay"></div>
                 <div className="modal-content">
                   <ManagerNewUpdatePayment data={data} toggleModal={toggleModal} />

@@ -389,14 +389,15 @@ const ManagerUpdateVehicle = (props) => {
           </div>
 
 
-          <center>
+         
+
+        </div>
+      </center>
+      <center>
             <input type="submit" value="Update" onClick={(e=>props.addpayment(e))} className="update-btn" />
             &nbsp;&nbsp;&nbsp;
             <input type="Reset" value="Cancle" onClick={props.togglemodal} className="reset1-btn" />
           </center>
-
-        </div>
-      </center>
     </div>
    
 
