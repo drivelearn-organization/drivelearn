@@ -195,11 +195,7 @@ const ManagerSession = () => {
     <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
-      {/* {deactive && (
-              
-        <ManagerSessionDeactive setDeactive={setDeactive} deleteSession={deleteSession} />
-        )} */}
-        <div className="main__container">
+        <div className="main__container" style={{zIndex: "2"}}>
           <div className="main__title">
             <div className="main__greeting">
               <h1>Manage Session</h1>
@@ -209,7 +205,7 @@ const ManagerSession = () => {
           <br /><br />
           <div className="table_responsive">
             <div className="search">
-              <div className="search_box " >
+              <div className="search_box " style={{zIndex: "3"}}>
 
 
                 <select id="dropdown" className="drop-down" onChange={e => {
@@ -231,7 +227,7 @@ const ManagerSession = () => {
               </div>
 
               {modal && (
-                <div className="modal">
+                <div className="modal" style={{zIndex: "4"}}>
                   <div className="overlay">
                     <div className="modal-content" style={{
                       background: "white",
@@ -245,7 +241,7 @@ const ManagerSession = () => {
               )}
 
               {getmodalupdate && (
-                <div className="modal">
+                <div className="modal" style={{zIndex: "4"}}>
                   <div className="overlay">
                     <div className="modal-content" style={{
                       background: "white",
@@ -261,12 +257,12 @@ const ManagerSession = () => {
 
 
               {deactive && (
-                <div className="modal">
+                <div className="modal" style={{zIndex: "4"}}>
                   <div className="overlay">
                     <div className="modal-content" style={{
                       background: "white",
                       width: "10%",
-                      height: "60vh"
+                      height: "55vh"
                     }}>
                       <ManagerSessionDeactive setDeactive={setDeactive} deleteSession={deleteSession} />
 

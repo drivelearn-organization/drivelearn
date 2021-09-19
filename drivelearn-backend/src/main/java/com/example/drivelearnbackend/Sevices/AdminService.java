@@ -4,11 +4,8 @@ package com.example.drivelearnbackend.Sevices;
 import com.example.drivelearnbackend.Controllers.DTO.AdminDTO;
 import com.example.drivelearnbackend.Controllers.DTO.EmployeeDTO;
 import com.example.drivelearnbackend.Controllers.DTO.StudentDTO;
-import com.example.drivelearnbackend.Repositories.AdminRepository;
-import com.example.drivelearnbackend.Repositories.BranchRepository;
-import com.example.drivelearnbackend.Repositories.EmployeeRepository;
+import com.example.drivelearnbackend.Repositories.*;
 import com.example.drivelearnbackend.Repositories.Entity.*;
-import com.example.drivelearnbackend.Repositories.StudentRepository;
 import com.example.drivelearnbackend.Sevices.Support.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +30,9 @@ public class AdminService {
 
     @Autowired
     private BranchRepository branchRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     public void addAdmin(AdminDTO dto) {
@@ -391,7 +391,13 @@ public class AdminService {
             String date = dto.getSdob();
             LocalDate localDate = LocalDate.parse(date, formatter);
 
-            studentRepository.save(new Student(dto.getName(), todayregisterDate, dto.getNid(), dto.getAddress(), localDate, dto.getUsername(),pass, dto.getContact(), feedbacks, branch, stuSessionList, courceList, paymentList, vechileTypes));
+            Student student=studentRepository.save(new Student(dto.getName(), todayregisterDate, dto.getNid(), dto.getAddress(), localDate, dto.getUsername(),pass, dto.getContact(), feedbacks, branch, stuSessionList, courceList, paymentList, vechileTypes));
+
+            LinkedList<UserReceiveNotification> userReceiveNotifications=new LinkedList<>();
+            LinkedList<Notification> sentMessage=new LinkedList<>();
+
+
+            User user=userRepository.save(new User(student.getStuId(), 3, dto.getUsername(), userReceiveNotifications,sentMessage));
 
             error = "Added Successfully";
 

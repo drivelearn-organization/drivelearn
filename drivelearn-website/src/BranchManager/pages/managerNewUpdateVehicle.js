@@ -381,9 +381,9 @@ const ManagerUpdateVehicle = (props) => {
                 });
 
               }} required />
-              <div class="alert-danger" id="firstNameError">
+              {/* <div class="alert-danger" id="firstNameError">
                    * First name can't be empty and must contain only letters
-                </div>
+                </div> */}
             </div>
 
           </div>
