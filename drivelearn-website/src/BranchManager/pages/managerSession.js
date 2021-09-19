@@ -195,6 +195,10 @@ const ManagerSession = () => {
     <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      {/* {deactive && (
+              
+        <ManagerSessionDeactive setDeactive={setDeactive} deleteSession={deleteSession} />
+        )} */}
         <div className="main__container">
           <div className="main__title">
             <div className="main__greeting">

@@ -103,6 +103,13 @@ console.log(getUpdateVehicle);
     <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <main>
+      
+      {/* {modal && (
+                  
+                        <ManagerNewUpdateVehicle addpayment={addpayment} togglemodal={togglemodal} setUpdateVehicle={setUpdateVehicle} getUpdateVehicle={getUpdateVehicle} />
+
+                     
+       )} */}
         <div className="main__container">
           <div className="main__title">
             <div className="main__greeting">

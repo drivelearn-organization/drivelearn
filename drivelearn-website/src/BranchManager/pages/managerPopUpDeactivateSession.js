@@ -42,6 +42,43 @@ const Popup = (props) => {
 
     );
 
+
+
+    // return (
+    //     <div className="modalBackground">
+    //     <div className="modalContainer">
+    //       <div className="titleCloseBtn">
+    //         <button
+    //           onClick={() => {
+    //             props.setDeactive(false);
+    //           }}
+    //         >
+    //           X
+    //         </button>
+    //       </div>
+    //       {/* <div className="title">
+    //         <h1>Are You Sure You Want to Delete?</h1>
+    //       </div> */}
+    //       <div className="body">
+    //         <p>Are You Sure You Want to Deactivate this Branch Manager?</p>
+    //       </div>
+    //       <div className="footer">
+    //         <button
+    //           onClick={() => {
+    //             props.setDeactive(false);
+    //           }}
+    //           id="cancelBtn"
+    //         >
+    //           Cancel
+    //         </button>
+    //         <button onClick={() => {
+    //            props.deleteSession();
+    //         }}>Delete</button>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   );
+
 }
 
 export default Popup;
