@@ -1,5 +1,5 @@
 import "./Navbar.css";
-
+import Profile from "../ImgFolder/avatar.png"
 
 const Navbar = ({sidebarOpen, openSidebar}) => {
     return(
@@ -12,7 +12,7 @@ const Navbar = ({sidebarOpen, openSidebar}) => {
         <div className="navbar__right">
           <h5>{sessionStorage.getItem('username')}</h5>
           <a href="#">
-          <img width="30" src="images/avatar.png" alt="" />
+          <img width="30" src={Profile} alt="" />
           </a>
           {/* <a href="#">
           <i className="fa fa-bell"></i>

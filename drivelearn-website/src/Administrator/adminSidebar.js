@@ -1,13 +1,14 @@
 
 import { Link } from "react-router-dom";
 import "./../BranchManager/Sidebar.css";
+import Logo from "../ImgFolder/LogoWhite.png"
 
 const Sidebar = ({sidebarOpen, closeSidebar}) => {  
       return(
       <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
       <div className="sidebar__title">
         <div className="sidebar__img">
-        <img src='images/LogoWhite.png' alt="Logo" width="50" height="50"/>
+        <img src={Logo} alt="Logo" width="50" height="50"/>
           <h1>DriveLEARN</h1>
         </div>
         <div className="closeicon" onClick={ () => closeSidebar()}>
