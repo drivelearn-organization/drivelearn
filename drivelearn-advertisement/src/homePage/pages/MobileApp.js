@@ -23,7 +23,6 @@ function MobileApp() {
         <br/><br/>
         <button className="install-app"><i class="fab fa-google-play"></i>&nbsp;&nbsp; Get it on Google play</button>
         <br/><br/>
-        <button className="install-app"><i class="fab fa-apple"></i>&nbsp;&nbsp;Download on the Apple store</button>
 		  </div>
       </div>
     </div>
