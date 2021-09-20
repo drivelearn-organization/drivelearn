@@ -17,7 +17,7 @@ function Contacts() {
 				<input type="text" className="field" placeholder="Your Name" />
 				<input type="text" className="field" placeholder="Your Email" />
 				<input type="text" className="field" placeholder="Phone" />
-				<textarea placeholder="Message" class="field"></textarea>
+				<textarea placeholder="Message" className="field"></textarea>
 				<button className="button1">Send</button>
 		    </div>
       </div>
