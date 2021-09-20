@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DrivelearnBackendApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(DrivelearnBackendApplication.class, args);
     }
 

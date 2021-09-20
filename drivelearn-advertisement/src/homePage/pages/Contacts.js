@@ -8,19 +8,21 @@ function Contacts() {
 	<>
     <Navbar/>
     <div className="container">
+	     <form>
 		 <div className="contact-box">
 			 <div className="left">
-			 <img src='images/image1.jpeg' alt="Logo" width='100%' height='100%'/> 
+			 <img src='images/Contact1.jpg' alt="Logo" width='100%' height='100%'/> 
 			 </div>
 			 <div className="right">
 				<h2>Contact Us</h2>
-				<input type="text" class="field" placeholder="Your Name" />
-				<input type="text" class="field" placeholder="Your Email" />
-				<input type="text" class="field" placeholder="Phone" />
-				<textarea placeholder="Message" class="field"></textarea>
+				<input type="text" className="field" placeholder="Your Name" required />
+				<input type="text" className="field" placeholder="Your Email" required/>
+				<input type="text" className="field" placeholder="Phone" required/>
+				<textarea placeholder="Message" className="field" required></textarea>
 				<button className="button1">Send</button>
 		    </div>
       </div>
+	  </form>
     </div>
 	</>
   );
