@@ -99,13 +99,13 @@ const AdminEmployeeReaquest = () => {
                   </div>
                 </div>
               </form>
-              <div className="create-button">
+              {/* <div className="create-button">
                 <div className="create_btn">
                   <a href="./adminaddmanager"><i className="fa fa-plus-circle"></i></a>
                   <br />
                   <p>Add managers</p>
                 </div>
-              </div>
+              </div> */}
             </div>
 
 
