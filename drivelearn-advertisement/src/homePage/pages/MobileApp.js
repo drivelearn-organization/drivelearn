@@ -10,7 +10,7 @@ function MobileApp() {
     <div className="container">
 		  <div className="contact-box">
 			  <div className="left">
-			    <img src='images/.jpg' alt="Logo" width='100%' height='100%'/>
+			    <img src='images/playstore.png' alt="Logo" width='100%' height='100%'/>
           
 			  </div>
 			<div className="right">
