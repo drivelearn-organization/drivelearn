@@ -182,3 +182,25 @@
       width: 300px; 
     }
   }
+
+  .password-toogle-icon {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.text-success{
+  color: rgb(96, 199, 96);
+}
+
+.text-danger{
+  color: rgb(199, 91, 71);
+}
+
+.password-meter{
+  margin-top: 0;
+  padding-left: 100px;
+  margin-bottom: 40px;
+}
