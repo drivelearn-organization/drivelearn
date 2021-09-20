@@ -17,7 +17,7 @@ function Contacts() {
 				<h2>Contact Us</h2>
 				<input type="text" className="field" placeholder="Your Name" required />
 				<input type="text" className="field" placeholder="Your Email" required/>
-				<input type="text" className="field" placeholder="Phone" />
+				<input type="text" className="field" placeholder="Phone" required/>
 				<textarea placeholder="Message" className="field"></textarea>
 				<button className="button1">Send</button>
 		    </div>
