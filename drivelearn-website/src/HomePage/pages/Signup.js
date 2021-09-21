@@ -7,8 +7,21 @@ import Errorbox from './../../Administrator/pages/errorbox';
 import SuccessfulyMsgBox from './../../Administrator/pages/successfulyMsgBox'
 import { getRoles } from '@testing-library/react';
 import {Base} from './../../base';
+import PasswordStrengthIndicator from './PasswordStrengthIndicator'
+
+const isNumberRegx = /\d/;
+const specialCharacterRegx = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
 
 function Signup() {
+
+    const [passwordFocused, setPasswordFocused] = useState(false);
+    const [password, setPassword] = useState("");
+    const [passwordValidity, setPasswordValidity] = useState({
+        minChar: null,
+        number: null,
+        specialChar: null
+    });
 
     const [modal, setModal] = useState(false);
     const [errMsg, seterrMsg] = useState({
@@ -34,8 +47,21 @@ function Signup() {
             ...state,
             [e.target.name]: e.target.value
         })
+            if(e.target.name === "password"){
+                setPassword(e.target.value);
+                setPasswordValidity({
+                    minChar: e.target.value.length >= 8 ? true : false,
+                    number: isNumberRegx.test(e.target.value) ? true : false,
+                    specialChar: specialCharacterRegx.test(e.target.value) ? true : false
+                });
+            }
+            
 
+            setPasswordFocused(true);
+        
+        console.log(e.target.value);
     }
+    
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -107,9 +133,14 @@ function Signup() {
                </div>
 
                <div className="reg-group">
-               <input className="content" type="password" name="password" id="regUser" value={state.password} onChange={handleChange} required />
+               <input className="content" type="password" name="password" id="regUser" value={state.password} onChange={handleChange}   required />
                <label for="regUser">Password</label>
                </div>
+               {passwordFocused && (
+                                    <PasswordStrengthIndicator
+                                        validity={passwordValidity}
+                                    />
+                                )}
 
                <div className="reg-group">
                <input className="content" type="password" name="password2" id="loginPassword" value={state.password2} onChange={handleChange}  required />
