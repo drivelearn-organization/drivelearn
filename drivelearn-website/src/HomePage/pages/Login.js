@@ -5,6 +5,7 @@ import Nav from '../Nav';
 import axios from 'axios';
 // import Footer from './../../homePage/Footer';
 import { Base } from './../../base';
+import ResetPassword from "./forgetPassword.js";
 
 function Login() {
 
@@ -25,6 +26,11 @@ function Login() {
     })
     setModal(false)
   }
+
+ const toggle=()=>{
+   setModal(!modal);
+ } 
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -84,7 +90,7 @@ function Login() {
             <label for="loginPassword">Password</label>
           </div>
           <input type="submit" value="Login" className="submit-btn" />
-          <a href="#forgot-pw" className="forgot-pw">Forgot Password?</a>
+          <a onClick={toggle} className="forgot-pw">Forgot Password?</a>
         </form>
 
         {/* <div id="forgot-pw">
@@ -98,6 +104,20 @@ function Login() {
             <input type="submit" value="Submit" class="submit-btn" />
           </form>
         </div> */}
+
+
+        {modal && (
+          <div className="modal" style={{ zIndex: "4" }}>
+            <div className="overlay">
+              <div className="modal-content" style={{width: "50%",height: "80vh" ,position: "relative"}}>
+                <ResetPassword toggle={toggle} />
+
+              </div>
+            </div>
+          </div>
+        )}
+
+
       </div>
     </div>
   );
